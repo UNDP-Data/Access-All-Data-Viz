@@ -14,7 +14,7 @@ import {
 import { GrapherComponent } from './GrapherComponent';
 import Reducer from './Context/Reducer';
 import Context from './Context/Context';
-import { DEFAULT_VALUES } from './Constants';
+import { DATALINK, DEFAULT_VALUES } from './Constants';
 
 const GlobalStyle = createGlobalStyle`
   :root {
@@ -336,7 +336,7 @@ const App = () => {
 
   useEffect(() => {
     queue()
-      .defer(json, './data/ALL-DATA.json')
+      .defer(json, `${DATALINK}ALL-DATA.json`)
       .defer(json, 'https://raw.githubusercontent.com/UNDP-Data/Indicators-MetaData/main/indicatorMetaData.json')
       .defer(json, 'https://raw.githubusercontent.com/UNDP-Data/Country-Taxonomy/main/country-territory-groups.json')
       .await((err: any, data: any[], indicatorMetaData: IndicatorMetaDataType[], countryGroupData: CountryGroupDataType[]) => {
@@ -345,6 +345,8 @@ const App = () => {
           const Year = new Date(d.Year).getFullYear();
           return { ...d, Year };
         });
+
+        const topic = queryParams.get('topic');
 
         const groupedData = nest()
           .key((d: any) => d['Alpha-3 code'])
@@ -401,7 +403,8 @@ const App = () => {
         setFinalData(countryData);
         setCountryList(countryData.map((d) => d['Country or Area']));
         setRegionList(uniqBy(countryData, (d) => d['Group 2']).map((d) => d['Group 2']));
-        const indicatorWithYears: IndicatorMetaDataWithYear[] = indicatorMetaData.map((d) => ({
+        const indicatorsFiltered = topic ? indicatorMetaData.filter((d) => d.SSTopics.indexOf(topic) !== -1) : indicatorMetaData;
+        const indicatorWithYears: IndicatorMetaDataWithYear[] = indicatorsFiltered.map((d) => ({
           ...d,
           years: countryIndicatorObj[countryIndicatorObj.findIndex((el) => el.indicator === d.DataKey)].yearAvailable,
         }));

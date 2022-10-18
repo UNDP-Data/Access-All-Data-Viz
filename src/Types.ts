@@ -61,6 +61,8 @@ export interface IndicatorMetaDataType {
   BarGraph?: boolean;
   Sizing?: boolean;
   Color?: boolean;
+  SSTopics: string[];
+  SignatureSolution: string[];
 }
 
 export interface IndicatorMetaDataWithYear extends IndicatorMetaDataType {

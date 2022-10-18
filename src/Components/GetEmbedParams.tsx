@@ -53,6 +53,7 @@ export const GetEmbedParams = () => {
     reverseOrder,
     verticalBarLayout,
   } = useContext(Context) as CtxDataType;
+  const queryParamsFromLink = new URLSearchParams(window.location.search);
   const graphParam = `graphType=${graphType}`;
   const regionsParam = selectedRegions.length > 0 ? `&regions=${ArrToString(selectedRegions)}` : '';
   const countries = selectedCountries.length > 0 ? `&countries=${ArrToString(selectedCountries)}` : '';
@@ -70,6 +71,7 @@ export const GetEmbedParams = () => {
   const reverseOrderParam = reverseOrder === true ? '&reverseOrder=true' : '';
   const verticalBarLayoutParam = verticalBarLayout === false ? '&verticalBarLayout=false' : '';
   const showSettingsParam = showSettingsInEmbed === false ? '&showSettings=false' : '&showSettings=true';
+  const topicParam = queryParamsFromLink.get('topic') ? `&topic=${queryParamsFromLink.get('topic')}` : '';
   const queryParams = graphParam
     + regionsParam
     + countries
@@ -86,7 +88,8 @@ export const GetEmbedParams = () => {
     + useSameRangeParam
     + reverseOrderParam
     + verticalBarLayoutParam
-    + showSettingsParam;
+    + showSettingsParam
+    + topicParam;
   return (
     <>
       <EmbedLinkBox>

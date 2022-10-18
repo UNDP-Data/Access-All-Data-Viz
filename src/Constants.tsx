@@ -162,3 +162,5 @@ export const COLOR_SCALES = {
     ['#F782A5', '#D180B3', '#9F7DC5', '#727AD4', '#4978E3'],
   ],
 };
+
+export const DATALINK = process.env.NODE_ENV === 'production' ? '../pillar-insights/data/' : './data/';

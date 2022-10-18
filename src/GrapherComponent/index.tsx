@@ -161,7 +161,10 @@ export const GrapherComponent = (props: Props) => {
             <Logo height={50} />
             <div>
               <H1>Data Futures Platform</H1>
-              <H2>Explore All Data</H2>
+              <H2>
+                Explore All Data
+                {queryParams.get('topic') ? ` for ${queryParams.get('topic')}` : null}
+              </H2>
             </div>
           </TitleEl>
           <ButtonsEl>
