@@ -34,11 +34,15 @@ export const GetEmbedParams = () => {
     useSameRange,
     reverseOrder,
     verticalBarLayout,
+    selectedCountry,
+    signatureSolution,
   } = useContext(Context) as CtxDataType;
   const queryParamsFromLink = new URLSearchParams(window.location.search);
   const graphParam = `graphType=${graphType}`;
   const regionsParam = selectedRegions.length > 0 ? `&regions=${ArrToString(selectedRegions)}` : '';
   const countries = selectedCountries.length > 0 ? `&countries=${ArrToString(selectedCountries)}` : '';
+  const selectCountryParam = selectedCountry ? `&selectedCountry=${selectedCountry}` : '';
+  const signatureSolutionParam = signatureSolution ? `&signatureSolution=${signatureSolution}` : '';
   const incomeGroupsParam = selectedRegions.length > 0 ? `&incomeGroups=${ArrToString(selectedIncomeGroups)}` : '';
   const countryGroupParam = selectedCountryGroup === 'All' ? '' : `&countryGroup=${CovertStringForParam(selectedCountryGroup)}`;
   const firstMetricParam = `&firstMetric=${CovertStringForParam(xAxisIndicator)}`;
@@ -57,6 +61,8 @@ export const GetEmbedParams = () => {
   const queryParams = graphParam
     + regionsParam
     + countries
+    + selectCountryParam
+    + signatureSolutionParam
     + incomeGroupsParam
     + countryGroupParam
     + firstMetricParam

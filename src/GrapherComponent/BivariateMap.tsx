@@ -73,8 +73,12 @@ const LegendContainer = styled.div`
   display: flex;
   margin-top: -2rem;
   pointer-events: none;
+  margin-left: 1rem;
+  padding-top: 1rem;
   @media (min-width: 961px) {
     transform: translateY(-100%);
+    width: fit-content;
+    background-color: rgba(255,255,255, 0.75);
   }
 `;
 

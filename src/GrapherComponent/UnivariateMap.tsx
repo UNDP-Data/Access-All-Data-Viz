@@ -24,7 +24,7 @@ interface Props {
 
 const LegendEl = styled.div`
   padding: 0.75rem 0.75rem 0 0.75rem;
-  background-color:var(--white);
+  background-color: rgba(255,255,255, 0.75);
   width: 20rem;
   margin-left: 0.75rem;
   margin-top: -1.25rem;

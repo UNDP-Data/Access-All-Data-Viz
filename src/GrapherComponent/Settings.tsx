@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Select, Radio, Checkbox } from 'antd';
 import domtoimage from 'dom-to-image';
-import { CtxDataType, IndicatorMetaDataWithYear } from '../Types';
+import { CountryListType, CtxDataType, IndicatorMetaDataWithYear } from '../Types';
 import Context from '../Context/Context';
 import { DEFAULT_VALUES, INCOME_GROUPS } from '../Constants';
 import {
@@ -16,7 +16,7 @@ import '../style/radioStyle.css';
 interface Props {
   indicators: IndicatorMetaDataWithYear[];
   regions: string[];
-  countries: string[];
+  countries: CountryListType[];
 }
 
 const El = styled.div`
@@ -429,8 +429,8 @@ export const Settings = (props: Props) => {
                       onChange={(d: string[]) => { updateSelectedCountries(d); updateMultiCountrytrendChartCountries(d); }}
                     >
                       {
-                      countries.map((d) => (
-                        <Select.Option className='undp-select-option' key={d}>{d}</Select.Option>
+                      countries.map((d, i) => (
+                        <Select.Option className='undp-select-option' key={i}>{d.name}</Select.Option>
                       ))
                     }
                     </Select>

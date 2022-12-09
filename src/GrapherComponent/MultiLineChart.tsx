@@ -8,7 +8,7 @@ import { Select } from 'antd';
 import { format } from 'd3-format';
 import range from 'lodash.range';
 import {
-  CtxDataType, DataType, HoverDataType, IndicatorMetaDataWithYear,
+  CtxDataType, DataType, HoverDataType, IndicatorMetaDataWithYear, CountryListType,
 } from '../Types';
 import Context from '../Context/Context';
 import { COLOR_SCALES, MAX_TEXT_LENGTH } from '../Constants';
@@ -17,7 +17,7 @@ import { TooltipForMultiLineChart } from '../Components/TooltipForMultiLineChart
 interface Props {
   data: DataType[];
   indicators: IndicatorMetaDataWithYear[];
-  countries: string[];
+  countries: CountryListType[];
 }
 
 interface DataFormattedType {
@@ -142,8 +142,8 @@ export const MultiLineChart = (props: Props) => {
           maxTagCount='responsive'
         >
           {
-            countries.map((d) => (
-              <Select.Option className='undp-select-option' key={d}>{d}</Select.Option>
+            countries.map((d, i) => (
+              <Select.Option className='undp-select-option' key={i}>{d.name}</Select.Option>
             ))
           }
         </Select>
@@ -364,8 +364,8 @@ export const MultiLineChart = (props: Props) => {
                 onChange={(d) => { updateMultiCountrytrendChartCountries(d); }}
               >
                 {
-                  countries.map((d) => (
-                    <Select.Option className='undp-select-options' key={d}>{d}</Select.Option>
+                  countries.map((d, i) => (
+                    <Select.Option className='undp-select-options' key={i}>{d.name}</Select.Option>
                   ))
                 }
               </Select>
@@ -386,8 +386,8 @@ export const MultiLineChart = (props: Props) => {
                 maxTagCount='responsive'
               >
                 {
-                  countries.map((d) => (
-                    <Select.Option className='undp-select-option' key={d}>{d}</Select.Option>
+                  countries.map((d, i) => (
+                    <Select.Option className='undp-select-option' key={i}>{d.name}</Select.Option>
                   ))
                 }
               </Select>

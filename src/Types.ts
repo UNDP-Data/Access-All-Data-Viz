@@ -126,3 +126,8 @@ export interface CtxDataType {
   updateMultiCountrytrendChartCountries: (_d: string[]) => void;
   updateBarLayout: (_d: boolean) => void;
 }
+
+export interface CountryListType {
+  code: string;
+  name: string;
+}

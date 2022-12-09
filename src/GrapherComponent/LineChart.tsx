@@ -7,7 +7,7 @@ import minBy from 'lodash.minby';
 import { Select } from 'antd';
 import { format } from 'd3-format';
 import {
-  CtxDataType, DataType, HoverDataType, IndicatorMetaDataWithYear,
+  CtxDataType, DataType, HoverDataType, IndicatorMetaDataWithYear, CountryListType,
 } from '../Types';
 import Context from '../Context/Context';
 import { Tooltip } from '../Components/Tooltip';
@@ -16,7 +16,7 @@ import { MAX_TEXT_LENGTH } from '../Constants';
 interface Props {
   data: DataType[];
   indicators: IndicatorMetaDataWithYear[];
-  countries: string[];
+  countries: CountryListType[];
 }
 
 interface DataFormattedType {
@@ -125,11 +125,11 @@ export const LineChart = (props: Props) => {
           placeholder='Please select a country'
           onChange={(d) => { updateTrendChartCountry(d); }}
           disabled={selectedCountry !== undefined}
-          value={selectedCountry || trendChartCountry}
+          value={countries[countries.findIndex((d) => d.code === selectedCountry)].name || trendChartCountry}
         >
           {
-            countries.map((d) => (
-              <Select.Option className='undp-select-option' key={d}>{d}</Select.Option>
+            countries.map((d, i) => (
+              <Select.Option className='undp-select-option' key={i}>{d.name}</Select.Option>
             ))
           }
         </Select>
@@ -329,8 +329,8 @@ export const LineChart = (props: Props) => {
                 onChange={(d) => { updateTrendChartCountry(d); }}
               >
                 {
-                  countries.map((d) => (
-                    <Select.Option className='undp-select-option' key={d}>{d}</Select.Option>
+                  countries.map((d, i) => (
+                    <Select.Option className='undp-select-option' key={i}>{d.name}</Select.Option>
                   ))
                 }
               </Select>

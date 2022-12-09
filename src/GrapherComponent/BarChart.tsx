@@ -175,60 +175,60 @@ export const BarChart = (props: Props) => {
                   {colorIndicatorMetaData?.IndicatorLabelTable ? colorIndicatorMetaData?.IndicatorLabelTable : colorIndicator}
                 </text>
                 {
-            colorIndicator === 'Human Development Index' ? COLOR_SCALES.Divergent.Color4.map((d, i) => (
-              <g
-                transform='translate(0,20)'
-                key={i}
-                onMouseOver={() => { setSelectedColor(d); }}
-                onMouseLeave={() => { setSelectedColor(undefined); }}
-                style={{ cursor: 'pointer' }}
-              >
-                <rect
-                  x={(i * (graphWidth - 50)) / COLOR_SCALES.Divergent.Color4.length + 1}
-                  y={1}
-                  width={((graphWidth - 50) / COLOR_SCALES.Divergent.Color4.length) - 2}
-                  height={8}
-                  fill={d}
-                  stroke={selectedColor === d ? '#212121' : d}
-                />
-                <text
-                  x={((i * (graphWidth - 50)) / COLOR_SCALES.Divergent.Color4.length) + (((graphWidth - 50) / 2) / COLOR_SCALES.Divergent.Color4.length)}
-                  y={25}
-                  textAnchor='middle'
-                  fontSize={12}
-                  fill='#212121'
-                >
-                  {HDI_LEVELS[i]}
-                </text>
-              </g>
-            )) : colorDomain.map((d, i) => (
-              <g
-                transform='translate(0,20)'
-                key={i}
-                onMouseOver={() => { setSelectedColor(colorList[i]); }}
-                onMouseLeave={() => { setSelectedColor(undefined); }}
-                style={{ cursor: 'pointer' }}
-              >
-                <rect
-                  x={(i * (graphWidth - 50)) / colorDomain.length + 1}
-                  y={1}
-                  width={((graphWidth - 50) / colorDomain.length) - 2}
-                  height={8}
-                  fill={colorList[i]}
-                  stroke={selectedColor === colorList[i] ? '#212121' : colorList[i]}
-                />
-                <text
-                  x={((i * (graphWidth - 50)) / colorDomain.length) + (((graphWidth - 50) / 2) / colorDomain.length)}
-                  y={25}
-                  textAnchor='middle'
-                  fontSize={12}
-                  fill='#212121'
-                >
-                  {d}
-                </text>
-              </g>
-            ))
-          }
+                  colorIndicator === 'Human Development Index' ? COLOR_SCALES.Divergent.Color4.map((d, i) => (
+                    <g
+                      transform='translate(0,20)'
+                      key={i}
+                      onMouseOver={() => { setSelectedColor(d); }}
+                      onMouseLeave={() => { setSelectedColor(undefined); }}
+                      style={{ cursor: 'pointer' }}
+                    >
+                      <rect
+                        x={(i * (graphWidth - 50)) / COLOR_SCALES.Divergent.Color4.length + 1}
+                        y={1}
+                        width={((graphWidth - 50) / COLOR_SCALES.Divergent.Color4.length) - 2}
+                        height={8}
+                        fill={d}
+                        stroke={selectedColor === d ? '#212121' : d}
+                      />
+                      <text
+                        x={((i * (graphWidth - 50)) / COLOR_SCALES.Divergent.Color4.length) + (((graphWidth - 50) / 2) / COLOR_SCALES.Divergent.Color4.length)}
+                        y={25}
+                        textAnchor='middle'
+                        fontSize={12}
+                        fill='#212121'
+                      >
+                        {HDI_LEVELS[i]}
+                      </text>
+                    </g>
+                  )) : colorDomain.map((d, i) => (
+                    <g
+                      transform='translate(0,20)'
+                      key={i}
+                      onMouseOver={() => { setSelectedColor(colorList[i]); }}
+                      onMouseLeave={() => { setSelectedColor(undefined); }}
+                      style={{ cursor: 'pointer' }}
+                    >
+                      <rect
+                        x={(i * (graphWidth - 50)) / colorDomain.length + 1}
+                        y={1}
+                        width={((graphWidth - 50) / colorDomain.length) - 2}
+                        height={8}
+                        fill={colorList[i]}
+                        stroke={selectedColor === colorList[i] ? '#212121' : colorList[i]}
+                      />
+                      <text
+                        x={((i * (graphWidth - 50)) / colorDomain.length) + (((graphWidth - 50) / 2) / colorDomain.length)}
+                        y={25}
+                        textAnchor='middle'
+                        fontSize={12}
+                        fill='#212121'
+                      >
+                        {d}
+                      </text>
+                    </g>
+                  ))
+                }
                 <g
                   transform='translate(0,20)'
                 >
@@ -371,7 +371,7 @@ export const BarChart = (props: Props) => {
                     x={xScale(d.countryCode)}
                     y={heightScale(Math.max(0, d.xVal))}
                     width={xScale.bandwidth()}
-                    fill={selectedCountry ? d.countryName === selectedCountry ? '#006EB5' : '#D4D6D8' : d.colorVal ? colorScale(d.colorVal) : '#666'}
+                    fill={selectedCountry ? d.countryCode === selectedCountry ? '#006EB5' : '#D4D6D8' : d.colorVal ? colorScale(d.colorVal) : '#666'}
                     height={Math.abs(heightScale(d.xVal) - heightScale(0))}
                   />
                   {
@@ -385,7 +385,7 @@ export const BarChart = (props: Props) => {
                             y={0}
                             fontSize='10px'
                             textAnchor={d.xVal >= 0 ? 'end' : 'start'}
-                            fill={selectedCountry ? d.countryName === selectedCountry ? '#006EB5' : '#D4D6D8' : '#110848'}
+                            fill={selectedCountry ? d.countryCode === selectedCountry ? '#006EB5' : '#D4D6D8' : '#110848'}
                             transform='rotate(-90)'
                             dy='5px'
                             dx={d.xVal >= 0 ? '-5px' : '19px'}
@@ -394,7 +394,7 @@ export const BarChart = (props: Props) => {
                           </text>
                         </g>
                       )
-                      : selectedCountry ? d.countryName === selectedCountry
+                      : selectedCountry ? d.countryCode === selectedCountry
                         ? (
                           <g
                             transform={`translate(${xScale(d.countryCode) as number + (xScale.bandwidth() / 2)},${heightScale(0)})`}
@@ -415,7 +415,7 @@ export const BarChart = (props: Props) => {
                         : null
                   }
                   {
-                    selectedCountry === d.countryName
+                    selectedCountry === d.countryCode
                       ? (
                         <text
                           fill='#006EB5'

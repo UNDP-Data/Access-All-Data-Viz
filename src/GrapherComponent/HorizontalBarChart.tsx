@@ -342,7 +342,7 @@ export const HorizontalBarChart = (props: Props) => {
                   }}
                 >
                   <text
-                    fill={selectedCountry ? d.countryName === selectedCountry ? '#006EB5' : '#D4D6D8' : d.colorVal ? colorScale(d.colorVal) : '#212121'}
+                    fill={selectedCountry ? d.countryCode === selectedCountry ? '#006EB5' : '#D4D6D8' : d.colorVal ? colorScale(d.colorVal) : '#212121'}
                     y={i * 25}
                     x={0}
                     dx={-15}
@@ -356,13 +356,13 @@ export const HorizontalBarChart = (props: Props) => {
                     y={i * 25}
                     x={widthScale(Math.min(0, d.xVal))}
                     height={20}
-                    fill={selectedCountry ? d.countryName === selectedCountry ? '#006EB5' : '#D4D6D8' : d.colorVal ? colorScale(d.colorVal) : '#666'}
+                    fill={selectedCountry ? d.countryCode === selectedCountry ? '#006EB5' : '#D4D6D8' : d.colorVal ? colorScale(d.colorVal) : '#666'}
                     width={Math.abs(widthScale(d.xVal) - widthScale(0))}
                     rx={3}
                     ry={3}
                   />
                   <text
-                    fill={selectedCountry ? d.countryName === selectedCountry ? '#006EB5' : '#D4D6D8' : '#212121'}
+                    fill={selectedCountry ? d.countryCode === selectedCountry ? '#006EB5' : '#D4D6D8' : '#212121'}
                     fontWeight='bold'
                     y={i * 25}
                     x={d.xVal < 0 ? widthScale(Math.min(0, d.xVal)) : widthScale(d.xVal)}

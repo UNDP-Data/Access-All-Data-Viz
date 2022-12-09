@@ -7,7 +7,7 @@ import sortBy from 'lodash.sortby';
 import uniqBy from 'lodash.uniqby';
 import { queue } from 'd3-queue';
 import {
-  DataType, CountryGroupDataType, IndicatorMetaDataType, IndicatorMetaDataWithYear,
+  DataType, CountryGroupDataType, IndicatorMetaDataType, IndicatorMetaDataWithYear, CountryListType,
 } from './Types';
 import { GrapherComponent } from './GrapherComponent';
 import Reducer from './Context/Reducer';
@@ -37,7 +37,7 @@ const App = (props:Props) => {
   const [finalData, setFinalData] = useState<DataType[] | undefined>(undefined);
   const [indicatorsList, setIndicatorsList] = useState<IndicatorMetaDataWithYear[] | undefined>(undefined);
   const [regionList, setRegionList] = useState<string[] | undefined>(undefined);
-  const [countryList, setCountryList] = useState<string[] | undefined>(undefined);
+  const [countryList, setCountryList] = useState<CountryListType[] | undefined>(undefined);
   const queryParams = new URLSearchParams(window.location.search);
   const initialState = {
     graphType: queryParams.get('graphType') ? queryParams.get('graphType') : country ? 'trendLine' : 'map',
@@ -58,8 +58,8 @@ const App = (props:Props) => {
     useSameRange: queryParams.get('useSameRange') === 'true',
     reverseOrder: queryParams.get('reverseOrder') === 'true',
     verticalBarLayout: queryParams.get('verticalBarLayout') !== 'false',
-    selectedCountry: country,
-    signatureSolution: ss,
+    selectedCountry: country || queryParams.get('selectCountry'),
+    signatureSolution: ss || queryParams.get('signatureSolution'),
   };
 
   const [state, dispatch] = useReducer(Reducer, initialState);
@@ -255,11 +255,10 @@ const App = (props:Props) => {
           });
         });
         setFinalData(countryData);
-        setCountryList(countryData.map((d) => d['Country or Area']));
+        setCountryList(countryData.map((d) => ({ name: d['Country or Area'], code: d['Alpha-3 code-1'] })));
         setRegionList(uniqBy(countryData, (d) => d['Group 2']).map((d) => d['Group 2']));
 
         const indicatorsFilteredBySS = ss ? indicatorMetaData.filter((d) => d.SignatureSolution.indexOf(ss) !== -1) : indicatorMetaData;
-        console.log(indicatorsFilteredBySS);
         const indicatorsFiltered = topic ? indicatorsFilteredBySS.filter((d) => d.SSTopics.indexOf(topic) !== -1) : indicatorsFilteredBySS;
         const indicatorWithYears: IndicatorMetaDataWithYear[] = indicatorsFiltered.map((d) => ({
           ...d,

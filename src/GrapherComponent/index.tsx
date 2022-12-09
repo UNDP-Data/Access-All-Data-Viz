@@ -1,7 +1,9 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Modal } from 'antd';
-import { CtxDataType, DataType, IndicatorMetaDataWithYear } from '../Types';
+import {
+  CountryListType, CtxDataType, DataType, IndicatorMetaDataWithYear,
+} from '../Types';
 import {
   ScatterPlotIcon, BarGraphIcon, MapIcon, DualAxesChartIcon, MultiLineChartIcon, Logo,
 } from '../Icons';
@@ -19,7 +21,7 @@ interface Props {
   data: DataType[];
   indicators: IndicatorMetaDataWithYear[];
   regions: string[];
-  countries: string[];
+  countries: CountryListType[];
 }
 interface SelectedData {
   selected?: boolean;
@@ -100,9 +102,13 @@ export const GrapherComponent = (props: Props) => {
     selectedCountry,
     signatureSolution,
     updateGraphType,
+    updateShowSource,
   } = useContext(Context) as CtxDataType;
   const [modalVisibility, setModalVisibility] = useState(false);
   const queryParams = new URLSearchParams(window.location.search);
+  useEffect(() => {
+    updateShowSource(false);
+  }, [graphType]);
   return (
     <>
       <div className='margin-top-06 margin-bottom-06'>
@@ -114,7 +120,7 @@ export const GrapherComponent = (props: Props) => {
               <h6 className='undp-typography margin-bottom-00'>
                 Explore All Data
                 {queryParams.get('topic') ? ` for ${queryParams.get('topic')}` : null}
-                {selectedCountry ? ` for ${selectedCountry}` : null}
+                {selectedCountry ? ` for ${countries[countries.findIndex((d) => d.code === selectedCountry)].name}` : null}
                 {signatureSolution ? ` for ${signatureSolution}` : null}
               </h6>
             </div>
@@ -165,18 +171,39 @@ export const GrapherComponent = (props: Props) => {
                         </TabsEl>
                       )
                   }
-                  <TabsEl selected={graphType === 'barGraph'} onClick={() => { updateGraphType('barGraph'); }}>
-                    <IconEl>
-                      <BarGraphIcon size={48} fill={graphType === 'barGraph' ? 'var(--blue-600)' : 'var(--gray-500)'} />
-                    </IconEl>
-                    <>Ranks</>
-                  </TabsEl>
-                  <TabsEl selected={graphType === 'trendLine'} onClick={() => { updateGraphType('trendLine'); }}>
-                    <IconEl>
-                      <DualAxesChartIcon size={48} fill={graphType === 'trendLine' ? 'var(--blue-600)' : 'var(--gray-500)'} />
-                    </IconEl>
-                    <>Dual Axes Line Chart</>
-                  </TabsEl>
+                  {
+                    selectedCountry ? (
+                      <>
+                        <TabsEl selected={graphType === 'trendLine'} onClick={() => { updateGraphType('trendLine'); }}>
+                          <IconEl>
+                            <DualAxesChartIcon size={48} fill={graphType === 'trendLine' ? 'var(--blue-600)' : 'var(--gray-500)'} />
+                          </IconEl>
+                          <>Dual Axes Line Chart</>
+                        </TabsEl>
+                        <TabsEl selected={graphType === 'barGraph'} onClick={() => { updateGraphType('barGraph'); }}>
+                          <IconEl>
+                            <BarGraphIcon size={48} fill={graphType === 'barGraph' ? 'var(--blue-600)' : 'var(--gray-500)'} />
+                          </IconEl>
+                          <>Ranks</>
+                        </TabsEl>
+                      </>
+                    ) : (
+                      <>
+                        <TabsEl selected={graphType === 'barGraph'} onClick={() => { updateGraphType('barGraph'); }}>
+                          <IconEl>
+                            <BarGraphIcon size={48} fill={graphType === 'barGraph' ? 'var(--blue-600)' : 'var(--gray-500)'} />
+                          </IconEl>
+                          <>Ranks</>
+                        </TabsEl>
+                        <TabsEl selected={graphType === 'trendLine'} onClick={() => { updateGraphType('trendLine'); }}>
+                          <IconEl>
+                            <DualAxesChartIcon size={48} fill={graphType === 'trendLine' ? 'var(--blue-600)' : 'var(--gray-500)'} />
+                          </IconEl>
+                          <>Dual Axes Line Chart</>
+                        </TabsEl>
+                      </>
+                    )
+                  }
                   {
                     selectedCountry ? null
                       : (
