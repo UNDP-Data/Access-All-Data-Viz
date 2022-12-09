@@ -25,62 +25,48 @@ interface Props {
 }
 
 const El = styled.div`
-  height: calc(100% - 72px);
+  height: calc(100% - 89px);
   overflow-y: hidden;
 `;
 
 const LegendEl = styled.div`
-  padding: 1rem;
-  background-color:rgba(255,255,255,0.1);
-  box-shadow: var(--shadow);
-  margin-left: 1rem;
-  margin-top: -2rem;
-  width: 20rem;
+  padding: 0.75rem;
+  margin-left: 0.75rem;
+  margin-top: -1.25rem;
   position: relative;
-  z-index: 1000;
+  z-index: 100;
+  padding-right: 5rem;
 `;
 
 const LegendSizeEl = styled.div`
-  padding: 1rem;
-  background-color:rgba(255,255,255,0.1);
-  box-shadow: var(--shadow);
-  margin-left: 1rem;
-  width: 15.5rem;
+  padding: 0.75rem;
+  margin-left: 0.75rem;
+  width: 10rem;
   position: relative;
-  z-index: 1000;
+  z-index: 100;
 `;
 
-const TitleEl = styled.div`
-  font-size: 1.2rem;
-  line-height: 1.2rem;
-  font-weight: bold;
+const TitleEl = styled.h6`
   width: 100%;
 `;
 
 const XLegendTitle = styled.div`
   text-align: center;
   font-style: normal;
-  font-size: 1rem;
-  line-height: 1.2rem;
-  color: var(--black-700);
-  width:13rem;
+  font-size: 0.75rem;
+  color: var(--gray-700);
+  width:8.125rem;
 `;
 
 const YLegendTitle = styled.div`
   text-align: center;
   font-style: normal;
-  font-size: 1rem;
-  line-height: 1.2rem;
-  width: 13rem;
-  color: var(--black-700);    
+  font-size: 0.75rem;
+  width:8.125rem;
+  color: var(--gray-700);    
   position: absolute;
   top: 80px;
   transform: translateY(-50%) translateX(50%) rotate(-90deg) translateY(100%);
-`;
-
-const LegendColorEl = styled.div`
-  display: flex;
-  pointer-events: auto;
 `;
 
 const LegendContainer = styled.div`
@@ -517,10 +503,15 @@ export const BivariateMap = (props: Props) => {
       </svg>
       <LegendContainer>
         <LegendEl>
-          <LegendColorEl>
+          <div
+            style={{
+              display: 'flex',
+              pointerEvents: 'auto',
+            }}
+          >
             <YLegendTitle>{yIndicatorMetaData.IndicatorLabelTable}</YLegendTitle>
             <div>
-              <svg width='135px' viewBox={`0 0 ${135} ${135}`}>
+              <svg width='135px' viewBox='0 0 135 135'>
                 <g>
                   {
                   COLOR_SCALES[`Bivariate${Math.max(Math.min((yKey.length + 1), 5), 4) as 4 | 5}x${Math.max(Math.min((xKey.length + 1), 5), 4) as 4 | 5}`].map((d, i) => (
@@ -589,14 +580,14 @@ export const BivariateMap = (props: Props) => {
               </svg>
               <XLegendTitle>{xIndicatorMetaData.IndicatorLabelTable}</XLegendTitle>
             </div>
-          </LegendColorEl>
+          </div>
         </LegendEl>
         {
           sizeIndicator
             ? (
               <LegendSizeEl>
                 <>
-                  <TitleEl>{sizeIndicatorMetaData.IndicatorLabelTable}</TitleEl>
+                  <TitleEl className='margin-bottom-00 margin-top-00'>{sizeIndicatorMetaData.IndicatorLabelTable}</TitleEl>
                   <svg width='135' height='90' viewBox='0 0 175 100' fill='none' xmlns='http://www.w3.org/2000/svg'>
                     <text fontSize={12} fontWeight={700} textAnchor='middle' fill='#212121' x={4} y={95}>0</text>
                     <text fontSize={12} fontWeight={700} textAnchor='middle' fill='#212121' x={130} y={95}>{radiusScale.invert(40) > 1 ? format('~s')(radiusScale.invert(40)) : radiusScale.invert(40)}</text>

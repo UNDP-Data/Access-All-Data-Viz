@@ -30,25 +30,19 @@ const El = styled.div`
   overflow-y: hidden;
 `;
 
-const SelectEl = styled.div`
-  padding: 2rem;
-  box-shadow: var(--shadow-bottom);
-`;
-
 const GraphEl = styled.div`
-  height: calc(100% - 72px);
+  height: calc(100% - 89px);
 `;
 
 const ErrorNote = styled.div`
   width: 80%;
   margin: auto;
   padding: 1rem 2rem;
-  font-size: 1.8rem;
-  color: var(--red);
+  font-size: 1.25rem;
+  color: var(--dark-red);
   text-align: center;
-  background-color: var(--red-bg);
-  border: 1px solid var(--red);
-  border-radius: 0.5rem;
+  background-color: var(--white);
+  border: 1px solid var(--dark-red);
   position: relative;
   top: 50%;
   transform: translateY(-50%);
@@ -57,13 +51,10 @@ const ErrorNote = styled.div`
 const InfoNote = styled.div`
   width: 80%;
   margin: auto;
-  padding: 1rem 2rem;
-  font-size: 1.8rem;
-  color: var(--primary-blue);
   text-align: center;
-  background-color: var(--blue-bg);
-  border: 1px solid var(--primary-blue);
-  border-radius: 0.5rem;
+  padding: 2rem;
+  background-color: var(--white);
+  border: 1px solid var(--gray-300);
   position: relative;
   top: 50%;
   transform: translateY(-50%);
@@ -82,6 +73,7 @@ export const DualAxisLineChart = (props: Props) => {
     updateTrendChartCountry,
     useSameRange,
     showLabel,
+    selectedCountry,
   } = useContext(Context) as CtxDataType;
   const [hoverData, setHoverData] = useState<HoverDataType | undefined>(undefined);
   const queryParams = new URLSearchParams(window.location.search);
@@ -99,7 +91,7 @@ export const DualAxisLineChart = (props: Props) => {
   const xIndicatorMetaData = indicators[indicators.findIndex((indicator) => indicator.IndicatorLabelTable === xAxisIndicator)];
   const yIndicatorMetaData = indicators[indicators.findIndex((indicator) => indicator.IndicatorLabelTable === yAxisIndicator)];
 
-  const countryData = data[data.findIndex((d) => d['Country or Area'] === trendChartCountry)];
+  const countryData = selectedCountry ? data[data.findIndex((d) => d['Country or Area'] === selectedCountry)] : data[data.findIndex((d) => d['Country or Area'] === trendChartCountry)];
 
   const minYear = xIndicatorMetaData.years[0] < yIndicatorMetaData.years[0] ? xIndicatorMetaData.years[0] : yIndicatorMetaData.years[0];
   const maxYear = xIndicatorMetaData.years[xIndicatorMetaData.years.length - 1] > yIndicatorMetaData.years[yIndicatorMetaData.years.length - 1] ? xIndicatorMetaData.years[xIndicatorMetaData.years.length - 1] : yIndicatorMetaData.years[yIndicatorMetaData.years.length - 1];
@@ -154,29 +146,25 @@ export const DualAxisLineChart = (props: Props) => {
   );
   return (
     <El>
-      <SelectEl>
+      <div style={{ padding: 'var(--spacing-06)', backgroundColor: 'var(--white)', borderBottom: '1px solid var(--gray-400)' }}>
         <Select
           showSearch
-          style={
-            {
-              width: '100%',
-              borderRadius: '1rem',
-            }
-          }
+          className='undp-select'
           placeholder='Please select a country'
           onChange={(d) => { updateTrendChartCountry(d); }}
-          value={trendChartCountry}
+          disabled={selectedCountry !== undefined}
+          value={selectedCountry || trendChartCountry}
         >
           {
             countries.map((d) => (
-              <Select.Option key={d}>{d}</Select.Option>
+              <Select.Option className='undp-select-option' key={d}>{d}</Select.Option>
             ))
           }
         </Select>
-      </SelectEl>
+      </div>
       <GraphEl>
         {
-          trendChartCountry && dataFilterd.length > 0
+          (trendChartCountry || selectedCountry) && dataFilterd.length > 0
             ? (
               <svg width='100%' height='100%' viewBox={`0 0 ${svgWidth} ${svgHeight}`}>
                 <g transform={`translate(${margin.left},${margin.top})`}>
@@ -459,24 +447,19 @@ export const DualAxisLineChart = (props: Props) => {
             ) : null
         }
         {
-          !trendChartCountry ? (
+          !trendChartCountry && !selectedCountry ? (
             <InfoNote>
-              <>Please select a country above to see the trend for that country</>
+              <h5 className='undp-typography'>Please select a country to see the trend for that country</h5>
               <Select
                 showSearch
-                style={
-                  {
-                    width: '100%',
-                    borderRadius: '1rem',
-                  }
-                }
+                className='undp-select'
                 placeholder='Please select a country'
                 value={trendChartCountry}
                 onChange={(d) => { updateTrendChartCountry(d); }}
               >
                 {
                   countries.map((d) => (
-                    <Select.Option key={d}>{d}</Select.Option>
+                    <Select.Option className='undp-select-option' key={d}>{d}</Select.Option>
                   ))
                 }
               </Select>

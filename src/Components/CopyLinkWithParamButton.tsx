@@ -68,7 +68,7 @@ export const CopyLinkWithParamButton = () => {
     + verticalBarLayoutParam;
   return (
     <button
-      className='secondary'
+      className='undp-button button-secondary'
       type='button'
       onClick={() => {
         navigator.clipboard.writeText(`${PARENT_LINK_ROOT}?${queryParams}`);

@@ -1,0 +1,48 @@
+
+.undp-radio .ant-radio .ant-radio-inner {
+  -webkit-appearance: none;
+  appearance: none;
+  border: 2px solid var(--dark-red);
+  cursor: pointer;
+  height: 16px;
+  margin: 0;
+  width: 16px;
+  background-color: var(--white);
+}
+
+.undp-radio .ant-checkbox-checked .ant-checkbox-inner{
+  background-color: transparent;
+}
+
+.undp-radio:hover .ant-radio .ant-radio-inner {
+  border: 2px solid var(--light-red);
+}
+
+.undp-radio .ant-radio-checked .ant-radio-inner:after {
+  background-color: var(--dark-red);
+  width: 14px;
+  height: 14px;
+  margin-top: -7px;
+  margin-left: -7px;
+}
+
+.undp-radio-label {
+  font-size: 1rem;
+  margin: 0 7px;
+  line-height: 1rem;
+}
+
+.undp-radio .ant-radio + span {
+  padding: 0 7px;
+  font-size: 1rem;
+  color: var(--black);
+}
+
+.undp-radio .ant-radio-disabled + span {
+  color: var(--gray-400);
+}
+
+.undp-radio .ant-radio-disabled .ant-radio-inner {
+  background-color: var(--gray-200);
+  border-color: var(--gray-400) !important;
+}

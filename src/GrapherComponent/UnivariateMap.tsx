@@ -22,36 +22,24 @@ interface Props {
   indicators: IndicatorMetaDataWithYear[];
 }
 
-const El = styled.div`
-  height: calc(100% - 71px);
-  overflow-y: hidden;
-`;
-
 const LegendEl = styled.div`
-  padding: 1rem 1rem 0 1rem;
-  background-color:rgba(255,255,255,0.1);
-  box-shadow: var(--shadow);
-  width: 32rem;
-  margin-left: 1rem;
-  margin-top: -2rem;
+  padding: 0.75rem 0.75rem 0 0.75rem;
+  background-color:var(--white);
+  width: 20rem;
+  margin-left: 0.75rem;
+  margin-top: -1.25rem;
   position: relative;
-  z-index: 1000;
+  z-index: 100;
   @media (min-width: 961px) {
     transform: translateY(-100%);
   }
 `;
 
-const TitleEl = styled.div`
-  font-size: 1.2rem;
-  font-weight: bold;
+const TitleEl = styled.h6`
   width: 100%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-`;
-
-const G = styled.g`
-  pointer-events: none;
 `;
 
 export const UnivariateMap = (props: Props) => {
@@ -106,7 +94,11 @@ export const UnivariateMap = (props: Props) => {
     mapSvgSelect.call(zoomBehaviour as any);
   }, [svgHeight, svgWidth]);
   return (
-    <El>
+    <div style={{
+      height: 'calc(100% - 89px)',
+      overflowY: 'hidden',
+    }}
+    >
       <svg width='100%' height='100%' viewBox={`0 0 ${svgWidth} ${svgHeight}`} ref={mapSvg}>
         <g ref={mapG}>
           {
@@ -277,7 +269,8 @@ export const UnivariateMap = (props: Props) => {
           {
             hoverData
               ? (World as any).features.filter((d: any) => d.properties.ISO3 === data[data.findIndex((el: DataType) => el['Country or Area'] === hoverData?.country)]['Alpha-3 code-1']).map((d: any) => (
-                <G
+                <g
+                  style={{ pointerEvents: 'none' }}
                   opacity={!selectedColor ? 1 : 0}
                 >
                   {
@@ -323,7 +316,7 @@ export const UnivariateMap = (props: Props) => {
                       );
                     })
                   }
-                </G>
+                </g>
               )) : null
           }
           {
@@ -418,8 +411,8 @@ export const UnivariateMap = (props: Props) => {
         {
           sizeIndicator
             ? (
-              <>
-                <TitleEl>{sizeIndicatorMetaData.IndicatorLabelTable}</TitleEl>
+              <div className='margin-bottom-07'>
+                <TitleEl className='undp-typography margin-bottom-03'>{sizeIndicatorMetaData.IndicatorLabelTable}</TitleEl>
                 <svg width='135' height='90' viewBox='0 0 175 100' fill='none' xmlns='http://www.w3.org/2000/svg'>
                   <text fontSize={12} fontWeight={700} textAnchor='middle' fill='#212121' x={4} y={95}>0</text>
                   <text fontSize={12} fontWeight={700} textAnchor='middle' fill='#212121' x={130} y={95}>{format('~s')(radiusScale.invert(40))}</text>
@@ -427,12 +420,12 @@ export const UnivariateMap = (props: Props) => {
                   <circle cx='4' cy='41' r='0.25' fill='white' stroke='#212121' strokeWidth='2' />
                   <circle cx='130' cy='41' r='40' fill='white' stroke='#212121' strokeWidth='2' />
                 </svg>
-              </>
+              </div>
             )
             : null
         }
-        <TitleEl>{xIndicatorMetaData.IndicatorLabelTable}</TitleEl>
-        <svg width='100%' viewBox={`0 0 ${320} ${30}`}>
+        <TitleEl className='undp-typography margin-bottom-03'>{xIndicatorMetaData.IndicatorLabelTable}</TitleEl>
+        <svg width='100%' viewBox='0 0 320 30'>
           <g>
             {
               valueArray.map((d, i) => (
@@ -487,6 +480,6 @@ export const UnivariateMap = (props: Props) => {
       {
         hoverData ? <Tooltip data={hoverData} /> : null
       }
-    </El>
+    </div>
   );
 };

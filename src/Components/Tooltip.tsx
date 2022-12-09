@@ -17,11 +17,9 @@ interface TooltipElProps {
 const TooltipEl = styled.div<TooltipElProps>`
   display: block;
   position: fixed;
-  z-index: 10;
-  border-radius: 1rem;
-  font-size: 1.4rem;
-  background-color: var(--white);
-  box-shadow: 0 0 1rem rgb(0 0 0 / 15%);
+  z-index: 200;
+  background-color: var(--gray-200);
+  border: 1px solid var(--gray-300);
   word-wrap: break-word;
   top: ${(props) => (props.verticalAlignment === 'bottom' ? props.y - 40 : props.y + 40)}px;
   left: ${(props) => (props.horizontalAlignment === 'left' ? props.x - 20 : props.x + 20)}px;
@@ -29,87 +27,22 @@ const TooltipEl = styled.div<TooltipElProps>`
   transform: ${(props) => `translate(${props.horizontalAlignment === 'left' ? '-100%' : '0%'},${props.verticalAlignment === 'top' ? '-100%' : '0%'})`};
 `;
 
-const TooltipTitle = styled.div`
-  font-size: 1.4rem;
-  font-weight: 600;
-  color: var(--navy);  
-  background: var(--yellow);
-  width: 100%;
-  box-sizing: border-box;
-  border-radius: 1rem 1rem 0 0;
-  padding: 1.6rem 4rem 1.6rem 2rem;
-  position: relative;
-  font-weight: 700;
-  font-size: 1.8rem;
-  line-height: 1.8rem;
-`;
-
-const SubNote = styled.span`
-  font-size: 1.2rem;
-  color: var(--navy);
-`;
-
-const TooltipBody = styled.div`
-  width: 100%;
-  box-sizing: border-box;
-  padding: 2rem;
-`;
-
-const RowEl = styled.div`
-  font-size: 1.3rem;
-  color: var(--dark-grey);
-  margin-bottom: 1.5rem;
-  display: flex;
-  align-items: flex-start; 
-`;
-
-const RowTitleEl = styled.div`
-  font-weight: 400;
-  font-size: 1.2rem;
-  line-height: 1.4rem;
-  margin-bottom: 0.3rem;
-  color: var(--navy);
-`;
-
-const RowMetaData = styled.div`
-  font-weight: 400;
-  font-size: 1.2rem;
-  color: var(--navy);
-  opacity: 0.5;
-  margin-bottom: -5px;
-`;
-
-const RowValue = styled.div`
-  font-weight: 700;
-  font-size: 1.4rem;
-  line-height: 2rem;
-  color: var(--navy);
-`;
-
-const TooltipHead = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-`;
-
 interface ColorIconProps {
   fill?:string;
 }
 
 const ColorIcon = styled.div<ColorIconProps>`
-  width: 1.6rem;
-  height: 1.6rem;
-  margin: 0 0.2rem;
+  width: 1rem;
+  height: 1rem;
   background-color: ${(props) => (props.fill ? props.fill : 'var(--yellow)')};
   border: ${(props) => (props.fill === '#FFF' || props.fill === '#fff' || props.fill === '#FFFFFF' || props.fill === '#ffffff' ? '1px solid #AAA' : `1px solid ${props.fill}`)};
 `;
 
 const SizeIcon = styled.div`
-  width: 1.4rem;
-  height: 1.4rem;
-  margin: 0 0.2rem;
-  border-radius: 1.4rem;
-  border: 2px solid var(--navy);
+  width: 0.875rem;
+  height: 0.875rem;
+  border-radius: 0.875rem;
+  border: 2px solid var(--gray-700);
 `;
 
 const IconDiv = styled.div`
@@ -127,47 +60,48 @@ export const Tooltip = (props: Props) => {
   } = props;
   return (
     <TooltipEl x={data.xPosition} y={data.yPosition} verticalAlignment={data.yPosition > window.innerHeight / 2 ? 'top' : 'bottom'} horizontalAlignment={data.xPosition > window.innerWidth / 2 ? 'left' : 'right'}>
-      <TooltipHead>
-        <TooltipTitle>
+      <div className='flex-div flex-wrap' style={{ padding: 'var(--spacing-07)', alignItems: 'baseline' }}>
+        <h5 className='undp-typography bold margin-bottom-00' style={{ color: 'var(--blue-600)' }}>
           {data.country}
           {' '}
-          <SubNote>
+          <span className='undp-typography small-font' style={{ color: 'var(--gray-700)', fontWeight: 'normal' }}>
             (
             {data.continent}
             )
-          </SubNote>
-        </TooltipTitle>
-      </TooltipHead>
-      <TooltipBody>
+          </span>
+        </h5>
+      </div>
+      <hr className='undp-style margin-top-00 margin-bottom-00' />
+      <div style={{ padding: 'var(--spacing-07) var(--spacing-07) 0 var(--spacing-07)' }}>
         {
-        data.rows.map((d, i) => (
-          <RowEl key={i}>
-            <IconDiv>
-              {
-                d.type === 'x-axis' ? <IconEl><HorizontalArrow size={20} /></IconEl>
-                  : d.type === 'y-axis' ? <IconEl><VerticalArrow size={20} /></IconEl>
-                    : d.type === 'color' ? <ColorIcon fill={d.color} />
-                      : d.type === 'size' ? <SizeIcon />
-                        : null
-              }
-            </IconDiv>
-            <div>
-              <RowMetaData>{d.year}</RowMetaData>
-              <RowTitleEl>{d.title}</RowTitleEl>
-              <RowValue>
+          data.rows.map((d, i) => (
+            <div className='flex-div margin-bottom-07' key={i} style={{ gap: '0.25rem' }}>
+              <IconDiv>
                 {
-                  d.prefix && d.value && d.value !== 'NA' ? `${d.prefix} ` : ''
+                  d.type === 'x-axis' ? <IconEl><HorizontalArrow size={20} /></IconEl>
+                    : d.type === 'y-axis' ? <IconEl><VerticalArrow size={20} /></IconEl>
+                      : d.type === 'color' ? <ColorIcon fill={d.color} />
+                        : d.type === 'size' ? <SizeIcon />
+                          : null
                 }
-                {typeof d.value === 'number' ? d.value < 1000000 ? format(',')(parseFloat(d.value.toFixed(2))).replace(',', ' ') : format('.3s')(d.value).replace('G', 'B') : d.value }
-                {
-                  d.suffix && d.value && d.value !== 'NA' ? ` ${d.suffix}` : ''
-                }
-              </RowValue>
+              </IconDiv>
+              <div>
+                <p className='undp-typography large-font margin-bottom-00 margin-top-01' style={{ color: 'var(--gray-600)' }}>{d.year}</p>
+                <h6 className='undp-typography margin-bottom-03'>{d.title}</h6>
+                <h5 className='undp-typography margin-bottom-00 bold'>
+                  {
+                    d.prefix && d.value && d.value !== 'NA' ? `${d.prefix} ` : ''
+                  }
+                  {typeof d.value === 'number' ? d.value < 1000000 ? format(',')(parseFloat(d.value.toFixed(2))).replace(',', ' ') : format('.3s')(d.value).replace('G', 'B') : d.value }
+                  {
+                    d.suffix && d.value && d.value !== 'NA' ? ` ${d.suffix}` : ''
+                  }
+                </h5>
+              </div>
             </div>
-          </RowEl>
-        ))
-      }
-      </TooltipBody>
+          ))
+        }
+      </div>
     </TooltipEl>
   );
 };

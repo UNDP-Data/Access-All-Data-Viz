@@ -1,7 +1,6 @@
 import {
   useContext, useState,
 } from 'react';
-import styled from 'styled-components';
 import { format } from 'd3-format';
 import maxBy from 'lodash.maxby';
 import orderBy from 'lodash.orderby';
@@ -23,11 +22,6 @@ interface Props {
   indicators: IndicatorMetaDataWithYear[];
 }
 
-const El = styled.div`
-  height: calc(100% - 71px);
-  overflow-y: hidden;
-`;
-
 export const BarChart = (props: Props) => {
   const {
     data,
@@ -42,6 +36,7 @@ export const BarChart = (props: Props) => {
     selectedRegions,
     selectedIncomeGroups,
     selectedCountryGroup,
+    selectedCountry,
   } = useContext(Context) as CtxDataType;
   const [selectedColor, setSelectedColor] = useState<string | undefined>(undefined);
   const [hoverData, setHoverData] = useState<HoverDataType | undefined>(undefined);
@@ -82,6 +77,7 @@ export const BarChart = (props: Props) => {
       const colorYear = (year === -1 || showMostRecentData) && colorIndicatorIndex !== -1 ? d.indicators[colorIndicatorIndex].yearlyData[d.indicators[colorIndicatorIndex].yearlyData.length - 1]?.year : year;
       return ({
         countryCode: d['Alpha-3 code-1'],
+        countryName: d['Country or Area'],
         xVal,
         colorVal,
         region,
@@ -157,20 +153,28 @@ export const BarChart = (props: Props) => {
   const colorScale = colorIndicator === 'Human Development Index' ? scaleThreshold<string | number, string>().domain(colorDomain).range(COLOR_SCALES.Divergent.Color4).unknown('#666') : scaleOrdinal<string | number, string>().domain(colorDomain).range(colorList).unknown('#666');
 
   return (
-    <El>
+    <div
+      style={{
+        height: 'calc(100% - 89px)',
+        overflowY: 'hidden',
+      }}
+    >
       <svg width='100%' height='100%' viewBox={`0 0 ${svgWidth} ${svgHeight}`}>
-        <g
-          transform='translate(90,20)'
-        >
-          <text
-            x={0}
-            y={10}
-            fontSize={14}
-            fill='#212121'
-          >
-            {colorIndicatorMetaData?.IndicatorLabelTable ? colorIndicatorMetaData?.IndicatorLabelTable : colorIndicator}
-          </text>
-          {
+        {
+          selectedCountry ? null
+            : (
+              <g
+                transform='translate(90,20)'
+              >
+                <text
+                  x={0}
+                  y={10}
+                  fontSize={14}
+                  fill='#212121'
+                >
+                  {colorIndicatorMetaData?.IndicatorLabelTable ? colorIndicatorMetaData?.IndicatorLabelTable : colorIndicator}
+                </text>
+                {
             colorIndicator === 'Human Development Index' ? COLOR_SCALES.Divergent.Color4.map((d, i) => (
               <g
                 transform='translate(0,20)'
@@ -225,28 +229,30 @@ export const BarChart = (props: Props) => {
               </g>
             ))
           }
-          <g
-            transform='translate(0,20)'
-          >
-            <rect
-              x={graphWidth - 40}
-              y={1}
-              width={40}
-              height={8}
-              fill='#666'
-              stroke='#666'
-            />
-            <text
-              x={graphWidth - 20}
-              y={25}
-              textAnchor='middle'
-              fontSize={12}
-              fill='#666'
-            >
-              NA
-            </text>
-          </g>
-        </g>
+                <g
+                  transform='translate(0,20)'
+                >
+                  <rect
+                    x={graphWidth - 40}
+                    y={1}
+                    width={40}
+                    height={8}
+                    fill='#666'
+                    stroke='#666'
+                  />
+                  <text
+                    x={graphWidth - 20}
+                    y={25}
+                    textAnchor='middle'
+                    fontSize={12}
+                    fill='#666'
+                  >
+                    NA
+                  </text>
+                </g>
+              </g>
+            )
+        }
         <g transform={`translate(${margin.left},${margin.top})`}>
           <g>
             {
@@ -365,7 +371,7 @@ export const BarChart = (props: Props) => {
                     x={xScale(d.countryCode)}
                     y={heightScale(Math.max(0, d.xVal))}
                     width={xScale.bandwidth()}
-                    fill={d.colorVal ? colorScale(d.colorVal) : '#666'}
+                    fill={selectedCountry ? d.countryName === selectedCountry ? '#006EB5' : '#D4D6D8' : d.colorVal ? colorScale(d.colorVal) : '#666'}
                     height={Math.abs(heightScale(d.xVal) - heightScale(0))}
                   />
                   {
@@ -377,9 +383,9 @@ export const BarChart = (props: Props) => {
                           <text
                             x={0}
                             y={0}
-                            fontSize='12px'
+                            fontSize='10px'
                             textAnchor={d.xVal >= 0 ? 'end' : 'start'}
-                            fill='#110848'
+                            fill={selectedCountry ? d.countryName === selectedCountry ? '#006EB5' : '#D4D6D8' : '#110848'}
                             transform='rotate(-90)'
                             dy='5px'
                             dx={d.xVal >= 0 ? '-5px' : '19px'}
@@ -388,7 +394,41 @@ export const BarChart = (props: Props) => {
                           </text>
                         </g>
                       )
-                      : null
+                      : selectedCountry ? d.countryName === selectedCountry
+                        ? (
+                          <g
+                            transform={`translate(${xScale(d.countryCode) as number + (xScale.bandwidth() / 2)},${heightScale(0)})`}
+                          >
+                            <text
+                              x={0}
+                              y={0}
+                              fontSize='12px'
+                              textAnchor='middle'
+                              fill='#006EB5'
+                              dy='14px'
+                            >
+                              {countryData['Alpha-3 code-1']}
+                            </text>
+                          </g>
+                        )
+                        : null
+                        : null
+                  }
+                  {
+                    selectedCountry === d.countryName
+                      ? (
+                        <text
+                          fill='#006EB5'
+                          fontWeight='bold'
+                          y={heightScale(Math.max(0, d.xVal))}
+                          x={xScale(d.countryCode) as number + (xScale.bandwidth() / 2)}
+                          textAnchor='middle'
+                          fontSize={12}
+                          dy={-5}
+                        >
+                          {d.xVal < 1000000 ? format(',')(parseFloat(d.xVal.toFixed(2))).replace(',', ' ') : format('.3s')(d.xVal).replace('G', 'B')}
+                        </text>
+                      ) : null
                   }
                   {
                     xScale.bandwidth() >= 20
@@ -416,6 +456,6 @@ export const BarChart = (props: Props) => {
       {
         hoverData ? <Tooltip data={hoverData} /> : null
       }
-    </El>
+    </div>
   );
 };

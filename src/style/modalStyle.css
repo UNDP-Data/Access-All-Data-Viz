@@ -1,0 +1,50 @@
+.ant-modal-wrap{
+  backdrop-filter: blur(18px);
+  background: rgba(247,247,247,.8);
+}
+
+.undp-modal .ant-modal-content {
+  padding: 4rem;
+  box-shadow: none;
+  font-size: 1rem;
+  border-radius: 0;
+  border: 0;
+  color: var(--black);
+  font-family: var(--fontFamily);
+}
+
+.undp-modal .ant-modal-header{
+  padding: 0;
+  border-bottom: 0;
+  margin-bottom: 1rem;
+}
+
+.undp-modal .ant-modal-header .ant-modal-title {
+  font-size: 1.563rem;
+  line-height: 1.15;
+}
+
+.undp-modal .ant-modal-body {
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.undp-modal .ant-modal-footer {
+  display: none;
+}
+
+.undp-modal .ant-modal-close-x {
+  background: url(https://design.undp.org/static/media/times-circle.69b7dcd7.svg) no-repeat left center;
+  border: 0;
+  cursor: pointer;
+  font-size: 0;
+  height: 45px;    
+  position: absolute;
+  right: 1.5rem;
+  top: 2rem;
+  width: 45px;
+}
+
+.undp-modal .ant-modal-content .ant-modal-body {
+  padding: 0;
+}

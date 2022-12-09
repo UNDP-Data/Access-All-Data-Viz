@@ -17,9 +17,35 @@ const getEl = (embedSelector: string) => {
   return embedSelector;
 };
 
+const getCountry = (embedSelector: string) => {
+  const el = document.querySelector(embedSelector);
+  if (!el) {
+    // eslint-disable-next-line no-console
+    console.error(`No div matching selector "${embedSelector}"`);
+    return undefined;
+  }
+  const elClass: string[] = el.className.split('~');
+  if (elClass[0] === 'country') return elClass[1].replaceAll('+', ' ');
+  return undefined;
+};
+const getSS = (embedSelector: string) => {
+  const el = document.querySelector(embedSelector);
+  if (!el) {
+    // eslint-disable-next-line no-console
+    console.error(`No div matching selector "${embedSelector}"`);
+    return undefined;
+  }
+  const elClass: string[] = el.className.split('~');
+  if (elClass[0] === 'ss') return elClass[1].replaceAll('+', ' ');
+  return undefined;
+};
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <App
+      country={getCountry('[data-bucket-embed]')}
+      ss={getSS('[data-bucket-embed]')}
+    />
   </React.StrictMode>,
   getEl('[data-bucket-embed]'),
 );

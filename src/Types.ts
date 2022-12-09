@@ -105,6 +105,8 @@ export interface CtxDataType {
   useSameRange: boolean;
   reverseOrder: boolean;
   verticalBarLayout: boolean;
+  selectedCountry?: string;
+  signatureSolution?: string;
   updateGraphType: (_d: 'scatterPlot' | 'map' | 'barGraph' | 'trendLine' | 'multiCountryTrendLine') => void;
   updateSelectedRegions: (_d: string[]) => void;
   updateSelectedCountries: (_d: string[]) => void;

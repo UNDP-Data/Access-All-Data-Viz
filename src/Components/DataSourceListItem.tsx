@@ -1,66 +1,12 @@
 import { CSVLink } from 'react-csv';
-import styled from 'styled-components';
 import { DataType, IndicatorMetaDataWithYear } from '../Types';
 import DownloadExcel from './DownloadExcel';
+import '../style/chipStyle.css';
 
 interface Props {
     indicatorData: IndicatorMetaDataWithYear;
     data: DataType[];
 }
-
-const TitleEl = styled.div`
-  font-weight: bold;
-  font-size: 1.6rem;
-  color: var(--black-700);
-  margin: 1rem 0;
-  padding: 0 2rem;
-`;
-
-const RowEl = styled.div`
-  display: flex;
-  font-size: 1.4rem;
-  color: var(--black-700);
-  margin: 1rem 0;
-  padding: 0 2rem;
-  line-height: 2rem;
-`;
-
-const FirstColumn = styled.div`
-  width: 15rem; 
-  flex-shrink: 0;
-`;
-
-const DownloadButton = styled.div`
-  border-radius: 0.2rem;
-  font-size: 1.4rem;
-  font-weight: normal;
-  color: var(--black-600);
-  border: 1px solid var(--black-450);
-  cursor: pointer;
-  padding: 0.4rem 1rem;
-  margin: 2rem 0 1rem 0;
-  background-color: var(--white);
-  &:hover {
-    border: 1px solid var(--primary-blue);
-    color: var(--primary-blue);
-  }
-  &:active{
-    border: 1px solid var(--primary-blue);
-    color: var(--primary-blue);
-  }
-`;
-
-const YearSpan = styled.div`
-  background-color: var(--black-300);
-  padding: 0.3rem;
-  margin: 0 0.5rem 0.5rem 0.5rem;
-`;
-
-const YearEl = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  margin-left: -0.5rem;
-`;
 
 const dataTable = (data: DataType[], indicator: IndicatorMetaDataWithYear) => {
   const table: any = [];
@@ -118,21 +64,21 @@ export const DataSourceListItem = (props: Props) => {
 
   return (
     <>
-      <TitleEl>{indicatorData.IndicatorLabelTable}</TitleEl>
-      <RowEl>
-        <FirstColumn>Description</FirstColumn>
+      <h5 className='bold undp-typography' style={{ padding: 'var(--spacing-07)' }}>{indicatorData.IndicatorLabelTable}</h5>
+      <div className='flex-div margin-bottom-07' style={{ padding: '0 var(--spacing-07)' }}>
+        <h6 className='undp-typography margin-top-03' style={{ width: '15%', flexShrink: 0 }}>Description</h6>
         <div>{indicatorData.IndicatorDescription}</div>
-      </RowEl>
-      <RowEl>
-        <FirstColumn>Years Available</FirstColumn>
-        <YearEl>{indicatorData.years.map((d) => <YearSpan>{d}</YearSpan>)}</YearEl>
-      </RowEl>
-      <RowEl>
-        <FirstColumn>Data By</FirstColumn>
+      </div>
+      <div className='flex-div margin-bottom-07' style={{ padding: '0 var(--spacing-07)' }}>
+        <h6 className='undp-typography margin-top-03' style={{ width: '15%', flexShrink: 0 }}>Years Available</h6>
+        <div className='flex-div flex-wrap'>{indicatorData.years.map((d) => <div className='undp-chip undp-chip-small'>{d}</div>)}</div>
+      </div>
+      <div className='flex-div margin-bottom-07' style={{ padding: '0 var(--spacing-07)' }}>
+        <h6 className='undp-typography margin-top-03' style={{ width: '15%', flexShrink: 0 }}>Data By</h6>
         <div>{indicatorData.DataSourceName}</div>
-      </RowEl>
-      <RowEl>
-        <FirstColumn>Data Link</FirstColumn>
+      </div>
+      <div className='flex-div margin-bottom-07' style={{ padding: '0 var(--spacing-07)' }}>
+        <h6 className='undp-typography margin-top-03' style={{ width: '15%', flexShrink: 0 }}>Data Link</h6>
         {
         indicatorData.DataSourceLink !== ''
           ? (
@@ -140,7 +86,7 @@ export const DataSourceListItem = (props: Props) => {
               {
                 indicatorData.DataSourceLink.split(';').map((d, i) => (
                   <div key={i}>
-                    <a href={d} target='_blank' rel='noreferrer'>
+                    <a href={d} target='_blank' rel='noreferrer' className='undp-style'>
                       {d}
                     </a>
                   </div>
@@ -150,8 +96,8 @@ export const DataSourceListItem = (props: Props) => {
           )
           : <div />
       }
-      </RowEl>
-      <RowEl>
+      </div>
+      <div className='flex-div margin-bottom-07' style={{ padding: '0 var(--spacing-07)' }}>
         <DownloadExcel
           data={dataTableForExcel(data, indicatorData)}
           indicatorTitle={indicatorData.Indicator}
@@ -172,11 +118,11 @@ export const DataSourceListItem = (props: Props) => {
           asyncOnClick
           target='_blank'
         >
-          <DownloadButton>
+          <div className='undp-button button-secondary'>
             Download Data as CSV
-          </DownloadButton>
+          </div>
         </CSVLink>
-      </RowEl>
+      </div>
     </>
   );
 };

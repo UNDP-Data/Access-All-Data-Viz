@@ -1,0 +1,14 @@
+.undp-switch.ant-switch {
+  border: 2px solid var(--dark-red) !important;
+  background-color: var(--gray-100) !important;
+  height: 26px !important;
+}
+
+.undp-switch.ant-switch-checked {
+  background-color: var(--light-red) !important;
+}
+
+.undp-switch  .ant-switch-handle::before{
+  background-color: var(--dark-red);
+  box-shadow: none !important;
+}

@@ -1,0 +1,42 @@
+
+.undp-segmented.ant-segmented {
+  font-family: var(--fontFamily);
+  background-color: transparent;
+  font-size: 1.125rem;
+}
+
+.undp-segmented.ant-segmented:hover {
+  background-color: transparent;
+}
+
+.undp-segmented .ant-segmented-item {
+  color: var(--gray-700);
+  padding: 0.5rem;
+  border-radius: 4px;
+  transition: none;
+}
+
+.undp-segmented .ant-segmented-item:hover {
+  background-color: var(--gray-200);
+  color: var(--blue-600);
+}
+
+.undp-segmented .ant-segmented-item-selected {
+  background-color: var(--blue-100);
+  color: var(--blue-700);
+  box-shadow: none;
+}
+
+.undp-segmented .ant-segmented-item-selected:hover {
+  background-color: var(--blue-100);
+  color: var(--blue-700);
+}
+
+.undp-segmented .ant-segmented-item-disabled {
+  color: var(--gray-400);
+}
+
+.undp-segmented .ant-segmented-item-disabled:hover {
+  color: var(--gray-400);
+  background-color: transparent;
+}

@@ -1,0 +1,38 @@
+.undp-chip {
+  align-items: center;
+  background: var(--gray-200);
+  border: none;
+  border-radius: 20px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  display: inline-flex;
+  font-size: 1rem;
+  padding: 0.25rem 1rem;
+}
+
+.undp-chip-small {
+  font-size: 0.875rem;
+}
+
+.undp-chip-large {
+  font-size: 1.25rem;
+}
+
+.undp-chip-red {
+  background: var(--light-red);
+}
+
+.undp-chip-blue {
+  background: var(--light-azure);
+}
+
+.undp-chip-yellow {
+  background: var(--light-yellow);
+}
+
+.undp-chip-green {
+  background: var(--light-green);
+}
+
+.undp-chip-clickable {
+  cursor: pointer;
+}

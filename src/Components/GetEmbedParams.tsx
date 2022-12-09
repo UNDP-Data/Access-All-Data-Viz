@@ -1,26 +1,8 @@
 import { Checkbox, message } from 'antd';
 import { useState, useContext } from 'react';
-import styled from 'styled-components';
 import { EMBED_LINK_ROOT } from '../Constants';
 import Context from '../Context/Context';
 import { CtxDataType } from '../Types';
-
-const EmbedLinkBox = styled.div`
-  padding: 1rem;
-  font-size: 1.6rem;
-  line-height: 2.4rem;
-  margin-bottom: 2rem;
-  border: 1px solid var(--black-400);
-  border-radius: 4px;
-  font-weight: normal;
-  color: var(--black-700);
-`;
-
-const Buttons = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
 
 const ArrToString = (d: string[]) => {
   let stringValTemp = '';
@@ -92,16 +74,24 @@ export const GetEmbedParams = () => {
     + topicParam;
   return (
     <>
-      <EmbedLinkBox>
+      <div
+        className='margin-bottom-03'
+        style={{
+          fontFamily: 'monospace',
+          backgroundColor: 'var(--gray-200)',
+          padding: 'var(--spacing-05)',
+          border: '2px solid var(--gray-700)',
+        }}
+      >
         {
           `<iframe src="${EMBED_LINK_ROOT}?${queryParams}&embeded=true" loading="lazy" style="width: 100%; border: 0px none; max-width: 1380px"></iframe>`
         }
-      </EmbedLinkBox>
-      <Buttons>
-        <Checkbox checked={showSettingsInEmbed} onChange={(e) => { setShowSettingsInEmbed(e.target.checked); }}>Show Settings</Checkbox>
+      </div>
+      <div className='flex-div flex-vert-align-center flex-space-between'>
+        <Checkbox className='undp-checkbox' checked={showSettingsInEmbed} onChange={(e) => { setShowSettingsInEmbed(e.target.checked); }}>Show Settings</Checkbox>
         <button
           type='button'
-          className='primary'
+          className='undp-button button-tertiary'
           onClick={() => {
             navigator.clipboard.writeText(`<iframe src="${EMBED_LINK_ROOT}?${queryParams}&embeded=true" loading="lazy" style="width: 100%; border: 0px none; max-width: 1380px"></iframe>`);
             message.success({ content: 'Embed Link Copied', duration: 2 });
@@ -109,7 +99,7 @@ export const GetEmbedParams = () => {
         >
           Copy Embed Code
         </button>
-      </Buttons>
+      </div>
     </>
   );
 };

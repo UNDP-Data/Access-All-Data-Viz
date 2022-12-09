@@ -12,59 +12,34 @@ import { DataSources } from './DataSources';
 import { GetEmbedParams } from '../Components/GetEmbedParams';
 import { CopyLinkWithParamButton } from '../Components/CopyLinkWithParamButton';
 
+import '../style/buttonStyle.css';
+import '../style/modalStyle.css';
+
 interface Props {
   data: DataType[];
   indicators: IndicatorMetaDataWithYear[];
   regions: string[];
   countries: string[];
 }
-
-const Container = styled.div`
-  max-width: 132rem;
-  margin: 2rem auto;
-  padding: 0 2rem;
-`;
-
-const RootEl = styled.div`
-  background-color: var(--white);
-  color: var(--black-600);
-  box-shadow: var(--shadow);
-`;
-
-const TabsContainerEl = styled.div`
-  background-color: var(--black-200);
-  display: flex;
-`;
-
-const HeadingEl = styled.div`
-  display: flex;
-  justify-content: space-between;
-  padding: 2rem 0;
-  align-items: center;
-`;
-
 interface SelectedData {
   selected?: boolean;
 }
 
-const TitleEl = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-const TabsEl = styled.div<SelectedData>`
-  font-size: 1.2rem;
-  padding: 1rem 0;
-  line-height: 1.4rem;
-  min-width: 10rem;
+const TabsEl = styled.button<SelectedData>`
+  font-size: 0.875rem;
+  padding: var(--spacing-04) 0;
+  min-width: 6.25rem;
+  flex-grow: 1;
   width: 15%;
+  max-width: 17.5rem;
   text-transform: uppercase;
   justify-content: center;
   background-color:${(props) => (props.selected ? 'var(--white)' : 'transparent')};
-  color:${(props) => (props.selected ? 'var(--primary-blue)' : 'var(--black-600)')};
+  color:${(props) => (props.selected ? 'var(--blue-600)' : 'var(--gray-700)')};
   text-align: center;
-  border-right: 1px solid var(--black-450);
-  opacity :${(props) => (props.selected ? 1 : 0.6)};
+  border: 0;
+  border-right: 1px solid var(--gray-500);
+  opacity :${(props) => (props.selected ? 1 : 0.8)};
   cursor: pointer;
   div{
     margin-bottom: 0.5rem;
@@ -74,20 +49,22 @@ const TabsEl = styled.div<SelectedData>`
   }
   @media (max-width: 1172px) {
     width: 20%;
+    font-size: 0.75rem;
     &:last-of-type {
-      border-right: 0 solid var(--black-450);
+      border-right: 0 solid var(--gray-500);
     }
   }
   @media (max-width: 900px) {
     width: fit-content;
+    font-size: 0.75rem;
     min-width: 0;
-    padding: 1rem 2rem;
+    padding: var(--spacing-04) var(--spacing-06);
     &:last-of-type {
-      border-right: 1px solid var(--black-450);
+      border-right: 1px solid var(--gray-500);
     }
   }
   @media (max-width: 700px) {
-    font-size: 1rem;
+    font-size: 0.75rem;
     width: 100%;
     white-space: nowrap;
     overflow: hidden;
@@ -110,35 +87,6 @@ const IconEl = styled.div`
   }
 `;
 
-const ButtonsEl = styled.div`
-  button{
-    margin: 0 0.5rem 0 0.5rem;   
-    &:last-of-type{
-      margin-right: 0;
-    }
-  }
-`;
-
-const H1 = styled.div`
-  font-size: 3rem;
-  font-weight: bold;
-  color: var(--primary-blue);
-  line-height: 2rem;
-  margin: 1rem 0 0.5rem 1rem;
-  @media (max-width: 600px) {
-    font-size: 2rem;
-  }
-`;
-const H2 = styled.div`
-  font-size: 2rem;
-  font-weight: bold;
-  line-height: 2rem;
-  margin: 0 0 0.5rem 1rem;
-  @media (max-width: 600px) {
-    font-size: 1.6rem;
-  }
-`;
-
 export const GrapherComponent = (props: Props) => {
   const {
     data,
@@ -149,74 +97,98 @@ export const GrapherComponent = (props: Props) => {
   const {
     graphType,
     showSource,
+    selectedCountry,
+    signatureSolution,
     updateGraphType,
   } = useContext(Context) as CtxDataType;
   const [modalVisibility, setModalVisibility] = useState(false);
   const queryParams = new URLSearchParams(window.location.search);
   return (
     <>
-      <Container>
-        <HeadingEl>
-          <TitleEl>
-            <Logo height={50} />
+      <div className='margin-top-06 margin-bottom-06'>
+        <div className='flex-div flex-space-between flex-vert-align-center margin-bottom-05 flex-wrap'>
+          <div className='flex-div flex-vert-align-center'>
+            <Logo height={75} />
             <div>
-              <H1>Data Futures Platform</H1>
-              <H2>
+              <h3 className='undp-typography margin-bottom-00' style={{ color: 'var(--blue-600)' }}>Data Futures Platform</h3>
+              <h6 className='undp-typography margin-bottom-00'>
                 Explore All Data
                 {queryParams.get('topic') ? ` for ${queryParams.get('topic')}` : null}
-              </H2>
+                {selectedCountry ? ` for ${selectedCountry}` : null}
+                {signatureSolution ? ` for ${signatureSolution}` : null}
+              </h6>
             </div>
-          </TitleEl>
-          <ButtonsEl>
+          </div>
+          <div className='flex-div'>
             {
               queryParams.get('embeded') === 'true' ? null
                 : (
                   <CopyLinkWithParamButton />
                 )
             }
-            <button className='primary' type='button' onClick={() => { setModalVisibility(true); }}>
+            <button className='undp-button button-primary' type='button' onClick={() => { setModalVisibility(true); }}>
               {
-                window.innerWidth < 600 ? '</>' : '</> Embed'
+                window.innerWidth < 600 ? '</>' : 'Embed'
               }
             </button>
-          </ButtonsEl>
-        </HeadingEl>
-        <RootEl>
+          </div>
+        </div>
+        <div
+          style={{
+            backgroundColor: 'var(--gray-100)',
+            border: '1px solid var(--gray-400)',
+          }}
+        >
           {
             queryParams.get('showSettings') === 'false' ? null
               : (
-                <TabsContainerEl>
-                  <TabsEl selected={graphType === 'map'} onClick={() => { updateGraphType('map'); }}>
-                    <IconEl>
-                      <MapIcon size={48} fill={graphType === 'map' ? 'var(--primary-blue)' : 'var(--black-500)'} />
-                    </IconEl>
-                    <>Maps</>
-                  </TabsEl>
-                  <TabsEl selected={graphType === 'scatterPlot'} onClick={() => { updateGraphType('scatterPlot'); }}>
-                    <IconEl>
-                      <ScatterPlotIcon size={48} fill={graphType === 'scatterPlot' ? 'var(--primary-blue)' : 'var(--black-500)'} />
-                    </IconEl>
-                    <>Correlation</>
-                  </TabsEl>
+                <div className='flex-div' style={{ backgroundColor: 'var(--gray-200)', gap: '0' }}>
+                  {
+                    selectedCountry ? null
+                      : (
+                        <TabsEl selected={graphType === 'map'} onClick={() => { updateGraphType('map'); }}>
+                          <IconEl>
+                            <MapIcon size={48} fill={graphType === 'map' ? 'var(--blue-600)' : 'var(--gray-500)'} />
+                          </IconEl>
+                          <>Maps</>
+                        </TabsEl>
+                      )
+                  }
+                  {
+                    selectedCountry ? null
+                      : (
+                        <TabsEl selected={graphType === 'scatterPlot'} onClick={() => { updateGraphType('scatterPlot'); }}>
+                          <IconEl>
+                            <ScatterPlotIcon size={48} fill={graphType === 'scatterPlot' ? 'var(--blue-600)' : 'var(--gray-500)'} />
+                          </IconEl>
+                          <>Correlation</>
+                        </TabsEl>
+                      )
+                  }
                   <TabsEl selected={graphType === 'barGraph'} onClick={() => { updateGraphType('barGraph'); }}>
                     <IconEl>
-                      <BarGraphIcon size={48} fill={graphType === 'barGraph' ? 'var(--primary-blue)' : 'var(--black-500)'} />
+                      <BarGraphIcon size={48} fill={graphType === 'barGraph' ? 'var(--blue-600)' : 'var(--gray-500)'} />
                     </IconEl>
                     <>Ranks</>
                   </TabsEl>
                   <TabsEl selected={graphType === 'trendLine'} onClick={() => { updateGraphType('trendLine'); }}>
                     <IconEl>
-                      <DualAxesChartIcon size={48} fill={graphType === 'trendLine' ? 'var(--primary-blue)' : 'var(--black-500)'} />
+                      <DualAxesChartIcon size={48} fill={graphType === 'trendLine' ? 'var(--blue-600)' : 'var(--gray-500)'} />
                     </IconEl>
                     <>Dual Axes Line Chart</>
                   </TabsEl>
-                  <TabsEl selected={graphType === 'multiCountryTrendLine'} onClick={() => { updateGraphType('multiCountryTrendLine'); }}>
-                    <IconEl>
-                      <MultiLineChartIcon size={48} fill={graphType === 'multiCountryTrendLine' ? 'var(--primary-blue)' : 'var(--black-500)'} />
-                    </IconEl>
-                    <>Multi Country Trends</>
-                  </TabsEl>
-                </TabsContainerEl>
+                  {
+                    selectedCountry ? null
+                      : (
+                        <TabsEl selected={graphType === 'multiCountryTrendLine'} onClick={() => { updateGraphType('multiCountryTrendLine'); }}>
+                          <IconEl>
+                            <MultiLineChartIcon size={48} fill={graphType === 'multiCountryTrendLine' ? 'var(--blue-600)' : 'var(--gray-500)'} />
+                          </IconEl>
+                          <>Multi Country Trends</>
+                        </TabsEl>
+                      )
+                  }
+                </div>
               )
           }
           <GraphEl>
@@ -248,18 +220,15 @@ export const GrapherComponent = (props: Props) => {
               )
           }
           </GraphEl>
-        </RootEl>
-      </Container>
+        </div>
+      </div>
       <Modal
-        visible={modalVisibility}
+        open={modalVisibility}
+        className='undp-modal'
         title='Embed Code'
         onOk={() => { setModalVisibility(false); }}
         onCancel={() => { setModalVisibility(false); }}
-        footer={[
-          <button className='primary' key='back' type='button' onClick={() => { setModalVisibility(false); }}>
-            Close
-          </button>,
-        ]}
+        width='75%'
       >
         <GetEmbedParams />
       </Modal>

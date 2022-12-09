@@ -9,6 +9,10 @@ import {
   ChevronDown, ChevronLeft,
 } from '../Icons';
 
+import '../style/selectStyle.css';
+import '../style/checkboxStyle.css';
+import '../style/radioStyle.css';
+
 interface Props {
   indicators: IndicatorMetaDataWithYear[];
   regions: string[];
@@ -17,32 +21,22 @@ interface Props {
 
 const El = styled.div`
   width: 25%;
-  box-shadow: var(--shadow-right);
-  height: 74rem;
-  padding: 2rem;
-  border-right: 1px solid var(--black-400);
+  max-width: 30rem;
+  height: calc(100vh - 300px);
+  min-height: 46.25rem;
+  padding: var(--spacing-07);
+  border-right: 1px solid var(--gray-400);
   overflow: auto;
+  background-color: var(--white);
   @media (max-width: 960px) {
-    width: 100%;
-    box-shadow: var(--shadow-bottom);
-    border-right: 0px solid var(--black-400);
+    width: calc(100% - 4rem);
+    max-width: 960px;
+    border-right: 0px solid var(--gray-400);
+    border-bottom: 1px solid var(--gray-400);
     padding-bottom: 0;
     height: auto;
+    min-height: 0;
   }  
-`;
-
-const DropdownEl = styled.div`
-  margin: 2rem 0;
-  &:first-of-type{
-    margin-top: 0;
-  }
-`;
-
-const DropdownTitle = styled.div`
-  font-size: 1.4rem;
-  color: var(--black-700);
-  margin-bottom: 1rem;
-  line-height: 1.8rem;
 `;
 
 const FiltersEl = styled.div`
@@ -53,41 +47,11 @@ const FiltersEl = styled.div`
   }  
 `;
 
-const FilterTitle = styled.div`
-  font-size: 1.6rem;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  margin-left: -5px;
-  margin-bottom: 1rem;
+const FilterTitle = styled.button`
+  background-color: transparent;
+  border: 0;
   cursor: pointer;
-`;
-
-const CheckboxEl = styled.div`
-  margin: 1rem 0;
-  @media (max-width: 960px) {
-    margin: 0 0.5rem;
-  }  
-`;
-
-const ButtonEl = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  margin: 1rem 0 2rem 0;
-  button {
-    margin: 0.5rem 1rem 0.5rem 0;
-  }
-`;
-
-const CheckboxContainer = styled.div`
-  display: inline;
-  @media (max-width: 960px) {
-    display: flex;
-  }  
-`;
-
-const AccordionIconEl = styled.div`
-  display: flex;
+  padding: 0;
 `;
 
 export const Settings = (props: Props) => {
@@ -108,6 +72,7 @@ export const Settings = (props: Props) => {
     selectedIncomeGroups,
     selectedRegions,
     reverseOrder,
+    selectedCountry,
     updateSelectedCountryGroup,
     updateColorIndicator,
     updateXAxisIndicator,
@@ -148,9 +113,9 @@ export const Settings = (props: Props) => {
     }
   }, [graphType, options]);
   return (
-    <El>
-      <DropdownEl>
-        <DropdownTitle>
+    <El className='undp-scrollbar'>
+      <div>
+        <p className='undp-label'>
           {
             graphType === 'scatterPlot'
               ? 'X-Axis'
@@ -158,15 +123,10 @@ export const Settings = (props: Props) => {
                 ? 'Primary Indicator to color region'
                 : 'Primary Indicator'
           }
-        </DropdownTitle>
+        </p>
         <Select
           showSearch
-          style={
-            {
-              width: '100%',
-              borderRadius: '1rem',
-            }
-          }
+          className='undp-select'
           placeholder='Please select'
           value={xAxisIndicator}
           onChange={(d) => { updateXAxisIndicator(d); }}
@@ -174,19 +134,20 @@ export const Settings = (props: Props) => {
         >
           {
             options.map((d) => (
-              <Select.Option key={d}>{d}</Select.Option>
+              <Select.Option className='undp-select-option' key={d}>{d}</Select.Option>
             ))
           }
         </Select>
-      </DropdownEl>
+      </div>
       {
         graphType === 'scatterPlot'
           ? (
-            <DropdownEl>
-              <DropdownTitle>
+            <div className='margin-top-07'>
+              <p className='undp-label'>
                 Y-Axis
-              </DropdownTitle>
+              </p>
               <Select
+                className='undp-select'
                 showSearch
                 style={{ width: '100%' }}
                 value={yAxisIndicator}
@@ -196,19 +157,21 @@ export const Settings = (props: Props) => {
               >
                 {
                   options.map((d) => (
-                    <Select.Option key={d}>{d}</Select.Option>
+                    <Select.Option className='undp-select-option' key={d}>{d}</Select.Option>
                   ))
                 }
               </Select>
-            </DropdownEl>
+            </div>
           ) : graphType === 'map' ? (
-            <DropdownEl>
-              <DropdownTitle>
+            <div className='margin-top-07'>
+              <p className='undp-label'>
                 Secondary Indicator (optional)
-              </DropdownTitle>
+              </p>
               <Select
+                className='undp-select'
                 showSearch
                 allowClear
+                clearIcon={<div className='clearIcon' />}
                 style={{ width: '100%' }}
                 value={yAxisIndicator}
                 placeholder='Please select'
@@ -217,19 +180,21 @@ export const Settings = (props: Props) => {
               >
                 {
                   options.map((d) => (
-                    <Select.Option key={d}>{d}</Select.Option>
+                    <Select.Option className='undp-select-option' key={d}>{d}</Select.Option>
                   ))
                 }
               </Select>
-            </DropdownEl>
+            </div>
           ) : graphType === 'trendLine' ? (
-            <DropdownEl>
-              <DropdownTitle>
+            <div className='margin-top-07'>
+              <p className='undp-label'>
                 Secondary Indicator (optional)
-              </DropdownTitle>
+              </p>
               <Select
+                className='undp-select'
                 showSearch
                 allowClear
+                clearIcon={<div className='clearIcon' />}
                 style={{ width: '100%' }}
                 value={yAxisIndicator}
                 placeholder='Please select'
@@ -238,23 +203,25 @@ export const Settings = (props: Props) => {
               >
                 {
                   options.map((d) => (
-                    <Select.Option key={d}>{d}</Select.Option>
+                    <Select.Option className='undp-select-option' key={d}>{d}</Select.Option>
                   ))
                 }
               </Select>
-            </DropdownEl>
+            </div>
           ) : null
       }
       {
         graphType === 'map' || graphType === 'scatterPlot' ? (
-          <DropdownEl>
-            <DropdownTitle>
+          <div className='margin-top-07'>
+            <p className='undp-label'>
               {graphType === 'map' ? 'Choose an indicator to overlay' : 'Size By'}
               {' '}
               (optional)
-            </DropdownTitle>
+            </p>
             <Select
+              className='undp-select'
               allowClear
+              clearIcon={<div className='clearIcon' />}
               showSearch
               style={{ width: '100%' }}
               placeholder='Size By'
@@ -262,39 +229,41 @@ export const Settings = (props: Props) => {
             >
               {
                 sizeOptions.map((d) => (
-                  <Select.Option key={d}>{d}</Select.Option>
+                  <Select.Option className='undp-select-option' key={d}>{d}</Select.Option>
                 ))
               }
             </Select>
-          </DropdownEl>
+          </div>
         ) : null
       }
       {
-        graphType === 'barGraph' || graphType === 'scatterPlot' ? (
-          <DropdownEl>
-            <DropdownTitle>
-              Color By
-            </DropdownTitle>
-            <Select
-              showSearch
-              style={{ width: '100%' }}
-              placeholder='Color By'
-              onChange={(d) => { updateColorIndicator(d); }}
-              defaultValue={DEFAULT_VALUES.colorMetric}
-            >
-              {
+        graphType === 'barGraph' || graphType === 'scatterPlot'
+          ? selectedCountry ? null : (
+            <div className='margin-top-07'>
+              <p className='undp-label'>
+                Color By
+              </p>
+              <Select
+                className='undp-select'
+                showSearch
+                style={{ width: '100%' }}
+                placeholder='Color By'
+                onChange={(d) => { updateColorIndicator(d); }}
+                defaultValue={DEFAULT_VALUES.colorMetric}
+              >
+                {
                 colorOptions.map((d) => (
-                  <Select.Option key={d}>{d}</Select.Option>
+                  <Select.Option className='undp-select-option' key={d}>{d}</Select.Option>
                 ))
               }
-            </Select>
-          </DropdownEl>
-        ) : null
+              </Select>
+            </div>
+          ) : null
       }
-      <ButtonEl>
-        <button className='primary' type='button' onClick={() => { updateShowSource(true); }}>Data Description & Download</button>
+      <div className='flex-div flex-wrap margin-top-07'>
+        <button className='undp-button button-primary' type='button' onClick={() => { updateShowSource(true); }}>Data Description & Download</button>
         <button
-          className='primary'
+          className='undp-button button-secondary'
           type='button'
           onClick={() => {
             const node = document.getElementById('graph-node') as HTMLElement;
@@ -310,166 +279,165 @@ export const Settings = (props: Props) => {
         >
           Download Graph
         </button>
-      </ButtonEl>
-      <FiltersEl>
-        <FilterTitle onClick={() => { setSettingsExpanded(!settingExpanded); }}>
-          <AccordionIconEl>
+      </div>
+      <hr className='undp-style margin-top-07 margin-bottom-07' />
+      <div>
+        <FilterTitle className='flex-div flex-vert-align-center margin-bottom-06' style={{ gap: '0.25rem' }} onClick={() => { setSettingsExpanded(!settingExpanded); }}>
+          <div>
             {
               settingExpanded
-                ? <ChevronDown fill='#212121' size={20} /> : <ChevronLeft fill='#212121' size={20} />
+                ? <ChevronDown fill='#212121' size={24} /> : <ChevronLeft fill='#212121' size={24} />
             }
-          </AccordionIconEl>
-          <div style={{ marginTop: '2px' }}>
+          </div>
+          <h5 className='undp-typography bold margin-bottom-00'>
             Settings
             {' '}
             &
             {' '}
             Options
-          </div>
+          </h5>
         </FilterTitle>
-        <div style={{ display: settingExpanded ? 'inline' : 'none' }}>
+        <div className='flex-wrap' style={{ display: settingExpanded ? 'flex' : 'none', gap: '1rem' }}>
           {
             graphType !== 'trendLine' && graphType !== 'multiCountryTrendLine'
               ? (
-                <CheckboxContainer>
+                <div className='flex-div flex-wrap'>
                   {
                     graphType === 'scatterPlot'
                       ? (
-                        <CheckboxEl>
-                          <Checkbox checked={showLabel} onChange={(e) => { updateShowLabel(e.target.checked); }}>Show Label</Checkbox>
-                        </CheckboxEl>
+                        <Checkbox style={{ margin: 0 }} className='undp-checkbox' checked={showLabel} onChange={(e) => { updateShowLabel(e.target.checked); }}>Show Label</Checkbox>
                       )
                       : null
                   }
-                  <CheckboxEl>
-                    <Checkbox checked={showMostRecentData} onChange={(e) => { updateShowMostRecentData(e.target.checked); }}>Show Most Recent Available Data</Checkbox>
-                  </CheckboxEl>
+                  <Checkbox style={{ margin: 0 }} className='undp-checkbox' checked={showMostRecentData} onChange={(e) => { updateShowMostRecentData(e.target.checked); }}>Show Most Recent Available Data</Checkbox>
                   {
                     graphType === 'barGraph'
                       ? (
                         <>
-                          <CheckboxEl>
-                            <Checkbox checked={!verticalBarLayout} onChange={(e) => { updateBarLayout(!e.target.checked); }}>Show Horizontal</Checkbox>
-                          </CheckboxEl>
-                          <CheckboxEl>
-                            <Checkbox disabled={!verticalBarLayout} checked={reverseOrder} onChange={(e) => { updateReverseOrder(e.target.checked); }}>Show Largest First</Checkbox>
-                          </CheckboxEl>
+                          <Checkbox style={{ margin: 0 }} className='undp-checkbox' checked={!verticalBarLayout} onChange={(e) => { updateBarLayout(!e.target.checked); }}>Show Horizontal</Checkbox>
+                          <Checkbox style={{ margin: 0 }} className='undp-checkbox' disabled={!verticalBarLayout} checked={reverseOrder} onChange={(e) => { updateReverseOrder(e.target.checked); }}>Show Largest First</Checkbox>
                         </>
                       )
                       : null
                   }
-                </CheckboxContainer>
+                </div>
               ) : null
           }
           {
             graphType === 'trendLine'
               ? (
-                <CheckboxContainer>
-                  <CheckboxEl>
-                    <Checkbox checked={showLabel} onChange={(e) => { updateShowLabel(e.target.checked); }}>Show Label</Checkbox>
-                  </CheckboxEl>
-                  <CheckboxEl>
-                    <Checkbox checked={useSameRange} disabled={!yAxisIndicator} onChange={(e) => { updateUseSameRange(e.target.checked); }}>Use Same Range for Both Y-Axes</Checkbox>
-                  </CheckboxEl>
-                </CheckboxContainer>
+                <>
+                  <Checkbox style={{ margin: 0 }} className='undp-checkbox' checked={showLabel} onChange={(e) => { updateShowLabel(e.target.checked); }}>Show Label</Checkbox>
+                  <Checkbox style={{ margin: 0 }} className='undp-checkbox' checked={useSameRange} disabled={!yAxisIndicator} onChange={(e) => { updateUseSameRange(e.target.checked); }}>Use Same Range for Both Y-Axes</Checkbox>
+                </>
               ) : null
           }
           {
             graphType === 'multiCountryTrendLine'
               ? (
-                <CheckboxEl>
-                  <Checkbox checked={showLabel} onChange={(e) => { updateShowLabel(e.target.checked); }}>Show Label</Checkbox>
-                </CheckboxEl>
+                <Checkbox style={{ margin: 0 }} className='undp-checkbox' checked={showLabel} onChange={(e) => { updateShowLabel(e.target.checked); }}>Show Label</Checkbox>
               ) : null
           }
         </div>
-      </FiltersEl>
+      </div>
       {
-        graphType !== 'trendLine' && graphType !== 'multiCountryTrendLine'
+        graphType !== 'trendLine' && graphType !== 'multiCountryTrendLine' && !selectedCountry
           ? (
-            <FiltersEl>
-              <FilterTitle onClick={() => { setFilterExpanded(!filterExpanded); }}>
-                <AccordionIconEl>
-                  {
-                    filterExpanded
-                      ? <ChevronDown fill='#212121' size={20} /> : <ChevronLeft fill='#212121' size={20} />
-                  }
-                </AccordionIconEl>
-                <div style={{ marginTop: '2px' }}>
-                  Filter or Highlight By
-                </div>
-              </FilterTitle>
-              <div style={{ display: filterExpanded ? 'inline' : 'none' }}>
-                <DropdownEl>
-                  <DropdownTitle>
-                    Region
-                  </DropdownTitle>
-                  <Select
-                    mode='multiple'
-                    allowClear
-                    style={{ width: '100%' }}
-                    placeholder='Filter By Regions'
-                    value={selectedRegions}
-                    onChange={(d: string[]) => { updateSelectedRegions(d); }}
-                  >
+            <>
+              <hr className='undp-style margin-top-07' />
+              <FiltersEl>
+                <FilterTitle className='flex-div flex-vert-align-center margin-bottom-05' style={{ gap: '0.25rem' }} onClick={() => { setFilterExpanded(!filterExpanded); }}>
+                  <div>
                     {
+                      filterExpanded
+                        ? <ChevronDown fill='#212121' size={24} /> : <ChevronLeft fill='#212121' size={24} />
+                    }
+                  </div>
+                  <h5 className='undp-typography bold margin-bottom-00'>
+                    Filter or Highlight By
+                  </h5>
+                </FilterTitle>
+                <div style={{ display: filterExpanded ? 'inline' : 'none' }}>
+                  <div className='margin-top-03'>
+                    <p className='undp-label'>
+                      Region
+                    </p>
+                    <Select
+                      className='undp-select'
+                      mode='multiple'
+                      maxTagCount='responsive'
+                      allowClear
+                      clearIcon={<div className='clearIcon' />}
+                      style={{ width: '100%' }}
+                      placeholder='Filter By Regions'
+                      value={selectedRegions}
+                      onChange={(d: string[]) => { updateSelectedRegions(d); }}
+                    >
+                      {
                     regions.map((d) => (
-                      <Select.Option key={d}>{d}</Select.Option>
+                      <Select.Option className='undp-select-option' key={d}>{d}</Select.Option>
                     ))
                   }
-                  </Select>
-                </DropdownEl>
-                <DropdownEl>
-                  <DropdownTitle>
-                    Income Group
-                  </DropdownTitle>
-                  <Select
-                    mode='multiple'
-                    allowClear
-                    style={{ width: '100%' }}
-                    placeholder='Filter By Income Group'
-                    value={selectedIncomeGroups}
-                    onChange={(d: string[]) => { updateSelectedIncomeGroups(d); }}
-                  >
-                    {
+                    </Select>
+                  </div>
+                  <div className='margin-top-05'>
+                    <p className='undp-label'>
+                      Income Group
+                    </p>
+                    <Select
+                      className='undp-select'
+                      mode='multiple'
+                      maxTagCount='responsive'
+                      allowClear
+                      clearIcon={<div className='clearIcon' />}
+                      style={{ width: '100%' }}
+                      placeholder='Filter By Income Group'
+                      value={selectedIncomeGroups}
+                      onChange={(d: string[]) => { updateSelectedIncomeGroups(d); }}
+                    >
+                      {
                     INCOME_GROUPS.map((d) => (
-                      <Select.Option key={d}>{d}</Select.Option>
+                      <Select.Option className='undp-select-option' key={d}>{d}</Select.Option>
                     ))
                   }
-                  </Select>
-                </DropdownEl>
-                <DropdownEl>
-                  <DropdownTitle>
-                    Country Groups
-                  </DropdownTitle>
-                  <Radio.Group onChange={(d) => { updateSelectedCountryGroup(d.target.value); }} value={selectedCountryGroup} buttonStyle='solid' size='small'>
-                    <Radio.Button value='All'><span title='All'>All</span></Radio.Button>
-                    <Radio.Button value='LDC'><span title='Least Developed Countries'>LDC</span></Radio.Button>
-                    <Radio.Button value='LLDC'><span title='Land Locked Developing Countries'>LLDC</span></Radio.Button>
-                    <Radio.Button value='SIDS'><span title='Small Island Developing States'>SIDS</span></Radio.Button>
-                  </Radio.Group>
-                </DropdownEl>
-                <DropdownEl>
-                  <DropdownTitle>
-                    Countries
-                  </DropdownTitle>
-                  <Select
-                    mode='multiple'
-                    allowClear
-                    style={{ width: '100%' }}
-                    value={selectedCountries}
-                    placeholder='Filter By Countries'
-                    onChange={(d: string[]) => { updateSelectedCountries(d); updateMultiCountrytrendChartCountries(d); }}
-                  >
-                    {
+                    </Select>
+                  </div>
+                  <div className='margin-top-05'>
+                    <p className='undp-label'>
+                      Country Groups
+                    </p>
+                    <Radio.Group onChange={(d) => { updateSelectedCountryGroup(d.target.value); }} value={selectedCountryGroup}>
+                      <Radio className='undp-radio' value='All'>All</Radio>
+                      <Radio className='undp-radio' value='LDC'>LDC</Radio>
+                      <Radio className='undp-radio' value='LLDC'>LLDC</Radio>
+                      <Radio className='undp-radio' value='SIDS'>SIDS</Radio>
+                    </Radio.Group>
+                  </div>
+                  <div className='margin-top-05'>
+                    <p className='undp-label'>
+                      Countries
+                    </p>
+                    <Select
+                      className='undp-select'
+                      mode='multiple'
+                      maxTagCount='responsive'
+                      allowClear
+                      clearIcon={<div className='clearIcon' />}
+                      style={{ width: '100%' }}
+                      value={selectedCountries}
+                      placeholder='Filter By Countries'
+                      onChange={(d: string[]) => { updateSelectedCountries(d); updateMultiCountrytrendChartCountries(d); }}
+                    >
+                      {
                       countries.map((d) => (
-                        <Select.Option key={d}>{d}</Select.Option>
+                        <Select.Option className='undp-select-option' key={d}>{d}</Select.Option>
                       ))
                     }
-                  </Select>
-                </DropdownEl>
-              </div>
-            </FiltersEl>
+                    </Select>
+                  </div>
+                </div>
+              </FiltersEl>
+            </>
           ) : null
       }
     </El>
