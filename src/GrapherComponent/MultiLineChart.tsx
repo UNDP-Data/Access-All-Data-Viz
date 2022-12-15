@@ -142,8 +142,8 @@ export const MultiLineChart = (props: Props) => {
           maxTagCount='responsive'
         >
           {
-            countries.map((d, i) => (
-              <Select.Option className='undp-select-option' key={i}>{d.name}</Select.Option>
+            countries.map((d) => d.name).map((d) => (
+              <Select.Option className='undp-select-option' key={d}>{d}</Select.Option>
             ))
           }
         </Select>
@@ -364,8 +364,8 @@ export const MultiLineChart = (props: Props) => {
                 onChange={(d) => { updateMultiCountrytrendChartCountries(d); }}
               >
                 {
-                  countries.map((d, i) => (
-                    <Select.Option className='undp-select-options' key={i}>{d.name}</Select.Option>
+                  countries.map((d) => d.name).map((d) => (
+                    <Select.Option className='undp-select-options' key={d}>{d}</Select.Option>
                   ))
                 }
               </Select>
@@ -386,8 +386,8 @@ export const MultiLineChart = (props: Props) => {
                 maxTagCount='responsive'
               >
                 {
-                  countries.map((d, i) => (
-                    <Select.Option className='undp-select-option' key={i}>{d.name}</Select.Option>
+                  countries.map((d) => d.name).map((d) => (
+                    <Select.Option className='undp-select-option' key={d}>{d}</Select.Option>
                   ))
                 }
               </Select>

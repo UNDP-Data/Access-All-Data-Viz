@@ -41,7 +41,6 @@ export const GetEmbedParams = () => {
   const graphParam = `graphType=${graphType}`;
   const regionsParam = selectedRegions.length > 0 ? `&regions=${ArrToString(selectedRegions)}` : '';
   const countries = selectedCountries.length > 0 ? `&countries=${ArrToString(selectedCountries)}` : '';
-  const selectCountryParam = selectedCountry ? `&selectedCountry=${selectedCountry}` : '';
   const signatureSolutionParam = signatureSolution ? `&signatureSolution=${signatureSolution}` : '';
   const incomeGroupsParam = selectedRegions.length > 0 ? `&incomeGroups=${ArrToString(selectedIncomeGroups)}` : '';
   const countryGroupParam = selectedCountryGroup === 'All' ? '' : `&countryGroup=${CovertStringForParam(selectedCountryGroup)}`;
@@ -61,7 +60,6 @@ export const GetEmbedParams = () => {
   const queryParams = graphParam
     + regionsParam
     + countries
-    + selectCountryParam
     + signatureSolutionParam
     + incomeGroupsParam
     + countryGroupParam
@@ -90,7 +88,7 @@ export const GetEmbedParams = () => {
         }}
       >
         {
-          `<iframe src="${EMBED_LINK_ROOT}?${queryParams}&embeded=true" loading="lazy" style="width: 100%; border: 0px none; max-width: 1380px"></iframe>`
+          selectedCountry ? `<iframe src="${EMBED_LINK_ROOT}/country-profile/${selectedCountry}?${queryParams}&embeded=true&featuredIndicator=false" loading="lazy" style="width: 100%; border: 0px none"></iframe>` : `<iframe src="${EMBED_LINK_ROOT}?${queryParams}&embeded=true" loading="lazy" style="width: 100%; border: 0px none"></iframe>`
         }
       </div>
       <div className='flex-div flex-vert-align-center flex-space-between'>
@@ -99,7 +97,44 @@ export const GetEmbedParams = () => {
           type='button'
           className='undp-button button-tertiary'
           onClick={() => {
-            navigator.clipboard.writeText(`<iframe src="${EMBED_LINK_ROOT}?${queryParams}&embeded=true" loading="lazy" style="width: 100%; border: 0px none; max-width: 1380px"></iframe>`);
+            navigator.clipboard.writeText(selectedCountry ? `<iframe src="${EMBED_LINK_ROOT}/country-profile/${selectedCountry}?${queryParams}&embeded=true&featuredIndicator=false" loading="lazy" style="width: 100%; border: 0px none"></iframe>` : `<iframe src="${EMBED_LINK_ROOT}?${queryParams}&embeded=true" loading="lazy" style="width: 100%; border: 0px none"></iframe>`);
+            message.success({ content: 'Embed Link Copied', duration: 2 });
+          }}
+        >
+          Copy Embed Code
+        </button>
+      </div>
+    </>
+  );
+};
+
+export const GetEmbedParamsForCountrySummary = () => {
+  const [showSettingsInEmbed, setShowSettingsInEmbed] = useState(true);
+  const {
+    selectedCountry,
+  } = useContext(Context) as CtxDataType;
+  return (
+    <>
+      <div
+        className='margin-bottom-03'
+        style={{
+          fontFamily: 'monospace',
+          backgroundColor: 'var(--gray-200)',
+          padding: 'var(--spacing-05)',
+          border: '2px solid var(--gray-700)',
+        }}
+      >
+        {
+          `<iframe src="${EMBED_LINK_ROOT}/country-profile/${selectedCountry}?embeded=true&featuredIndicator=true&accessAllData=false" loading="lazy" style="width: 100%; border: 0px none"></iframe>`
+        }
+      </div>
+      <div className='flex-div flex-vert-align-center flex-space-between'>
+        <Checkbox className='undp-checkbox' checked={showSettingsInEmbed} onChange={(e) => { setShowSettingsInEmbed(e.target.checked); }}>Show Settings</Checkbox>
+        <button
+          type='button'
+          className='undp-button button-tertiary'
+          onClick={() => {
+            navigator.clipboard.writeText(`<iframe src="${EMBED_LINK_ROOT}/country-profile/${selectedCountry}?&embeded=true&featuredIndicator=true<iframe src="${EMBED_LINK_ROOT}/country-profile/${selectedCountry}?embeded=true&featuredIndicator=true&accessAllData=false" loading="lazy" style="width: 100%; border: 0px none"></iframe>`);
             message.success({ content: 'Embed Link Copied', duration: 2 });
           }}
         >

@@ -28,6 +28,7 @@ const getCountry = (embedSelector: string) => {
   if (elClass[0] === 'country') return elClass[1].replaceAll('+', ' ');
   return undefined;
 };
+
 const getSS = (embedSelector: string) => {
   const el = document.querySelector(embedSelector);
   if (!el) {
@@ -36,15 +37,15 @@ const getSS = (embedSelector: string) => {
     return undefined;
   }
   const elClass: string[] = el.className.split('~');
-  if (elClass[0] === 'ss') return elClass[1].replaceAll('+', ' ');
+  if (elClass[0] === 'signatureSolution') return elClass[1].replaceAll('+', ' ');
   return undefined;
 };
 
 ReactDOM.render(
   <React.StrictMode>
     <App
-      country={getCountry('[data-bucket-embed]')}
-      ss={getSS('[data-bucket-embed]')}
+      countryId={getCountry('[data-bucket-embed]')}
+      signatureSolution={getSS('[data-bucket-embed]')}
     />
   </React.StrictMode>,
   getEl('[data-bucket-embed]'),

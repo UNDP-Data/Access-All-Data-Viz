@@ -156,8 +156,8 @@ export const DualAxisLineChart = (props: Props) => {
           value={countries[countries.findIndex((d) => d.code === selectedCountry)].name || trendChartCountry}
         >
           {
-            countries.map((d, i) => (
-              <Select.Option className='undp-select-option' key={i}>{d.name}</Select.Option>
+            countries.map((d) => d.name).map((d) => (
+              <Select.Option className='undp-select-option' key={d}>{d}</Select.Option>
             ))
           }
         </Select>
@@ -458,8 +458,8 @@ export const DualAxisLineChart = (props: Props) => {
                 onChange={(d) => { updateTrendChartCountry(d); }}
               >
                 {
-                  countries.map((d, i) => (
-                    <Select.Option className='undp-select-option' key={i}>{d.name}</Select.Option>
+                  countries.map((d) => d.name).map((d) => (
+                    <Select.Option className='undp-select-option' key={d}>{d}</Select.Option>
                   ))
                 }
               </Select>

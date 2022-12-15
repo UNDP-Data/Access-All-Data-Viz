@@ -148,9 +148,50 @@ export const HorizontalBarChart = (props: Props) => {
         : colorIndicatorMetaData?.Categories ? colorIndicatorMetaData?.Categories
           : [0, 0];
   const colorScale = colorIndicator === 'Human Development Index' ? scaleThreshold<string | number, string>().domain(colorDomain).range(COLOR_SCALES.Divergent.Color4).unknown('#666') : scaleOrdinal<string | number, string>().domain(colorDomain).range(colorList).unknown('#666');
-
   return (
     <div className='undp-scrollbar' style={{ height: 'calc(100% - 89px)' }}>
+      {
+        selectedCountry ? (
+          <div
+            className='margin-top-05 margin-bottom-05'
+            style={{
+              maxWidth: '70rem',
+              margin: 'auto',
+              backgroundColor: 'var(--white)',
+              padding: 'var(--spacing-05)',
+              textAlign: 'center',
+              fontSize: '1.25rem',
+            }}
+          >
+            {
+              dataFormatted.findIndex((d) => d.countryCode === selectedCountry) !== -1
+                ? (
+                  <>
+                    {dataFormatted[dataFormatted.findIndex((d) => d.countryCode === selectedCountry)].countryName}
+                    {' '}
+                    has
+                    {' '}
+                    {dataFormatted.findIndex((d) => d.countryCode === selectedCountry) + 1 === 1 ? 'the' : dataFormatted.findIndex((d) => d.countryCode === selectedCountry) + 1}
+                    {' '}
+                    {reverseOrder ? 'highest' : 'lowest'}
+                    {' '}
+                    {xAxisIndicator}
+                    {' '}
+                    (out of
+                    {' '}
+                    {dataFormatted.length}
+                    {' '}
+                    countries)
+                  </>
+                ) : (
+                  <>
+                    No data for the selected country
+                  </>
+                )
+            }
+          </div>
+        ) : null
+      }
       <svg width='100%' viewBox={`0 0 ${svgWidth} ${svgHeight}`}>
         <text
           x={margin.left}

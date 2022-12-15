@@ -4,7 +4,7 @@ import { Select, Radio, Checkbox } from 'antd';
 import domtoimage from 'dom-to-image';
 import { CountryListType, CtxDataType, IndicatorMetaDataWithYear } from '../Types';
 import Context from '../Context/Context';
-import { DEFAULT_VALUES, INCOME_GROUPS } from '../Constants';
+import { DEFAULT_VALUES, INCOME_GROUPS, SIGNATURE_SOLUTIONS_LIST } from '../Constants';
 import {
   ChevronDown, ChevronLeft,
 } from '../Icons';
@@ -22,7 +22,7 @@ interface Props {
 const El = styled.div`
   width: 25%;
   max-width: 30rem;
-  height: calc(100vh - 300px);
+  height: calc(100vh - 4rem);
   min-height: 46.25rem;
   padding: var(--spacing-07);
   border-right: 1px solid var(--gray-400);
@@ -73,6 +73,7 @@ export const Settings = (props: Props) => {
     selectedRegions,
     reverseOrder,
     selectedCountry,
+    signatureSolutionForDataList,
     updateSelectedCountryGroup,
     updateColorIndicator,
     updateXAxisIndicator,
@@ -89,6 +90,7 @@ export const Settings = (props: Props) => {
     updateReverseOrder,
     verticalBarLayout,
     updateBarLayout,
+    updateSignatureSolutionForDataList,
   } = useContext(Context) as CtxDataType;
   const options = graphType === 'scatterPlot'
     ? indicators.filter((d) => d.ScatterPlot).map((d) => d.IndicatorLabelTable)
@@ -114,31 +116,57 @@ export const Settings = (props: Props) => {
   }, [graphType, options]);
   return (
     <El className='undp-scrollbar'>
-      <div>
-        <p className='undp-label'>
-          {
-            graphType === 'scatterPlot'
-              ? 'X-Axis'
-              : graphType === 'map'
-                ? 'Primary Indicator to color region'
-                : 'Primary Indicator'
-          }
-        </p>
-        <Select
-          showSearch
-          className='undp-select'
-          placeholder='Please select'
-          value={xAxisIndicator}
-          onChange={(d) => { updateXAxisIndicator(d); }}
-          defaultValue={DEFAULT_VALUES.firstMetric}
-        >
-          {
-            options.map((d) => (
-              <Select.Option className='undp-select-option' key={d}>{d}</Select.Option>
-            ))
-          }
-        </Select>
-      </div>
+      {
+        graphType !== 'dataList'
+          ? (
+            <div>
+              <p className='undp-label'>
+                {
+              graphType === 'scatterPlot'
+                ? 'X-Axis'
+                : graphType === 'map'
+                  ? 'Primary Indicator to color region'
+                  : 'Primary Indicator'
+            }
+              </p>
+              <Select
+                showSearch
+                className='undp-select'
+                placeholder='Please select'
+                value={xAxisIndicator}
+                onChange={(d) => { updateXAxisIndicator(d); }}
+                defaultValue={DEFAULT_VALUES.firstMetric}
+              >
+                {
+              options.map((d) => (
+                <Select.Option className='undp-select-option' key={d}>{d}</Select.Option>
+              ))
+            }
+              </Select>
+            </div>
+          )
+          : (
+            <div>
+              <p className='undp-label'>
+                Filter by Signature Solutions
+              </p>
+              <Select
+                showSearch
+                className='undp-select'
+                placeholder='Please select'
+                value={signatureSolutionForDataList}
+                onChange={(d) => { updateSignatureSolutionForDataList(d as 'All' | 'Energy' | 'Environment' | 'Gender' | 'Governance' | 'Poverty and Inequality' | 'Resilience'); }}
+                defaultValue={DEFAULT_VALUES.firstMetric}
+              >
+                {
+                  SIGNATURE_SOLUTIONS_LIST.map((d) => (
+                    <Select.Option className='undp-select-option' key={d}>{d}</Select.Option>
+                  ))
+                }
+              </Select>
+            </div>
+          )
+      }
       {
         graphType === 'scatterPlot'
           ? (
@@ -260,88 +288,99 @@ export const Settings = (props: Props) => {
             </div>
           ) : null
       }
-      <div className='flex-div flex-wrap margin-top-07'>
-        <button className='undp-button button-primary' type='button' onClick={() => { updateShowSource(true); }}>Data Description & Download</button>
-        <button
-          className='undp-button button-secondary'
-          type='button'
-          onClick={() => {
-            const node = document.getElementById('graph-node') as HTMLElement;
-            domtoimage
-              .toPng(node, { height: node.scrollHeight })
-              .then((dataUrl: any) => {
-                const link = document.createElement('a');
-                link.download = 'graph.png';
-                link.href = dataUrl;
-                link.click();
-              });
-          }}
-        >
-          Download Graph
-        </button>
-      </div>
-      <hr className='undp-style margin-top-07 margin-bottom-07' />
-      <div>
-        <FilterTitle className='flex-div flex-vert-align-center margin-bottom-06' style={{ gap: '0.25rem' }} onClick={() => { setSettingsExpanded(!settingExpanded); }}>
-          <div>
-            {
-              settingExpanded
-                ? <ChevronDown fill='#212121' size={24} /> : <ChevronLeft fill='#212121' size={24} />
-            }
-          </div>
-          <h5 className='undp-typography bold margin-bottom-00'>
-            Settings
-            {' '}
-            &
-            {' '}
-            Options
-          </h5>
-        </FilterTitle>
-        <div className='flex-wrap' style={{ display: settingExpanded ? 'flex' : 'none', gap: '1rem' }}>
-          {
-            graphType !== 'trendLine' && graphType !== 'multiCountryTrendLine'
-              ? (
-                <div className='flex-div flex-wrap'>
-                  {
-                    graphType === 'scatterPlot'
-                      ? (
-                        <Checkbox style={{ margin: 0 }} className='undp-checkbox' checked={showLabel} onChange={(e) => { updateShowLabel(e.target.checked); }}>Show Label</Checkbox>
-                      )
-                      : null
-                  }
-                  <Checkbox style={{ margin: 0 }} className='undp-checkbox' checked={showMostRecentData} onChange={(e) => { updateShowMostRecentData(e.target.checked); }}>Show Most Recent Available Data</Checkbox>
-                  {
-                    graphType === 'barGraph'
-                      ? (
-                        <>
-                          <Checkbox style={{ margin: 0 }} className='undp-checkbox' checked={!verticalBarLayout} onChange={(e) => { updateBarLayout(!e.target.checked); }}>Show Horizontal</Checkbox>
-                          <Checkbox style={{ margin: 0 }} className='undp-checkbox' disabled={!verticalBarLayout} checked={reverseOrder} onChange={(e) => { updateReverseOrder(e.target.checked); }}>Show Largest First</Checkbox>
-                        </>
-                      )
-                      : null
-                  }
-                </div>
-              ) : null
-          }
-          {
-            graphType === 'trendLine'
-              ? (
-                <>
-                  <Checkbox style={{ margin: 0 }} className='undp-checkbox' checked={showLabel} onChange={(e) => { updateShowLabel(e.target.checked); }}>Show Label</Checkbox>
-                  <Checkbox style={{ margin: 0 }} className='undp-checkbox' checked={useSameRange} disabled={!yAxisIndicator} onChange={(e) => { updateUseSameRange(e.target.checked); }}>Use Same Range for Both Y-Axes</Checkbox>
-                </>
-              ) : null
-          }
-          {
-            graphType === 'multiCountryTrendLine'
-              ? (
-                <Checkbox style={{ margin: 0 }} className='undp-checkbox' checked={showLabel} onChange={(e) => { updateShowLabel(e.target.checked); }}>Show Label</Checkbox>
-              ) : null
-          }
-        </div>
-      </div>
       {
-        graphType !== 'trendLine' && graphType !== 'multiCountryTrendLine' && !selectedCountry
+        graphType !== 'dataList'
+          ? (
+            <div className='flex-div flex-wrap margin-top-07'>
+              <button className='undp-button button-primary' type='button' onClick={() => { updateShowSource(true); }}>Data Description & Download</button>
+              <button
+                className='undp-button button-secondary'
+                type='button'
+                onClick={() => {
+                  const node = document.getElementById('graph-node') as HTMLElement;
+                  domtoimage
+                    .toPng(node, { height: node.scrollHeight })
+                    .then((dataUrl: any) => {
+                      const link = document.createElement('a');
+                      link.download = 'graph.png';
+                      link.href = dataUrl;
+                      link.click();
+                    });
+                }}
+              >
+                Download Graph
+              </button>
+            </div>
+          ) : null
+      }
+      {
+        graphType !== 'dataList' ? (
+          <>
+            <hr className='undp-style margin-top-07 margin-bottom-07' />
+            <div>
+              <FilterTitle className='flex-div flex-vert-align-center margin-bottom-06' style={{ gap: '0.25rem' }} onClick={() => { setSettingsExpanded(!settingExpanded); }}>
+                <div>
+                  {
+                settingExpanded
+                  ? <ChevronDown fill='#212121' size={24} /> : <ChevronLeft fill='#212121' size={24} />
+              }
+                </div>
+                <h5 className='undp-typography bold margin-bottom-00'>
+                  Settings
+                  {' '}
+                  &
+                  {' '}
+                  Options
+                </h5>
+              </FilterTitle>
+              <div className='flex-wrap' style={{ display: settingExpanded ? 'flex' : 'none', gap: '1rem' }}>
+                {
+              graphType !== 'trendLine' && graphType !== 'multiCountryTrendLine'
+                ? (
+                  <div className='flex-div flex-wrap'>
+                    {
+                      graphType === 'scatterPlot'
+                        ? (
+                          <Checkbox style={{ margin: 0 }} className='undp-checkbox' checked={showLabel} onChange={(e) => { updateShowLabel(e.target.checked); }}>Show Label</Checkbox>
+                        )
+                        : null
+                    }
+                    <Checkbox style={{ margin: 0 }} className='undp-checkbox' checked={showMostRecentData} onChange={(e) => { updateShowMostRecentData(e.target.checked); }}>Show Most Recent Available Data</Checkbox>
+                    {
+                      graphType === 'barGraph'
+                        ? (
+                          <>
+                            <Checkbox style={{ margin: 0 }} className='undp-checkbox' checked={!verticalBarLayout} onChange={(e) => { updateBarLayout(!e.target.checked); }}>Show Horizontal</Checkbox>
+                            <Checkbox style={{ margin: 0 }} className='undp-checkbox' disabled={!verticalBarLayout} checked={reverseOrder} onChange={(e) => { updateReverseOrder(e.target.checked); }}>Show Largest First</Checkbox>
+                          </>
+                        )
+                        : null
+                    }
+                  </div>
+                ) : null
+            }
+                {
+              graphType === 'trendLine'
+                ? (
+                  <>
+                    <Checkbox style={{ margin: 0 }} className='undp-checkbox' checked={showLabel} onChange={(e) => { updateShowLabel(e.target.checked); }}>Show Label</Checkbox>
+                    <Checkbox style={{ margin: 0 }} className='undp-checkbox' checked={useSameRange} disabled={!yAxisIndicator} onChange={(e) => { updateUseSameRange(e.target.checked); }}>Use Same Range for Both Y-Axes</Checkbox>
+                  </>
+                ) : null
+            }
+                {
+              graphType === 'multiCountryTrendLine'
+                ? (
+                  <Checkbox style={{ margin: 0 }} className='undp-checkbox' checked={showLabel} onChange={(e) => { updateShowLabel(e.target.checked); }}>Show Label</Checkbox>
+                ) : null
+            }
+              </div>
+            </div>
+          </>
+        ) : null
+      }
+      {
+        graphType !== 'trendLine' && graphType !== 'multiCountryTrendLine' && !selectedCountry && graphType !== 'dataList'
           ? (
             <>
               <hr className='undp-style margin-top-07' />
@@ -429,8 +468,8 @@ export const Settings = (props: Props) => {
                       onChange={(d: string[]) => { updateSelectedCountries(d); updateMultiCountrytrendChartCountries(d); }}
                     >
                       {
-                      countries.map((d, i) => (
-                        <Select.Option className='undp-select-option' key={i}>{d.name}</Select.Option>
+                      countries.map((d) => d.name).map((d) => (
+                        <Select.Option className='undp-select-option' key={d}>{d}</Select.Option>
                       ))
                     }
                     </Select>

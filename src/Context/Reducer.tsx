@@ -36,6 +36,8 @@ export default (state: any, action: any) => {
       return { ...state, reverseOrder: action.payload };
     case 'UPDATE_BAR_LAYOUT':
       return { ...state, verticalBarLayout: action.payload };
+    case 'UPDATE_SIGNATURE_SOLUTION_FOR_DATALIST':
+      return { ...state, signatureSolutionForDataList: action.payload };
     default:
       return { ...state };
   }

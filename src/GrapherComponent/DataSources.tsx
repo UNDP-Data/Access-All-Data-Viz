@@ -12,8 +12,6 @@ interface Props {
 const El = styled.div`
   width: 75%;
   flex-grow: 1;
-  height: calc(100vh - 300px);
-  min-height: 46.25rem;
   overflow: auto;
   @media (max-width: 960px) {
     width: 100%;

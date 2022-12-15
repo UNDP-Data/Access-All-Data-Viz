@@ -19,6 +19,7 @@ import { LineChart } from './LineChart';
 import { PauseIcon, PlayIcon } from '../Icons';
 
 import '../style/sliderStyle.css';
+import { DataList } from './DataList';
 
 interface Props {
   data: DataType[];
@@ -37,7 +38,7 @@ const El = styled.div<ElProps>`
   flex-grow: 1;
   overflow: auto;
   @media (min-width: 961px) {
-    height: calc(100vh - 240px);
+    height: 100vh;
     min-height: 46.25rem;
   }
   @media (max-width: 960px) {
@@ -167,9 +168,13 @@ export const Graph = (props: Props) => {
     if (yearForPlay !== undefined) { updateYear(yearForPlay as number); }
   }, [yearForPlay]);
   return (
-    <El id='graph-node' fullWidth={fullWidth}>
+    <El
+      id='graph-node'
+      fullWidth={fullWidth}
+      className='undp-scrollbar'
+    >
       {
-        graphType === 'trendLine' || graphType === 'multiCountryTrendLine' ? null
+        graphType === 'trendLine' || graphType === 'multiCountryTrendLine' || graphType === 'dataList' ? null
           : commonYears.length > 1 && !showMostRecentData ? (
             <SliderEl>
               <Button onClick={() => { setPlay(!play); }} role='button'>
@@ -259,13 +264,21 @@ export const Graph = (props: Props) => {
                       countries={countries}
                     />
                   )
-                : (
-                  <MultiLineChart
-                    data={data}
-                    indicators={indicators}
-                    countries={countries}
-                  />
-                )
+                : graphType === 'dataList'
+                  ? (
+                    <DataList
+                      data={data}
+                      indicators={indicators}
+                      countries={countries}
+                    />
+                  )
+                  : (
+                    <MultiLineChart
+                      data={data}
+                      indicators={indicators}
+                      countries={countries}
+                    />
+                  )
 
       }
     </El>

@@ -78,7 +78,7 @@ export const LineChart = (props: Props) => {
 
   const xIndicatorMetaData = indicators[indicators.findIndex((indicator) => indicator.IndicatorLabelTable === xAxisIndicator)];
 
-  const countryData = selectedCountry ? data[data.findIndex((d) => d['Country or Area'] === selectedCountry)] : data[data.findIndex((d) => d['Country or Area'] === trendChartCountry)];
+  const countryData = selectedCountry ? data[data.findIndex((d) => d['Alpha-3 code-1'] === selectedCountry)] : data[data.findIndex((d) => d['Country or Area'] === trendChartCountry)];
 
   const minYear = xIndicatorMetaData.years[0];
   const maxYear = xIndicatorMetaData.years[xIndicatorMetaData.years.length - 1];
@@ -128,8 +128,8 @@ export const LineChart = (props: Props) => {
           value={countries[countries.findIndex((d) => d.code === selectedCountry)].name || trendChartCountry}
         >
           {
-            countries.map((d, i) => (
-              <Select.Option className='undp-select-option' key={i}>{d.name}</Select.Option>
+            countries.map((d) => d.name).map((d) => (
+              <Select.Option className='undp-select-option' key={d}>{d}</Select.Option>
             ))
           }
         </Select>
@@ -329,8 +329,8 @@ export const LineChart = (props: Props) => {
                 onChange={(d) => { updateTrendChartCountry(d); }}
               >
                 {
-                  countries.map((d, i) => (
-                    <Select.Option className='undp-select-option' key={i}>{d.name}</Select.Option>
+                  countries.map((d) => d.name).map((d) => (
+                    <Select.Option className='undp-select-option' key={d}>{d}</Select.Option>
                   ))
                 }
               </Select>

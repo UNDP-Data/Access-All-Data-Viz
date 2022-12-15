@@ -16,6 +16,7 @@ import { CopyLinkWithParamButton } from '../Components/CopyLinkWithParamButton';
 
 import '../style/buttonStyle.css';
 import '../style/modalStyle.css';
+import { CountrySummary } from './CountrySummary';
 
 interface Props {
   data: DataType[];
@@ -112,142 +113,157 @@ export const GrapherComponent = (props: Props) => {
   return (
     <>
       <div className='margin-top-06 margin-bottom-06'>
-        <div className='flex-div flex-space-between flex-vert-align-center margin-bottom-05 flex-wrap'>
-          <div className='flex-div flex-vert-align-center'>
-            <Logo height={75} />
-            <div>
-              <h3 className='undp-typography margin-bottom-00' style={{ color: 'var(--blue-600)' }}>Data Futures Platform</h3>
-              <h6 className='undp-typography margin-bottom-00'>
-                Explore All Data
-                {queryParams.get('topic') ? ` for ${queryParams.get('topic')}` : null}
-                {selectedCountry ? ` for ${countries[countries.findIndex((d) => d.code === selectedCountry)].name}` : null}
-                {signatureSolution ? ` for ${signatureSolution}` : null}
-              </h6>
-            </div>
-          </div>
-          <div className='flex-div'>
-            {
-              queryParams.get('embeded') === 'true' ? null
-                : (
-                  <CopyLinkWithParamButton />
-                )
-            }
-            <button className='undp-button button-primary' type='button' onClick={() => { setModalVisibility(true); }}>
-              {
-                window.innerWidth < 600 ? '</>' : 'Embed'
-              }
-            </button>
-          </div>
-        </div>
-        <div
-          style={{
-            backgroundColor: 'var(--gray-100)',
-            border: '1px solid var(--gray-400)',
-          }}
-        >
-          {
-            queryParams.get('showSettings') === 'false' ? null
-              : (
-                <div className='flex-div' style={{ backgroundColor: 'var(--gray-200)', gap: '0' }}>
-                  {
-                    selectedCountry ? null
-                      : (
-                        <TabsEl selected={graphType === 'map'} onClick={() => { updateGraphType('map'); }}>
-                          <IconEl>
-                            <MapIcon size={48} fill={graphType === 'map' ? 'var(--blue-600)' : 'var(--gray-500)'} />
-                          </IconEl>
-                          <>Maps</>
-                        </TabsEl>
-                      )
-                  }
-                  {
-                    selectedCountry ? null
-                      : (
-                        <TabsEl selected={graphType === 'scatterPlot'} onClick={() => { updateGraphType('scatterPlot'); }}>
-                          <IconEl>
-                            <ScatterPlotIcon size={48} fill={graphType === 'scatterPlot' ? 'var(--blue-600)' : 'var(--gray-500)'} />
-                          </IconEl>
-                          <>Correlation</>
-                        </TabsEl>
-                      )
-                  }
-                  {
-                    selectedCountry ? (
-                      <>
-                        <TabsEl selected={graphType === 'trendLine'} onClick={() => { updateGraphType('trendLine'); }}>
-                          <IconEl>
-                            <DualAxesChartIcon size={48} fill={graphType === 'trendLine' ? 'var(--blue-600)' : 'var(--gray-500)'} />
-                          </IconEl>
-                          <>Dual Axes Line Chart</>
-                        </TabsEl>
-                        <TabsEl selected={graphType === 'barGraph'} onClick={() => { updateGraphType('barGraph'); }}>
-                          <IconEl>
-                            <BarGraphIcon size={48} fill={graphType === 'barGraph' ? 'var(--blue-600)' : 'var(--gray-500)'} />
-                          </IconEl>
-                          <>Ranks</>
-                        </TabsEl>
-                      </>
-                    ) : (
-                      <>
-                        <TabsEl selected={graphType === 'barGraph'} onClick={() => { updateGraphType('barGraph'); }}>
-                          <IconEl>
-                            <BarGraphIcon size={48} fill={graphType === 'barGraph' ? 'var(--blue-600)' : 'var(--gray-500)'} />
-                          </IconEl>
-                          <>Ranks</>
-                        </TabsEl>
-                        <TabsEl selected={graphType === 'trendLine'} onClick={() => { updateGraphType('trendLine'); }}>
-                          <IconEl>
-                            <DualAxesChartIcon size={48} fill={graphType === 'trendLine' ? 'var(--blue-600)' : 'var(--gray-500)'} />
-                          </IconEl>
-                          <>Dual Axes Line Chart</>
-                        </TabsEl>
-                      </>
-                    )
-                  }
-                  {
-                    selectedCountry ? null
-                      : (
-                        <TabsEl selected={graphType === 'multiCountryTrendLine'} onClick={() => { updateGraphType('multiCountryTrendLine'); }}>
-                          <IconEl>
-                            <MultiLineChartIcon size={48} fill={graphType === 'multiCountryTrendLine' ? 'var(--blue-600)' : 'var(--gray-500)'} />
-                          </IconEl>
-                          <>Multi Country Trends</>
-                        </TabsEl>
-                      )
-                  }
+        {
+          selectedCountry && queryParams.get('featuredIndicator') !== 'false' ? <CountrySummary data={data} indicators={indicators} countries={countries} /> : null
+        }
+        {
+          queryParams.get('accessAllData') !== 'false' ? (
+            <>
+              <div className='flex-div flex-space-between flex-vert-align-center margin-bottom-05 flex-wrap'>
+                <div className='flex-div flex-vert-align-center'>
+                  <Logo height={75} />
+                  <div>
+                    <h3 className='undp-typography margin-bottom-00' style={{ color: 'var(--blue-600)' }}>Data Futures Platform</h3>
+                    <h6 className='undp-typography margin-bottom-00'>
+                      Explore All Data
+                      {queryParams.get('topic') ? ` for ${queryParams.get('topic')}` : null}
+                      {selectedCountry ? ` for ${countries[countries.findIndex((d) => d.code === selectedCountry)].name}` : null}
+                      {signatureSolution ? ` for ${signatureSolution}` : null}
+                    </h6>
+                  </div>
                 </div>
-              )
-          }
-          <GraphEl>
-            {
-              queryParams.get('showSettings') === 'false' ? null
-                : (
-                  <Settings
-                    indicators={indicators}
-                    regions={regions}
-                    countries={countries}
-                  />
-                )
-            }
-            {
-            showSource
-              ? (
-                <DataSources
-                  indicators={indicators}
-                  data={data}
-                />
-              )
-              : (
-                <Graph
-                  data={data}
-                  indicators={indicators}
-                  countries={countries}
-                  fullWidth={queryParams.get('showSettings') === 'false'}
-                />
-              )
-          }
-          </GraphEl>
-        </div>
+                <div className='flex-div'>
+                  {
+                    queryParams.get('embeded') === 'true' ? null
+                      : (
+                        <CopyLinkWithParamButton />
+                      )
+                  }
+                  <button className='undp-button button-primary' type='button' onClick={() => { setModalVisibility(true); }}>
+                    {
+                      window.innerWidth < 600 ? '</>' : 'Embed'
+                    }
+                  </button>
+                </div>
+              </div>
+              <div
+                style={{
+                  backgroundColor: 'var(--gray-100)',
+                  border: '1px solid var(--gray-400)',
+                }}
+              >
+                {
+                  queryParams.get('showSettings') === 'false' ? null
+                    : (
+                      <div className='flex-div' style={{ backgroundColor: 'var(--gray-200)', gap: '0' }}>
+                        {
+                          selectedCountry ? null
+                            : (
+                              <TabsEl selected={graphType === 'map'} onClick={() => { updateGraphType('map'); }}>
+                                <IconEl>
+                                  <MapIcon size={48} fill={graphType === 'map' ? 'var(--blue-600)' : 'var(--gray-500)'} />
+                                </IconEl>
+                                <>Maps</>
+                              </TabsEl>
+                            )
+                        }
+                        {
+                          selectedCountry ? null
+                            : (
+                              <TabsEl selected={graphType === 'scatterPlot'} onClick={() => { updateGraphType('scatterPlot'); }}>
+                                <IconEl>
+                                  <ScatterPlotIcon size={48} fill={graphType === 'scatterPlot' ? 'var(--blue-600)' : 'var(--gray-500)'} />
+                                </IconEl>
+                                <>Correlation</>
+                              </TabsEl>
+                            )
+                        }
+                        {
+                          selectedCountry ? (
+                            <>
+                              <TabsEl selected={graphType === 'dataList'} onClick={() => { updateGraphType('dataList'); }}>
+                                <IconEl>
+                                  <DualAxesChartIcon size={48} fill={graphType === 'dataList' ? 'var(--blue-600)' : 'var(--gray-500)'} />
+                                </IconEl>
+                                <>Data List</>
+                              </TabsEl>
+                              <TabsEl selected={graphType === 'trendLine'} onClick={() => { updateGraphType('trendLine'); }}>
+                                <IconEl>
+                                  <DualAxesChartIcon size={48} fill={graphType === 'trendLine' ? 'var(--blue-600)' : 'var(--gray-500)'} />
+                                </IconEl>
+                                <>Dual Axes Line Chart</>
+                              </TabsEl>
+                              <TabsEl selected={graphType === 'barGraph'} onClick={() => { updateGraphType('barGraph'); }}>
+                                <IconEl>
+                                  <BarGraphIcon size={48} fill={graphType === 'barGraph' ? 'var(--blue-600)' : 'var(--gray-500)'} />
+                                </IconEl>
+                                <>Ranks</>
+                              </TabsEl>
+                            </>
+                          ) : (
+                            <>
+                              <TabsEl selected={graphType === 'barGraph'} onClick={() => { updateGraphType('barGraph'); }}>
+                                <IconEl>
+                                  <BarGraphIcon size={48} fill={graphType === 'barGraph' ? 'var(--blue-600)' : 'var(--gray-500)'} />
+                                </IconEl>
+                                <>Ranks</>
+                              </TabsEl>
+                              <TabsEl selected={graphType === 'trendLine'} onClick={() => { updateGraphType('trendLine'); }}>
+                                <IconEl>
+                                  <DualAxesChartIcon size={48} fill={graphType === 'trendLine' ? 'var(--blue-600)' : 'var(--gray-500)'} />
+                                </IconEl>
+                                <>Dual Axes Line Chart</>
+                              </TabsEl>
+                            </>
+                          )
+                        }
+                        {
+                          selectedCountry ? null
+                            : (
+                              <TabsEl selected={graphType === 'multiCountryTrendLine'} onClick={() => { updateGraphType('multiCountryTrendLine'); }}>
+                                <IconEl>
+                                  <MultiLineChartIcon size={48} fill={graphType === 'multiCountryTrendLine' ? 'var(--blue-600)' : 'var(--gray-500)'} />
+                                </IconEl>
+                                <>Multi Country Trends</>
+                              </TabsEl>
+                            )
+                        }
+                      </div>
+                    )
+                }
+                <GraphEl>
+                  {
+                    queryParams.get('showSettings') === 'false' ? null
+                      : (
+                        <Settings
+                          indicators={indicators}
+                          regions={regions}
+                          countries={countries}
+                        />
+                      )
+                  }
+                  {
+                    showSource
+                      ? (
+                        <DataSources
+                          indicators={indicators}
+                          data={data}
+                        />
+                      )
+                      : (
+                        <Graph
+                          data={data}
+                          indicators={indicators}
+                          countries={countries}
+                          fullWidth={queryParams.get('showSettings') === 'false'}
+                        />
+                      )
+                  }
+                </GraphEl>
+              </div>
+            </>
+          ) : null
+        }
       </div>
       <Modal
         open={modalVisibility}

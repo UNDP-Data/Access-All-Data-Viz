@@ -163,4 +163,8 @@ export const COLOR_SCALES = {
   ],
 };
 
-export const DATALINK = process.env.NODE_ENV === 'production' ? '../pillar-insights/data/' : './data/';
+export const SIGNATURE_SOLUTIONS_LIST: ('All' | 'Energy' | 'Environment' | 'Gender' | 'Governance' | 'Poverty and Inequality' | 'Resilience')[] = ['All', 'Energy', 'Environment', 'Gender', 'Governance', 'Poverty and Inequality', 'Resilience'];
+
+export const DATALINK = process.env.NODE_ENV === 'production' ? 'https://data.undp.org/pillar-insights/data/ALL-DATA.json' : 'http://localhost:3000/data/';
+export const METADATALINK = process.env.NODE_ENV === 'production' ? 'https://raw.githubusercontent.com/UNDP-Data/Indicators-MetaData/main/indicatorMetaData.json' : 'http://localhost:3000/data/indicatorMetaData.json';
+export const COUNTRYTAXONOMYLINK = process.env.NODE_ENV === 'production' ? 'https://raw.githubusercontent.com/UNDP-Data/Country-Taxonomy/main/country-territory-groups.json' : 'http://localhost:3000/data/country-taxonomy.json';

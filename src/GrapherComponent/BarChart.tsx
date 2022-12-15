@@ -44,7 +44,7 @@ export const BarChart = (props: Props) => {
   const svgWidth = queryParams.get('showSettings') === 'false' && window.innerWidth > 960 ? 1280 : 960;
   const svgHeight = 678;
   const margin = {
-    top: 90,
+    top: selectedCountry ? 20 : 90,
     bottom: 50,
     left: 90,
     right: 20,
@@ -151,15 +151,57 @@ export const BarChart = (props: Props) => {
         : colorIndicatorMetaData?.Categories ? colorIndicatorMetaData?.Categories
           : [0, 0];
   const colorScale = colorIndicator === 'Human Development Index' ? scaleThreshold<string | number, string>().domain(colorDomain).range(COLOR_SCALES.Divergent.Color4).unknown('#666') : scaleOrdinal<string | number, string>().domain(colorDomain).range(colorList).unknown('#666');
-
   return (
     <div
+      className='undp-scrollbar'
       style={{
         height: 'calc(100% - 89px)',
-        overflowY: 'hidden',
+        overflowY: selectedCountry ? 'auto' : 'hidden',
       }}
     >
-      <svg width='100%' height='100%' viewBox={`0 0 ${svgWidth} ${svgHeight}`}>
+      {
+        selectedCountry ? (
+          <div
+            className='margin-top-05 margin-bottom-05'
+            style={{
+              maxWidth: '70rem',
+              margin: 'auto',
+              backgroundColor: 'var(--white)',
+              padding: 'var(--spacing-05)',
+              textAlign: 'center',
+              fontSize: '1.25rem',
+            }}
+          >
+            {
+            dataFormatted.findIndex((d) => d.countryCode === selectedCountry) !== -1
+              ? (
+                <>
+                  {dataFormatted[dataFormatted.findIndex((d) => d.countryCode === selectedCountry)].countryName}
+                  {' '}
+                  has
+                  {' '}
+                  {dataFormatted.findIndex((d) => d.countryCode === selectedCountry) + 1 === 1 ? 'the' : dataFormatted.findIndex((d) => d.countryCode === selectedCountry) + 1}
+                  {' '}
+                  lowest
+                  {' '}
+                  {xAxisIndicator}
+                  {' '}
+                  (out of
+                  {' '}
+                  {dataFormatted.length}
+                  {' '}
+                  countries)
+                </>
+              ) : (
+                <>
+                  No data for the selected country
+                </>
+              )
+          }
+          </div>
+        ) : null
+      }
+      <svg width='100%' height={selectedCountry ? 'calc(100% - 89px)' : '100%'} viewBox={`0 0 ${svgWidth} ${svgHeight}`}>
         {
           selectedCountry ? null
             : (
@@ -415,22 +457,6 @@ export const BarChart = (props: Props) => {
                         : null
                   }
                   {
-                    selectedCountry === d.countryCode
-                      ? (
-                        <text
-                          fill='#006EB5'
-                          fontWeight='bold'
-                          y={heightScale(Math.max(0, d.xVal))}
-                          x={xScale(d.countryCode) as number + (xScale.bandwidth() / 2)}
-                          textAnchor='middle'
-                          fontSize={12}
-                          dy={-5}
-                        >
-                          {d.xVal < 1000000 ? format(',')(parseFloat(d.xVal.toFixed(2))).replace(',', ' ') : format('.3s')(d.xVal).replace('G', 'B')}
-                        </text>
-                      ) : null
-                  }
-                  {
                     xScale.bandwidth() >= 20
                       ? (
                         <text
@@ -451,6 +477,27 @@ export const BarChart = (props: Props) => {
             })
           }
 
+          {
+            dataFormatted[dataFormatted.findIndex((d) => d.countryCode === selectedCountry)]
+              ? dataFormatted[dataFormatted.findIndex((d) => d.countryCode === selectedCountry)].xVal ? (
+                <text
+                  fill='#006EB5'
+                  fontWeight='bold'
+                  y={heightScale(Math.max(0, dataFormatted[dataFormatted.findIndex((d) => d.countryCode === selectedCountry)].xVal as number))}
+                  x={xScale(dataFormatted[dataFormatted.findIndex((d) => d.countryCode === selectedCountry)].countryCode) as number + (xScale.bandwidth() / 2)}
+                  textAnchor='middle'
+                  fontSize={12}
+                  dy={-5}
+                >
+                  {
+                    dataFormatted[dataFormatted.findIndex((d) => d.countryCode === selectedCountry)].xVal as number < 1000000
+                      ? format(',')(parseFloat((dataFormatted[dataFormatted.findIndex((d) => d.countryCode === selectedCountry)].xVal as number).toFixed(2))).replace(',', ' ')
+                      : format('.3s')(dataFormatted[dataFormatted.findIndex((d) => d.countryCode === selectedCountry)].xVal as number).replace('G', 'B')
+                  }
+                </text>
+              ) : null
+              : null
+          }
         </g>
       </svg>
       {

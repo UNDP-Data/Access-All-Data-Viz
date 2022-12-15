@@ -22,7 +22,8 @@ const Context = createContext<CtxDataType>({
   multiCountrytrendChartCountries: ['China', 'India', 'United States of America', 'Indonesia', 'Pakistan'],
   selectedCountry: undefined,
   signatureSolution: undefined,
-  updateGraphType: (_d: 'scatterPlot' | 'map' | 'barGraph' | 'trendLine' | 'multiCountryTrendLine') => {},
+  signatureSolutionForDataList: 'All',
+  updateGraphType: (_d: 'scatterPlot' | 'map' | 'barGraph' | 'trendLine' | 'multiCountryTrendLine' | 'dataList') => {},
   updateSelectedRegions: (_d: string[]) => {},
   updateSelectedCountries: (_d: string[]) => {},
   updateSelectedIncomeGroups: (_d: string[]) => {},
@@ -40,6 +41,7 @@ const Context = createContext<CtxDataType>({
   updateMultiCountrytrendChartCountries: (_d: string[]) => {},
   updateReverseOrder: (_d: boolean) => {},
   updateBarLayout: (_d: boolean) => {},
+  updateSignatureSolutionForDataList: (_d: 'All' | 'Energy' | 'Environment' | 'Gender' | 'Governance' | 'Poverty and Inequality' | 'Resilience') => {},
 });
 
 export default Context;

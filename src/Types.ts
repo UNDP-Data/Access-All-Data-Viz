@@ -18,6 +18,7 @@ export interface CountryGroupDataType {
 export interface IndicatorDataType {
   indicator: string;
   yearAvailable: number[];
+  signatureSolutions: string[];
   yearlyData: {
       year: number;
       value?: number;
@@ -87,7 +88,7 @@ export interface HoverDataType {
 }
 
 export interface CtxDataType {
-  graphType: 'scatterPlot' | 'map' | 'barGraph' | 'trendLine' | 'multiCountryTrendLine';
+  graphType: 'scatterPlot' | 'map' | 'barGraph' | 'trendLine' | 'multiCountryTrendLine' | 'dataList' ;
   selectedRegions: string[];
   selectedCountries: string[];
   selectedIncomeGroups: string[];
@@ -107,7 +108,8 @@ export interface CtxDataType {
   verticalBarLayout: boolean;
   selectedCountry?: string;
   signatureSolution?: string;
-  updateGraphType: (_d: 'scatterPlot' | 'map' | 'barGraph' | 'trendLine' | 'multiCountryTrendLine') => void;
+  signatureSolutionForDataList: 'All' | 'Energy' | 'Environment' | 'Gender' | 'Governance' | 'Poverty and Inequality' | 'Resilience';
+  updateGraphType: (_d: 'scatterPlot' | 'map' | 'barGraph' | 'trendLine' | 'multiCountryTrendLine' | 'dataList') => void;
   updateSelectedRegions: (_d: string[]) => void;
   updateSelectedCountries: (_d: string[]) => void;
   updateSelectedIncomeGroups: (_d: string[]) => void;
@@ -125,6 +127,7 @@ export interface CtxDataType {
   updateTrendChartCountry: (_d: string) => void;
   updateMultiCountrytrendChartCountries: (_d: string[]) => void;
   updateBarLayout: (_d: boolean) => void;
+  updateSignatureSolutionForDataList: (_d: 'All' | 'Energy' | 'Environment' | 'Gender' | 'Governance' | 'Poverty and Inequality' | 'Resilience') => void;
 }
 
 export interface CountryListType {
