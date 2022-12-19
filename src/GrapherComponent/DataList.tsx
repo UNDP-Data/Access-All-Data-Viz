@@ -2,15 +2,17 @@ import { useContext } from 'react';
 import sortBy from 'lodash.sortby';
 import { format } from 'd3-format';
 import {
+  CountryGroupDataType,
   CountryListType,
-  CtxDataType, DataType, IndicatorMetaDataWithYear,
+  CtxDataType,
+  IndicatorMetaDataWithYear,
 } from '../Types';
 import Context from '../Context/Context';
 import '../style/tableStyle.css';
 import { TrendChartSmall } from './TrendChartSmall';
 
 interface Props {
-  data: DataType[];
+  data: CountryGroupDataType[];
   indicators: IndicatorMetaDataWithYear[];
   countries: CountryListType[];
 }
@@ -22,13 +24,10 @@ export const DataList = (props: Props) => {
     countries,
   } = props;
   const {
-    signatureSolutionForDataList,
     selectedCountry,
   } = useContext(Context) as CtxDataType;
   const countryName = countries[countries.findIndex((d) => d.code === selectedCountry)].name;
-  const dataFiltered = data.filter((d) => d['Alpha-3 code-1'] === selectedCountry)[0]
-    .indicators.filter((d) => (!!(signatureSolutionForDataList === 'All' || d.signatureSolutions.indexOf(signatureSolutionForDataList) !== -1)))
-    .map((d) => ({ ...d, yearlyData: sortBy(d.yearlyData.filter((el) => el.value !== undefined), 'year') }));
+  const dataFiltered = data.filter((d) => d['Alpha-3 code-1'] === selectedCountry)[0].indicators.map((d) => ({ ...d, yearlyData: sortBy(d.yearlyData.filter((el) => el.value !== undefined), 'year') }));
   return (
     <div>
       <div className='undp-table-head'>

@@ -1,29 +1,24 @@
+export interface IndicatorDataType {
+  indicator: string;
+  yearlyData: {
+    year: number,
+    value: number,
+  }[]
+}
 export interface CountryGroupDataType {
-  'Alpha-2 code': string;
   'Alpha-3 code-1': string;
   'Country or Area': string;
-  'Development classification': string;
   'Group 1': string;
   'Group 2': string;
-  'Group 3': string;
   'LDC': boolean;
   'LLDC': boolean;
   'Latitude (average)': number;
   'Longitude (average)': number;
-  'Numeric code': number;
   'SIDS': boolean;
   'Income group': string;
+  indicators: IndicatorDataType[];
 }
 
-export interface IndicatorDataType {
-  indicator: string;
-  yearAvailable: number[];
-  signatureSolutions: string[];
-  yearlyData: {
-      year: number;
-      value?: number;
-    }[];
-}
 export interface DataType extends CountryGroupDataType {
   indicators: IndicatorDataType[];
   indicatorAvailable: string[];

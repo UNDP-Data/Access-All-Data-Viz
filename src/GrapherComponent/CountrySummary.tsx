@@ -3,7 +3,7 @@ import { Modal } from 'antd';
 import sortBy from 'lodash.sortby';
 import { format } from 'd3-format';
 import {
-  CountryListType, CtxDataType, DataType, IndicatorMetaDataWithYear,
+  CountryListType, CtxDataType, CountryGroupDataType, IndicatorMetaDataWithYear,
 } from '../Types';
 import Context from '../Context/Context';
 import '../style/tableStyle.css';
@@ -11,7 +11,7 @@ import '../style/statCardStyle.css';
 import { GetEmbedParamsForCountrySummary } from '../Components/GetEmbedParams';
 
 interface Props {
-  data: DataType[];
+  data: CountryGroupDataType[];
   indicators: IndicatorMetaDataWithYear[];
   countries: CountryListType[];
 }

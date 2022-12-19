@@ -9,7 +9,7 @@ import {
 } from 'd3-scale';
 import minBy from 'lodash.minby';
 import {
-  CtxDataType, DataType, HoverDataType, HoverRowDataType, IndicatorMetaDataWithYear,
+  CountryGroupDataType, CtxDataType, HoverDataType, HoverRowDataType, IndicatorMetaDataWithYear,
 } from '../Types';
 import Context from '../Context/Context';
 import {
@@ -18,7 +18,7 @@ import {
 import { Tooltip } from '../Components/Tooltip';
 
 interface Props {
-  data: DataType[];
+  data: CountryGroupDataType[];
   indicators: IndicatorMetaDataWithYear[];
 }
 

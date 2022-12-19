@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Modal } from 'antd';
 import {
-  CountryListType, CtxDataType, DataType, IndicatorMetaDataWithYear,
+  CountryGroupDataType, CountryListType, CtxDataType, IndicatorMetaDataWithYear,
 } from '../Types';
 import {
   ScatterPlotIcon, BarGraphIcon, MapIcon, DualAxesChartIcon, MultiLineChartIcon, Logo,
@@ -19,7 +19,7 @@ import '../style/modalStyle.css';
 import { CountrySummary } from './CountrySummary';
 
 interface Props {
-  data: DataType[];
+  data: CountryGroupDataType[];
   indicators: IndicatorMetaDataWithYear[];
   regions: string[];
   countries: CountryListType[];

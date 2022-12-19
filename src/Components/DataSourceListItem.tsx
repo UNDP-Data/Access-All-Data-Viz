@@ -1,20 +1,20 @@
 import { CSVLink } from 'react-csv';
-import { DataType, IndicatorMetaDataWithYear } from '../Types';
+import { CountryGroupDataType, IndicatorMetaDataWithYear } from '../Types';
 import DownloadExcel from './DownloadExcel';
 import '../style/chipStyle.css';
 
 interface Props {
-    indicatorData: IndicatorMetaDataWithYear;
-    data: DataType[];
+  indicatorData: IndicatorMetaDataWithYear;
+  data: CountryGroupDataType[];
 }
 
-const dataTable = (data: DataType[], indicator: IndicatorMetaDataWithYear) => {
+const dataTable = (data: CountryGroupDataType[], indicator: IndicatorMetaDataWithYear) => {
   const table: any = [];
   data.forEach((d) => {
     const country = d['Country or Area'];
     const countryCode = d['Alpha-3 code-1'];
     indicator.years.forEach((year) => {
-      if (d.indicatorAvailable.indexOf(indicator.DataKey) !== -1) {
+      if (d.indicators.findIndex((ind) => ind.indicator === indicator.DataKey) !== -1) {
         const indicatorIndex = d.indicators.findIndex((ind) => ind.indicator === indicator.DataKey);
         if (indicatorIndex !== -1) {
           const yearIndex = d.indicators[indicatorIndex].yearlyData.findIndex((yr) => year === yr.year);
@@ -32,13 +32,13 @@ const dataTable = (data: DataType[], indicator: IndicatorMetaDataWithYear) => {
   return table;
 };
 
-const dataTableForExcel = (data: DataType[], indicator: IndicatorMetaDataWithYear) => {
+const dataTableForExcel = (data: CountryGroupDataType[], indicator: IndicatorMetaDataWithYear) => {
   const table: any = [];
   data.forEach((d) => {
     const country = d['Country or Area'];
     const countryCode = d['Alpha-3 code-1'];
     indicator.years.forEach((year) => {
-      if (d.indicatorAvailable.indexOf(indicator.DataKey) !== -1) {
+      if (d.indicators.findIndex((ind) => ind.indicator === indicator.DataKey) !== -1) {
         const indicatorIndex = d.indicators.findIndex((ind) => ind.indicator === indicator.DataKey);
         if (indicatorIndex !== -1) {
           const yearIndex = d.indicators[indicatorIndex].yearlyData.findIndex((yr) => year === yr.year);

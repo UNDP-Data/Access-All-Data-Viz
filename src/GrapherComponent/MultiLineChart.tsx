@@ -8,14 +8,14 @@ import { Select } from 'antd';
 import { format } from 'd3-format';
 import range from 'lodash.range';
 import {
-  CtxDataType, DataType, HoverDataType, IndicatorMetaDataWithYear, CountryListType,
+  CtxDataType, CountryGroupDataType, HoverDataType, IndicatorMetaDataWithYear, CountryListType,
 } from '../Types';
 import Context from '../Context/Context';
 import { COLOR_SCALES, MAX_TEXT_LENGTH } from '../Constants';
 import { TooltipForMultiLineChart } from '../Components/TooltipForMultiLineChart';
 
 interface Props {
-  data: DataType[];
+  data: CountryGroupDataType[];
   indicators: IndicatorMetaDataWithYear[];
   countries: CountryListType[];
 }

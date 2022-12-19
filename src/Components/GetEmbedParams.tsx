@@ -134,7 +134,7 @@ export const GetEmbedParamsForCountrySummary = () => {
           type='button'
           className='undp-button button-tertiary'
           onClick={() => {
-            navigator.clipboard.writeText(`<iframe src="${EMBED_LINK_ROOT}/country-profile/${selectedCountry}?&embeded=true&featuredIndicator=true<iframe src="${EMBED_LINK_ROOT}/country-profile/${selectedCountry}?embeded=true&featuredIndicator=true&accessAllData=false" loading="lazy" style="width: 100%; border: 0px none"></iframe>`);
+            navigator.clipboard.writeText(`<iframe src="${EMBED_LINK_ROOT}/country-profile/${selectedCountry}?&embeded=true&featuredIndicator=true&accessAllData=false" loading="lazy" style="width: 100%; border: 0px none"></iframe>`);
             message.success({ content: 'Embed Link Copied', duration: 2 });
           }}
         >

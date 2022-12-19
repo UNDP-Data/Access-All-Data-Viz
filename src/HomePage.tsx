@@ -1,20 +1,20 @@
 /* eslint-disable jsx-a11y/iframe-has-title */
 import { useState, useEffect, useReducer } from 'react';
+import flattenDeep from 'lodash.flattendeep';
+import sortedUniq from 'lodash.sorteduniq';
 import styled from 'styled-components';
 import { json } from 'd3-request';
-import { nest } from 'd3-collection';
-import sortBy from 'lodash.sortby';
 import uniqBy from 'lodash.uniqby';
 import { queue } from 'd3-queue';
 import { useParams } from 'react-router-dom';
 import {
-  DataType, CountryGroupDataType, IndicatorMetaDataType, IndicatorMetaDataWithYear, CountryListType,
+  CountryGroupDataType, IndicatorMetaDataType, IndicatorMetaDataWithYear, CountryListType,
 } from './Types';
 import { GrapherComponent } from './GrapherComponent';
 import Reducer from './Context/Reducer';
 import Context from './Context/Context';
 import {
-  COUNTRYTAXONOMYLINK, DATALINK, DEFAULT_VALUES, METADATALINK,
+  DEFAULT_VALUES, METADATALINK,
 } from './Constants';
 
 import './style/style.css';
@@ -39,7 +39,7 @@ const HomePage = (props:Props) => {
   } = props;
   const countryFromLink = useParams().country;
   const signatureSolutionFromLink = useParams().signatureSolution;
-  const [finalData, setFinalData] = useState<DataType[] | undefined>(undefined);
+  const [finalData, setFinalData] = useState<CountryGroupDataType[] | undefined>(undefined);
   const [indicatorsList, setIndicatorsList] = useState<IndicatorMetaDataWithYear[] | undefined>(undefined);
   const [regionList, setRegionList] = useState<string[] | undefined>(undefined);
   const [countryList, setCountryList] = useState<CountryListType[] | undefined>(undefined);
@@ -203,87 +203,29 @@ const HomePage = (props:Props) => {
 
   useEffect(() => {
     queue()
-      .defer(json, `${DATALINK}ALL-DATA.json`)
+      .defer(json, 'https://raw.githubusercontent.com/UNDP-Data/Access-All-Data-Data-Repo/main/output.json')
       .defer(json, METADATALINK)
-      .defer(json, COUNTRYTAXONOMYLINK)
-      .await((err: any, data: any[], indicatorMetaData: IndicatorMetaDataType[], countryGroupData: CountryGroupDataType[]) => {
+      .await((err: any, data: CountryGroupDataType[], indicatorMetaData: IndicatorMetaDataType[]) => {
         if (err) throw err;
-        const dataWithYear = data.map((d: any) => {
-          const Year = new Date(d.Year).getFullYear();
-          return { ...d, Year };
-        });
-
         const topic = queryParams.get('topic');
-
-        const groupedData = nest()
-          .key((d: any) => d['Alpha-3 code'])
-          .entries(dataWithYear);
-        const indicators: {
-          indicator: string;
-          signatureSolutions: string[];
-        }[] = [];
-        dataWithYear.forEach((d: any) => {
-          const keys = Object.keys(d);
-          keys.forEach((key) => {
-            let keySS: string[] = [];
-            if (indicatorMetaData.findIndex((ind) => ind.DataKey === key) !== -1) { keySS = indicatorMetaData[indicatorMetaData.findIndex((ind) => ind.DataKey === key)].SignatureSolution; }
-            if (indicators.findIndex((ind) => ind.indicator === key) === -1 && key !== 'Alpha-3 code' && key !== 'Country or Area' && key !== 'Year') { indicators.push({ indicator: key, signatureSolutions: keySS }); }
-          });
-        });
-        const countryIndicatorObj = indicators.map((d) => {
-          const yearList: number[] = [];
-          dataWithYear.forEach((el: any) => {
-            if (el[d.indicator] && yearList.indexOf(el.Year) === -1) {
-              yearList.push(el.Year);
-            }
-          });
-          return ({
-            indicator: d,
-            yearAvailable: sortBy(yearList),
-            yearlyData: sortBy(yearList).map((year) => ({
-              year,
-              value: undefined,
-            })),
-          });
-        });
-        const countryData = groupedData.map((d) => {
-          const countryGroup = countryGroupData[countryGroupData.findIndex((el) => el['Alpha-3 code-1'] === d.key)];
-          const indTemp = countryIndicatorObj.map((indicatorObj) => {
-            const yearlyData = indicatorObj.yearlyData.map((year) => {
-              const indx = d.values.findIndex((val: { Year: string; }) => parseInt(val.Year, 10) === year.year);
-              const value: undefined | number = indx !== -1 ? d.values[indx][indicatorObj.indicator.indicator] : undefined;
-              return (
-                {
-                  ...year,
-                  value,
-                }
-              );
-            }).filter((val) => val.value !== undefined);
-            return (
-              {
-                yearAvailable: indicatorObj.yearAvailable,
-                signatureSolutions: indicatorObj.indicator.signatureSolutions,
-                indicator: indicatorObj.indicator.indicator,
-                yearlyData,
-              }
-            );
-          });
-          return ({
-            ...countryGroup,
-            indicatorAvailable: indTemp.map((ind) => ind.indicator),
-            indicators: indTemp,
-          });
-        });
-        setFinalData(countryData);
-        setCountryList(countryData.map((d) => ({ name: d['Country or Area'], code: d['Alpha-3 code-1'] })));
-        setRegionList(uniqBy(countryData, (d) => d['Group 2']).map((d) => d['Group 2']));
-
+        setFinalData(data);
+        setCountryList(data.map((d) => ({ name: d['Country or Area'], code: d['Alpha-3 code-1'] })));
+        setRegionList(uniqBy(data, (d) => d['Group 2']).map((d) => d['Group 2']));
         const indicatorsFilteredBySS = signatureSolution ? indicatorMetaData.filter((d) => d.SignatureSolution.indexOf(signatureSolution) !== -1) : indicatorMetaData;
         const indicatorsFiltered = topic ? indicatorsFilteredBySS.filter((d) => d.SSTopics.indexOf(topic) !== -1) : indicatorsFilteredBySS;
-        const indicatorWithYears: IndicatorMetaDataWithYear[] = indicatorsFiltered.map((d) => ({
-          ...d,
-          years: countryIndicatorObj[countryIndicatorObj.findIndex((el) => el.indicator.indicator === d.DataKey)].yearAvailable,
-        }));
+        const indicatorWithYears: IndicatorMetaDataWithYear[] = indicatorsFiltered.map((d) => {
+          const years: number[][] = [];
+          data.forEach((el) => {
+            console.log(el);
+            el.indicators.forEach((indicator) => {
+              years.push(indicator.yearlyData.map((year) => year.year));
+            });
+          });
+          return {
+            ...d,
+            years: sortedUniq(flattenDeep(years)),
+          };
+        });
         setIndicatorsList(indicatorWithYears);
       });
   }, []);

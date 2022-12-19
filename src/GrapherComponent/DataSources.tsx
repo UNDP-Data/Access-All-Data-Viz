@@ -1,12 +1,12 @@
 import { useContext } from 'react';
 import styled from 'styled-components';
-import { CtxDataType, DataType, IndicatorMetaDataWithYear } from '../Types';
+import { CtxDataType, CountryGroupDataType, IndicatorMetaDataWithYear } from '../Types';
 import Context from '../Context/Context';
 import { DataSourceListItem } from '../Components/DataSourceListItem';
 
 interface Props {
   indicators: IndicatorMetaDataWithYear[];
-  data: DataType[];
+  data: CountryGroupDataType[];
 }
 
 const El = styled.div`

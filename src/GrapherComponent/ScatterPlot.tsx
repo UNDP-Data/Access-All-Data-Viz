@@ -12,7 +12,7 @@ import {
 import minBy from 'lodash.minby';
 import { Tooltip } from '../Components/Tooltip';
 import {
-  CtxDataType, DataType, HoverDataType, HoverRowDataType, IndicatorMetaDataWithYear,
+  CountryGroupDataType, CtxDataType, HoverDataType, HoverRowDataType, IndicatorMetaDataWithYear,
 } from '../Types';
 import Context from '../Context/Context';
 import {
@@ -20,7 +20,7 @@ import {
 } from '../Constants';
 
 interface Props {
-  data: DataType[];
+  data: CountryGroupDataType[];
   indicators: IndicatorMetaDataWithYear[];
 }
 

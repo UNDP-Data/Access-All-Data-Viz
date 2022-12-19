@@ -7,14 +7,14 @@ import minBy from 'lodash.minby';
 import { Select } from 'antd';
 import { format } from 'd3-format';
 import {
-  CtxDataType, DataType, HoverDataType, IndicatorMetaDataWithYear, CountryListType,
+  CtxDataType, CountryGroupDataType, HoverDataType, IndicatorMetaDataWithYear, CountryListType,
 } from '../Types';
 import Context from '../Context/Context';
 import { Tooltip } from '../Components/Tooltip';
 import { MAX_TEXT_LENGTH } from '../Constants';
 
 interface Props {
-  data: DataType[];
+  data: CountryGroupDataType[];
   indicators: IndicatorMetaDataWithYear[];
   countries: CountryListType[];
 }

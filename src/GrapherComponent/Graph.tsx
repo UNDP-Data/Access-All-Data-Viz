@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { Slider } from 'antd';
 import intersection from 'lodash.intersection';
 import {
-  CountryListType, CtxDataType, DataType, IndicatorMetaDataWithYear,
+  CountryGroupDataType, CountryListType, CtxDataType, IndicatorMetaDataWithYear,
 } from '../Types';
 import Context from '../Context/Context';
 import { HorizontalBarChart } from './HorizontalBarChart';
@@ -22,7 +22,7 @@ import '../style/sliderStyle.css';
 import { DataList } from './DataList';
 
 interface Props {
-  data: DataType[];
+  data: CountryGroupDataType[];
   indicators: IndicatorMetaDataWithYear[];
   countries: CountryListType[];
   fullWidth: boolean;

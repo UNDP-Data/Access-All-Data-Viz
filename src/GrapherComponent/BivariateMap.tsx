@@ -12,7 +12,7 @@ import {
   scaleThreshold, scaleOrdinal, scaleSqrt,
 } from 'd3-scale';
 import {
-  CtxDataType, DataType, HoverDataType, HoverRowDataType, IndicatorMetaDataWithYear,
+  CtxDataType, CountryGroupDataType, HoverDataType, HoverRowDataType, IndicatorMetaDataWithYear,
 } from '../Types';
 import Context from '../Context/Context';
 import World from '../Data/worldMap.json';
@@ -20,7 +20,7 @@ import { COLOR_SCALES } from '../Constants';
 import { Tooltip } from '../Components/Tooltip';
 
 interface Props {
-  data: DataType[];
+  data: CountryGroupDataType[];
   indicators: IndicatorMetaDataWithYear[];
 }
 
@@ -350,7 +350,7 @@ export const BivariateMap = (props: Props) => {
           }
           {
             hoverData
-              ? (World as any).features.filter((d: any) => d.properties.ISO3 === data[data.findIndex((el: DataType) => el['Country or Area'] === hoverData?.country)]['Alpha-3 code-1']).map((d: any, i: number) => (
+              ? (World as any).features.filter((d: any) => d.properties.ISO3 === data[data.findIndex((el) => el['Country or Area'] === hoverData?.country)]['Alpha-3 code-1']).map((d: any, i: number) => (
                 <G
                   key={i}
                   opacity={!selectedColor ? 1 : 0}
