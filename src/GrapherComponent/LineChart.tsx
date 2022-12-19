@@ -78,7 +78,7 @@ export const LineChart = (props: Props) => {
 
   const xIndicatorMetaData = indicators[indicators.findIndex((indicator) => indicator.IndicatorLabelTable === xAxisIndicator)];
 
-  const countryData = selectedCountry ? data[data.findIndex((d) => d['Alpha-3 code-1'] === selectedCountry)] : data[data.findIndex((d) => d['Country or Area'] === trendChartCountry)];
+  const countryData = selectedCountry ? data[data.findIndex((d) => d['Alpha-3 code'] === selectedCountry)] : data[data.findIndex((d) => d['Country or Area'] === trendChartCountry)];
 
   const minYear = xIndicatorMetaData.years[0];
   const maxYear = xIndicatorMetaData.years[xIndicatorMetaData.years.length - 1];

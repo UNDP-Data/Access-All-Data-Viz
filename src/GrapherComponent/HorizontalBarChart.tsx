@@ -75,7 +75,7 @@ export const HorizontalBarChart = (props: Props) => {
       const xYear = year === -1 || showMostRecentData ? d.indicators[xIndicatorIndex].yearlyData[d.indicators[xIndicatorIndex].yearlyData.length - 1]?.year : year;
       const colorYear = (year === -1 || showMostRecentData) && colorIndicatorIndex !== -1 ? d.indicators[colorIndicatorIndex].yearlyData[d.indicators[colorIndicatorIndex].yearlyData.length - 1]?.year : year;
       return ({
-        countryCode: d['Alpha-3 code-1'],
+        countryCode: d['Alpha-3 code'],
         countryName: d['Country or Area'],
         xVal,
         colorVal,
@@ -327,7 +327,7 @@ export const HorizontalBarChart = (props: Props) => {
           }
           {
             dataFormatted.map((d, i) => {
-              const countryData = data[data.findIndex((el) => el['Alpha-3 code-1'] === d.countryCode)];
+              const countryData = data[data.findIndex((el) => el['Alpha-3 code'] === d.countryCode)];
               const selectedColorOpacity = d.colorVal !== undefined ? !selectedColor || selectedColor === colorScale(d.colorVal) as string : !selectedColor;
               const rowData: HoverRowDataType[] = [
                 {

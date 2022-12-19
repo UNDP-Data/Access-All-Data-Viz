@@ -6,7 +6,7 @@ export interface IndicatorDataType {
   }[]
 }
 export interface CountryGroupDataType {
-  'Alpha-3 code-1': string;
+  'Alpha-3 code': string;
   'Country or Area': string;
   'Group 1': string;
   'Group 2': string;

@@ -207,19 +207,18 @@ const HomePage = (props:Props) => {
       .defer(json, METADATALINK)
       .await((err: any, data: CountryGroupDataType[], indicatorMetaData: IndicatorMetaDataType[]) => {
         if (err) throw err;
+        console.log(data);
         const topic = queryParams.get('topic');
         setFinalData(data);
-        setCountryList(data.map((d) => ({ name: d['Country or Area'], code: d['Alpha-3 code-1'] })));
+        setCountryList(data.map((d) => ({ name: d['Country or Area'], code: d['Alpha-3 code'] })));
         setRegionList(uniqBy(data, (d) => d['Group 2']).map((d) => d['Group 2']));
         const indicatorsFilteredBySS = signatureSolution ? indicatorMetaData.filter((d) => d.SignatureSolution.indexOf(signatureSolution) !== -1) : indicatorMetaData;
         const indicatorsFiltered = topic ? indicatorsFilteredBySS.filter((d) => d.SSTopics.indexOf(topic) !== -1) : indicatorsFilteredBySS;
         const indicatorWithYears: IndicatorMetaDataWithYear[] = indicatorsFiltered.map((d) => {
           const years: number[][] = [];
           data.forEach((el) => {
-            console.log(el);
-            el.indicators.forEach((indicator) => {
-              years.push(indicator.yearlyData.map((year) => year.year));
-            });
+            const indYears = el.indicators[el.indicators.findIndex((ind) => ind.indicator === d.DataKey)]?.yearlyData.map((year) => year.year);
+            if (indYears) years.push(indYears);
           });
           return {
             ...d,

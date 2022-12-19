@@ -32,10 +32,10 @@ interface ColorIconProps {
 }
 
 const ColorIcon = styled.div<ColorIconProps>`
-  width: 1rem;
-  height: 1rem;
+  width: 0.875rem;
+  height: 0.875rem;
+  margin-top: 6px;
   background-color: ${(props) => (props.fill ? props.fill : 'var(--yellow)')};
-  border: ${(props) => (props.fill === '#FFF' || props.fill === '#fff' || props.fill === '#FFFFFF' || props.fill === '#ffffff' ? '1px solid #AAA' : `1px solid ${props.fill}`)};
 `;
 
 const SizeIcon = styled.div`
@@ -45,13 +45,8 @@ const SizeIcon = styled.div`
   border: 2px solid var(--gray-700);
 `;
 
-const IconDiv = styled.div`
-  margin-right: 0.5rem;
-  margin-top: 0.5rem;
-`;
-
 const IconEl = styled.div`
-  margin-top: 0.5rem;
+  margin-top: 10px;
 `;
 
 export const Tooltip = (props: Props) => {
@@ -60,23 +55,28 @@ export const Tooltip = (props: Props) => {
   } = props;
   return (
     <TooltipEl x={data.xPosition} y={data.yPosition} verticalAlignment={data.yPosition > window.innerHeight / 2 ? 'top' : 'bottom'} horizontalAlignment={data.xPosition > window.innerWidth / 2 ? 'left' : 'right'}>
-      <div className='flex-div flex-wrap' style={{ padding: 'var(--spacing-07)', alignItems: 'baseline' }}>
-        <h5 className='undp-typography bold margin-bottom-00' style={{ color: 'var(--blue-600)' }}>
+      <div className='flex-div flex-wrap' style={{ padding: 'var(--spacing-05)', alignItems: 'baseline' }}>
+        <h6 className='undp-typography bold margin-bottom-00' style={{ color: 'var(--blue-600)' }}>
           {data.country}
           {' '}
-          <span className='undp-typography small-font' style={{ color: 'var(--gray-700)', fontWeight: 'normal' }}>
+          <span
+            className='undp-typography'
+            style={{
+              color: 'var(--gray-600)', fontWeight: 'normal', fontSize: '0.875rem', textTransform: 'none',
+            }}
+          >
             (
             {data.continent}
             )
           </span>
-        </h5>
+        </h6>
       </div>
       <hr className='undp-style margin-top-00 margin-bottom-00' />
-      <div style={{ padding: 'var(--spacing-07) var(--spacing-07) 0 var(--spacing-07)' }}>
+      <div style={{ padding: 'var(--spacing-05) var(--spacing-05) 0 var(--spacing-05)' }}>
         {
           data.rows.map((d, i) => (
-            <div className='flex-div margin-bottom-07' key={i} style={{ gap: '0.25rem' }}>
-              <IconDiv>
+            <div className='flex-div margin-bottom-05' key={i} style={{ gap: '0.5rem', alignItems: 'flex-start' }}>
+              <div>
                 {
                   d.type === 'x-axis' ? <IconEl><HorizontalArrow size={20} /></IconEl>
                     : d.type === 'y-axis' ? <IconEl><VerticalArrow size={20} /></IconEl>
@@ -84,11 +84,11 @@ export const Tooltip = (props: Props) => {
                         : d.type === 'size' ? <SizeIcon />
                           : null
                 }
-              </IconDiv>
+              </div>
               <div>
-                <p className='undp-typography large-font margin-bottom-00 margin-top-01' style={{ color: 'var(--gray-600)' }}>{d.year}</p>
-                <h6 className='undp-typography margin-bottom-03'>{d.title}</h6>
-                <h5 className='undp-typography margin-bottom-00 bold'>
+                <p className='undp-typography small-font margin-bottom-00 margin-top-01' style={{ color: 'var(--gray-500)' }}>{d.year}</p>
+                <p className='undp-typography margin-bottom-00'>{d.title}</p>
+                <h6 className='undp-typography margin-bottom-00 bold'>
                   {
                     d.prefix && d.value && d.value !== 'NA' ? `${d.prefix} ` : ''
                   }
@@ -96,7 +96,7 @@ export const Tooltip = (props: Props) => {
                   {
                     d.suffix && d.value && d.value !== 'NA' ? ` ${d.suffix}` : ''
                   }
-                </h5>
+                </h6>
               </div>
             </div>
           ))

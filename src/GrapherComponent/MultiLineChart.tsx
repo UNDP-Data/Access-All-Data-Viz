@@ -108,7 +108,7 @@ export const MultiLineChart = (props: Props) => {
     }
     return ({
       countryName: d['Country or Area'],
-      alphaCode3: d['Alpha-3 code-1'],
+      alphaCode3: d['Alpha-3 code'],
       countryFormattedData,
     });
   });

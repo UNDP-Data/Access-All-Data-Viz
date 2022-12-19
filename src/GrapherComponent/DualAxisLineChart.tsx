@@ -91,7 +91,7 @@ export const DualAxisLineChart = (props: Props) => {
   const xIndicatorMetaData = indicators[indicators.findIndex((indicator) => indicator.IndicatorLabelTable === xAxisIndicator)];
   const yIndicatorMetaData = indicators[indicators.findIndex((indicator) => indicator.IndicatorLabelTable === yAxisIndicator)];
 
-  const countryData = selectedCountry ? data[data.findIndex((d) => d['Alpha-3 code-1'] === selectedCountry)] : data[data.findIndex((d) => d['Country or Area'] === trendChartCountry)];
+  const countryData = selectedCountry ? data[data.findIndex((d) => d['Alpha-3 code'] === selectedCountry)] : data[data.findIndex((d) => d['Country or Area'] === trendChartCountry)];
 
   const minYear = xIndicatorMetaData.years[0] < yIndicatorMetaData.years[0] ? xIndicatorMetaData.years[0] : yIndicatorMetaData.years[0];
   const maxYear = xIndicatorMetaData.years[xIndicatorMetaData.years.length - 1] > yIndicatorMetaData.years[yIndicatorMetaData.years.length - 1] ? xIndicatorMetaData.years[xIndicatorMetaData.years.length - 1] : yIndicatorMetaData.years[yIndicatorMetaData.years.length - 1];
@@ -153,7 +153,7 @@ export const DualAxisLineChart = (props: Props) => {
           placeholder='Please select a country'
           onChange={(d) => { updateTrendChartCountry(d); }}
           disabled={selectedCountry !== undefined}
-          value={countries[countries.findIndex((d) => d.code === selectedCountry)].name || trendChartCountry}
+          value={countries[countries.findIndex((d) => d.code === selectedCountry)]?.name || trendChartCountry}
         >
           {
             countries.map((d) => d.name).map((d) => (

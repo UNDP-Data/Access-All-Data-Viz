@@ -100,7 +100,7 @@ export const ScatterPlot = (props: Props) => {
       const radiusYear = (year === -1 || showMostRecentData) && radiusIndicatorIndex !== -1 ? d.indicators[radiusIndicatorIndex].yearlyData[d.indicators[radiusIndicatorIndex].yearlyData.length - 1]?.year : year;
       const colorYear = (year === -1 || showMostRecentData) && colorIndicatorIndex !== -1 ? d.indicators[colorIndicatorIndex].yearlyData[d.indicators[colorIndicatorIndex].yearlyData.length - 1]?.year : year;
       return ({
-        countryCode: d['Alpha-3 code-1'],
+        countryCode: d['Alpha-3 code'],
         radiusValue,
         xVal,
         yVal,
@@ -388,7 +388,7 @@ export const ScatterPlot = (props: Props) => {
 
           {
             dataFormatted.map((d, i) => {
-              const countryData = data[data.findIndex((el) => el['Alpha-3 code-1'] === d.countryCode)];
+              const countryData = data[data.findIndex((el) => el['Alpha-3 code'] === d.countryCode)];
               const incomeGroupOpacity = selectedIncomeGroups.length === 0 || selectedIncomeGroups.indexOf(countryData['Income group']) !== -1;
               const countryOpacity = selectedCountries.length === 0 || selectedCountries.indexOf(countryData['Country or Area']) !== -1;
               const selectedColorOpacity = d.colorVal !== undefined ? !selectedColor || selectedColor === colorScale(d.colorVal) as string : !selectedColor;
@@ -463,7 +463,7 @@ export const ScatterPlot = (props: Props) => {
                             dy={4}
                             dx={3}
                           >
-                            {countryData['Alpha-3 code-1']}
+                            {countryData['Alpha-3 code']}
                           </text>
                         ) : null
                     }

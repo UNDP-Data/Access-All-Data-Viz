@@ -44,30 +44,29 @@ export const TooltipForMultiLineChart = (props: Props) => {
   } = props;
   return (
     <TooltipEl x={data.xPosition} y={data.yPosition} verticalAlignment={data.yPosition > window.innerHeight / 2 ? 'top' : 'bottom'} horizontalAlignment={data.xPosition > window.innerWidth / 2 ? 'left' : 'right'}>
-      <div className='flex-div flex-wrap' style={{ padding: 'var(--spacing-07)', alignItems: 'baseline' }}>
-        <h5 className='undp-typography bold margin-bottom-00' style={{ color: 'var(--blue-600)' }}>
+      <div className='flex-div flex-wrap' style={{ padding: 'var(--spacing-05)', alignItems: 'baseline' }}>
+        <h6 className='undp-typography bold margin-bottom-00' style={{ color: 'var(--blue-600)' }}>
           {data.country.substring(0, 50)}
           {data.country.substring(0, 50) === data.country ? '' : '...'}
-          {' '}
-          <span className='undp-typography small-font' style={{ color: 'var(--gray-700)', fontWeight: 'normal' }}>
+          <p className='undp-typography small-font margin-bottom-00' style={{ color: 'var(--gray-600)', fontWeight: 'normal' }}>
             (
             {data.continent}
             )
-          </span>
-        </h5>
+          </p>
+        </h6>
       </div>
       <hr className='undp-style margin-top-00 margin-bottom-00' />
-      <div style={{ padding: 'var(--spacing-07) var(--spacing-07) 0 var(--spacing-07)' }}>
+      <div style={{ padding: 'var(--spacing-07) var(--spacing-07) 0 var(--spacing-05)' }}>
         {
           data.rows.map((d, i) => (
-            <div className='flex-div flex-space-between margin-bottom-07' style={{ alignItems: 'baseline' }} key={i}>
+            <div className='flex-div flex-space-between margin-bottom-05' style={{ alignItems: 'baseline' }} key={i}>
               <div className='flex-div flex-vert-align-center' style={{ gap: '0.5rem' }}>
                 <ColorIcon fill={d.color} />
-                <h6 className='undp-typography margin-bottom-00'>
+                <p className='undp-typography margin-bottom-00'>
                   {d.title}
-                </h6>
+                </p>
               </div>
-              <h5 className='undp-typography margin-bottom-00 bold'>
+              <h6 className='undp-typography margin-bottom-00 bold'>
                 {
                   d.prefix && d.value && d.value !== 'NA' ? `${d.prefix} ` : ''
                 }
@@ -75,7 +74,7 @@ export const TooltipForMultiLineChart = (props: Props) => {
                 {
                   d.suffix && d.value && d.value !== 'NA' ? ` ${d.suffix}` : ''
                 }
-              </h5>
+              </h6>
             </div>
           ))
         }

@@ -169,7 +169,7 @@ export const BivariateMap = (props: Props) => {
         <g ref={mapG}>
           {
             (World as any).features.map((d: any, i: number) => {
-              const index = data.findIndex((el: any) => el['Alpha-3 code-1'] === d.properties.ISO3);
+              const index = data.findIndex((el: any) => el['Alpha-3 code'] === d.properties.ISO3);
               if ((index !== -1) || d.properties.NAME === 'Antarctica') return null;
               return (
                 <g
@@ -220,8 +220,8 @@ export const BivariateMap = (props: Props) => {
             })
           }
           {
-            data.map((d, i: number) => {
-              const index = (World as any).features.findIndex((el: any) => d['Alpha-3 code-1'] === el.properties.ISO3);
+            data.map((d, i) => {
+              const index = (World as any).features.findIndex((el: any) => d['Alpha-3 code'] === el.properties.ISO3);
               const xIndicatorIndex = d.indicators.findIndex((el) => xIndicatorMetaData.DataKey === el.indicator);
               const yIndicatorIndex = d.indicators.findIndex((el) => yIndicatorMetaData.DataKey === el.indicator);
               const xVal = xIndicatorIndex === -1 ? undefined
@@ -305,7 +305,7 @@ export const BivariateMap = (props: Props) => {
                   }}
                 >
                   {
-                    index === -1 ? null
+                    index === -1 || d['Country or Area'] === 'Antarctica' ? null
                       : (World as any).features[index].geometry.type === 'MultiPolygon' ? (World as any).features[index].geometry.coordinates.map((el:any, j: any) => {
                         let masterPath = '';
                         el.forEach((geo: number[][]) => {
@@ -350,7 +350,7 @@ export const BivariateMap = (props: Props) => {
           }
           {
             hoverData
-              ? (World as any).features.filter((d: any) => d.properties.ISO3 === data[data.findIndex((el) => el['Country or Area'] === hoverData?.country)]['Alpha-3 code-1']).map((d: any, i: number) => (
+              ? (World as any).features.filter((d: any) => d.properties.ISO3 === data[data.findIndex((el) => el['Country or Area'] === hoverData?.country)]['Alpha-3 code']).map((d: any, i: number) => (
                 <G
                   key={i}
                   opacity={!selectedColor ? 1 : 0}

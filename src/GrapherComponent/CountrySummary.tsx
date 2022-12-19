@@ -66,7 +66,7 @@ export const CountrySummary = (props: Props) => {
   } = useContext(Context) as CtxDataType;
   const [modalVisibility, setModalVisibility] = useState(false);
   const countryName = countries[countries.findIndex((d) => d.code === selectedCountry)].name;
-  const dataFiltered = data.filter((d) => d['Alpha-3 code-1'] === selectedCountry)[0]
+  const dataFiltered = data.filter((d) => d['Alpha-3 code'] === selectedCountry)[0]
     .indicators.map((d) => ({ ...d, yearlyData: sortBy(d.yearlyData.filter((el) => el.value !== undefined), 'year') }));
   const population = {
     value: getValue(dataFiltered as IndicatorDataType[], 'Population, total'),

@@ -12,7 +12,7 @@ const dataTable = (data: CountryGroupDataType[], indicator: IndicatorMetaDataWit
   const table: any = [];
   data.forEach((d) => {
     const country = d['Country or Area'];
-    const countryCode = d['Alpha-3 code-1'];
+    const countryCode = d['Alpha-3 code'];
     indicator.years.forEach((year) => {
       if (d.indicators.findIndex((ind) => ind.indicator === indicator.DataKey) !== -1) {
         const indicatorIndex = d.indicators.findIndex((ind) => ind.indicator === indicator.DataKey);
@@ -36,7 +36,7 @@ const dataTableForExcel = (data: CountryGroupDataType[], indicator: IndicatorMet
   const table: any = [];
   data.forEach((d) => {
     const country = d['Country or Area'];
-    const countryCode = d['Alpha-3 code-1'];
+    const countryCode = d['Alpha-3 code'];
     indicator.years.forEach((year) => {
       if (d.indicators.findIndex((ind) => ind.indicator === indicator.DataKey) !== -1) {
         const indicatorIndex = d.indicators.findIndex((ind) => ind.indicator === indicator.DataKey);
@@ -106,7 +106,7 @@ export const DataSourceListItem = (props: Props) => {
           headers={
           [
             { label: 'Country or Area', key: 'country' },
-            { label: 'Alpha-3 code-1', key: 'countryCode' },
+            { label: 'Alpha-3 code', key: 'countryCode' },
             { label: 'Year', key: 'year' },
             { label: indicatorData.Indicator, key: 'value' },
           ]

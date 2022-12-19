@@ -27,7 +27,7 @@ export const DataList = (props: Props) => {
     selectedCountry,
   } = useContext(Context) as CtxDataType;
   const countryName = countries[countries.findIndex((d) => d.code === selectedCountry)].name;
-  const dataFiltered = data.filter((d) => d['Alpha-3 code-1'] === selectedCountry)[0].indicators.map((d) => ({ ...d, yearlyData: sortBy(d.yearlyData.filter((el) => el.value !== undefined), 'year') }));
+  const dataFiltered = data.filter((d) => d['Alpha-3 code'] === selectedCountry)[0].indicators.map((d) => ({ ...d, yearlyData: sortBy(d.yearlyData.filter((el) => el.value !== undefined), 'year') }));
   return (
     <div>
       <div className='undp-table-head'>
