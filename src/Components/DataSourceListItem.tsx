@@ -1,7 +1,6 @@
 import { CSVLink } from 'react-csv';
 import { CountryGroupDataType, IndicatorMetaDataWithYear } from '../Types';
 import DownloadExcel from './DownloadExcel';
-import '../style/chipStyle.css';
 
 interface Props {
   indicatorData: IndicatorMetaDataWithYear;

@@ -17,8 +17,6 @@ import { MultiLineChart } from './MultiLineChart';
 import { BarChart } from './BarChart';
 import { LineChart } from './LineChart';
 import { PauseIcon, PlayIcon } from '../Icons';
-
-import '../style/sliderStyle.css';
 import { DataList } from './DataList';
 
 interface Props {

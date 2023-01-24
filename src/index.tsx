@@ -1,6 +1,4 @@
-// eslint-disable-next-line no-use-before-define
-import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
@@ -41,15 +39,12 @@ const getSS = (embedSelector: string) => {
   return undefined;
 };
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App
-      countryId={getCountry('[data-bucket-embed]')}
-      signatureSolution={getSS('[data-bucket-embed]')}
-    />
-  </React.StrictMode>,
-  getEl('[data-bucket-embed]'),
-);
+const container = getEl('[data-bucket-embed]');
+const root = createRoot(container!); // createRoot(container!) if you use TypeScript
+root.render(<App
+  countryId={getCountry('[data-bucket-embed]')}
+  signatureSolution={getSS('[data-bucket-embed]')}
+/>);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

@@ -9,10 +9,6 @@ import {
   ChevronDown, ChevronLeft,
 } from '../Icons';
 
-import '../style/selectStyle.css';
-import '../style/checkboxStyle.css';
-import '../style/radioStyle.css';
-
 interface Props {
   indicators: IndicatorMetaDataWithYear[];
   regions: string[];

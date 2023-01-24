@@ -9,15 +9,13 @@ import { queue } from 'd3-queue';
 import { useParams } from 'react-router-dom';
 import {
   CountryGroupDataType, IndicatorMetaDataType, IndicatorMetaDataWithYear, CountryListType,
-} from './Types';
-import { GrapherComponent } from './GrapherComponent';
-import Reducer from './Context/Reducer';
-import Context from './Context/Context';
+} from '../Types';
+import { GrapherComponent } from '../GrapherComponent';
+import Reducer from '../Context/Reducer';
+import Context from '../Context/Context';
 import {
   DEFAULT_VALUES, METADATALINK,
-} from './Constants';
-
-import './style/style.css';
+} from '../Constants';
 
 const VizAreaEl = styled.div`
   display: flex;
@@ -32,7 +30,7 @@ interface Props {
   signatureSolution?: string;
 }
 
-const HomePage = (props:Props) => {
+const CountryHomePage = (props:Props) => {
   const {
     countryId,
     signatureSolution,
@@ -45,7 +43,7 @@ const HomePage = (props:Props) => {
   const [countryList, setCountryList] = useState<CountryListType[] | undefined>(undefined);
   const queryParams = new URLSearchParams(window.location.search);
   const initialState = {
-    graphType: countryFromLink ? 'dataList' : queryParams.get('graphType') ? queryParams.get('graphType') : countryId ? 'trendLine' : 'map',
+    graphType: queryParams.get('graphType') || 'dataList',
     selectedRegions: queryParams.get('regions')?.split('~') || [],
     selectedCountries: queryParams.get('countries')?.split('~') || [],
     selectedIncomeGroups: queryParams.get('incomeGroups')?.split('~') || [],
@@ -70,7 +68,7 @@ const HomePage = (props:Props) => {
 
   const [state, dispatch] = useReducer(Reducer, initialState);
 
-  const updateGraphType = (graphType: 'scatterPlot' | 'map' | 'barGraph' | 'trendLine') => {
+  const updateGraphType = (graphType: 'dataList' | 'map' | 'barGraph' | 'trendLine') => {
     dispatch({
       type: 'UPDATE_GRAPH_TYPE',
       payload: graphType,
@@ -203,20 +201,19 @@ const HomePage = (props:Props) => {
 
   useEffect(() => {
     queue()
-      .defer(json, 'https://raw.githubusercontent.com/UNDP-Data/Access-All-Data-Data-Repo/main/output.json')
+      .defer(json, `https://raw.githubusercontent.com/UNDP-Data/Access-All-Data-Data-Repo/main/countryData/${countryFromLink}.json`)
       .defer(json, METADATALINK)
-      .await((err: any, data: CountryGroupDataType[], indicatorMetaData: IndicatorMetaDataType[]) => {
+      .await((err: any, data: CountryGroupDataType, indicatorMetaData: IndicatorMetaDataType[]) => {
         if (err) throw err;
-        console.log(data);
         const topic = queryParams.get('topic');
-        setFinalData(data);
-        setCountryList(data.map((d) => ({ name: d['Country or Area'], code: d['Alpha-3 code'] })));
-        setRegionList(uniqBy(data, (d) => d['Group 2']).map((d) => d['Group 2']));
+        setFinalData([data]);
+        setCountryList([data].map((d) => ({ name: d['Country or Area'], code: d['Alpha-3 code'] })));
+        setRegionList(uniqBy([data], (d) => d['Group 2']).map((d) => d['Group 2']));
         const indicatorsFilteredBySS = signatureSolution ? indicatorMetaData.filter((d) => d.SignatureSolution.indexOf(signatureSolution) !== -1) : indicatorMetaData;
         const indicatorsFiltered = topic ? indicatorsFilteredBySS.filter((d) => d.SSTopics.indexOf(topic) !== -1) : indicatorsFilteredBySS;
         const indicatorWithYears: IndicatorMetaDataWithYear[] = indicatorsFiltered.map((d) => {
           const years: number[][] = [];
-          data.forEach((el) => {
+          [data].forEach((el) => {
             const indYears = el.indicators[el.indicators.findIndex((ind) => ind.indicator === d.DataKey)]?.yearlyData.map((year) => year.year);
             if (indYears) years.push(indYears);
           });
@@ -258,7 +255,7 @@ const HomePage = (props:Props) => {
                   updateSignatureSolutionForDataList,
                 }}
               >
-                <div className='undp-container'>
+                <div className='undp-container max-width'>
                   <GrapherComponent
                     data={finalData}
                     indicators={indicatorsList}
@@ -270,7 +267,7 @@ const HomePage = (props:Props) => {
             </>
           )
           : (
-            <VizAreaEl className='undp-container'>
+            <VizAreaEl className='undp-container max-width'>
               <div className='undp-loader' />
             </VizAreaEl>
           )
@@ -279,4 +276,4 @@ const HomePage = (props:Props) => {
   );
 };
 
-export default HomePage;
+export default CountryHomePage;

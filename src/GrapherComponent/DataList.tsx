@@ -8,7 +8,6 @@ import {
   IndicatorMetaDataWithYear,
 } from '../Types';
 import Context from '../Context/Context';
-import '../style/tableStyle.css';
 import { TrendChartSmall } from './TrendChartSmall';
 
 interface Props {

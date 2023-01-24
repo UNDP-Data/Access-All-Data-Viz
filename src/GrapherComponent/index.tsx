@@ -13,9 +13,6 @@ import { Graph } from './Graph';
 import { DataSources } from './DataSources';
 import { GetEmbedParams } from '../Components/GetEmbedParams';
 import { CopyLinkWithParamButton } from '../Components/CopyLinkWithParamButton';
-
-import '../style/buttonStyle.css';
-import '../style/modalStyle.css';
 import { CountrySummary } from './CountrySummary';
 
 interface Props {

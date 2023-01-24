@@ -1,9 +1,8 @@
 import {
   createBrowserRouter, RouterProvider,
 } from 'react-router-dom';
+import CountryHomePage from './CountryHomePage';
 import HomePage from './HomePage';
-
-import './style/style.css';
 
 interface Props {
   countryId?: string;
@@ -22,7 +21,7 @@ const App = (props:Props) => {
       children: [
         {
           path: '/country-profile/:country/',
-          element: <HomePage />,
+          element: <CountryHomePage />,
         },
         {
           path: '/signature-solution/:signatureSolution/',

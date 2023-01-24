@@ -6,8 +6,6 @@ import {
   CountryListType, CtxDataType, CountryGroupDataType, IndicatorMetaDataWithYear,
 } from '../Types';
 import Context from '../Context/Context';
-import '../style/tableStyle.css';
-import '../style/statCardStyle.css';
 import { GetEmbedParamsForCountrySummary } from '../Components/GetEmbedParams';
 
 interface Props {
@@ -109,15 +107,14 @@ export const CountrySummary = (props: Props) => {
           }
         </button>
       </div>
-      <div className='flex-div flex-wrap'>
+      <div className='flex-div flex-wrap stat-container'>
         {
           population.value
             ? (
-              <div style={{ width: 'calc(33.33% - 0.67rem)' }}>
-                <div className='stat-card'>
-                  <div>
-                    <h3>{format('.3s')(population.value).replace('G', 'B')}</h3>
-                    {
+              <div className='stat-card' style={{ width: 'calc(33.33% - 4.67rem)', minWidth: '20rem' }}>
+                <div>
+                  <h3>{format('.3s')(population.value).replace('G', 'B')}</h3>
+                  {
                       population.annualGrowth ? (
                         <p className='bold large-font' style={{ color: population.annualGrowth < 0 ? 'var(--dark-red)' : 'var(--dark-green)' }}>
                           Annual Growth:
@@ -127,21 +124,19 @@ export const CountrySummary = (props: Props) => {
                         </p>
                       ) : null
                     }
-                  </div>
-                  <p className='small-font' style={{ color: 'var(--gray-500)' }}>{population.year}</p>
-                  <p>{indicators[indicators.findIndex((el) => el.DataKey === 'Population, total')].IndicatorLabelTable}</p>
                 </div>
+                <p className='small-font' style={{ color: 'var(--gray-500)' }}>{population.year}</p>
+                <p>{indicators[indicators.findIndex((el) => el.DataKey === 'Population, total')].IndicatorLabelTable}</p>
               </div>
             ) : null
         }
         {
           gdp.value
             ? (
-              <div style={{ width: 'calc(33.33% - 0.67rem)' }}>
-                <div className='stat-card'>
-                  <div>
-                    <h3>{format('.3s')(gdp.value)}</h3>
-                    {
+              <div className='stat-card' style={{ width: 'calc(33.33% - 4.67rem)', minWidth: '20rem' }}>
+                <div>
+                  <h3>{format('.3s')(gdp.value)}</h3>
+                  {
                       gdp.annualGrowth ? (
                         <p className='bold large-font' style={{ color: gdp.annualGrowth < 0 ? 'var(--dark-red)' : 'var(--dark-green)' }}>
                           Annual Growth:
@@ -151,72 +146,64 @@ export const CountrySummary = (props: Props) => {
                         </p>
                       ) : null
                     }
-                  </div>
-                  <p className='small-font' style={{ color: 'var(--gray-500)' }}>{gdp.year}</p>
-                  <p>{indicators[indicators.findIndex((el) => el.DataKey === 'GDP per capita, PPP (current international $)')].IndicatorLabelTable}</p>
                 </div>
+                <p className='small-font' style={{ color: 'var(--gray-500)' }}>{gdp.year}</p>
+                <p>{indicators[indicators.findIndex((el) => el.DataKey === 'GDP per capita, PPP (current international $)')].IndicatorLabelTable}</p>
               </div>
             ) : null
         }
         {
           hdi.value
             ? (
-              <div style={{ width: 'calc(33.33% - 0.67rem)' }}>
-                <div className='stat-card'>
-                  <div>
-                    <h3>{hdi.value}</h3>
-                    <p className='bold large-font' style={{ color: hdi.value >= 0.7 ? 'var(--dark-green)' : hdi.value >= 0.55 ? 'var(--dark-yellow)' : 'var(--dark-red)' }}>
-                      {hdi.value >= 0.8 ? 'Very High' : hdi.value >= 0.7 ? 'High' : hdi.value >= 0.55 ? 'Medium' : 'Low'}
-                    </p>
-                  </div>
-                  <p className='small-font' style={{ color: 'var(--gray-500)' }}>{hdi.year}</p>
-                  <p>{indicators[indicators.findIndex((el) => el.DataKey === 'Human development index (HDI)')].IndicatorLabelTable}</p>
+              <div className='stat-card' style={{ width: 'calc(33.33% - 4.67rem)', minWidth: '20rem' }}>
+                <div>
+                  <h3>{hdi.value}</h3>
+                  <p className='bold large-font' style={{ color: hdi.value >= 0.7 ? 'var(--dark-green)' : hdi.value >= 0.55 ? 'var(--dark-yellow)' : 'var(--dark-red)' }}>
+                    {hdi.value >= 0.8 ? 'Very High' : hdi.value >= 0.7 ? 'High' : hdi.value >= 0.55 ? 'Medium' : 'Low'}
+                  </p>
                 </div>
+                <p className='small-font' style={{ color: 'var(--gray-500)' }}>{hdi.year}</p>
+                <p>{indicators[indicators.findIndex((el) => el.DataKey === 'Human development index (HDI)')].IndicatorLabelTable}</p>
               </div>
             ) : null
         }
         {
           gii.value
             ? (
-              <div style={{ width: 'calc(33.33% - 0.67rem)' }}>
-                <div className='stat-card'>
-                  <div>
-                    <h3>{gii.value}</h3>
-                    <p className='bold large-font' style={{ color: gii.value <= 0.45 ? 'var(--dark-green)' : gii.value <= 0.72 ? 'var(--dark-yellow)' : 'var(--dark-red)' }}>
-                      {gii.value <= 0.45 ? 'High Equality' : gii.value <= 0.72 ? 'Medium Equality' : 'Low Equality'}
-                    </p>
-                  </div>
-                  <p className='small-font' style={{ color: 'var(--gray-500)' }}>{gii.year}</p>
-                  <p>{indicators[indicators.findIndex((el) => el.DataKey === 'Gender Inequality Index-Gender Inequality Index')].IndicatorLabelTable}</p>
+              <div className='stat-card' style={{ width: 'calc(33.33% - 4.67rem)', minWidth: '20rem' }}>
+                <div>
+                  <h3>{gii.value}</h3>
+                  <p className='bold large-font' style={{ color: gii.value <= 0.45 ? 'var(--dark-green)' : gii.value <= 0.72 ? 'var(--dark-yellow)' : 'var(--dark-red)' }}>
+                    {gii.value <= 0.45 ? 'High Equality' : gii.value <= 0.72 ? 'Medium Equality' : 'Low Equality'}
+                  </p>
                 </div>
+                <p className='small-font' style={{ color: 'var(--gray-500)' }}>{gii.year}</p>
+                <p>{indicators[indicators.findIndex((el) => el.DataKey === 'Gender Inequality Index-Gender Inequality Index')].IndicatorLabelTable}</p>
               </div>
             ) : null
         }
         {
           gini.value
             ? (
-              <div style={{ width: 'calc(33.33% - 0.67rem)' }}>
-                <div className='stat-card'>
-                  <div>
-                    <h3>{gini.value}</h3>
-                    <p className='bold large-font' style={{ color: gini.value > 50 ? 'var(--dark-red)' : gini.value > 45 ? 'var(--light-red)' : gini.value > 40 ? 'var(--dark-yellow)' : gini.value > 30 ? 'var(--light-green)' : 'var(--dark-green)' }}>
-                      {gini.value > 50 ? 'Very High Inequality' : gini.value > 45 ? 'High Inequality' : gini.value > 40 ? 'Medium Inequality' : gini.value > 30 ? 'Low Inequality' : 'Very Low Inequality'}
-                    </p>
-                  </div>
-                  <p className='small-font' style={{ color: 'var(--gray-500)' }}>{gini.year}</p>
-                  <p>{indicators[indicators.findIndex((el) => el.DataKey === 'GINI index (World Bank estimate)')].IndicatorLabelTable}</p>
+              <div className='stat-card' style={{ width: 'calc(33.33% - 4.67rem)', minWidth: '20rem' }}>
+                <div>
+                  <h3>{gini.value}</h3>
+                  <p className='bold large-font' style={{ color: gini.value > 50 ? 'var(--dark-red)' : gini.value > 45 ? 'var(--light-red)' : gini.value > 40 ? 'var(--dark-yellow)' : gini.value > 30 ? 'var(--light-green)' : 'var(--dark-green)' }}>
+                    {gini.value > 50 ? 'Very High Inequality' : gini.value > 45 ? 'High Inequality' : gini.value > 40 ? 'Medium Inequality' : gini.value > 30 ? 'Low Inequality' : 'Very Low Inequality'}
+                  </p>
                 </div>
+                <p className='small-font' style={{ color: 'var(--gray-500)' }}>{gini.year}</p>
+                <p>{indicators[indicators.findIndex((el) => el.DataKey === 'GINI index (World Bank estimate)')].IndicatorLabelTable}</p>
               </div>
             ) : null
         }
         {
           ghg.value
             ? (
-              <div style={{ width: 'calc(33.33% - 0.67rem)' }}>
-                <div className='stat-card'>
-                  <div>
-                    <h3>{ghg.value}</h3>
-                    {
+              <div className='stat-card' style={{ width: 'calc(33.33% - 4.67rem)', minWidth: '20rem' }}>
+                <div>
+                  <h3>{ghg.value}</h3>
+                  {
                       ghg.annualGrowth ? (
                         <p className='bold large-font' style={{ color: ghg.annualGrowth >= 0 ? 'var(--dark-red)' : 'var(--dark-green)' }}>
                           Annual Growth:
@@ -226,10 +213,9 @@ export const CountrySummary = (props: Props) => {
                         </p>
                       ) : null
                     }
-                  </div>
-                  <p className='small-font' style={{ color: 'var(--gray-500)' }}>{ghg.year}</p>
-                  <p>{indicators[indicators.findIndex((el) => el.DataKey === 'GHG emission')].IndicatorLabelTable}</p>
                 </div>
+                <p className='small-font' style={{ color: 'var(--gray-500)' }}>{ghg.year}</p>
+                <p>{indicators[indicators.findIndex((el) => el.DataKey === 'GHG emission')].IndicatorLabelTable}</p>
               </div>
             ) : null
         }
