@@ -34,7 +34,7 @@ const LegendEl = styled.div`
   margin-left: 0.75rem;
   margin-top: -1.25rem;
   position: relative;
-  z-index: 100;
+  z-index: 5;
   padding-right: 5rem;
 `;
 
@@ -43,7 +43,7 @@ const LegendSizeEl = styled.div`
   margin-left: 0.75rem;
   width: 10rem;
   position: relative;
-  z-index: 100;
+  z-index: 5;
 `;
 
 const TitleEl = styled.h6`

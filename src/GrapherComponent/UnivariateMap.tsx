@@ -29,7 +29,7 @@ const LegendEl = styled.div`
   margin-left: 0.75rem;
   margin-top: -1.25rem;
   position: relative;
-  z-index: 100;
+  z-index: 5;
   @media (min-width: 961px) {
     transform: translateY(-100%);
   }

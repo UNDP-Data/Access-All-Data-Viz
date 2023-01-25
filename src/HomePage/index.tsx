@@ -14,6 +14,7 @@ import { GrapherComponent } from '../GrapherComponent';
 import Reducer from '../Context/Reducer';
 import Context from '../Context/Context';
 import {
+  DATALINK,
   DEFAULT_VALUES, METADATALINK,
 } from '../Constants';
 
@@ -201,7 +202,7 @@ const HomePage = (props:Props) => {
 
   useEffect(() => {
     queue()
-      .defer(json, 'https://raw.githubusercontent.com/UNDP-Data/Access-All-Data-Data-Repo/main/output_minified.json')
+      .defer(json, DATALINK)
       .defer(json, METADATALINK)
       .await((err: any, data: CountryGroupDataType[], indicatorMetaData: IndicatorMetaDataType[]) => {
         if (err) throw err;

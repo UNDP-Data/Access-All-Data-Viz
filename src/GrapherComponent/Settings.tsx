@@ -116,7 +116,7 @@ export const Settings = (props: Props) => {
         graphType !== 'dataList'
           ? (
             <div>
-              <p className='undp-label'>
+              <p className='label'>
                 {
               graphType === 'scatterPlot'
                 ? 'X-Axis'
@@ -143,7 +143,7 @@ export const Settings = (props: Props) => {
           )
           : (
             <div>
-              <p className='undp-label'>
+              <p className='label'>
                 Filter by Signature Solutions
               </p>
               <Select
@@ -167,7 +167,7 @@ export const Settings = (props: Props) => {
         graphType === 'scatterPlot'
           ? (
             <div className='margin-top-07'>
-              <p className='undp-label'>
+              <p className='label'>
                 Y-Axis
               </p>
               <Select
@@ -188,7 +188,7 @@ export const Settings = (props: Props) => {
             </div>
           ) : graphType === 'map' ? (
             <div className='margin-top-07'>
-              <p className='undp-label'>
+              <p className='label'>
                 Secondary Indicator (optional)
               </p>
               <Select
@@ -211,7 +211,7 @@ export const Settings = (props: Props) => {
             </div>
           ) : graphType === 'trendLine' ? (
             <div className='margin-top-07'>
-              <p className='undp-label'>
+              <p className='label'>
                 Secondary Indicator (optional)
               </p>
               <Select
@@ -237,7 +237,7 @@ export const Settings = (props: Props) => {
       {
         graphType === 'map' || graphType === 'scatterPlot' ? (
           <div className='margin-top-07'>
-            <p className='undp-label'>
+            <p className='label'>
               {graphType === 'map' ? 'Choose an indicator to overlay' : 'Size By'}
               {' '}
               (optional)
@@ -264,7 +264,7 @@ export const Settings = (props: Props) => {
         graphType === 'barGraph' || graphType === 'scatterPlot'
           ? selectedCountry ? null : (
             <div className='margin-top-07'>
-              <p className='undp-label'>
+              <p className='label'>
                 Color By
               </p>
               <Select
@@ -394,7 +394,7 @@ export const Settings = (props: Props) => {
                 </FilterTitle>
                 <div style={{ display: filterExpanded ? 'inline' : 'none' }}>
                   <div className='margin-top-03'>
-                    <p className='undp-label'>
+                    <p className='label'>
                       Region
                     </p>
                     <Select
@@ -416,7 +416,7 @@ export const Settings = (props: Props) => {
                     </Select>
                   </div>
                   <div className='margin-top-05'>
-                    <p className='undp-label'>
+                    <p className='label'>
                       Income Group
                     </p>
                     <Select
@@ -438,7 +438,7 @@ export const Settings = (props: Props) => {
                     </Select>
                   </div>
                   <div className='margin-top-05'>
-                    <p className='undp-label'>
+                    <p className='label'>
                       Country Groups
                     </p>
                     <Radio.Group onChange={(d) => { updateSelectedCountryGroup(d.target.value); }} value={selectedCountryGroup}>
@@ -449,7 +449,7 @@ export const Settings = (props: Props) => {
                     </Radio.Group>
                   </div>
                   <div className='margin-top-05'>
-                    <p className='undp-label'>
+                    <p className='label'>
                       Countries
                     </p>
                     <Select

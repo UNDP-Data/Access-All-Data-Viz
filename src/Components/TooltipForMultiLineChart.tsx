@@ -28,7 +28,7 @@ const ColorIcon = styled.div<ColorIconProps>`
 const TooltipEl = styled.div<TooltipElProps>`
   display: block;
   position: fixed;
-  z-index: 200;
+  z-index: 8;
   max-width: 40rem;
   background-color: var(--gray-200);
   border: 1px solid var(--gray-300);
