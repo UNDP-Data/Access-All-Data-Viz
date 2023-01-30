@@ -317,9 +317,9 @@ export const Settings = (props: Props) => {
               <FilterTitle className='flex-div flex-vert-align-center margin-bottom-06' style={{ gap: '0.25rem' }} onClick={() => { setSettingsExpanded(!settingExpanded); }}>
                 <div>
                   {
-                settingExpanded
-                  ? <ChevronDown fill='#212121' size={24} /> : <ChevronLeft fill='#212121' size={24} />
-              }
+                    settingExpanded
+                      ? <ChevronDown fill='#212121' size={24} /> : <ChevronLeft fill='#212121' size={24} />
+                  }
                 </div>
                 <h5 className='undp-typography bold margin-bottom-00'>
                   Settings
@@ -331,45 +331,45 @@ export const Settings = (props: Props) => {
               </FilterTitle>
               <div className='flex-wrap' style={{ display: settingExpanded ? 'flex' : 'none', gap: '1rem' }}>
                 {
-              graphType !== 'trendLine' && graphType !== 'multiCountryTrendLine'
-                ? (
-                  <div className='flex-div flex-wrap'>
-                    {
-                      graphType === 'scatterPlot'
-                        ? (
-                          <Checkbox style={{ margin: 0 }} className='undp-checkbox' checked={showLabel} onChange={(e) => { updateShowLabel(e.target.checked); }}>Show Label</Checkbox>
-                        )
-                        : null
-                    }
-                    <Checkbox style={{ margin: 0 }} className='undp-checkbox' checked={showMostRecentData} onChange={(e) => { updateShowMostRecentData(e.target.checked); }}>Show Most Recent Available Data</Checkbox>
-                    {
-                      graphType === 'barGraph'
-                        ? (
-                          <>
-                            <Checkbox style={{ margin: 0 }} className='undp-checkbox' checked={!verticalBarLayout} onChange={(e) => { updateBarLayout(!e.target.checked); }}>Show Horizontal</Checkbox>
-                            <Checkbox style={{ margin: 0 }} className='undp-checkbox' disabled={!verticalBarLayout} checked={reverseOrder} onChange={(e) => { updateReverseOrder(e.target.checked); }}>Show Largest First</Checkbox>
-                          </>
-                        )
-                        : null
-                    }
-                  </div>
-                ) : null
-            }
+                  graphType !== 'trendLine' && graphType !== 'multiCountryTrendLine'
+                    ? (
+                      <div className='flex-div flex-wrap'>
+                        {
+                          graphType === 'scatterPlot'
+                            ? (
+                              <Checkbox style={{ margin: 0 }} className='undp-checkbox' checked={showLabel} onChange={(e) => { updateShowLabel(e.target.checked); }}>Show Label</Checkbox>
+                            )
+                            : null
+                        }
+                        <Checkbox style={{ margin: 0 }} className='undp-checkbox' checked={showMostRecentData} onChange={(e) => { updateShowMostRecentData(e.target.checked); }}>Show Most Recent Available Data</Checkbox>
+                        {
+                          graphType === 'barGraph'
+                            ? (
+                              <>
+                                <Checkbox style={{ margin: 0 }} className='undp-checkbox' checked={!verticalBarLayout} onChange={(e) => { updateBarLayout(!e.target.checked); }}>Show Horizontal</Checkbox>
+                                <Checkbox style={{ margin: 0 }} className='undp-checkbox' disabled={!verticalBarLayout} checked={reverseOrder} onChange={(e) => { updateReverseOrder(e.target.checked); }}>Show Largest First</Checkbox>
+                              </>
+                            )
+                            : null
+                        }
+                      </div>
+                    ) : null
+                }
                 {
-              graphType === 'trendLine'
-                ? (
-                  <>
-                    <Checkbox style={{ margin: 0 }} className='undp-checkbox' checked={showLabel} onChange={(e) => { updateShowLabel(e.target.checked); }}>Show Label</Checkbox>
-                    <Checkbox style={{ margin: 0 }} className='undp-checkbox' checked={useSameRange} disabled={!yAxisIndicator} onChange={(e) => { updateUseSameRange(e.target.checked); }}>Use Same Range for Both Y-Axes</Checkbox>
-                  </>
-                ) : null
-            }
+                  graphType === 'trendLine'
+                    ? (
+                      <>
+                        <Checkbox style={{ margin: 0 }} className='undp-checkbox' checked={showLabel} onChange={(e) => { updateShowLabel(e.target.checked); }}>Show Label</Checkbox>
+                        <Checkbox style={{ margin: 0 }} className='undp-checkbox' checked={useSameRange} disabled={!yAxisIndicator} onChange={(e) => { updateUseSameRange(e.target.checked); }}>Use Same Range for Both Y-Axes</Checkbox>
+                      </>
+                    ) : null
+                }
                 {
-              graphType === 'multiCountryTrendLine'
-                ? (
-                  <Checkbox style={{ margin: 0 }} className='undp-checkbox' checked={showLabel} onChange={(e) => { updateShowLabel(e.target.checked); }}>Show Label</Checkbox>
-                ) : null
-            }
+                  graphType === 'multiCountryTrendLine'
+                    ? (
+                      <Checkbox style={{ margin: 0 }} className='undp-checkbox' checked={showLabel} onChange={(e) => { updateShowLabel(e.target.checked); }}>Show Label</Checkbox>
+                    ) : null
+                }
               </div>
             </div>
           </>
