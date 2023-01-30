@@ -95,10 +95,10 @@ export const ScatterPlot = (props: Props) => {
                 : d.indicators[colorIndicatorIndex].yearlyData[d.indicators[colorIndicatorIndex].yearlyData.length - 1]?.value;
       const countryGroup = selectedCountryGroup === 'All' ? true : d[selectedCountryGroup];
       const region = !!(selectedRegions.length === 0 || selectedRegions.indexOf(d['Group 2']) !== -1);
-      const xYear = year === -1 || showMostRecentData ? d.indicators[xIndicatorIndex].yearlyData[d.indicators[xIndicatorIndex].yearlyData.length - 1]?.year : year;
-      const yYear = year === -1 || showMostRecentData ? d.indicators[yIndicatorIndex].yearlyData[d.indicators[yIndicatorIndex].yearlyData.length - 1]?.year : year;
-      const radiusYear = (year === -1 || showMostRecentData) && radiusIndicatorIndex !== -1 ? d.indicators[radiusIndicatorIndex].yearlyData[d.indicators[radiusIndicatorIndex].yearlyData.length - 1]?.year : year;
-      const colorYear = (year === -1 || showMostRecentData) && colorIndicatorIndex !== -1 ? d.indicators[colorIndicatorIndex].yearlyData[d.indicators[colorIndicatorIndex].yearlyData.length - 1]?.year : year;
+      const xYear = year === -1 || showMostRecentData ? d.indicators[xIndicatorIndex]?.yearlyData[d.indicators[xIndicatorIndex].yearlyData.length - 1]?.year : year;
+      const yYear = year === -1 || showMostRecentData ? d.indicators[yIndicatorIndex]?.yearlyData[d.indicators[yIndicatorIndex].yearlyData.length - 1]?.year : year;
+      const radiusYear = (year === -1 || showMostRecentData) && radiusIndicatorIndex !== -1 ? d.indicators[radiusIndicatorIndex]?.yearlyData[d.indicators[radiusIndicatorIndex].yearlyData.length - 1]?.year : year;
+      const colorYear = (year === -1 || showMostRecentData) && colorIndicatorIndex !== -1 ? d.indicators[colorIndicatorIndex]?.yearlyData[d.indicators[colorIndicatorIndex].yearlyData.length - 1]?.year : year;
       return ({
         countryCode: d['Alpha-3 code'],
         radiusValue,
