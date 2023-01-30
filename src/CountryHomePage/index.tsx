@@ -47,7 +47,7 @@ const CountryHomePage = (props:Props) => {
     selectedRegions: queryParams.get('regions')?.split('~') || [],
     selectedCountries: queryParams.get('countries')?.split('~') || [],
     selectedIncomeGroups: queryParams.get('incomeGroups')?.split('~') || [],
-    year: 2021,
+    year: 2022,
     selectedCountryGroup: queryParams.get('countryGroup') || 'All',
     xAxisIndicator: queryParams.get('firstMetric') || DEFAULT_VALUES.firstMetric,
     yAxisIndicator: queryParams.get('secondMetric') || DEFAULT_VALUES.secondMetric,

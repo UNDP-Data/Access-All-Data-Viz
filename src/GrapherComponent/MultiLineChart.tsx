@@ -99,11 +99,11 @@ export const MultiLineChart = (props: Props) => {
     for (let i = minYear; i < maxYear + 1; i += 1) {
       countryFormattedData.push({
         year: i,
-        param: d.indicators[xIndicatorIndex].yearlyData[d.indicators[xIndicatorIndex].yearlyData.findIndex((el) => el.year === i)]?.value,
+        param: d.indicators[xIndicatorIndex]?.yearlyData[d.indicators[xIndicatorIndex].yearlyData.findIndex((el) => el.year === i)]?.value,
       });
-      if (d.indicators[xIndicatorIndex].yearlyData[d.indicators[xIndicatorIndex].yearlyData.findIndex((el) => el.year === i)]?.value !== undefined) {
+      if (d.indicators[xIndicatorIndex]?.yearlyData[d.indicators[xIndicatorIndex].yearlyData.findIndex((el) => el.year === i)]?.value !== undefined) {
         yearArray.push(i);
-        valueArray.push(d.indicators[xIndicatorIndex].yearlyData[d.indicators[xIndicatorIndex].yearlyData.findIndex((el) => el.year === i)]?.value as number);
+        valueArray.push(d.indicators[xIndicatorIndex]?.yearlyData[d.indicators[xIndicatorIndex].yearlyData.findIndex((el) => el.year === i)]?.value as number);
       }
     }
     return ({

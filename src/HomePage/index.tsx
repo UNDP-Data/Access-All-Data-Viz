@@ -48,7 +48,7 @@ const HomePage = (props:Props) => {
     selectedRegions: queryParams.get('regions')?.split('~') || [],
     selectedCountries: queryParams.get('countries')?.split('~') || [],
     selectedIncomeGroups: queryParams.get('incomeGroups')?.split('~') || [],
-    year: 2021,
+    year: 2022,
     selectedCountryGroup: queryParams.get('countryGroup') || 'All',
     xAxisIndicator: queryParams.get('firstMetric') || DEFAULT_VALUES.firstMetric,
     yAxisIndicator: queryParams.get('secondMetric') || DEFAULT_VALUES.secondMetric,
@@ -220,7 +220,7 @@ const HomePage = (props:Props) => {
           });
           return {
             ...d,
-            years: sortedUniq(flattenDeep(years)),
+            years: sortedUniq(flattenDeep(years).sort()),
           };
         });
         setIndicatorsList(indicatorWithYears);
@@ -256,7 +256,7 @@ const HomePage = (props:Props) => {
                   updateSignatureSolutionForDataList,
                 }}
               >
-                <div className='undp-container max-width'>
+                <div className='undp-container'>
                   <GrapherComponent
                     data={finalData}
                     indicators={indicatorsList}
@@ -268,7 +268,7 @@ const HomePage = (props:Props) => {
             </>
           )
           : (
-            <VizAreaEl className='undp-container max-width'>
+            <VizAreaEl className='undp-container'>
               <div className='undp-loader' />
             </VizAreaEl>
           )

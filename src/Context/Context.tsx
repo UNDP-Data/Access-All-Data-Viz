@@ -8,7 +8,7 @@ const Context = createContext<CtxDataType>({
   selectedIncomeGroups: [],
   selectedCountryGroup: 'All',
   showMostRecentData: false,
-  year: 2021,
+  year: 2022,
   xAxisIndicator: '',
   yAxisIndicator: '',
   colorIndicator: '',

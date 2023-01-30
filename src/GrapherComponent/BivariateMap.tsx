@@ -244,7 +244,7 @@ export const BivariateMap = (props: Props) => {
                   title: xAxisIndicator,
                   value: xVal === undefined ? 'NA' : xVal,
                   type: 'color',
-                  year: year === -1 || showMostRecentData ? d.indicators[xIndicatorIndex].yearlyData[d.indicators[xIndicatorIndex].yearlyData.length - 1]?.year : year,
+                  year: xIndicatorIndex === -1 ? undefined : year === -1 || showMostRecentData ? d.indicators[xIndicatorIndex].yearlyData[d.indicators[xIndicatorIndex].yearlyData.length - 1]?.year : year,
                   color,
                   prefix: xIndicatorMetaData?.LabelPrefix,
                   suffix: xIndicatorMetaData?.LabelSuffix,
@@ -253,7 +253,7 @@ export const BivariateMap = (props: Props) => {
                   title: yAxisIndicator,
                   value: yVal === undefined ? 'NA' : yVal,
                   type: 'color',
-                  year: year === -1 || showMostRecentData ? d.indicators[yIndicatorIndex].yearlyData[d.indicators[yIndicatorIndex].yearlyData.length - 1]?.year : year,
+                  year: yIndicatorIndex === -1 ? undefined : year === -1 || showMostRecentData ? d.indicators[yIndicatorIndex].yearlyData[d.indicators[yIndicatorIndex].yearlyData.length - 1]?.year : year,
                   color,
                   prefix: yIndicatorMetaData?.LabelPrefix,
                   suffix: yIndicatorMetaData?.LabelSuffix,
@@ -270,7 +270,7 @@ export const BivariateMap = (props: Props) => {
                   type: 'size',
                   prefix: sizeIndicatorMetaData?.LabelPrefix,
                   suffix: sizeIndicatorMetaData?.LabelSuffix,
-                  year: year === -1 || showMostRecentData ? d.indicators[sizeIndicatorIndex].yearlyData[d.indicators[sizeIndicatorIndex].yearlyData.length - 1]?.year : year,
+                  year: sizeIndicatorIndex === -1 ? undefined : year === -1 || showMostRecentData ? d.indicators[sizeIndicatorIndex].yearlyData[d.indicators[sizeIndicatorIndex].yearlyData.length - 1]?.year : year,
                 });
               }
 
@@ -433,7 +433,7 @@ export const BivariateMap = (props: Props) => {
                         title: xAxisIndicator,
                         value: xVal === undefined ? 'NA' : xVal,
                         type: 'color',
-                        year: year === -1 || showMostRecentData ? d.indicators[xIndicatorIndex].yearlyData[d.indicators[xIndicatorIndex].yearlyData.length - 1]?.year : year,
+                        year: xIndicatorIndex === -1 ? undefined : year === -1 || showMostRecentData ? d.indicators[xIndicatorIndex].yearlyData[d.indicators[xIndicatorIndex].yearlyData.length - 1]?.year : year,
                         color,
                         prefix: xIndicatorMetaData?.LabelPrefix,
                         suffix: xIndicatorMetaData?.LabelSuffix,
@@ -442,7 +442,7 @@ export const BivariateMap = (props: Props) => {
                         title: yAxisIndicator,
                         value: yVal === undefined ? 'NA' : yVal,
                         type: 'color',
-                        year: year === -1 || showMostRecentData ? d.indicators[yIndicatorIndex].yearlyData[d.indicators[yIndicatorIndex].yearlyData.length - 1]?.year : year,
+                        year: yIndicatorIndex === -1 ? undefined : year === -1 || showMostRecentData ? d.indicators[yIndicatorIndex].yearlyData[d.indicators[yIndicatorIndex].yearlyData.length - 1]?.year : year,
                         color,
                         prefix: yIndicatorMetaData?.LabelPrefix,
                         suffix: yIndicatorMetaData?.LabelSuffix,
@@ -455,7 +455,7 @@ export const BivariateMap = (props: Props) => {
                         type: 'size',
                         prefix: sizeIndicatorMetaData?.LabelPrefix,
                         suffix: sizeIndicatorMetaData?.LabelSuffix,
-                        year: year === -1 || showMostRecentData ? d.indicators[sizeIndicatorIndex].yearlyData[d.indicators[sizeIndicatorIndex].yearlyData.length - 1]?.year : year,
+                        year: sizeIndicatorIndex === -1 ? undefined : year === -1 || showMostRecentData ? d.indicators[sizeIndicatorIndex].yearlyData[d.indicators[sizeIndicatorIndex].yearlyData.length - 1]?.year : year,
                       });
                     }
 

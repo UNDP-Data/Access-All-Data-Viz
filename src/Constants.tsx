@@ -166,5 +166,5 @@ export const COLOR_SCALES = {
 export const SIGNATURE_SOLUTIONS_LIST: ('All' | 'Energy' | 'Environment' | 'Gender' | 'Governance' | 'Poverty and Inequality' | 'Resilience')[] = ['All', 'Energy', 'Environment', 'Gender', 'Governance', 'Poverty and Inequality', 'Resilience'];
 
 export const DATALINK = process.env.NODE_ENV === 'production' ? 'https://raw.githubusercontent.com/UNDP-Data/Access-All-Data-Data-Repo/main/output_minified.json' : 'https://raw.githubusercontent.com/UNDP-Data/Access-All-Data-Data-Repo/main/output_minified.json';
-export const METADATALINK = process.env.NODE_ENV === 'production' ? 'https://raw.githubusercontent.com/UNDP-Data/Indicators-MetaData/main/indicatorMetaData.json' : 'https://raw.githubusercontent.com/UNDP-Data/Indicators-MetaData/main/indicatorMetaData.json';
+export const METADATALINK = process.env.NODE_ENV === 'production' ? 'https://raw.githubusercontent.com/UNDP-Data/Indicators-MetaData/for-redesign/indicatorMetaData.json' : 'https://raw.githubusercontent.com/UNDP-Data/Indicators-MetaData/for-redesign/indicatorMetaData.json';
 export const COUNTRYTAXONOMYLINK = process.env.NODE_ENV === 'production' ? 'https://raw.githubusercontent.com/UNDP-Data/country-taxonomy-from-azure/main/country_territory_groups.json' : 'https://raw.githubusercontent.com/UNDP-Data/country-taxonomy-from-azure/main/country_territory_groups.json';

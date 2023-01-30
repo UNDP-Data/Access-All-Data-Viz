@@ -10,7 +10,7 @@ import { IndicatorMetaDataWithYear } from '../Types';
 interface Props {
   data: {
     year: number;
-    value?: number | undefined;
+    value?: number;
   }[];
   indicator: IndicatorMetaDataWithYear;
   countryName: string;
