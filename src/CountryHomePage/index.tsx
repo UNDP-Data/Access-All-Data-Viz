@@ -35,7 +35,7 @@ const CountryHomePage = (props:Props) => {
     countryId,
     signatureSolution,
   } = props;
-  const countryFromLink = useParams().country;
+  const countryFromLink = countryId;
   const signatureSolutionFromLink = useParams().signatureSolution;
   const [finalData, setFinalData] = useState<CountryGroupDataType[] | undefined>(undefined);
   const [indicatorsList, setIndicatorsList] = useState<IndicatorMetaDataWithYear[] | undefined>(undefined);
