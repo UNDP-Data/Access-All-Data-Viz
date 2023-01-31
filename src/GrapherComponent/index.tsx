@@ -20,6 +20,7 @@ interface Props {
   indicators: IndicatorMetaDataWithYear[];
   regions: string[];
   countries: CountryListType[];
+  isEmbeded: boolean;
 }
 interface SelectedData {
   selected?: boolean;
@@ -93,6 +94,7 @@ export const GrapherComponent = (props: Props) => {
     indicators,
     regions,
     countries,
+    isEmbeded,
   } = props;
   const {
     graphType,
@@ -236,6 +238,7 @@ export const GrapherComponent = (props: Props) => {
                           indicators={indicators}
                           regions={regions}
                           countries={countries}
+                          isEmbeded={isEmbeded}
                         />
                       )
                   }

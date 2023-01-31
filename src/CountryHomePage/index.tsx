@@ -28,12 +28,14 @@ const VizAreaEl = styled.div`
 interface Props {
   countryId?: string;
   signatureSolution?: string;
+  isEmbeded: boolean;
 }
 
 const CountryHomePage = (props:Props) => {
   const {
     countryId,
     signatureSolution,
+    isEmbeded,
   } = props;
   const countryFromLink = countryId;
   const signatureSolutionFromLink = useParams().signatureSolution;
@@ -261,6 +263,7 @@ const CountryHomePage = (props:Props) => {
                     indicators={indicatorsList}
                     regions={regionList}
                     countries={countryList}
+                    isEmbeded={isEmbeded}
                   />
                 </div>
               </Context.Provider>

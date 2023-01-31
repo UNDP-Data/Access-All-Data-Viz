@@ -18,8 +18,6 @@ const getEl = (embedSelector: string) => {
 const getCountry = (embedSelector: string) => {
   const el = document.querySelector(embedSelector);
   if (!el) {
-    // eslint-disable-next-line no-console
-    console.error(`No div matching selector "${embedSelector}"`);
     return undefined;
   }
   const elClass: string[] = el.className.split('~');
@@ -30,8 +28,6 @@ const getCountry = (embedSelector: string) => {
 const getSS = (embedSelector: string) => {
   const el = document.querySelector(embedSelector);
   if (!el) {
-    // eslint-disable-next-line no-console
-    console.error(`No div matching selector "${embedSelector}"`);
     return undefined;
   }
   const elClass: string[] = el.className.split('~');
@@ -39,12 +35,26 @@ const getSS = (embedSelector: string) => {
   return undefined;
 };
 
-const container = getEl('[data-bucket-embed]');
-const root = createRoot(container!); // createRoot(container!) if you use TypeScript
-root.render(<App
-  countryId={getCountry('[data-bucket-embed]')}
-  signatureSolution={getSS('[data-bucket-embed]')}
-/>);
+const container = getEl('[data-bucket]');
+
+if (container) {
+  const root = createRoot(container!); // createRoot(container!) if you use TypeScript
+  root.render(<App
+    countryId={getCountry('[data-bucket]')}
+    signatureSolution={getSS('[data-bucket]')}
+    isEmbeded={false}
+  />);
+}
+
+const containerEmbeded = getEl('[data-bucket-embed]');
+if (containerEmbeded) {
+  const rootEmbeded = createRoot(containerEmbeded!); // createRoot(container!) if you use TypeScript
+  rootEmbeded.render(<App
+    countryId={getCountry('[data-bucket-embed]')}
+    signatureSolution={getSS('[data-bucket-embed]')}
+    isEmbeded
+  />);
+}
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

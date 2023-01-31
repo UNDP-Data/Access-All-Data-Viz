@@ -13,12 +13,17 @@ interface Props {
   indicators: IndicatorMetaDataWithYear[];
   regions: string[];
   countries: CountryListType[];
+  isEmbeded: boolean;
 }
 
-const El = styled.div`
+interface ElProps {
+  isEmbeded: boolean;
+}
+
+const El = styled.div<ElProps>`
   width: 25%;
   max-width: 30rem;
-  height: calc(100vh - 4rem);
+  height: ${(props) => (props.isEmbeded ? '100vh' : 'calc(100vh - 4rem)')};
   min-height: 46.25rem;
   padding: var(--spacing-07);
   border-right: 1px solid var(--gray-400);
@@ -55,6 +60,7 @@ export const Settings = (props: Props) => {
     indicators,
     regions,
     countries,
+    isEmbeded,
   } = props;
   const {
     graphType,
@@ -111,7 +117,7 @@ export const Settings = (props: Props) => {
     }
   }, [graphType, options]);
   return (
-    <El className='undp-scrollbar'>
+    <El className='undp-scrollbar' isEmbeded={isEmbeded}>
       {
         graphType !== 'dataList'
           ? (

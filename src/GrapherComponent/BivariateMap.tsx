@@ -53,7 +53,7 @@ const TitleEl = styled.h6`
 const XLegendTitle = styled.div`
   text-align: center;
   font-style: normal;
-  font-size: 0.75rem;
+  font-size: 0.75rem !important;
   color: var(--gray-700);
   width:8.125rem;
 `;
@@ -61,7 +61,7 @@ const XLegendTitle = styled.div`
 const YLegendTitle = styled.div`
   text-align: center;
   font-style: normal;
-  font-size: 0.75rem;
+  font-size: 0.75rem !important;
   width:8.125rem;
   color: var(--gray-700);    
   position: absolute;
