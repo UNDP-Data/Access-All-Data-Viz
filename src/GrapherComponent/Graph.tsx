@@ -36,7 +36,7 @@ const El = styled.div<ElProps>`
   flex-grow: 1;
   overflow: auto;
   @media (min-width: 961px) {
-    height: 100vh;
+    height: 80vh;
     min-height: (46.25rem + 4rem);
   }
   @media (max-width: 960px) {

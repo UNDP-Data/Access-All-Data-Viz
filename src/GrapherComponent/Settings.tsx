@@ -23,7 +23,7 @@ interface ElProps {
 const El = styled.div<ElProps>`
   width: 25%;
   max-width: 30rem;
-  height: ${(props) => (props.isEmbeded ? '100vh' : 'calc(100vh - 4rem)')};
+  height: ${(props) => (props.isEmbeded ? '80vh' : 'calc(80vh - 4rem)')};
   min-height: 46.25rem;
   padding: var(--spacing-07);
   border-right: 1px solid var(--gray-400);
