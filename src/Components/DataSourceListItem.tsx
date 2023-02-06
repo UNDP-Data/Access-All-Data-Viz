@@ -116,6 +116,7 @@ export const DataSourceListItem = (props: Props) => {
           filename={`${indicatorData.Indicator.replaceAll(',', '').replaceAll('.', ' ')}.csv`}
           asyncOnClick
           target='_blank'
+          style={{ backgroundImage: 'none' }}
         >
           <div className='undp-button button-tertiary button-arrow'>
             Download Data as CSV
