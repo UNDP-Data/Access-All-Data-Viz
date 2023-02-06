@@ -2,7 +2,6 @@
 import { useState, useEffect } from 'react';
 import flattenDeep from 'lodash.flattendeep';
 import sortedUniq from 'lodash.sorteduniq';
-import styled from 'styled-components';
 import { json } from 'd3-request';
 import uniqBy from 'lodash.uniqby';
 import { queue } from 'd3-queue';
@@ -14,25 +13,15 @@ import {
 } from '../Constants';
 import HomePageContext from './HomePage';
 
-const VizAreaEl = styled.div`
-  display: flex;
-  margin: auto;
-  align-items: center;
-  justify-content: center;
-  height: 10rem;
-`;
-
 interface Props {
   countryId?: string;
   signatureSolution?: string;
-  isEmbeded: boolean;
 }
 
 const HomePage = (props:Props) => {
   const {
     countryId,
     signatureSolution,
-    isEmbeded,
   } = props;
   const queryParams = new URLSearchParams(window.location.search);
   const [finalData, setFinalData] = useState<CountryGroupDataType[] | undefined>(undefined);
@@ -77,16 +66,15 @@ const HomePage = (props:Props) => {
                 indicatorsList={indicatorsList}
                 regionList={regionList}
                 countryList={countryList}
-                isEmbeded={isEmbeded}
                 countryId={countryId}
                 signatureSolution={signatureSolution}
               />
             </div>
           )
           : (
-            <VizAreaEl className='undp-container'>
+            <div className='undp-loader-container undp-container'>
               <div className='undp-loader' />
-            </VizAreaEl>
+            </div>
           )
       }
     </>

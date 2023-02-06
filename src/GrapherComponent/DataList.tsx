@@ -28,8 +28,8 @@ export const DataList = (props: Props) => {
   const countryName = countries[countries.findIndex((d) => d.code === selectedCountry)].name;
   const dataFiltered = data.filter((d) => d['Alpha-3 code'] === selectedCountry)[0].indicators.map((d) => ({ ...d, yearlyData: sortBy(d.yearlyData.filter((el) => el.value !== undefined), 'year') }));
   return (
-    <div>
-      <div className='undp-table-head'>
+    <>
+      <div className='undp-table-head undp-table-head-sticky'>
         <div style={{ width: '50%' }} className='undp-table-head-cell undp-sticky-head-column'>
           Indicator
         </div>
@@ -80,6 +80,6 @@ export const DataList = (props: Props) => {
               </div>
             ) : null))
     }
-    </div>
+    </>
   );
 };

@@ -50,7 +50,7 @@ const ExportExcel = (props: Props) => {
   return (
     <button
       type='button'
-      className='undp-button button-secondary'
+      className='undp-button button-tertiary button-arrow'
       onClick={() => exportToExcel(data)}
     >
       Download Data as XLSX

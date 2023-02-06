@@ -62,41 +62,41 @@ export const DataSourceListItem = (props: Props) => {
   } = props;
 
   return (
-    <>
-      <h5 className='bold undp-typography' style={{ padding: 'var(--spacing-07)' }}>{indicatorData.IndicatorLabelTable}</h5>
-      <div className='flex-div margin-bottom-07' style={{ padding: '0 var(--spacing-07)' }}>
-        <h6 className='undp-typography margin-top-03' style={{ width: '15%', flexShrink: 0 }}>Description</h6>
+    <div className='padding-top-07 padding-bottom-05'>
+      <h5 className='bold undp-typography'>{indicatorData.IndicatorLabelTable}</h5>
+      <div className='flex-div margin-bottom-07' style={{ alignItems: 'baseline' }}>
+        <h6 className='undp-typography margin-top-00 margin-bottom-00' style={{ width: '15%', flexShrink: 0 }}>Description</h6>
         <div>{indicatorData.IndicatorDescription}</div>
       </div>
-      <div className='flex-div margin-bottom-07' style={{ padding: '0 var(--spacing-07)' }}>
-        <h6 className='undp-typography margin-top-03' style={{ width: '15%', flexShrink: 0 }}>Years Available</h6>
+      <div className='flex-div margin-bottom-07' style={{ alignItems: 'baseline' }}>
+        <h6 className='undp-typography margin-top-00 margin-bottom-00' style={{ width: '15%', flexShrink: 0 }}>Years Available</h6>
         <div className='flex-div flex-wrap'>{indicatorData.years.map((d) => <div className='undp-chip undp-chip-small'>{d}</div>)}</div>
       </div>
-      <div className='flex-div margin-bottom-07' style={{ padding: '0 var(--spacing-07)' }}>
-        <h6 className='undp-typography margin-top-03' style={{ width: '15%', flexShrink: 0 }}>Data By</h6>
+      <div className='flex-div margin-bottom-07' style={{ alignItems: 'baseline' }}>
+        <h6 className='undp-typography margin-top-00 margin-bottom-00' style={{ width: '15%', flexShrink: 0 }}>Data By</h6>
         <div>{indicatorData.DataSourceName}</div>
       </div>
-      <div className='flex-div margin-bottom-07' style={{ padding: '0 var(--spacing-07)' }}>
-        <h6 className='undp-typography margin-top-03' style={{ width: '15%', flexShrink: 0 }}>Data Link</h6>
+      <div className='flex-div margin-bottom-07' style={{ alignItems: 'baseline' }}>
+        <h6 className='undp-typography margin-top-00 margin-bottom-00' style={{ width: '15%', flexShrink: 0 }}>Data Link</h6>
         {
-        indicatorData.DataSourceLink !== ''
-          ? (
-            <div>
-              {
-                indicatorData.DataSourceLink.split(';').map((d, i) => (
-                  <div key={i}>
-                    <a href={d} target='_blank' rel='noreferrer' className='undp-style'>
-                      {d}
-                    </a>
-                  </div>
-                ))
-              }
-            </div>
-          )
-          : <div />
-      }
+          indicatorData.DataSourceLink !== ''
+            ? (
+              <div>
+                {
+                  indicatorData.DataSourceLink.split(';').map((d, i) => (
+                    <div key={i}>
+                      <a href={d} target='_blank' rel='noreferrer' className='undp-style'>
+                        {d}
+                      </a>
+                    </div>
+                  ))
+                }
+              </div>
+            )
+            : <div />
+        }
       </div>
-      <div className='flex-div margin-bottom-07' style={{ padding: '0 var(--spacing-07)' }}>
+      <div className='flex-div margin-bottom-00 gap-07'>
         <DownloadExcel
           data={dataTableForExcel(data, indicatorData)}
           indicatorTitle={indicatorData.Indicator}
@@ -117,11 +117,11 @@ export const DataSourceListItem = (props: Props) => {
           asyncOnClick
           target='_blank'
         >
-          <div className='undp-button button-secondary'>
+          <div className='undp-button button-tertiary button-arrow'>
             Download Data as CSV
           </div>
         </CSVLink>
       </div>
-    </>
+    </div>
   );
 };

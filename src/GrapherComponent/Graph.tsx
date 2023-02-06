@@ -1,7 +1,6 @@
 import {
   useContext, useEffect, useRef, useState,
 } from 'react';
-import styled from 'styled-components';
 import { Slider } from 'antd';
 import intersection from 'lodash.intersection';
 import {
@@ -23,66 +22,7 @@ interface Props {
   data: CountryGroupDataType[];
   indicators: IndicatorMetaDataWithYear[];
   countries: CountryListType[];
-  fullWidth: boolean;
 }
-
-interface ElProps {
-  fullWidth: boolean;
-}
-
-const El = styled.div<ElProps>`
-  width: ${(props) => (props.fullWidth ? '100%' : '75%')};
-  box-shadow: var(--shadow-right);
-  flex-grow: 1;
-  overflow: auto;
-  @media (min-width: 961px) {
-    height: 80vh;
-    min-height: (46.25rem + 4rem);
-  }
-  @media (max-width: 960px) {
-    width: 100%;
-  }
-`;
-
-const SliderEl = styled.div`
-  padding: var(--spacing-06) var(--spacing-06) var(--spacing-08) var(--spacing-06);
-  display: flex;
-  align-items: center;
-  background-color: var(--gray-200);
-  border-bottom: 1px solid var(--gray-400);
-  position: sticky;
-  top: 0;
-`;
-
-const ErrorNote = styled.div`
-  padding: 1rem 1.25rem;
-  background-color: var(--light-red);
-  color: var(--dark-red);
-  text-align: center;
-  align-items: center;
-  position: sticky;
-  font-size: 1.5rem;
-  font-weight: bold;
-  top: 0;
-`;
-
-const InfoNote = styled.div`
-  padding: 1rem 1.25rem;
-  background-color: var(--blue-200);
-  color: var(--blue-700);
-  text-align: center;
-  align-items: center;
-  position: sticky;
-  font-size: 1.5rem;
-  font-weight: bold;
-  top: 0;
-`;
-
-const Button = styled.button`
-  background-color: transparent !important;
-  padding: 0 !important;
-  border: none !important;
-`;
 
 const getMarks = (arr: number[]) => {
   const marksTemp: any = {};
@@ -97,7 +37,6 @@ export const Graph = (props: Props) => {
     data,
     indicators,
     countries,
-    fullWidth,
   } = props;
   const {
     year,
@@ -166,22 +105,21 @@ export const Graph = (props: Props) => {
     if (yearForPlay !== undefined) { updateYear(yearForPlay as number); }
   }, [yearForPlay]);
   return (
-    <El
+    <div
       id='graph-node'
-      fullWidth={fullWidth}
-      className='undp-scrollbar'
+      className={`undp-scrollbar graph-el${graphType !== 'barGraph' && graphType !== 'dataList' ? ' no-overflow' : ''}`}
     >
       {
         graphType === 'trendLine' || graphType === 'multiCountryTrendLine' || graphType === 'dataList' ? null
           : commonYears.length > 1 && !showMostRecentData ? (
-            <SliderEl>
-              <Button onClick={() => { setPlay(!play); }} role='button'>
+            <div className='slider-background'>
+              <button className='undp-button button-no-background' type='button' aria-label='Click to play or stop time animation' onClick={() => { setPlay(!play); }}>
                 {
                   play
                     ? <PauseIcon size={24} fill='#D12800' />
                     : <PlayIcon size={24} fill='#D12800' />
                 }
-              </Button>
+              </button>
               <Slider
                 min={marks[Object.keys(marks)[0]]}
                 max={marks[Object.keys(marks)[Object.keys(marks).length - 1]]}
@@ -193,92 +131,94 @@ export const Graph = (props: Props) => {
                 className='undp-slider'
                 tooltip={{ open: true, prefixCls: 'undp-slider-tooltip' }}
               />
-            </SliderEl>
+            </div>
           ) : commonYears.length === 0 || showMostRecentData ? (
-            <ErrorNote>
+            <div className='error-el'>
               {
                 commonYears.length === 0
                   ? 'The data selected are not available for the same years therefore showing the last available data for all the countries.'
                   : 'Showing the last available data for all the countries.'
               }
-            </ErrorNote>
+            </div>
           ) : (
-            <InfoNote>
+            <div className='info-el'>
               The common year for the data selected is
               {' '}
               {commonYears[0]}
-            </InfoNote>
+            </div>
           )
       }
-      {
-        graphType === 'scatterPlot'
-          ? yAxisIndicator
-            ? (
-              <ScatterPlot
-                data={data}
-                indicators={indicators}
-              />
-            ) : null
-          : graphType === 'map'
+      <>
+        {
+          graphType === 'scatterPlot'
             ? yAxisIndicator
               ? (
-                <BivariateMap
+                <ScatterPlot
                   data={data}
                   indicators={indicators}
                 />
-              )
-              : (
-                <UnivariateMap
-                  data={data}
-                  indicators={indicators}
-                />
-              )
-            : graphType === 'barGraph'
-              ? verticalBarLayout ? (
-                <HorizontalBarChart
-                  data={data}
-                  indicators={indicators}
-                />
-              )
-                : (
-                  <BarChart
+              ) : null
+            : graphType === 'map'
+              ? yAxisIndicator
+                ? (
+                  <BivariateMap
                     data={data}
                     indicators={indicators}
                   />
                 )
-              : graphType === 'trendLine'
-                ? yAxisIndicator
-                  ? (
-                    <DualAxisLineChart
-                      data={data}
-                      indicators={indicators}
-                      countries={countries}
-                    />
-                  )
+                : (
+                  <UnivariateMap
+                    data={data}
+                    indicators={indicators}
+                  />
+                )
+              : graphType === 'barGraph'
+                ? verticalBarLayout ? (
+                  <HorizontalBarChart
+                    data={data}
+                    indicators={indicators}
+                  />
+                )
                   : (
-                    <LineChart
+                    <BarChart
                       data={data}
                       indicators={indicators}
-                      countries={countries}
                     />
                   )
-                : graphType === 'dataList'
-                  ? (
-                    <DataList
-                      data={data}
-                      indicators={indicators}
-                      countries={countries}
-                    />
-                  )
-                  : (
-                    <MultiLineChart
-                      data={data}
-                      indicators={indicators}
-                      countries={countries}
-                    />
-                  )
+                : graphType === 'trendLine'
+                  ? yAxisIndicator
+                    ? (
+                      <DualAxisLineChart
+                        data={data}
+                        indicators={indicators}
+                        countries={countries}
+                      />
+                    )
+                    : (
+                      <LineChart
+                        data={data}
+                        indicators={indicators}
+                        countries={countries}
+                      />
+                    )
+                  : graphType === 'dataList'
+                    ? (
+                      <DataList
+                        data={data}
+                        indicators={indicators}
+                        countries={countries}
+                      />
+                    )
+                    : (
+                      <MultiLineChart
+                        data={data}
+                        indicators={indicators}
+                        countries={countries}
+                      />
+                    )
 
-      }
-    </El>
+        }
+      </>
+    </div>
   );
 };

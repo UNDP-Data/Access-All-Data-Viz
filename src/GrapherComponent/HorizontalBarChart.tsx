@@ -37,7 +37,6 @@ export const HorizontalBarChart = (props: Props) => {
     selectedIncomeGroups,
     selectedCountryGroup,
     reverseOrder,
-    selectedCountry,
   } = useContext(Context) as CtxDataType;
   const [selectedColor, setSelectedColor] = useState<string | undefined>(undefined);
   const [hoverData, setHoverData] = useState<HoverDataType | undefined>(undefined);
@@ -63,8 +62,8 @@ export const HorizontalBarChart = (props: Props) => {
           : d.indicators[xIndicatorIndex].yearlyData[d.indicators[xIndicatorIndex].yearlyData.length - 1]?.value;
       const colorVal = colorIndicator === 'Continents' ? d['Group 1']
         : colorIndicator === 'Income Groups' ? d['Income group']
-          : colorIndicator === 'Human Development Index' ? year !== -1 && !showMostRecentData ? d.indicators[colorIndicatorIndex].yearlyData[d.indicators[colorIndicatorIndex].yearlyData.findIndex((el) => el.year === year)]?.value
-            : d.indicators[colorIndicatorIndex].yearlyData[d.indicators[colorIndicatorIndex].yearlyData.length - 1]?.value
+          : colorIndicator === 'Human Development Index' ? year !== -1 && !showMostRecentData ? d.indicators[colorIndicatorIndex]?.yearlyData[d.indicators[colorIndicatorIndex].yearlyData.findIndex((el) => el.year === year)]?.value
+            : d.indicators[colorIndicatorIndex]?.yearlyData[d.indicators[colorIndicatorIndex].yearlyData.length - 1]?.value
             : colorIndicatorIndex === -1 ? undefined
               : year !== -1 && !showMostRecentData ? d.indicators[colorIndicatorIndex].yearlyData[d.indicators[colorIndicatorIndex].yearlyData.findIndex((el) => el.year === year)]?.value
                 : d.indicators[colorIndicatorIndex].yearlyData[d.indicators[colorIndicatorIndex].yearlyData.length - 1]?.value;
@@ -141,7 +140,6 @@ export const HorizontalBarChart = (props: Props) => {
         break;
     }
   }
-
   const colorDomain = colorIndicator === 'Continents' ? CONTINENTS
     : colorIndicator === 'Income Groups' ? INCOME_GROUPS
       : colorIndicator === 'Human Development Index' ? [0.55, 0.7, 0.8]
@@ -149,49 +147,7 @@ export const HorizontalBarChart = (props: Props) => {
           : [0, 0];
   const colorScale = colorIndicator === 'Human Development Index' ? scaleThreshold<string | number, string>().domain(colorDomain).range(COLOR_SCALES.Divergent.Color4).unknown('#666') : scaleOrdinal<string | number, string>().domain(colorDomain).range(colorList).unknown('#666');
   return (
-    <div className='undp-scrollbar' style={{ height: 'calc(100% - 89px)' }}>
-      {
-        selectedCountry ? (
-          <div
-            className='margin-top-05 margin-bottom-05'
-            style={{
-              maxWidth: '70rem',
-              margin: 'auto',
-              backgroundColor: 'var(--white)',
-              padding: 'var(--spacing-05)',
-              textAlign: 'center',
-              fontSize: '1.25rem',
-            }}
-          >
-            {
-              dataFormatted.findIndex((d) => d.countryCode === selectedCountry) !== -1
-                ? (
-                  <>
-                    {dataFormatted[dataFormatted.findIndex((d) => d.countryCode === selectedCountry)].countryName}
-                    {' '}
-                    has
-                    {' '}
-                    {dataFormatted.findIndex((d) => d.countryCode === selectedCountry) + 1 === 1 ? 'the' : dataFormatted.findIndex((d) => d.countryCode === selectedCountry) + 1}
-                    {' '}
-                    {reverseOrder ? 'highest' : 'lowest'}
-                    {' '}
-                    {xAxisIndicator}
-                    {' '}
-                    (out of
-                    {' '}
-                    {dataFormatted.length}
-                    {' '}
-                    countries)
-                  </>
-                ) : (
-                  <>
-                    No data for the selected country
-                  </>
-                )
-            }
-          </div>
-        ) : null
-      }
+    <div className='undp-scrollbar'>
       <svg width='100%' viewBox={`0 0 ${svgWidth} ${svgHeight}`}>
         <text
           x={margin.left}
@@ -202,101 +158,96 @@ export const HorizontalBarChart = (props: Props) => {
         >
           {xIndicatorMetaData.IndicatorLabelTable}
         </text>
-        {
-          selectedCountry ? null
-            : (
-              <g
-                transform={`translate(${margin.left},70)`}
-              >
-                <text
-                  x={0}
-                  y={10}
-                  fontSize={14}
-                  fill='#212121'
-                >
-                  {colorIndicatorMetaData?.IndicatorLabelTable ? colorIndicatorMetaData?.IndicatorLabelTable : colorIndicator}
-                </text>
-                {
-              colorIndicator === 'Human Development Index' ? COLOR_SCALES.Divergent.Color4.map((d, i) => (
-                <g
-                  transform='translate(0,20)'
-                  key={i}
-                  onMouseOver={() => { setSelectedColor(d); }}
-                  onMouseLeave={() => { setSelectedColor(undefined); }}
-                  style={{ cursor: 'pointer' }}
-                >
-                  <rect
-                    x={(i * (graphWidth - 50)) / COLOR_SCALES.Divergent.Color4.length + 1}
-                    y={1}
-                    width={((graphWidth - 50) / COLOR_SCALES.Divergent.Color4.length) - 2}
-                    height={8}
-                    fill={d}
-                    stroke={selectedColor === d ? '#212121' : d}
-                  />
-                  <text
-                    x={((i * (graphWidth - 50)) / COLOR_SCALES.Divergent.Color4.length) + (((graphWidth - 50) / 2) / COLOR_SCALES.Divergent.Color4.length)}
-                    y={25}
-                    textAnchor='middle'
-                    fontSize={12}
-                    fill='#212121'
-                  >
-                    {HDI_LEVELS[i]}
-                  </text>
-                </g>
-              )) : colorDomain.map((d, i) => (
-                <g
-                  transform='translate(0,20)'
-                  key={i}
-                  onMouseOver={() => { setSelectedColor(colorList[i]); }}
-                  onMouseLeave={() => { setSelectedColor(undefined); }}
-                  style={{ cursor: 'pointer' }}
-                >
-                  <rect
-                    x={(i * (graphWidth - 50)) / colorDomain.length + 1}
-                    y={1}
-                    width={((graphWidth - 50) / colorDomain.length) - 2}
-                    height={8}
-                    fill={colorList[i]}
-                    stroke={selectedColor === colorList[i] ? '#212121' : colorList[i]}
-                  />
-                  <text
-                    x={((i * (graphWidth - 50)) / colorDomain.length) + (((graphWidth - 50) / 2) / colorDomain.length)}
-                    y={25}
-                    textAnchor='middle'
-                    fontSize={12}
-                    fill='#212121'
-                  >
-                    {d}
-                  </text>
-                </g>
-              ))
-            }
-                <g
-                  transform='translate(0,20)'
-                >
-                  <rect
-                    x={graphWidth - 40}
-                    y={1}
-                    width={40}
-                    height={8}
-                    fill='#666'
-                    stroke='#666'
-                  />
-                  <text
-                    x={graphWidth - 20}
-                    y={25}
-                    textAnchor='middle'
-                    fontSize={12}
-                    fill='#666'
-                  >
-                    NA
-                  </text>
-                </g>
-              </g>
-            )
-        }
         <g
-          transform={`translate(${margin.left},${selectedCountry ? margin.top - 80 : margin.top})`}
+          transform={`translate(${margin.left},70)`}
+        >
+          <text
+            x={0}
+            y={10}
+            fontSize={14}
+            fill='#212121'
+          >
+            {colorIndicatorMetaData?.IndicatorLabelTable ? colorIndicatorMetaData?.IndicatorLabelTable : colorIndicator}
+          </text>
+          {
+          colorIndicator === 'Human Development Index' ? COLOR_SCALES.Divergent.Color4.map((d, i) => (
+            <g
+              transform='translate(0,20)'
+              key={i}
+              onMouseOver={() => { setSelectedColor(d); }}
+              onMouseLeave={() => { setSelectedColor(undefined); }}
+              style={{ cursor: 'pointer' }}
+            >
+              <rect
+                x={(i * (graphWidth - 50)) / COLOR_SCALES.Divergent.Color4.length + 1}
+                y={1}
+                width={((graphWidth - 50) / COLOR_SCALES.Divergent.Color4.length) - 2}
+                height={8}
+                fill={d}
+                stroke={selectedColor === d ? '#212121' : d}
+              />
+              <text
+                x={((i * (graphWidth - 50)) / COLOR_SCALES.Divergent.Color4.length) + (((graphWidth - 50) / 2) / COLOR_SCALES.Divergent.Color4.length)}
+                y={25}
+                textAnchor='middle'
+                fontSize={12}
+                fill='#212121'
+              >
+                {HDI_LEVELS[i]}
+              </text>
+            </g>
+          )) : colorDomain.map((d, i) => (
+            <g
+              transform='translate(0,20)'
+              key={i}
+              onMouseOver={() => { setSelectedColor(colorList[i]); }}
+              onMouseLeave={() => { setSelectedColor(undefined); }}
+              style={{ cursor: 'pointer' }}
+            >
+              <rect
+                x={(i * (graphWidth - 50)) / colorDomain.length + 1}
+                y={1}
+                width={((graphWidth - 50) / colorDomain.length) - 2}
+                height={8}
+                fill={colorList[i]}
+                stroke={selectedColor === colorList[i] ? '#212121' : colorList[i]}
+              />
+              <text
+                x={((i * (graphWidth - 50)) / colorDomain.length) + (((graphWidth - 50) / 2) / colorDomain.length)}
+                y={25}
+                textAnchor='middle'
+                fontSize={12}
+                fill='#212121'
+              >
+                {d}
+              </text>
+            </g>
+          ))
+        }
+          <g
+            transform='translate(0,20)'
+          >
+            <rect
+              x={graphWidth - 40}
+              y={1}
+              width={40}
+              height={8}
+              fill='#666'
+              stroke='#666'
+            />
+            <text
+              x={graphWidth - 20}
+              y={25}
+              textAnchor='middle'
+              fontSize={12}
+              fill='#666'
+            >
+              NA
+            </text>
+          </g>
+        </g>
+        <g
+          transform={`translate(${margin.left},${margin.top})`}
         >
           {
             xTicks.map((d, i) => (
@@ -350,7 +301,6 @@ export const HorizontalBarChart = (props: Props) => {
                   suffix: colorIndicatorMetaData?.LabelSuffix,
                 });
               }
-
               if (d.xVal === undefined) return null;
               return (
                 <g
@@ -383,7 +333,7 @@ export const HorizontalBarChart = (props: Props) => {
                   }}
                 >
                   <text
-                    fill={selectedCountry ? d.countryCode === selectedCountry ? '#006EB5' : '#D4D6D8' : d.colorVal ? colorScale(d.colorVal) : '#212121'}
+                    fill={d.colorVal ? colorScale(d.colorVal) : '#212121'}
                     y={i * 25}
                     x={0}
                     dx={-15}
@@ -397,13 +347,13 @@ export const HorizontalBarChart = (props: Props) => {
                     y={i * 25}
                     x={widthScale(Math.min(0, d.xVal))}
                     height={20}
-                    fill={selectedCountry ? d.countryCode === selectedCountry ? '#006EB5' : '#D4D6D8' : d.colorVal ? colorScale(d.colorVal) : '#666'}
+                    fill={d.colorVal ? colorScale(d.colorVal) : '#666'}
                     width={Math.abs(widthScale(d.xVal) - widthScale(0))}
                     rx={3}
                     ry={3}
                   />
                   <text
-                    fill={selectedCountry ? d.countryCode === selectedCountry ? '#006EB5' : '#D4D6D8' : '#212121'}
+                    fill='#212121'
                     fontWeight='bold'
                     y={i * 25}
                     x={d.xVal < 0 ? widthScale(Math.min(0, d.xVal)) : widthScale(d.xVal)}

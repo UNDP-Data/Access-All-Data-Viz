@@ -11,7 +11,6 @@ import { DEFAULT_VALUES } from '../Constants';
 interface Props {
   countryId?: string;
   signatureSolution?: string;
-  isEmbeded: boolean;
   indicatorsList: IndicatorMetaDataWithYear[];
   finalData: CountryGroupDataType[];
   regionList: string[];
@@ -22,7 +21,6 @@ const HomePageContext = (props:Props) => {
   const {
     countryId,
     signatureSolution,
-    isEmbeded,
     indicatorsList,
     finalData,
     regionList,
@@ -220,7 +218,6 @@ const HomePageContext = (props:Props) => {
             indicators={indicatorsList}
             regions={regionList}
             countries={countryList}
-            isEmbeded={isEmbeded}
           />
         </div>
       </Context.Provider>

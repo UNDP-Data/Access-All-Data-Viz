@@ -34,8 +34,6 @@ const ErrorNote = styled.div`
   background-color: var(--white);
   border: 1px solid var(--dark-red);
   position: relative;
-  top: 50%;
-  transform: translateY(-50%);
 `;
 
 const InfoNote = styled.div`
@@ -46,8 +44,6 @@ const InfoNote = styled.div`
   background-color: var(--white);
   border: 1px solid var(--gray-300);
   position: relative;
-  top: 50%;
-  transform: translateY(-50%);
 `;
 
 export const LineChart = (props: Props) => {
@@ -117,7 +113,7 @@ export const LineChart = (props: Props) => {
       : (maxYearFiltered as number) - (minYearFiltered as number),
   );
   return (
-    <div style={{ height: '100%', overflowY: 'hidden' }}>
+    <>
       <div style={{ padding: 'var(--spacing-06)', backgroundColor: 'var(--white)', borderBottom: '1px solid var(--gray-400)' }}>
         <Select
           showSearch
@@ -125,7 +121,7 @@ export const LineChart = (props: Props) => {
           placeholder='Please select a country'
           onChange={(d) => { updateTrendChartCountry(d); }}
           disabled={selectedCountry !== undefined}
-          value={countries[countries.findIndex((d) => d.code === selectedCountry)].name || trendChartCountry}
+          value={countries[countries.findIndex((d) => d.code === selectedCountry)]?.name || trendChartCountry}
         >
           {
             countries.map((d) => d.name).map((d) => (
@@ -134,7 +130,7 @@ export const LineChart = (props: Props) => {
           }
         </Select>
       </div>
-      <div style={{ height: 'calc(100% - 89px)' }}>
+      <>
         {
           (trendChartCountry || selectedCountry) && dataFilterd.length > 0
             ? (
@@ -346,10 +342,10 @@ export const LineChart = (props: Props) => {
             </ErrorNote>
           ) : null
         }
-      </div>
+      </>
       {
         hoverData ? <Tooltip data={hoverData} /> : null
       }
-    </div>
+    </>
   );
 };

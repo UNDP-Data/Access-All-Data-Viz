@@ -1,7 +1,6 @@
 import {
   useContext, useEffect, useRef, useState,
 } from 'react';
-import styled from 'styled-components';
 import { geoEqualEarth } from 'd3-geo';
 import { zoom } from 'd3-zoom';
 import { format } from 'd3-format';
@@ -21,26 +20,6 @@ interface Props {
   data: CountryGroupDataType[];
   indicators: IndicatorMetaDataWithYear[];
 }
-
-const LegendEl = styled.div`
-  padding: 0.75rem 0.75rem 0 0.75rem;
-  background-color: rgba(255,255,255, 0.75);
-  width: 20rem;
-  margin-left: 0.75rem;
-  margin-top: -1.25rem;
-  position: relative;
-  z-index: 5;
-  @media (min-width: 961px) {
-    transform: translateY(-100%);
-  }
-`;
-
-const TitleEl = styled.h6`
-  width: 100%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-`;
 
 export const UnivariateMap = (props: Props) => {
   const {
@@ -94,11 +73,7 @@ export const UnivariateMap = (props: Props) => {
     mapSvgSelect.call(zoomBehaviour as any);
   }, [svgHeight, svgWidth]);
   return (
-    <div style={{
-      height: 'calc(100% - 89px)',
-      overflowY: 'hidden',
-    }}
-    >
+    <>
       <svg width='100%' height='100%' viewBox={`0 0 ${svgWidth} ${svgHeight}`} ref={mapSvg}>
         <g ref={mapG}>
           {
@@ -407,79 +382,85 @@ export const UnivariateMap = (props: Props) => {
           }
         </g>
       </svg>
-      <LegendEl>
-        {
-          sizeIndicator
-            ? (
-              <div className='margin-bottom-07'>
-                <TitleEl className='undp-typography margin-bottom-03'>{sizeIndicatorMetaData.IndicatorLabelTable}</TitleEl>
-                <svg width='135' height='90' viewBox='0 0 175 100' fill='none' xmlns='http://www.w3.org/2000/svg'>
-                  <text fontSize={12} fontWeight={700} textAnchor='middle' fill='#212121' x={4} y={95}>0</text>
-                  <text fontSize={12} fontWeight={700} textAnchor='middle' fill='#212121' x={130} y={95}>{format('~s')(radiusScale.invert(40))}</text>
-                  <path d='M4 41L130 0V80L4 41Z' fill='#E9ECF6' />
-                  <circle cx='4' cy='41' r='0.25' fill='white' stroke='#212121' strokeWidth='2' />
-                  <circle cx='130' cy='41' r='40' fill='white' stroke='#212121' strokeWidth='2' />
-                </svg>
-              </div>
-            )
-            : null
-        }
-        <TitleEl className='undp-typography margin-bottom-03'>{xIndicatorMetaData.IndicatorLabelTable}</TitleEl>
-        <svg width='100%' viewBox='0 0 320 30'>
-          <g>
-            {
-              valueArray.map((d, i) => (
-                <g
-                  key={i}
-                  onMouseOver={() => { setSelectedColor(colorArray[i]); }}
-                  onMouseLeave={() => { setSelectedColor(undefined); }}
-                  style={{ cursor: 'pointer' }}
-                >
-                  <rect
-                    x={xIndicatorMetaData.IsCategorical ? (i * 320) / valueArray.length + 1 : (i * 320) / colorArray.length + 1}
-                    y={1}
-                    width={xIndicatorMetaData.IsCategorical ? (320 / valueArray.length) - 2 : (320 / colorArray.length) - 2}
-                    height={8}
-                    fill={colorArray[i]}
-                    stroke={selectedColor === colorArray[i] ? '#212121' : colorArray[i]}
-                  />
-                  <text
-                    x={xIndicatorMetaData.IsCategorical ? ((i * 320) / valueArray.length) + (160 / valueArray.length) : ((i + 1) * 320) / colorArray.length}
-                    y={25}
-                    textAnchor='middle'
-                    fontSize={12}
-                    fill='#212121'
-                  >
-                    {Math.abs(d) < 1 ? d : format('~s')(d).replace('G', 'B')}
-                  </text>
+      <div className='bivariate-legend-container'>
+        <div className='univariate-legend-el'>
+          {
+            sizeIndicator
+              ? (
+                <div>
+                  <div className='univariate-map-legend-text'>{sizeIndicatorMetaData.IndicatorLabelTable}</div>
+                  <svg width='135' height='90' viewBox='0 0 175 100' fill='none' xmlns='http://www.w3.org/2000/svg'>
+                    <text fontSize={12} fontWeight={700} textAnchor='middle' fill='#212121' x={4} y={95}>0</text>
+                    <text fontSize={12} fontWeight={700} textAnchor='middle' fill='#212121' x={130} y={95}>{format('~s')(radiusScale.invert(40))}</text>
+                    <path d='M4 41L130 0V80L4 41Z' fill='#E9ECF6' />
+                    <circle cx='4' cy='41' r='0.25' fill='white' stroke='#212121' strokeWidth='2' />
+                    <circle cx='130' cy='41' r='40' fill='white' stroke='#212121' strokeWidth='2' />
+                  </svg>
+                </div>
+              )
+              : null
+          }
+          <div className='univariate-map-color-legend-element'>
+            <div>
+              <div className='univariate-map-legend-text'>{xIndicatorMetaData.IndicatorLabelTable}</div>
+              <svg width='100%' viewBox='0 0 320 30'>
+                <g>
+                  {
+                    valueArray.map((d, i) => (
+                      <g
+                        key={i}
+                        onMouseOver={() => { setSelectedColor(colorArray[i]); }}
+                        onMouseLeave={() => { setSelectedColor(undefined); }}
+                        style={{ cursor: 'pointer' }}
+                      >
+                        <rect
+                          x={xIndicatorMetaData.IsCategorical ? (i * 320) / valueArray.length + 1 : (i * 320) / colorArray.length + 1}
+                          y={1}
+                          width={xIndicatorMetaData.IsCategorical ? (320 / valueArray.length) - 2 : (320 / colorArray.length) - 2}
+                          height={8}
+                          fill={colorArray[i]}
+                          stroke={selectedColor === colorArray[i] ? '#212121' : colorArray[i]}
+                        />
+                        <text
+                          x={xIndicatorMetaData.IsCategorical ? ((i * 320) / valueArray.length) + (160 / valueArray.length) : ((i + 1) * 320) / colorArray.length}
+                          y={25}
+                          textAnchor='middle'
+                          fontSize={12}
+                          fill='#212121'
+                        >
+                          {Math.abs(d) < 1 ? d : format('~s')(d).replace('G', 'B')}
+                        </text>
+                      </g>
+                    ))
+                  }
+                  {
+                    xIndicatorMetaData.IsCategorical ? null
+                      : (
+                        <g>
+                          <rect
+                            onMouseOver={() => { setSelectedColor(colorArray[valueArray.length]); }}
+                            onMouseLeave={() => { setSelectedColor(undefined); }}
+                            x={((valueArray.length * 320) / colorArray.length) + 1}
+                            y={1}
+                            width={(320 / colorArray.length) - 2}
+                            height={8}
+                            fill={colorArray[valueArray.length]}
+                            stroke={selectedColor === colorArray[valueArray.length] ? '#212121' : colorArray[valueArray.length]}
+                            strokeWidth={1}
+                            style={{ cursor: 'pointer' }}
+                          />
+                        </g>
+                      )
+                  }
                 </g>
-              ))
-            }
-            {
-              xIndicatorMetaData.IsCategorical ? null
-                : (
-                  <g>
-                    <rect
-                      onMouseOver={() => { setSelectedColor(colorArray[valueArray.length]); }}
-                      onMouseLeave={() => { setSelectedColor(undefined); }}
-                      x={((valueArray.length * 320) / colorArray.length) + 1}
-                      y={1}
-                      width={(320 / colorArray.length) - 2}
-                      height={8}
-                      fill={colorArray[valueArray.length]}
-                      stroke={selectedColor === colorArray[valueArray.length] ? '#212121' : colorArray[valueArray.length]}
-                      strokeWidth={1}
-                      style={{ cursor: 'pointer' }}
-                    />
-                  </g>
-                )
-            }
-          </g>
-        </svg>
-      </LegendEl>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
       {
         hoverData ? <Tooltip data={hoverData} /> : null
       }
-    </div>
+    </>
   );
 };

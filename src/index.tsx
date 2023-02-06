@@ -35,24 +35,12 @@ const getSS = (embedSelector: string) => {
   return undefined;
 };
 
-const container = getEl('[data-bucket]');
-
-if (container) {
-  const root = createRoot(container!); // createRoot(container!) if you use TypeScript
-  root.render(<App
-    countryId={getCountry('[data-bucket]')}
-    signatureSolution={getSS('[data-bucket]')}
-    isEmbeded={false}
-  />);
-}
-
 const containerEmbeded = getEl('[data-bucket-embed]');
 if (containerEmbeded) {
   const rootEmbeded = createRoot(containerEmbeded!); // createRoot(container!) if you use TypeScript
   rootEmbeded.render(<App
     countryId={getCountry('[data-bucket-embed]')}
     signatureSolution={getSS('[data-bucket-embed]')}
-    isEmbeded
   />);
 }
 

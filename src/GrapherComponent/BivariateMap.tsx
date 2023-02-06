@@ -1,7 +1,6 @@
 import {
   useContext, useEffect, useRef, useState,
 } from 'react';
-import styled from 'styled-components';
 import { geoEqualEarth } from 'd3-geo';
 import { zoom } from 'd3-zoom';
 import { format } from 'd3-format';
@@ -23,68 +22,6 @@ interface Props {
   data: CountryGroupDataType[];
   indicators: IndicatorMetaDataWithYear[];
 }
-
-const El = styled.div`
-  height: calc(100% - 89px);
-  overflow-y: hidden;
-`;
-
-const LegendEl = styled.div`
-  padding: 0.75rem;
-  margin-left: 0.75rem;
-  margin-top: -1.25rem;
-  position: relative;
-  z-index: 5;
-  padding-right: 5rem;
-`;
-
-const LegendSizeEl = styled.div`
-  padding: 0.75rem;
-  margin-left: 0.75rem;
-  width: 10rem;
-  position: relative;
-  z-index: 5;
-`;
-
-const TitleEl = styled.h6`
-  width: 100%;
-`;
-
-const XLegendTitle = styled.div`
-  text-align: center;
-  font-style: normal;
-  font-size: 0.75rem !important;
-  color: var(--gray-700);
-  width:8.125rem;
-`;
-
-const YLegendTitle = styled.div`
-  text-align: center;
-  font-style: normal;
-  font-size: 0.75rem !important;
-  width:8.125rem;
-  color: var(--gray-700);    
-  position: absolute;
-  top: 80px;
-  transform: translateY(-50%) translateX(50%) rotate(-90deg) translateY(100%);
-`;
-
-const LegendContainer = styled.div`
-  display: flex;
-  margin-top: -2rem;
-  pointer-events: none;
-  margin-left: 1rem;
-  padding-top: 1rem;
-  @media (min-width: 961px) {
-    transform: translateY(-100%);
-    width: fit-content;
-    background-color: rgba(255,255,255, 0.75);
-  }
-`;
-
-const G = styled.g`
-  pointer-events: none;
-`;
 
 export const BivariateMap = (props: Props) => {
   const {
@@ -164,8 +101,8 @@ export const BivariateMap = (props: Props) => {
     mapSvgSelect.call(zoomBehaviour as any);
   }, [svgHeight, svgWidth]);
   return (
-    <El>
-      <svg width='100%' height='100%' viewBox={`0 0 ${svgWidth} ${svgHeight}`} ref={mapSvg}>
+    <>
+      <svg viewBox={`0 0 ${svgWidth} ${svgHeight}`} style={{ height: '-webkit-fill-available' }} ref={mapSvg}>
         <g ref={mapG}>
           {
             (World as any).features.map((d: any, i: number) => {
@@ -351,7 +288,8 @@ export const BivariateMap = (props: Props) => {
           {
             hoverData
               ? (World as any).features.filter((d: any) => d.properties.ISO3 === data[data.findIndex((el) => el['Country or Area'] === hoverData?.country)]['Alpha-3 code']).map((d: any, i: number) => (
-                <G
+                <g
+                  style={{ pointerEvents: 'none' }}
                   key={i}
                   opacity={!selectedColor ? 1 : 0}
                 >
@@ -398,7 +336,7 @@ export const BivariateMap = (props: Props) => {
                       );
                     })
                   }
-                </G>
+                </g>
               )) : null
           }
           {
@@ -505,109 +443,111 @@ export const BivariateMap = (props: Props) => {
           }
         </g>
       </svg>
-      <LegendContainer>
-        <LegendEl>
-          <div
-            style={{
-              display: 'flex',
-              pointerEvents: 'auto',
-            }}
-          >
-            <YLegendTitle>{yIndicatorMetaData.IndicatorLabelTable}</YLegendTitle>
-            <div>
-              <svg width='135px' viewBox='0 0 135 135'>
-                <g>
-                  {
-                  COLOR_SCALES[`Bivariate${Math.max(Math.min((yKey.length + 1), 5), 4) as 4 | 5}x${Math.max(Math.min((xKey.length + 1), 5), 4) as 4 | 5}`].map((d, i) => (
-                    <g
-                      key={i}
-                      transform={`translate(0,${100 - (i * 25)})`}
-                    >
-                      {
-                        d.map((el, j) => (
-                          <rect
-                            key={j}
-                            y={1}
-                            x={(j * 25) + 1}
-                            fill={el}
-                            width={23}
-                            height={23}
-                            strokeWidth={selectedColor === el ? 2 : 0.25}
-                            stroke={selectedColor === el ? '#212121' : '#fff'}
-                            style={{ cursor: 'pointer' }}
-                            onMouseOver={() => { setSelectedColor(el); }}
-                            onMouseLeave={() => { setSelectedColor(undefined); }}
-                          />
-                        ))
-                      }
-                    </g>
-                  ))
-                }
-                  <g
-                    transform='translate(0,125)'
-                  >
+      <div className='bivariate-legend-container'>
+        <div className='bivariate-legend-el'>
+          <div className='bivariate-map-color-legend-element'>
+            <div
+              style={{
+                display: 'flex',
+                pointerEvents: 'auto',
+              }}
+            >
+              <div>
+                <svg width='135px' viewBox='0 0 135 135'>
+                  <g>
                     {
-                      xKey.map((el, j) => (
-                        <text
-                          key={j}
-                          y={10}
-                          x={xKey.length === 5 ? (j * 25) + 12.5 : (j + 1) * 25}
-                          fill='#212121'
-                          fontSize={10}
-                          textAnchor='middle'
-                        >
-                          {typeof el === 'string' || el < 1 ? el : format('~s')(el)}
-                        </text>
-                      ))
-                    }
-                  </g>
-                  {
-                    yKey.map((el, j) => (
+                    COLOR_SCALES[`Bivariate${Math.max(Math.min((yKey.length + 1), 5), 4) as 4 | 5}x${Math.max(Math.min((xKey.length + 1), 5), 4) as 4 | 5}`].map((d, i) => (
                       <g
-                        key={j}
-                        transform={`translate(${(Math.max(Math.min((xKey.length + 1), 5), 4) * 25) + 10},${yKey.length !== 5 ? 100 - (j * 25) : 100 - (j * 25) + 12.5})`}
+                        key={i}
+                        transform={`translate(0,${100 - (i * 25)})`}
                       >
-                        <text
-                          x={0}
-                          transform='rotate(-90)'
-                          y={0}
-                          fill='#212121'
-                          fontSize={10}
-                          textAnchor='middle'
-                        >
-                          {typeof el === 'string' || el < 1 ? el : format('~s')(el)}
-                        </text>
+                        {
+                          d.map((el, j) => (
+                            <rect
+                              key={j}
+                              y={1}
+                              x={(j * 25) + 1}
+                              fill={el}
+                              width={23}
+                              height={23}
+                              strokeWidth={selectedColor === el ? 2 : 0.25}
+                              stroke={selectedColor === el ? '#212121' : '#fff'}
+                              style={{ cursor: 'pointer' }}
+                              onMouseOver={() => { setSelectedColor(el); }}
+                              onMouseLeave={() => { setSelectedColor(undefined); }}
+                            />
+                          ))
+                        }
                       </g>
                     ))
                   }
-                </g>
-              </svg>
-              <XLegendTitle>{xIndicatorMetaData.IndicatorLabelTable}</XLegendTitle>
+                    <g
+                      transform='translate(0,125)'
+                    >
+                      {
+                        xKey.map((el, j) => (
+                          <text
+                            key={j}
+                            y={10}
+                            x={xKey.length === 5 ? (j * 25) + 12.5 : (j + 1) * 25}
+                            fill='#212121'
+                            fontSize={10}
+                            textAnchor='middle'
+                          >
+                            {typeof el === 'string' || el < 1 ? el : format('~s')(el)}
+                          </text>
+                        ))
+                      }
+                    </g>
+                    {
+                      yKey.map((el, j) => (
+                        <g
+                          key={j}
+                          transform={`translate(${(Math.max(Math.min((xKey.length + 1), 5), 4) * 25) + 10},${yKey.length !== 5 ? 100 - (j * 25) : 100 - (j * 25) + 12.5})`}
+                        >
+                          <text
+                            x={0}
+                            transform='rotate(-90)'
+                            y={0}
+                            fill='#212121'
+                            fontSize={10}
+                            textAnchor='middle'
+                          >
+                            {typeof el === 'string' || el < 1 ? el : format('~s')(el)}
+                          </text>
+                        </g>
+                      ))
+                    }
+                  </g>
+                </svg>
+                <div className='bivariant-map-primary-legend-text'>{xIndicatorMetaData.IndicatorLabelTable}</div>
+              </div>
+              <div className='bivariate-map-secondary-legend-text'>{yIndicatorMetaData.IndicatorLabelTable}</div>
             </div>
           </div>
-        </LegendEl>
-        {
-          sizeIndicator
-            ? (
-              <LegendSizeEl>
-                <>
-                  <TitleEl className='margin-bottom-00 margin-top-00'>{sizeIndicatorMetaData.IndicatorLabelTable}</TitleEl>
-                  <svg width='135' height='90' viewBox='0 0 175 100' fill='none' xmlns='http://www.w3.org/2000/svg'>
-                    <text fontSize={12} fontWeight={700} textAnchor='middle' fill='#212121' x={4} y={95}>0</text>
-                    <text fontSize={12} fontWeight={700} textAnchor='middle' fill='#212121' x={130} y={95}>{radiusScale.invert(40) > 1 ? format('~s')(radiusScale.invert(40)) : radiusScale.invert(40)}</text>
-                    <path d='M4 41L130 0V80L4 41Z' fill='#E9ECF6' />
-                    <circle cx='4' cy='41' r='0.25' fill='white' stroke='#212121' strokeWidth='2' />
-                    <circle cx='130' cy='41' r='40' fill='white' stroke='#212121' strokeWidth='2' />
-                  </svg>
-                </>
-              </LegendSizeEl>
-            )
-            : null
-        }
-      </LegendContainer>
+          {
+            sizeIndicator
+              ? (
+                <div className='bivariate-map-size-legend-element'>
+                  <>
+                    <div className='bivariate-map-size-legend-text'>{sizeIndicatorMetaData.IndicatorLabelTable}</div>
+                    <svg width='135' height='90' viewBox='0 0 175 100' fill='none' xmlns='http://www.w3.org/2000/svg'>
+                      <text fontSize={12} fontWeight={700} textAnchor='middle' fill='#212121' x={4} y={95}>0</text>
+                      <text fontSize={12} fontWeight={700} textAnchor='middle' fill='#212121' x={130} y={95}>{radiusScale.invert(40) > 1 ? format('~s')(radiusScale.invert(40)) : radiusScale.invert(40)}</text>
+                      <path d='M4 41L130 0V80L4 41Z' fill='#E9ECF6' />
+                      <circle cx='4' cy='41' r='0.25' fill='white' stroke='#212121' strokeWidth='2' />
+                      <circle cx='130' cy='41' r='40' fill='white' stroke='#212121' strokeWidth='2' />
+                    </svg>
+                  </>
+                </div>
+              )
+              : null
+          }
+        </div>
+      </div>
       {
         hoverData ? <Tooltip data={hoverData} /> : null
       }
-    </El>
+    </>
   );
 };
