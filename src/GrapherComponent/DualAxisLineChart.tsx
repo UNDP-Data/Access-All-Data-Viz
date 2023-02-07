@@ -1,5 +1,4 @@
 import { useContext, useState } from 'react';
-import styled from 'styled-components';
 import { line, curveMonotoneX } from 'd3-shape';
 import { scaleLinear } from 'd3-scale';
 import maxBy from 'lodash.maxby';
@@ -24,28 +23,6 @@ interface DataFormattedType {
   param1?: number;
   param2?: number;
 }
-
-const ErrorNote = styled.div`
-  width: 80%;
-  margin: auto;
-  padding: 1rem;
-  font-size: 1.25rem;
-  color: var(--dark-red);
-  text-align: center;
-  background-color: var(--white);
-  border: 1px solid var(--dark-red);
-  position: relative;
-`;
-
-const InfoNote = styled.div`
-  width: 80%;
-  margin: auto;
-  text-align: center;
-  padding: 1rem;
-  background-color: var(--white);
-  border: 1px solid var(--gray-300);
-  position: relative;
-`;
 
 export const DualAxisLineChart = (props: Props) => {
   const {
@@ -91,8 +68,8 @@ export const DualAxisLineChart = (props: Props) => {
   for (let i = minYear; i < maxYear + 1; i += 1) {
     dataFormatted.push({
       year: i,
-      param1: countryData?.indicators[xIndicatorIndex].yearlyData[countryData?.indicators[xIndicatorIndex].yearlyData.findIndex((d) => d.year === i)]?.value,
-      param2: countryData?.indicators[yIndicatorIndex].yearlyData[countryData?.indicators[yIndicatorIndex].yearlyData.findIndex((d) => d.year === i)]?.value,
+      param1: xIndicatorIndex !== -1 ? countryData?.indicators[xIndicatorIndex]?.yearlyData[countryData?.indicators[xIndicatorIndex].yearlyData.findIndex((d) => d.year === i)]?.value : undefined,
+      param2: yIndicatorIndex !== -1 ? countryData?.indicators[yIndicatorIndex]?.yearlyData[countryData?.indicators[yIndicatorIndex].yearlyData.findIndex((d) => d.year === i)]?.value : undefined,
     });
   }
   const minParam1: number = minBy(dataFormatted, (d) => d.param1)?.param1 ? minBy(dataFormatted, (d) => d.param1)?.param1 as number > 0 ? 0 : minBy(dataFormatted, (d) => d.param1)?.param1 as number : 0;
@@ -435,7 +412,7 @@ export const DualAxisLineChart = (props: Props) => {
         }
         {
           !trendChartCountry && !selectedCountry ? (
-            <InfoNote>
+            <div className='center-area-info-el'>
               <h5 className='undp-typography'>Please select a country to see the trend for that country</h5>
               <Select
                 showSearch
@@ -450,16 +427,16 @@ export const DualAxisLineChart = (props: Props) => {
                   ))
                 }
               </Select>
-            </InfoNote>
+            </div>
           ) : null
         }
         {
           dataFilterd.length === 0 && trendChartCountry ? (
-            <ErrorNote>
+            <div className='center-area-error-el'>
               No data available for
               {' '}
               {trendChartCountry}
-            </ErrorNote>
+            </div>
           ) : null
         }
       </>

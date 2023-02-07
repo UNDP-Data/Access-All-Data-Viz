@@ -1,5 +1,4 @@
 import { useContext, useState } from 'react';
-import styled from 'styled-components';
 import { line, curveMonotoneX } from 'd3-shape';
 import { scaleLinear } from 'd3-scale';
 import maxBy from 'lodash.maxby';
@@ -23,28 +22,6 @@ interface DataFormattedType {
   year: number;
   param?: number;
 }
-
-const ErrorNote = styled.div`
-  width: 80%;
-  margin: auto;
-  padding: 1rem 2rem;
-  font-size: 1.25rem;
-  color: var(--dark-red);
-  text-align: center;
-  background-color: var(--white);
-  border: 1px solid var(--dark-red);
-  position: relative;
-`;
-
-const InfoNote = styled.div`
-  width: 80%;
-  margin: auto;
-  text-align: center;
-  padding: 2rem;
-  background-color: var(--white);
-  border: 1px solid var(--gray-300);
-  position: relative;
-`;
 
 export const LineChart = (props: Props) => {
   const {
@@ -86,7 +63,7 @@ export const LineChart = (props: Props) => {
   for (let i = minYear; i < maxYear + 1; i += 1) {
     dataFormatted.push({
       year: i,
-      param: countryData?.indicators[xIndicatorIndex].yearlyData[countryData?.indicators[xIndicatorIndex].yearlyData.findIndex((d) => d.year === i)]?.value,
+      param: xIndicatorIndex !== -1 ? countryData?.indicators[xIndicatorIndex].yearlyData[countryData?.indicators[xIndicatorIndex].yearlyData.findIndex((d) => d.year === i)]?.value : undefined,
     });
   }
   const minParam: number = minBy(dataFormatted, (d) => d.param)?.param ? minBy(dataFormatted, (d) => d.param)?.param as number > 0 ? 0 : minBy(dataFormatted, (d) => d.param)?.param as number : 0;
@@ -315,7 +292,7 @@ export const LineChart = (props: Props) => {
         }
         {
           !trendChartCountry && !selectedCountry ? (
-            <InfoNote>
+            <div className='center-area-info-el'>
               <h5 className='undp-typography'>Please select a country to see the trend for that country</h5>
               <Select
                 showSearch
@@ -330,16 +307,16 @@ export const LineChart = (props: Props) => {
                   ))
                 }
               </Select>
-            </InfoNote>
+            </div>
           ) : null
         }
         {
           dataFilterd.length === 0 && trendChartCountry ? (
-            <ErrorNote>
+            <div className='center-area-error-el'>
               No data available for
               {' '}
               {trendChartCountry}
-            </ErrorNote>
+            </div>
           ) : null
         }
       </>

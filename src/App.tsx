@@ -16,7 +16,7 @@ const App = (props:Props) => {
       {
         countryId
           ? <CountryHomePage countryId={countryId} />
-          : <HomePage countryId={countryId} signatureSolution={signatureSolution} />
+          : <HomePage signatureSolution={signatureSolution} />
       }
     </div>
   );

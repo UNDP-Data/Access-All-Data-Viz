@@ -33,6 +33,8 @@ export const Settings = (props: Props) => {
     selectedRegions,
     reverseOrder,
     selectedCountry,
+    dataListCountry,
+    signatureSolution,
     signatureSolutionForDataList,
     updateSelectedCountryGroup,
     updateColorIndicator,
@@ -50,6 +52,7 @@ export const Settings = (props: Props) => {
     updateReverseOrder,
     verticalBarLayout,
     updateBarLayout,
+    updateDataListCountry,
     updateSignatureSolutionForDataList,
   } = useContext(Context) as CtxDataType;
   const options = graphType === 'scatterPlot'
@@ -109,25 +112,46 @@ export const Settings = (props: Props) => {
                 </div>
               )
               : (
-                <div className='settings-option-div'>
-                  <p className='label'>
-                    Filter by Signature Solutions
-                  </p>
-                  <Select
-                    showSearch
-                    className='undp-select'
-                    placeholder='Please select'
-                    value={signatureSolutionForDataList}
-                    onChange={(d) => { updateSignatureSolutionForDataList(d as 'All' | 'Energy' | 'Environment' | 'Gender' | 'Governance' | 'Poverty and Inequality' | 'Resilience'); }}
-                    defaultValue={DEFAULT_VALUES.firstMetric}
-                  >
-                    {
-                      SIGNATURE_SOLUTIONS_LIST.map((d) => (
-                        <Select.Option className='undp-select-option' key={d}>{d}</Select.Option>
-                      ))
-                    }
-                  </Select>
-                </div>
+                <>
+                  <div className='settings-option-div'>
+                    <p className='label'>
+                      Select a Country
+                    </p>
+                    <Select
+                      showSearch
+                      className='undp-select'
+                      placeholder='Please select a country'
+                      value={selectedCountry || dataListCountry}
+                      onChange={(d) => { updateDataListCountry(d); }}
+                      disabled={selectedCountry !== undefined}
+                    >
+                      {
+                        countries.map((d) => d.name).map((d) => (
+                          <Select.Option className='undp-select-option' key={d}>{d}</Select.Option>
+                        ))
+                      }
+                    </Select>
+                  </div>
+                  <div className='settings-option-div'>
+                    <p className='label'>
+                      Filter by Signature Solutions
+                    </p>
+                    <Select
+                      showSearch
+                      className='undp-select'
+                      placeholder='Please select'
+                      value={signatureSolution || signatureSolutionForDataList}
+                      disabled={signatureSolution !== undefined}
+                      onChange={(d) => { updateSignatureSolutionForDataList(d as 'All' | 'Energy' | 'Environment' | 'Gender' | 'Governance' | 'Poverty and Inequality' | 'Resilience'); }}
+                    >
+                      {
+                        SIGNATURE_SOLUTIONS_LIST.map((d) => (
+                          <Select.Option className='undp-select-option' key={d}>{d}</Select.Option>
+                        ))
+                      }
+                    </Select>
+                  </div>
+                </>
               )
           }
           {
@@ -432,10 +456,10 @@ export const Settings = (props: Props) => {
                     onChange={(d: string[]) => { updateSelectedCountries(d); updateMultiCountrytrendChartCountries(d); }}
                   >
                     {
-                    countries.map((d) => d.name).map((d) => (
-                      <Select.Option className='undp-select-option' key={d}>{d}</Select.Option>
-                    ))
-                  }
+                      countries.map((d) => d.name).map((d) => (
+                        <Select.Option className='undp-select-option' key={d}>{d}</Select.Option>
+                      ))
+                    }
                   </Select>
                 </div>
               </div>

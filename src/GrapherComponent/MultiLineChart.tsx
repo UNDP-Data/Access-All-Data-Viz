@@ -1,5 +1,4 @@
 import { useContext, useState } from 'react';
-import styled from 'styled-components';
 import { line, curveMonotoneX } from 'd3-shape';
 import { scaleLinear } from 'd3-scale';
 import max from 'lodash.max';
@@ -24,28 +23,6 @@ interface DataFormattedType {
   year: number;
   param?: number;
 }
-
-const ErrorNote = styled.div`
-  width: 80%;
-  margin: auto;
-  padding: 1rem;
-  font-size: 1.25rem;
-  color: var(--dark-red);
-  text-align: center;
-  background-color: var(--white);
-  border: 1px solid var(--dark-red);
-  position: relative;
-`;
-
-const InfoNote = styled.div`
-  width: 80%;
-  margin: auto;
-  text-align: center;
-  padding: 1rem;
-  background-color: var(--white);
-  border: 1px solid var(--gray-300);
-  position: relative;
-`;
 
 export const MultiLineChart = (props: Props) => {
   const {
@@ -341,7 +318,7 @@ export const MultiLineChart = (props: Props) => {
         }
         {
           !multiCountrytrendChartCountries ? (
-            <InfoNote>
+            <div className='center-area-info-el'>
               <>Please select a country above to see the trend for that country</>
               <Select
                 showSearch
@@ -356,12 +333,12 @@ export const MultiLineChart = (props: Props) => {
                   ))
                 }
               </Select>
-            </InfoNote>
+            </div>
           ) : null
         }
         {
           multiCountrytrendChartCountries.length === 0 ? (
-            <InfoNote>
+            <div className='center-area-info-el'>
               <h5 className='undp-typography'>Please select countries to see their trends</h5>
               <Select
                 showSearch
@@ -378,14 +355,14 @@ export const MultiLineChart = (props: Props) => {
                   ))
                 }
               </Select>
-            </InfoNote>
+            </div>
           ) : null
         }
         {
           valueArray.length === 0 && multiCountrytrendChartCountries.length > 0 ? (
-            <ErrorNote>
+            <div className='center-area-error-el'>
               No data available for the countries selected
-            </ErrorNote>
+            </div>
           ) : null
         }
       </>

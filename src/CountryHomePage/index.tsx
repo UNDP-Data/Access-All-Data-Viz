@@ -2,7 +2,6 @@
 import { useState, useEffect, useReducer } from 'react';
 import flattenDeep from 'lodash.flattendeep';
 import sortedUniq from 'lodash.sorteduniq';
-import styled from 'styled-components';
 import { json } from 'd3-request';
 import uniqBy from 'lodash.uniqby';
 import { queue } from 'd3-queue';
@@ -16,14 +15,6 @@ import Context from '../Context/Context';
 import {
   DEFAULT_VALUES, METADATALINK,
 } from '../Constants';
-
-const VizAreaEl = styled.div`
-  display: flex;
-  margin: auto;
-  align-items: center;
-  justify-content: center;
-  height: 10rem;
-`;
 
 interface Props {
   countryId?: string;
@@ -57,6 +48,7 @@ const CountryHomePage = (props:Props) => {
     showLabel: queryParams.get('showLabel') === 'true',
     showSource: false,
     trendChartCountry: queryParams.get('trendChartCountry') || undefined,
+    dataListCountry: queryParams.get('dataListCountry') || undefined,
     multiCountrytrendChartCountries: queryParams.get('multiCountrytrendChartCountries')?.split('~') || ['China', 'India', 'United States of America', 'Indonesia', 'Pakistan'],
     useSameRange: queryParams.get('useSameRange') === 'true',
     reverseOrder: queryParams.get('reverseOrder') === 'true',
@@ -100,6 +92,13 @@ const CountryHomePage = (props:Props) => {
     dispatch({
       type: 'UPDATE_TREND_CHART_COUNTRY',
       payload: trendChartCountry,
+    });
+  };
+
+  const updateDataListCountry = (dataListCountry: string) => {
+    dispatch({
+      type: 'UPDATE_DATA_LIST_COUNTRY',
+      payload: dataListCountry,
     });
   };
 
@@ -248,6 +247,7 @@ const CountryHomePage = (props:Props) => {
                   updateShowLabel,
                   updateShowSource,
                   updateTrendChartCountry,
+                  updateDataListCountry,
                   updateMultiCountrytrendChartCountries,
                   updateUseSameRange,
                   updateReverseOrder,
@@ -255,7 +255,7 @@ const CountryHomePage = (props:Props) => {
                   updateSignatureSolutionForDataList,
                 }}
               >
-                <div className='undp-container max-width'>
+                <div className='undp-container'>
                   <GrapherComponent
                     data={finalData}
                     indicators={indicatorsList}
@@ -267,9 +267,9 @@ const CountryHomePage = (props:Props) => {
             </>
           )
           : (
-            <VizAreaEl className='undp-container max-width'>
+            <div className='undp-loader-container undp-container'>
               <div className='undp-loader' />
-            </VizAreaEl>
+            </div>
           )
       }
     </>

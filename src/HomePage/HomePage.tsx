@@ -9,7 +9,6 @@ import Context from '../Context/Context';
 import { DEFAULT_VALUES } from '../Constants';
 
 interface Props {
-  countryId?: string;
   signatureSolution?: string;
   indicatorsList: IndicatorMetaDataWithYear[];
   finalData: CountryGroupDataType[];
@@ -19,7 +18,6 @@ interface Props {
 
 const HomePageContext = (props:Props) => {
   const {
-    countryId,
     signatureSolution,
     indicatorsList,
     finalData,
@@ -31,7 +29,7 @@ const HomePageContext = (props:Props) => {
   const secondMetric = indicatorsList.findIndex((d) => d.IndicatorLabelTable === DEFAULT_VALUES.secondMetric) === -1 ? indicatorsList[1].IndicatorLabelTable : DEFAULT_VALUES.secondMetric;
 
   const initialState = {
-    graphType: queryParams.get('graphType') ? queryParams.get('graphType') : countryId ? 'trendLine' : 'map',
+    graphType: queryParams.get('graphType') ? queryParams.get('graphType') : 'map',
     selectedRegions: queryParams.get('regions')?.split('~') || [],
     selectedCountries: queryParams.get('countries')?.split('~') || [],
     selectedIncomeGroups: queryParams.get('incomeGroups')?.split('~') || [],
@@ -45,11 +43,12 @@ const HomePageContext = (props:Props) => {
     showLabel: queryParams.get('showLabel') === 'true',
     showSource: false,
     trendChartCountry: queryParams.get('trendChartCountry') || undefined,
+    dataListCountry: queryParams.get('dataListCountry') || undefined,
     multiCountrytrendChartCountries: queryParams.get('multiCountrytrendChartCountries')?.split('~') || ['China', 'India', 'United States of America', 'Indonesia', 'Pakistan'],
     useSameRange: queryParams.get('useSameRange') === 'true',
     reverseOrder: queryParams.get('reverseOrder') === 'true',
     verticalBarLayout: queryParams.get('verticalBarLayout') !== 'false',
-    selectedCountry: countryId,
+    selectedCountry: undefined,
     signatureSolution,
     signatureSolutionForDataList: 'All',
   };
@@ -88,6 +87,13 @@ const HomePageContext = (props:Props) => {
     dispatch({
       type: 'UPDATE_TREND_CHART_COUNTRY',
       payload: trendChartCountry,
+    });
+  };
+
+  const updateDataListCountry = (dataListCountry: string) => {
+    dispatch({
+      type: 'UPDATE_DATA_LIST_COUNTRY',
+      payload: dataListCountry,
     });
   };
 
@@ -205,6 +211,7 @@ const HomePageContext = (props:Props) => {
           updateShowLabel,
           updateShowSource,
           updateTrendChartCountry,
+          updateDataListCountry,
           updateMultiCountrytrendChartCountries,
           updateUseSameRange,
           updateReverseOrder,

@@ -28,6 +28,8 @@ export default (state: any, action: any) => {
       return { ...state, showSource: action.payload };
     case 'UPDATE_TREND_CHART_COUNTRY':
       return { ...state, trendChartCountry: action.payload };
+    case 'UPDATE_DATA_LIST_COUNTRY':
+      return { ...state, dataListCountry: action.payload };
     case 'UPDATE_MULTI_COUNTRY_TREND_CHART_COUNTRIES':
       return { ...state, multiCountrytrendChartCountries: action.payload };
     case 'UPDATE_USE_SAME_RANGE':

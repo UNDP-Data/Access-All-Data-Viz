@@ -14,13 +14,11 @@ import {
 import HomePageContext from './HomePage';
 
 interface Props {
-  countryId?: string;
   signatureSolution?: string;
 }
 
 const HomePage = (props:Props) => {
   const {
-    countryId,
     signatureSolution,
   } = props;
   const queryParams = new URLSearchParams(window.location.search);
@@ -66,7 +64,6 @@ const HomePage = (props:Props) => {
                 indicatorsList={indicatorsList}
                 regionList={regionList}
                 countryList={countryList}
-                countryId={countryId}
                 signatureSolution={signatureSolution}
               />
             </div>

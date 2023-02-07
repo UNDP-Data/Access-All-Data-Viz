@@ -97,6 +97,7 @@ export interface CtxDataType {
   showLabel: boolean;
   showSource: boolean;
   trendChartCountry: undefined | string;
+  dataListCountry: undefined | string;
   multiCountrytrendChartCountries: string[];
   useSameRange: boolean;
   reverseOrder: boolean;
@@ -120,6 +121,7 @@ export interface CtxDataType {
   updateUseSameRange: (_d: boolean) => void;
   updateReverseOrder: (_d: boolean) => void;
   updateTrendChartCountry: (_d: string) => void;
+  updateDataListCountry: (_d: string) => void;
   updateMultiCountrytrendChartCountries: (_d: string[]) => void;
   updateBarLayout: (_d: boolean) => void;
   updateSignatureSolutionForDataList: (_d: 'All' | 'Energy' | 'Environment' | 'Gender' | 'Governance' | 'Poverty and Inequality' | 'Resilience') => void;
