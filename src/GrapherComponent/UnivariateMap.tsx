@@ -198,7 +198,7 @@ export const UnivariateMap = (props: Props) => {
                   }}
                 >
                   {
-                    index === -1 ? null
+                    index === -1 || d['Country or Area'] === 'Antarctica' ? null
                       : (World as any).features[index].geometry.type === 'MultiPolygon' ? (World as any).features[index].geometry.coordinates.map((el:any, j: any) => {
                         let masterPath = '';
                         el.forEach((geo: number[][]) => {
