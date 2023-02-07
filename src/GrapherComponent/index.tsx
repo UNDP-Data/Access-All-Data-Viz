@@ -149,7 +149,7 @@ export const GrapherComponent = (props: Props) => {
                           selectedCountry ? null
                             : (
                               <>
-                                <button type='button' className={`tabs-for-graphing-interface${graphType === 'multiCountryTrendLine' ? ' multiCountryTrendLine' : ''}`} onClick={() => { updateGraphType('multiCountryTrendLine'); }}>
+                                <button type='button' className={`tabs-for-graphing-interface${graphType === 'multiCountryTrendLine' ? ' selected' : ''}`} onClick={() => { updateGraphType('multiCountryTrendLine'); }}>
                                   <IconEl>
                                     <MultiLineChartIcon size={48} fill={graphType === 'multiCountryTrendLine' ? 'var(--blue-600)' : 'var(--gray-500)'} />
                                   </IconEl>
