@@ -5,6 +5,7 @@ import maxBy from 'lodash.maxby';
 import minBy from 'lodash.minby';
 import { Select } from 'antd';
 import { format } from 'd3-format';
+import UNDPColorModule from 'undp-viz-colors';
 import {
   CtxDataType, CountryGroupDataType, HoverDataType, IndicatorMetaDataWithYear, CountryListType,
 } from '../Types';
@@ -130,13 +131,13 @@ export const LineChart = (props: Props) => {
                             y2={y1(d)}
                             x1={-15}
                             x2={-20}
-                            stroke='#E26B8D'
+                            stroke={UNDPColorModule.graphMainColor}
                             strokeWidth={1}
                           />
                           <text
                             x={-25}
                             y={y1(d)}
-                            fill='#E26B8D'
+                            fill={UNDPColorModule.graphMainColor}
                             textAnchor='end'
                             fontSize={12}
                             dy={3}
@@ -151,12 +152,12 @@ export const LineChart = (props: Props) => {
                       y2={graphHeight}
                       x1={-15}
                       x2={-15}
-                      stroke='#E26B8D'
+                      stroke={UNDPColorModule.graphMainColor}
                       strokeWidth={1}
                     />
                     <text
                       transform={`translate(-60, ${graphHeight / 2}) rotate(-90)`}
-                      fill='#E26B8D'
+                      fill={UNDPColorModule.graphMainColor}
                       textAnchor='middle'
                       fontSize={12}
                     >
@@ -182,8 +183,8 @@ export const LineChart = (props: Props) => {
                     }
                   </g>
                   <g>
-                    <path d={lineShape(dataFormatted as any) as string} fill='none' stroke='#E26B8D' strokeWidth={2} />
-                    <path d={lineShape(dataParam1 as any) as string} fill='none' stroke='#E26B8D' strokeWidth={2} strokeDasharray='4 8' />
+                    <path d={lineShape(dataFormatted as any) as string} fill='none' stroke={UNDPColorModule.graphMainColor} strokeWidth={2} />
+                    <path d={lineShape(dataParam1 as any) as string} fill='none' stroke={UNDPColorModule.graphMainColor} strokeWidth={2} strokeDasharray='4 8' />
                     {
                       hoverData
                         ? (
@@ -210,7 +211,7 @@ export const LineChart = (props: Props) => {
                                 cx={x(d.year)}
                                 cy={y1(d.param)}
                                 r={4}
-                                fill='#E26B8D'
+                                fill={UNDPColorModule.graphMainColor}
                               />
                               {
                                 showLabel
@@ -221,7 +222,7 @@ export const LineChart = (props: Props) => {
                                       dy={16}
                                       fontSize={12}
                                       textAnchor='middle'
-                                      fill='#E26B8D'
+                                      fill={UNDPColorModule.graphMainColor}
                                       strokeWidth={0.25}
                                       stroke='#fff'
                                       fontWeight='bold'
@@ -250,7 +251,7 @@ export const LineChart = (props: Props) => {
                                   value: d.param !== undefined ? d.param : 'NA',
                                   type: 'color',
                                   year: d.year,
-                                  color: '#E26B8D',
+                                  color: UNDPColorModule.graphMainColor,
                                   prefix: xIndicatorMetaData?.LabelPrefix,
                                   suffix: xIndicatorMetaData?.LabelSuffix,
                                 },
@@ -269,7 +270,7 @@ export const LineChart = (props: Props) => {
                                   value: d.param !== undefined ? d.param : 'NA',
                                   type: 'color',
                                   year: d.year,
-                                  color: '#E26B8D',
+                                  color: UNDPColorModule.graphMainColor,
                                   prefix: xIndicatorMetaData?.LabelPrefix,
                                   suffix: xIndicatorMetaData?.LabelSuffix,
                                 },

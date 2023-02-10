@@ -5,6 +5,7 @@ import maxBy from 'lodash.maxby';
 import minBy from 'lodash.minby';
 import { Select } from 'antd';
 import { format } from 'd3-format';
+import UNDPColorModule from 'undp-viz-colors';
 import {
   CtxDataType, CountryGroupDataType, HoverDataType, IndicatorMetaDataWithYear, CountryListType,
 } from '../Types';
@@ -149,13 +150,13 @@ export const DualAxisLineChart = (props: Props) => {
                             y2={y1(d)}
                             x1={-15}
                             x2={-20}
-                            stroke='#E26B8D'
+                            stroke={UNDPColorModule.categoricalColors.colors[0]}
                             strokeWidth={1}
                           />
                           <text
                             x={-25}
                             y={y1(d)}
-                            fill='#E26B8D'
+                            fill={UNDPColorModule.categoricalColors.colors[0]}
                             textAnchor='end'
                             fontSize={12}
                             dy={3}
@@ -170,12 +171,12 @@ export const DualAxisLineChart = (props: Props) => {
                       y2={graphHeight}
                       x1={-15}
                       x2={-15}
-                      stroke='#E26B8D'
+                      stroke={UNDPColorModule.categoricalColors.colors[0]}
                       strokeWidth={1}
                     />
                     <text
                       transform={`translate(-60, ${graphHeight / 2}) rotate(-90)`}
-                      fill='#E26B8D'
+                      fill={UNDPColorModule.categoricalColors.colors[0]}
                       textAnchor='middle'
                       fontSize={12}
                     >
@@ -191,13 +192,13 @@ export const DualAxisLineChart = (props: Props) => {
                             y2={y2(d)}
                             x1={graphWidth + 15}
                             x2={graphWidth + 20}
-                            stroke='#266291'
+                            stroke={UNDPColorModule.categoricalColors.colors[1]}
                             strokeWidth={1}
                           />
                           <text
                             x={graphWidth + 25}
                             y={y2(d)}
-                            fill='#266291'
+                            fill={UNDPColorModule.categoricalColors.colors[1]}
                             textAnchor='start'
                             fontSize={12}
                             dy={3}
@@ -213,12 +214,12 @@ export const DualAxisLineChart = (props: Props) => {
                       y2={graphHeight}
                       x1={graphWidth + 15}
                       x2={graphWidth + 15}
-                      stroke='#266291'
+                      stroke={UNDPColorModule.categoricalColors.colors[1]}
                       strokeWidth={1}
                     />
                     <text
                       transform={`translate(${graphWidth + 50}, ${graphHeight / 2}) rotate(-90)`}
-                      fill='#266291'
+                      fill={UNDPColorModule.categoricalColors.colors[1]}
                       textAnchor='middle'
                       fontSize={12}
                     >
@@ -247,15 +248,15 @@ export const DualAxisLineChart = (props: Props) => {
                       y2={graphHeight}
                       x1={graphWidth + 15}
                       x2={graphWidth + 15}
-                      stroke='#266291'
+                      stroke={UNDPColorModule.categoricalColors.colors[1]}
                       strokeWidth={1}
                     />
                   </g>
                   <g>
-                    <path d={lineShape1(dataFormatted as any) as string} fill='none' stroke='#E26B8D' strokeWidth={2} />
-                    <path d={lineShape2(dataFormatted as any) as string} fill='none' stroke='#266291' strokeWidth={2} />
-                    <path d={lineShape1(dataParam1 as any) as string} fill='none' stroke='#E26B8D' strokeWidth={2} strokeDasharray='4 8' />
-                    <path d={lineShape2(dataParam2 as any) as string} fill='none' stroke='#266291' strokeWidth={2} strokeDasharray='4 8' />
+                    <path d={lineShape1(dataFormatted as any) as string} fill='none' stroke={UNDPColorModule.categoricalColors.colors[0]} strokeWidth={2} />
+                    <path d={lineShape2(dataFormatted as any) as string} fill='none' stroke={UNDPColorModule.categoricalColors.colors[1]} strokeWidth={2} />
+                    <path d={lineShape1(dataParam1 as any) as string} fill='none' stroke={UNDPColorModule.categoricalColors.colors[0]} strokeWidth={2} strokeDasharray='4 8' />
+                    <path d={lineShape2(dataParam2 as any) as string} fill='none' stroke={UNDPColorModule.categoricalColors.colors[1]} strokeWidth={2} strokeDasharray='4 8' />
                     {
                       hoverData
                         ? (
@@ -282,7 +283,7 @@ export const DualAxisLineChart = (props: Props) => {
                                 cx={x(d.year)}
                                 cy={y1(d.param1)}
                                 r={4}
-                                fill='#E26B8D'
+                                fill={UNDPColorModule.categoricalColors.colors[0]}
                               />
                               {
                                 showLabel
@@ -293,7 +294,7 @@ export const DualAxisLineChart = (props: Props) => {
                                       dy={d.param2 !== undefined && (y1(d.param1) > y2(d.param2)) ? 16 : -8}
                                       fontSize={12}
                                       textAnchor='middle'
-                                      fill='#E26B8D'
+                                      fill={UNDPColorModule.categoricalColors.colors[0]}
                                       strokeWidth={0.25}
                                       stroke='#fff'
                                       fontWeight='bold'
@@ -312,7 +313,7 @@ export const DualAxisLineChart = (props: Props) => {
                                 cx={x(d.year)}
                                 cy={y2(d.param2)}
                                 r={4}
-                                fill='#266291'
+                                fill={UNDPColorModule.categoricalColors.colors[1]}
                               />
                               {
                                 showLabel
@@ -323,7 +324,7 @@ export const DualAxisLineChart = (props: Props) => {
                                       dy={d.param1 !== undefined && (y1(d.param1) > y2(d.param2)) ? -8 : 16}
                                       fontSize={12}
                                       textAnchor='middle'
-                                      fill='#266291'
+                                      fill={UNDPColorModule.categoricalColors.colors[1]}
                                       strokeWidth={0.25}
                                       stroke='#fff'
                                       fontWeight='bold'
@@ -352,7 +353,7 @@ export const DualAxisLineChart = (props: Props) => {
                                   value: d.param1 !== undefined ? d.param1 : 'NA',
                                   type: 'color',
                                   year: d.year,
-                                  color: '#E26B8D',
+                                  color: UNDPColorModule.categoricalColors.colors[0],
                                   prefix: xIndicatorMetaData?.LabelPrefix,
                                   suffix: xIndicatorMetaData?.LabelSuffix,
                                 },
@@ -361,7 +362,7 @@ export const DualAxisLineChart = (props: Props) => {
                                   value: d.param2 !== undefined ? d.param2 : 'NA',
                                   type: 'color',
                                   year: d.year,
-                                  color: '#266291',
+                                  color: UNDPColorModule.categoricalColors.colors[1],
                                   prefix: yIndicatorMetaData?.LabelPrefix,
                                   suffix: yIndicatorMetaData?.LabelSuffix,
                                 },
@@ -380,7 +381,7 @@ export const DualAxisLineChart = (props: Props) => {
                                   value: d.param1 !== undefined ? d.param1 : 'NA',
                                   type: 'color',
                                   year: d.year,
-                                  color: '#E26B8D',
+                                  color: UNDPColorModule.categoricalColors.colors[0],
                                   prefix: xIndicatorMetaData?.LabelPrefix,
                                   suffix: xIndicatorMetaData?.LabelSuffix,
                                 },
@@ -389,7 +390,7 @@ export const DualAxisLineChart = (props: Props) => {
                                   value: d.param2 !== undefined ? d.param2 : 'NA',
                                   type: 'color',
                                   year: d.year,
-                                  color: '#266291',
+                                  color: UNDPColorModule.categoricalColors.colors[1],
                                   prefix: yIndicatorMetaData?.LabelPrefix,
                                   suffix: yIndicatorMetaData?.LabelSuffix,
                                 },

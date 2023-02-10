@@ -10,13 +10,14 @@ import {
   scaleOrdinal, scaleLinear, scaleThreshold, scaleSqrt,
 } from 'd3-scale';
 import minBy from 'lodash.minby';
+import UNDPColorModule from 'undp-viz-colors';
 import { Tooltip } from '../Components/Tooltip';
 import {
   CountryGroupDataType, CtxDataType, HoverDataType, HoverRowDataType, IndicatorMetaDataWithYear,
 } from '../Types';
 import Context from '../Context/Context';
 import {
-  COLOR_SCALES, CONTINENTS, HDI_LEVELS, INCOME_GROUPS, MAX_TEXT_LENGTH, TRUNCATE_MAX_TEXT_LENGTH,
+  CONTINENTS, HDI_LEVELS, INCOME_GROUPS, MAX_TEXT_LENGTH, TRUNCATE_MAX_TEXT_LENGTH,
 } from '../Constants';
 
 interface Props {
@@ -127,27 +128,28 @@ export const ScatterPlot = (props: Props) => {
   const voronoiDiagram = Delaunay
     .from(dataFormatted, (d) => xScale(d.xVal as number), (d) => yScale(d.yVal as number))
     .voronoi([0, 0, graphWidth, graphHeight]);
-  let colorList = colorIndicator === 'Income Groups' ? COLOR_SCALES.Divergent.Color4 : COLOR_SCALES.Categorical;
+
+  let colorList: string[] = colorIndicator === 'Income Groups' ? UNDPColorModule.divergentColors.colorsx04 : UNDPColorModule.categoricalColors.colors;
 
   if (colorIndicatorMetaData?.IsCategorical) {
     switch (colorIndicatorMetaData?.Categories.length) {
       case 5:
-        colorList = COLOR_SCALES.Linear.RedColor5;
+        colorList = UNDPColorModule.sequentialColors.neutralColorsx05;
         break;
       case 6:
-        colorList = COLOR_SCALES.Linear.RedColor6;
+        colorList = UNDPColorModule.sequentialColors.neutralColorsx06;
         break;
       case 7:
-        colorList = COLOR_SCALES.Linear.RedColor7;
+        colorList = UNDPColorModule.sequentialColors.neutralColorsx07;
         break;
       case 8:
-        colorList = COLOR_SCALES.Linear.RedColor8;
+        colorList = UNDPColorModule.sequentialColors.neutralColorsx08;
         break;
       case 9:
-        colorList = COLOR_SCALES.Linear.RedColor9;
+        colorList = UNDPColorModule.sequentialColors.neutralColorsx09;
         break;
       default:
-        colorList = COLOR_SCALES.Linear.RedColor10;
+        colorList = UNDPColorModule.sequentialColors.neutralColorsx10;
         break;
     }
   }
@@ -155,19 +157,19 @@ export const ScatterPlot = (props: Props) => {
   if (colorIndicatorMetaData?.IsDivergent) {
     switch (colorIndicatorMetaData?.Categories.length) {
       case 4:
-        colorList = COLOR_SCALES.Divergent.Color4;
+        colorList = UNDPColorModule.divergentColors.colorsx04;
         break;
       case 5:
-        colorList = COLOR_SCALES.Divergent.Color5;
+        colorList = UNDPColorModule.divergentColors.colorsx05;
         break;
       case 7:
-        colorList = COLOR_SCALES.Divergent.Color7;
+        colorList = UNDPColorModule.divergentColors.colorsx07;
         break;
       case 9:
-        colorList = COLOR_SCALES.Divergent.Color9;
+        colorList = UNDPColorModule.divergentColors.colorsx09;
         break;
       default:
-        colorList = COLOR_SCALES.Divergent.Color11;
+        colorList = UNDPColorModule.divergentColors.colorsx11;
         break;
     }
   }
@@ -178,7 +180,7 @@ export const ScatterPlot = (props: Props) => {
         : colorIndicatorMetaData?.Categories ? colorIndicatorMetaData?.Categories
           : [0, 0];
 
-  const colorScale = colorIndicator === 'Human Development Index' ? scaleThreshold<string | number, string>().domain(colorDomain).range(COLOR_SCALES.Divergent.Color4).unknown('#666') : scaleOrdinal<string | number, string>().domain(colorDomain).range(colorList).unknown('#666');
+  const colorScale = colorIndicator === 'Human Development Index' ? scaleThreshold<string | number, string>().domain(colorDomain).range(UNDPColorModule.divergentColors.colorsx04).unknown(UNDPColorModule.graphGray) : scaleOrdinal<string | number, string>().domain(colorDomain).range(colorList).unknown(UNDPColorModule.graphGray);
 
   return (
     <>
@@ -195,7 +197,7 @@ export const ScatterPlot = (props: Props) => {
             {colorIndicatorMetaData?.IndicatorLabelTable ? colorIndicatorMetaData?.IndicatorLabelTable : colorIndicator}
           </text>
           {
-            colorIndicator === 'Human Development Index' ? COLOR_SCALES.Divergent.Color4.map((d, i) => (
+            colorIndicator === 'Human Development Index' ? UNDPColorModule.divergentColors.colorsx04.map((d, i) => (
               <g
                 transform='translate(0,20)'
                 key={i}
@@ -204,15 +206,15 @@ export const ScatterPlot = (props: Props) => {
                 style={{ cursor: 'pointer' }}
               >
                 <rect
-                  x={(i * (graphWidth - 50)) / COLOR_SCALES.Divergent.Color4.length + 1}
+                  x={(i * (graphWidth - 50)) / UNDPColorModule.divergentColors.colorsx04.length + 1}
                   y={1}
-                  width={((graphWidth - 50) / COLOR_SCALES.Divergent.Color4.length) - 2}
+                  width={((graphWidth - 50) / UNDPColorModule.divergentColors.colorsx04.length) - 2}
                   height={8}
                   fill={d}
                   stroke={selectedColor === d ? '#212121' : d}
                 />
                 <text
-                  x={((i * (graphWidth - 50)) / COLOR_SCALES.Divergent.Color4.length) + (((graphWidth - 50) / 2) / COLOR_SCALES.Divergent.Color4.length)}
+                  x={((i * (graphWidth - 50)) / UNDPColorModule.divergentColors.colorsx04.length) + (((graphWidth - 50) / 2) / UNDPColorModule.divergentColors.colorsx04.length)}
                   y={25}
                   textAnchor='middle'
                   fontSize={12}
@@ -257,15 +259,15 @@ export const ScatterPlot = (props: Props) => {
               y={1}
               width={40}
               height={8}
-              fill='#666'
-              stroke='#666'
+              fill={UNDPColorModule.graphGray}
+              stroke={UNDPColorModule.graphGray}
             />
             <text
               x={graphWidth - 20}
               y={25}
               textAnchor='middle'
               fontSize={12}
-              fill='#666'
+              fill={UNDPColorModule.graphGray}
             >
               NA
             </text>
@@ -288,7 +290,7 @@ export const ScatterPlot = (props: Props) => {
                   <text
                     x={0}
                     y={yScale(d)}
-                    fill='#666'
+                    fill={UNDPColorModule.graphGray}
                     textAnchor='end'
                     fontSize={12}
                     dy={4}
@@ -304,13 +306,13 @@ export const ScatterPlot = (props: Props) => {
               x2={graphWidth}
               y1={yScale(0)}
               y2={yScale(0)}
-              stroke='#666'
+              stroke={UNDPColorModule.graphGray}
               strokeWidth={1}
             />
             <text
               x={0}
               y={yScale(0)}
-              fill='#666'
+              fill={UNDPColorModule.graphGray}
               textAnchor='end'
               fontSize={12}
               dy={4}
@@ -343,7 +345,7 @@ export const ScatterPlot = (props: Props) => {
                   <text
                     x={xScale(d)}
                     y={graphHeight}
-                    fill='#666'
+                    fill={UNDPColorModule.graphGray}
                     textAnchor='middle'
                     fontSize={12}
                     dy={12}
@@ -358,13 +360,13 @@ export const ScatterPlot = (props: Props) => {
               y2={graphHeight}
               x1={xScale(0)}
               x2={xScale(0)}
-              stroke='#666'
+              stroke={UNDPColorModule.graphGray}
               strokeWidth={1}
             />
             <text
               x={xScale(0)}
               y={graphHeight}
-              fill='#666'
+              fill={UNDPColorModule.graphGray}
               textAnchor='middle'
               fontSize={12}
               dy={15}
@@ -422,7 +424,7 @@ export const ScatterPlot = (props: Props) => {
                   value: d.colorVal !== undefined ? d.colorVal : 'NA',
                   type: 'color',
                   year: colorIndicator === 'Income Groups' ? undefined : d.colorYear,
-                  color: d.colorVal ? colorScale(d.colorVal) as string : '#666',
+                  color: d.colorVal ? colorScale(d.colorVal) as string : UNDPColorModule.graphGray,
                   prefix: colorIndicatorMetaData?.LabelPrefix,
                   suffix: colorIndicatorMetaData?.LabelSuffix,
                 });
@@ -444,16 +446,16 @@ export const ScatterPlot = (props: Props) => {
                       cx={0}
                       cy={0}
                       r={!radiusScale ? 5 : radiusScale(d.radiusValue)}
-                      fill={d.colorVal ? colorScale(d.colorVal) as string : '#666'}
+                      fill={d.colorVal ? colorScale(d.colorVal) as string : UNDPColorModule.graphGray}
                       fillOpacity={0.6}
-                      stroke={d.colorVal ? colorScale(d.colorVal) as string : '#666'}
+                      stroke={d.colorVal ? colorScale(d.colorVal) as string : UNDPColorModule.graphGray}
                     />
                     {
                       showLabel
                         ? (
                           <text
                             fontSize={10}
-                            fill={d.colorVal ? colorScale(d.colorVal) as string : '#666'}
+                            fill={d.colorVal ? colorScale(d.colorVal) as string : UNDPColorModule.graphGray}
                             y={0}
                             x={!radiusScale ? 5 : radiusScale(d.radiusValue)}
                             dy={4}

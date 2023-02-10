@@ -6,11 +6,12 @@ import min from 'lodash.min';
 import { Select } from 'antd';
 import { format } from 'd3-format';
 import range from 'lodash.range';
+import UNDPColorModule from 'undp-viz-colors';
 import {
   CtxDataType, CountryGroupDataType, HoverDataType, IndicatorMetaDataWithYear, CountryListType,
 } from '../Types';
 import Context from '../Context/Context';
-import { COLOR_SCALES, MAX_TEXT_LENGTH } from '../Constants';
+import { MAX_TEXT_LENGTH } from '../Constants';
 import { TooltipForMultiLineChart } from '../Components/TooltipForMultiLineChart';
 
 interface Props {
@@ -195,8 +196,8 @@ export const MultiLineChart = (props: Props) => {
                     {
                       dataFormatted.map((d, i) => (
                         <g key={d.alphaCode3}>
-                          <path d={lineShape1(d.countryFormattedData.filter((el) => el.param !== undefined) as any) as string} fill='none' stroke={COLOR_SCALES.Categorical[i % 8]} strokeWidth={2} strokeDasharray='4 8' />
-                          <path d={lineShape1(d.countryFormattedData as any) as string} fill='none' stroke={COLOR_SCALES.Categorical[i % 8]} strokeWidth={2} />
+                          <path d={lineShape1(d.countryFormattedData.filter((el) => el.param !== undefined) as any) as string} fill='none' stroke={UNDPColorModule.categoricalColors.colors[i % 10]} strokeWidth={2} strokeDasharray='4 8' />
+                          <path d={lineShape1(d.countryFormattedData as any) as string} fill='none' stroke={UNDPColorModule.categoricalColors.colors[i % 10]} strokeWidth={2} />
                           {
                             d.countryFormattedData.filter((el) => el.param !== undefined).map((el, k) => (el.param !== undefined
                               ? (
@@ -207,7 +208,7 @@ export const MultiLineChart = (props: Props) => {
                                     cx={x(el.year)}
                                     cy={y(el.param)}
                                     r={4}
-                                    fill={COLOR_SCALES.Categorical[i % 8]}
+                                    fill={UNDPColorModule.categoricalColors.colors[i % 10]}
                                   />
                                   {
                                     showLabel
@@ -218,7 +219,7 @@ export const MultiLineChart = (props: Props) => {
                                           dy={-8}
                                           fontSize={12}
                                           textAnchor='middle'
-                                          fill={COLOR_SCALES.Categorical[i % 8]}
+                                          fill={UNDPColorModule.categoricalColors.colors[i % 10]}
                                           strokeWidth={0.25}
                                           stroke='#fff'
                                           fontWeight='bold'
@@ -236,7 +237,7 @@ export const MultiLineChart = (props: Props) => {
                               ? (
                                 <text
                                   fontSize={10}
-                                  fill={COLOR_SCALES.Categorical[i % 8]}
+                                  fill={UNDPColorModule.categoricalColors.colors[i % 10]}
                                   x={x(d.countryFormattedData.filter((el) => el.param !== undefined)[d.countryFormattedData.filter((el) => el.param !== undefined).length - 1].year)}
                                   y={y(d.countryFormattedData.filter((el) => el.param !== undefined)[d.countryFormattedData.filter((el) => el.param !== undefined).length - 1].param as number)}
                                   dx={5}
@@ -267,7 +268,7 @@ export const MultiLineChart = (props: Props) => {
                                 title: el.countryName,
                                 value: el.countryFormattedData[el.countryFormattedData.findIndex((d1) => d1.year === d)].param !== undefined ? el.countryFormattedData[el.countryFormattedData.findIndex((d1) => d1.year === d)].param : 'NA',
                                 type: 'color',
-                                color: COLOR_SCALES.Categorical[j % 8],
+                                color: UNDPColorModule.categoricalColors.colors[j % 10],
                                 prefix: xIndicatorMetaData?.LabelPrefix,
                                 suffix: xIndicatorMetaData?.LabelSuffix,
                               })),
@@ -283,7 +284,7 @@ export const MultiLineChart = (props: Props) => {
                                 title: el.countryName,
                                 value: el.countryFormattedData[el.countryFormattedData.findIndex((d1) => d1.year === d)].param !== undefined ? el.countryFormattedData[el.countryFormattedData.findIndex((d1) => d1.year === d)].param : 'NA',
                                 type: 'color',
-                                color: COLOR_SCALES.Categorical[j % 8],
+                                color: UNDPColorModule.categoricalColors.colors[j % 10],
                                 prefix: xIndicatorMetaData?.LabelPrefix,
                                 suffix: xIndicatorMetaData?.LabelSuffix,
                               })),

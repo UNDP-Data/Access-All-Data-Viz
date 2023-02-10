@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { scaleLinear } from 'd3-scale';
 import maxBy from 'lodash.maxby';
 import minBy from 'lodash.minby';
+import UNDPColorModule from 'undp-viz-colors';
 import { format } from 'd3-format';
 import { IndicatorMetaDataWithYear } from '../Types';
 
@@ -140,13 +141,13 @@ export const TrendChartSmall = (props: Props) => {
                           y2={y1(d)}
                           x1={-15}
                           x2={-20}
-                          stroke='#E26B8D'
+                          stroke={UNDPColorModule.graphMainColor}
                           strokeWidth={1}
                         />
                         <text
                           x={-25}
                           y={y1(d)}
-                          fill='#E26B8D'
+                          fill={UNDPColorModule.graphMainColor}
                           textAnchor='end'
                           fontSize={12}
                           dy={3}
@@ -161,7 +162,7 @@ export const TrendChartSmall = (props: Props) => {
                     y2={graphHeight}
                     x1={-15}
                     x2={-15}
-                    stroke='#E26B8D'
+                    stroke={UNDPColorModule.graphMainColor}
                     strokeWidth={1}
                   />
                 </g>
@@ -206,8 +207,8 @@ export const TrendChartSmall = (props: Props) => {
                   }
                 </g>
                 <g>
-                  <path d={lineShape(dataFormatted as any) as string} fill='none' stroke='#E26B8D' strokeWidth={1} />
-                  <path d={lineShape(dataParam1 as any) as string} fill='none' stroke='#E26B8D' strokeWidth={1} strokeDasharray='4 8' />
+                  <path d={lineShape(dataFormatted as any) as string} fill='none' stroke={UNDPColorModule.graphMainColor} strokeWidth={1} />
+                  <path d={lineShape(dataParam1 as any) as string} fill='none' stroke={UNDPColorModule.graphMainColor} strokeWidth={1} strokeDasharray='4 8' />
                   {
               hoverData
                 ? (
@@ -233,7 +234,7 @@ export const TrendChartSmall = (props: Props) => {
                               cx={x(d.year)}
                               cy={y1(d.param)}
                               r={3}
-                              fill='#E26B8D'
+                              fill={UNDPColorModule.graphMainColor}
                             />
                           ) : null
                         }
