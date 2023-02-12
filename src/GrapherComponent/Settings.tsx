@@ -169,7 +169,6 @@ export const Settings = (props: Props) => {
                     value={yAxisIndicator}
                     placeholder='Please select'
                     onChange={(d) => { updateYAxisIndicator(d); }}
-                    defaultValue={DEFAULT_VALUES.secondMetric}
                   >
                     {
                       options.map((d) => (
@@ -193,7 +192,6 @@ export const Settings = (props: Props) => {
                     value={yAxisIndicator}
                     placeholder='Please select'
                     onChange={(d) => { updateYAxisIndicator(d); }}
-                    defaultValue={DEFAULT_VALUES.secondMetric}
                   >
                     {
                       options.map((d) => (
@@ -216,7 +214,6 @@ export const Settings = (props: Props) => {
                     value={yAxisIndicator}
                     placeholder='Please select'
                     onChange={(d) => { updateYAxisIndicator(d); }}
-                    defaultValue={DEFAULT_VALUES.secondMetric}
                   >
                     {
                       options.map((d) => (

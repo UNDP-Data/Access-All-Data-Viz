@@ -2,6 +2,12 @@
 
 This project aims to provide interactive visualizations for exploring and analyzing multi dimensional data. [Click here to see the interface](https://data.undp.org/explore-all-data/).
 
+## Features
+* Load and display data for around 200 different indicators.
+* Interactively filter to focus on specific trends and patterns.
+* Display data in a variety of chart types, including bar charts, line charts, scatter plots, maps and more.
+* Provide intuitive interaction to allow users to explore the data at their own pace.
+
 __Link for the visualization__
 [https://undp-vaccine-equity-dashboard.netlify.app/](https://undp-vaccine-equity-dashboard.netlify.app/)
 
@@ -15,16 +21,11 @@ __Pages Where the Visualization is Used__
 * [Signature Solution - Gender Equality](https://data.undp.com/topics/gender-equality)
 * This is also used in the Country pages in DFP. For ex. [here](https://data.undp.acsitefactory.com/countries/AFG)
 
-## Features
-* Load and display data for around 200 different indicators.
-* Interactively filter to focus on specific trends and patterns.
-* Display data in a variety of chart types, including bar charts, line charts, scatter plots, maps and more.
-* Provide intuitive interaction to allow users to explore the data at their own pace.
-
-## Data Repo and Meta Data Used
-* __Indicator Meta Data__: https://github.com/UNDP-Data/Indicators-MetaData
-* __Country Taxonomy__: https://github.com/UNDP-Data/country-taxonomy-from-azure
-* __Data Sheet__: https://github.com/UNDP-Data/Access-All-Data-Data-Repo
+## Related Repos
+* [__Indicators-MetaData__](https://github.com/UNDP-Data/Indicators-MetaData): This is the metadata sheet for indicators unsed in the visualization
+* [__country-taxonomy-from-azure__](https://github.com/UNDP-Data/country-taxonomy-from-azure): This is data sheet with meta data for Countries
+* [__Access-All-Data-Data-Repo__](https://github.com/UNDP-Data/Access-All-Data-Data-Repo): This is the data sheet for visualziation
+* [__stylesheet-for-viz__](https://github.com/UNDP-Data/stylesheets-for-viz): Repo which defines the css settings for the project
 
 ## Global CSS for UI and Graphs
 __Git Repo__: https://github.com/UNDP-Data/stylesheets-for-viz
