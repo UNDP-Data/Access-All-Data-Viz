@@ -44,6 +44,17 @@ if (containerEmbeded) {
   />);
 }
 
+const containerCountryEmbeded = getEl('[data-bucket-country-embed]');
+if (containerCountryEmbeded) {
+  const currentURL = window.location;
+  const countryCode = currentURL.href.split('?')[0].substr(-1) === '/' ? currentURL.href.split('?')[0].substr(-4).substring(0, 3) : currentURL.href.split('?')[0].substr(-3);
+  const rootEmbeded = createRoot(containerCountryEmbeded!); // createRoot(container!) if you use TypeScript
+  rootEmbeded.render(<App
+    countryId={countryCode.toUpperCase()}
+    signatureSolution={undefined}
+  />);
+}
+
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
