@@ -44,7 +44,7 @@ export const DataList = (props: Props) => {
   return (
     <>
       {
-        dataFiltered && countryName
+        dataFiltered && countryName && dataListCountry
           ? (
             <>
               <div style={{

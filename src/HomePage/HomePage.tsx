@@ -44,7 +44,7 @@ const HomePageContext = (props:Props) => {
     showSource: false,
     trendChartCountry: queryParams.get('trendChartCountry') || undefined,
     dataListCountry: queryParams.get('dataListCountry') || undefined,
-    multiCountrytrendChartCountries: queryParams.get('multiCountrytrendChartCountries')?.split('~') || ['China', 'India', 'United States of America', 'Indonesia', 'Pakistan'],
+    multiCountryTrendChartCountries: queryParams.get('multiCountryTrendChartCountries')?.split('~') || ['China', 'India', 'United States of America', 'Indonesia', 'Pakistan'],
     useSameRange: queryParams.get('useSameRange') === 'true',
     reverseOrder: queryParams.get('reverseOrder') === 'true',
     verticalBarLayout: queryParams.get('verticalBarLayout') !== 'false',
@@ -62,10 +62,10 @@ const HomePageContext = (props:Props) => {
     });
   };
 
-  const updateMultiCountrytrendChartCountries = (multiCountrytrendChartCountries: string[]) => {
+  const updateMultiCountryTrendChartCountries = (multiCountryTrendChartCountries: string[]) => {
     dispatch({
       type: 'UPDATE_MULTI_COUNTRY_TREND_CHART_COUNTRIES',
-      payload: multiCountrytrendChartCountries,
+      payload: multiCountryTrendChartCountries,
     });
   };
 
@@ -212,7 +212,7 @@ const HomePageContext = (props:Props) => {
           updateShowSource,
           updateTrendChartCountry,
           updateDataListCountry,
-          updateMultiCountrytrendChartCountries,
+          updateMultiCountryTrendChartCountries,
           updateUseSameRange,
           updateReverseOrder,
           updateBarLayout,

@@ -48,7 +48,7 @@ export const Settings = (props: Props) => {
     updateShowMostRecentData,
     updateShowSource,
     updateUseSameRange,
-    updateMultiCountrytrendChartCountries,
+    updateMultiCountryTrendChartCountries,
     updateReverseOrder,
     verticalBarLayout,
     updateBarLayout,
@@ -450,7 +450,7 @@ export const Settings = (props: Props) => {
                     style={{ width: '100%' }}
                     value={selectedCountries}
                     placeholder='Filter By Countries'
-                    onChange={(d: string[]) => { updateSelectedCountries(d); updateMultiCountrytrendChartCountries(d); }}
+                    onChange={(d: string[]) => { updateSelectedCountries(d); updateMultiCountryTrendChartCountries(d); }}
                   >
                     {
                       countries.map((d) => d.name).map((d) => (

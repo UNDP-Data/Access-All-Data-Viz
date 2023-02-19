@@ -33,8 +33,8 @@ export const MultiLineChart = (props: Props) => {
   } = props;
   const {
     xAxisIndicator,
-    multiCountrytrendChartCountries,
-    updateMultiCountrytrendChartCountries,
+    multiCountryTrendChartCountries,
+    updateMultiCountryTrendChartCountries,
     showLabel,
   } = useContext(Context) as CtxDataType;
   const [hoverData, setHoverData] = useState<HoverDataType | undefined>(undefined);
@@ -52,7 +52,7 @@ export const MultiLineChart = (props: Props) => {
 
   const xIndicatorMetaData = indicators[indicators.findIndex((indicator) => indicator.IndicatorLabelTable === xAxisIndicator)];
 
-  const countryData = multiCountrytrendChartCountries.map((el) => data[data.findIndex((d) => d['Country or Area'] === el)]);
+  const countryData = multiCountryTrendChartCountries.map((el) => data[data.findIndex((d) => d['Country or Area'] === el)]);
 
   const minYear = xIndicatorMetaData.years[0];
   const maxYear = xIndicatorMetaData.years[xIndicatorMetaData.years.length - 1];
@@ -102,8 +102,8 @@ export const MultiLineChart = (props: Props) => {
           mode='multiple'
           className='undp-select'
           placeholder='Please select a country'
-          onChange={(d) => { updateMultiCountrytrendChartCountries(d); }}
-          value={multiCountrytrendChartCountries}
+          onChange={(d) => { updateMultiCountryTrendChartCountries(d); }}
+          value={multiCountryTrendChartCountries}
           maxTagCount='responsive'
         >
           {
@@ -115,7 +115,7 @@ export const MultiLineChart = (props: Props) => {
       </div>
       <>
         {
-          multiCountrytrendChartCountries && valueArray.length > 0
+          multiCountryTrendChartCountries && valueArray.length > 0
             ? (
               <svg width='100%' height='100%' viewBox={`0 0 ${svgWidth} ${svgHeight}`}>
                 <g transform={`translate(${margin.left},${margin.top})`}>
@@ -318,15 +318,15 @@ export const MultiLineChart = (props: Props) => {
             ) : null
         }
         {
-          !multiCountrytrendChartCountries ? (
+          !multiCountryTrendChartCountries ? (
             <div className='center-area-info-el'>
               <>Please select a country above to see the trend for that country</>
               <Select
                 showSearch
                 className='undp-select'
                 placeholder='Please select a country'
-                value={multiCountrytrendChartCountries}
-                onChange={(d) => { updateMultiCountrytrendChartCountries(d); }}
+                value={multiCountryTrendChartCountries}
+                onChange={(d) => { updateMultiCountryTrendChartCountries(d); }}
               >
                 {
                   countries.map((d) => d.name).map((d) => (
@@ -338,7 +338,7 @@ export const MultiLineChart = (props: Props) => {
           ) : null
         }
         {
-          multiCountrytrendChartCountries.length === 0 ? (
+          multiCountryTrendChartCountries.length === 0 ? (
             <div className='center-area-info-el'>
               <h5 className='undp-typography'>Please select countries to see their trends</h5>
               <Select
@@ -346,8 +346,8 @@ export const MultiLineChart = (props: Props) => {
                 mode='multiple'
                 className='undp-select'
                 placeholder='Please select a country'
-                onChange={(d) => { updateMultiCountrytrendChartCountries(d); }}
-                value={multiCountrytrendChartCountries}
+                onChange={(d) => { updateMultiCountryTrendChartCountries(d); }}
+                value={multiCountryTrendChartCountries}
                 maxTagCount='responsive'
               >
                 {
@@ -360,7 +360,7 @@ export const MultiLineChart = (props: Props) => {
           ) : null
         }
         {
-          valueArray.length === 0 && multiCountrytrendChartCountries.length > 0 ? (
+          valueArray.length === 0 && multiCountryTrendChartCountries.length > 0 ? (
             <div className='center-area-error-el'>
               No data available for the countries selected
             </div>

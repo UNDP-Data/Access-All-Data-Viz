@@ -30,7 +30,7 @@ export const GetEmbedParams = () => {
     showMostRecentData,
     showLabel,
     trendChartCountry,
-    multiCountrytrendChartCountries,
+    multiCountryTrendChartCountries,
     useSameRange,
     reverseOrder,
     verticalBarLayout,
@@ -51,7 +51,7 @@ export const GetEmbedParams = () => {
   const showMostRecentDataParam = showMostRecentData === true ? '&showMostRecentData=true' : '';
   const showLabelParam = showLabel === true ? '&showLabel=true' : '';
   const trendChartCountryParam = trendChartCountry ? `&trendChartCountry=${CovertStringForParam(trendChartCountry)}` : '';
-  const multiCountrytrendChartCountriesParam = multiCountrytrendChartCountries.length > 0 ? `&multiCountrytrendChartCountries=${ArrToString(multiCountrytrendChartCountries)}` : '';
+  const multiCountryTrendChartCountriesParam = multiCountryTrendChartCountries.length > 0 ? `&multiCountryTrendChartCountries=${ArrToString(multiCountryTrendChartCountries)}` : '';
   const useSameRangeParam = useSameRange === true ? '&useSameRange=true' : '';
   const reverseOrderParam = reverseOrder === true ? '&reverseOrder=true' : '';
   const verticalBarLayoutParam = verticalBarLayout === false ? '&verticalBarLayout=false' : '';
@@ -70,7 +70,7 @@ export const GetEmbedParams = () => {
     + showMostRecentDataParam
     + showLabelParam
     + trendChartCountryParam
-    + multiCountrytrendChartCountriesParam
+    + multiCountryTrendChartCountriesParam
     + useSameRangeParam
     + reverseOrderParam
     + verticalBarLayoutParam

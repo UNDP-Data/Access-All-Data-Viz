@@ -31,7 +31,7 @@ export default (state: any, action: any) => {
     case 'UPDATE_DATA_LIST_COUNTRY':
       return { ...state, dataListCountry: action.payload };
     case 'UPDATE_MULTI_COUNTRY_TREND_CHART_COUNTRIES':
-      return { ...state, multiCountrytrendChartCountries: action.payload };
+      return { ...state, multiCountryTrendChartCountries: action.payload };
     case 'UPDATE_USE_SAME_RANGE':
       return { ...state, useSameRange: action.payload };
     case 'UPDATE_REVERSE_ORDER':

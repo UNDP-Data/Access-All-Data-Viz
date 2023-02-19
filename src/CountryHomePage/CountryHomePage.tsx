@@ -32,7 +32,6 @@ const CountryHomePageContext = (props:Props) => {
 
   const firstMetric = indicatorsList.findIndex((d) => d.IndicatorLabelTable === DEFAULT_VALUES.firstMetric) === -1 ? indicatorsList[0].IndicatorLabelTable : DEFAULT_VALUES.firstMetric;
   const secondMetric = indicatorsList.findIndex((d) => d.IndicatorLabelTable === DEFAULT_VALUES.secondMetric) === -1 ? indicatorsList[1].IndicatorLabelTable : DEFAULT_VALUES.secondMetric;
-  console.log(indicatorsList, firstMetric, secondMetric);
   const queryParams = new URLSearchParams(window.location.search);
   const initialState = {
     graphType: queryParams.get('graphType') || 'dataList',
@@ -50,7 +49,7 @@ const CountryHomePageContext = (props:Props) => {
     showSource: false,
     trendChartCountry: queryParams.get('trendChartCountry') || undefined,
     dataListCountry: queryParams.get('dataListCountry') || undefined,
-    multiCountrytrendChartCountries: queryParams.get('multiCountrytrendChartCountries')?.split('~') || ['China', 'India', 'United States of America', 'Indonesia', 'Pakistan'],
+    multiCountryTrendChartCountries: queryParams.get('multiCountryTrendChartCountries')?.split('~') || ['China', 'India', 'United States of America', 'Indonesia', 'Pakistan'],
     useSameRange: queryParams.get('useSameRange') === 'true',
     reverseOrder: queryParams.get('reverseOrder') === 'true',
     verticalBarLayout: queryParams.get('verticalBarLayout') !== 'false',
@@ -68,10 +67,10 @@ const CountryHomePageContext = (props:Props) => {
     });
   };
 
-  const updateMultiCountrytrendChartCountries = (multiCountrytrendChartCountries: string[]) => {
+  const updateMultiCountryTrendChartCountries = (multiCountryTrendChartCountries: string[]) => {
     dispatch({
       type: 'UPDATE_MULTI_COUNTRY_TREND_CHART_COUNTRIES',
-      payload: multiCountrytrendChartCountries,
+      payload: multiCountryTrendChartCountries,
     });
   };
 
@@ -217,7 +216,7 @@ const CountryHomePageContext = (props:Props) => {
         updateShowSource,
         updateTrendChartCountry,
         updateDataListCountry,
-        updateMultiCountrytrendChartCountries,
+        updateMultiCountryTrendChartCountries,
         updateUseSameRange,
         updateReverseOrder,
         updateBarLayout,
