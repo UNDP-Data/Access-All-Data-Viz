@@ -186,10 +186,10 @@ const HomePageContext = (props:Props) => {
       payload: useSameRange,
     });
   };
-  const updateBarLayout = (varticalBarLayout: boolean) => {
+  const updateBarLayout = (verticalBarLayout: boolean) => {
     dispatch({
       type: 'UPDATE_BAR_LAYOUT',
-      payload: varticalBarLayout,
+      payload: verticalBarLayout,
     });
   };
   return (

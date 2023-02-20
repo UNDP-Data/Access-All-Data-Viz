@@ -1,32 +1,36 @@
 import {
   useContext, useState,
 } from 'react';
+import { format } from 'd3-format';
 import maxBy from 'lodash.maxby';
 import orderBy from 'lodash.orderby';
-import { format } from 'd3-format';
 import {
-  scaleOrdinal, scaleLinear, scaleThreshold,
+  scaleOrdinal, scaleLinear, scaleThreshold, scaleBand,
 } from 'd3-scale';
 import minBy from 'lodash.minby';
 import UNDPColorModule from 'undp-viz-colors';
 import {
-  CtxDataType, CountryGroupDataType, HoverDataType, HoverRowDataType, IndicatorMetaDataWithYear,
-} from '../Types';
-import Context from '../Context/Context';
+  CountryGroupDataType, CtxDataType, HoverDataType, HoverRowDataType, IndicatorMetaDataWithYear,
+} from '../../Types';
+import Context from '../../Context/Context';
 import {
-  CONTINENTS, HDI_LEVELS, INCOME_GROUPS,
-} from '../Constants';
-import { Tooltip } from '../Components/Tooltip';
+  CONTINENTS, HDI_LEVELS, INCOME_GROUPS, MAX_TEXT_LENGTH,
+} from '../../Constants';
+import { Tooltip } from '../../Components/Tooltip';
 
 interface Props {
   data: CountryGroupDataType[];
   indicators: IndicatorMetaDataWithYear[];
+  svgWidth: number;
+  svgHeight: number;
 }
 
-export const HorizontalBarChart = (props: Props) => {
+export const Graph = (props: Props) => {
   const {
     data,
     indicators,
+    svgWidth,
+    svgHeight,
   } = props;
   const {
     year,
@@ -37,19 +41,17 @@ export const HorizontalBarChart = (props: Props) => {
     selectedRegions,
     selectedIncomeGroups,
     selectedCountryGroup,
-    reverseOrder,
   } = useContext(Context) as CtxDataType;
   const [selectedColor, setSelectedColor] = useState<string | undefined>(undefined);
   const [hoverData, setHoverData] = useState<HoverDataType | undefined>(undefined);
-  const queryParams = new URLSearchParams(window.location.search);
-  const svgWidth = queryParams.get('showSettings') === 'false' && window.innerWidth > 960 ? 1280 : 960;
   const margin = {
-    top: 150,
-    bottom: 10,
-    left: 175,
-    right: 40,
+    top: 90,
+    bottom: 50,
+    left: 90,
+    right: 20,
   };
   const graphWidth = svgWidth - margin.left - margin.right;
+  const graphHeight = svgHeight - margin.top - margin.bottom;
   const xIndicatorMetaData = indicators[indicators.findIndex((indicator) => indicator.IndicatorLabelTable === xAxisIndicator)];
   const colorIndicatorMetaData = indicators[indicators.findIndex((indicator) => indicator.IndicatorLabelTable === colorIndicator)];
 
@@ -86,16 +88,18 @@ export const HorizontalBarChart = (props: Props) => {
         xYear,
         colorYear,
       });
-    }).filter((d) => d.xVal !== undefined && d.country && d.countryGroup && d.incomeGroup && d.region), 'xVal', reverseOrder ? 'desc' : 'asc',
+    }).filter((d) => d.xVal !== undefined && d.country && d.countryGroup && d.incomeGroup && d.region), 'xVal', 'asc',
   );
 
-  const svgHeight = dataFormatted.length * 25 + margin.top + margin.bottom;
   const xMaxValue = maxBy(dataFormatted, (d) => d.xVal) ? maxBy(dataFormatted, (d) => d.xVal)?.xVal as number : 0;
   const xMinValue = minBy(dataFormatted, (d) => d.xVal) ? minBy(dataFormatted, (d) => d.xVal)?.xVal as number : 0;
 
-  const widthScale = scaleLinear().domain([xMinValue > 0 ? 0 : xMinValue, xMaxValue]).range([0, graphWidth]).nice();
-
-  const xTicks = widthScale.ticks(5);
+  const heightScale = scaleLinear().domain([xMinValue > 0 ? 0 : xMinValue, xMaxValue]).range([graphHeight, 0]).nice();
+  const yTicks = heightScale.ticks(5);
+  const xScale = scaleBand()
+    .domain(dataFormatted.map((d) => d.countryCode))
+    .range([0, graphWidth])
+    .paddingInner(0.25);
 
   let colorList: string[] = colorIndicator === 'Income Groups' ? UNDPColorModule.divergentColors.colorsx04 : UNDPColorModule.categoricalColors.colors;
 
@@ -141,6 +145,7 @@ export const HorizontalBarChart = (props: Props) => {
         break;
     }
   }
+
   const colorDomain = colorIndicator === 'Continents' ? CONTINENTS
     : colorIndicator === 'Income Groups' ? INCOME_GROUPS
       : colorIndicator === 'Human Development Index' ? [0.55, 0.7, 0.8]
@@ -148,19 +153,10 @@ export const HorizontalBarChart = (props: Props) => {
           : [0, 0];
   const colorScale = colorIndicator === 'Human Development Index' ? scaleThreshold<string | number, string>().domain(colorDomain).range(UNDPColorModule.divergentColors.colorsx04).unknown(UNDPColorModule.graphGray) : scaleOrdinal<string | number, string>().domain(colorDomain).range(colorList).unknown(UNDPColorModule.graphGray);
   return (
-    <div className='undp-scrollbar'>
+    <>
       <svg width='100%' viewBox={`0 0 ${svgWidth} ${svgHeight}`}>
-        <text
-          x={margin.left}
-          y={30}
-          fontSize={14}
-          fontWeight='bold'
-          fill='#212121'
-        >
-          {xIndicatorMetaData.IndicatorLabelTable}
-        </text>
         <g
-          transform={`translate(${margin.left},70)`}
+          transform='translate(90,20)'
         >
           <text
             x={0}
@@ -171,60 +167,60 @@ export const HorizontalBarChart = (props: Props) => {
             {colorIndicatorMetaData?.IndicatorLabelTable ? colorIndicatorMetaData?.IndicatorLabelTable : colorIndicator}
           </text>
           {
-          colorIndicator === 'Human Development Index' ? UNDPColorModule.divergentColors.colorsx04.map((d, i) => (
-            <g
-              transform='translate(0,20)'
-              key={i}
-              onMouseOver={() => { setSelectedColor(d); }}
-              onMouseLeave={() => { setSelectedColor(undefined); }}
-              style={{ cursor: 'pointer' }}
-            >
-              <rect
-                x={(i * (graphWidth - 50)) / UNDPColorModule.divergentColors.colorsx04.length + 1}
-                y={1}
-                width={((graphWidth - 50) / UNDPColorModule.divergentColors.colorsx04.length) - 2}
-                height={8}
-                fill={d}
-                stroke={selectedColor === d ? '#212121' : d}
-              />
-              <text
-                x={((i * (graphWidth - 50)) / UNDPColorModule.divergentColors.colorsx04.length) + (((graphWidth - 50) / 2) / UNDPColorModule.divergentColors.colorsx04.length)}
-                y={25}
-                textAnchor='middle'
-                fontSize={12}
-                fill='#212121'
+            colorIndicator === 'Human Development Index' ? UNDPColorModule.divergentColors.colorsx04.map((d, i) => (
+              <g
+                transform='translate(0,20)'
+                key={i}
+                onMouseOver={() => { setSelectedColor(d); }}
+                onMouseLeave={() => { setSelectedColor(undefined); }}
+                style={{ cursor: 'pointer' }}
               >
-                {HDI_LEVELS[i]}
-              </text>
-            </g>
-          )) : colorDomain.map((d, i) => (
-            <g
-              transform='translate(0,20)'
-              key={i}
-              onMouseOver={() => { setSelectedColor(colorList[i]); }}
-              onMouseLeave={() => { setSelectedColor(undefined); }}
-              style={{ cursor: 'pointer' }}
-            >
-              <rect
-                x={(i * (graphWidth - 50)) / colorDomain.length + 1}
-                y={1}
-                width={((graphWidth - 50) / colorDomain.length) - 2}
-                height={8}
-                fill={colorList[i]}
-                stroke={selectedColor === colorList[i] ? '#212121' : colorList[i]}
-              />
-              <text
-                x={((i * (graphWidth - 50)) / colorDomain.length) + (((graphWidth - 50) / 2) / colorDomain.length)}
-                y={25}
-                textAnchor='middle'
-                fontSize={12}
-                fill='#212121'
+                <rect
+                  x={(i * (graphWidth - 50)) / UNDPColorModule.divergentColors.colorsx04.length + 1}
+                  y={1}
+                  width={((graphWidth - 50) / UNDPColorModule.divergentColors.colorsx04.length) - 2}
+                  height={8}
+                  fill={d}
+                  stroke={selectedColor === d ? '#212121' : d}
+                />
+                <text
+                  x={((i * (graphWidth - 50)) / UNDPColorModule.divergentColors.colorsx04.length) + (((graphWidth - 50) / 2) / UNDPColorModule.divergentColors.colorsx04.length)}
+                  y={25}
+                  textAnchor='middle'
+                  fontSize={12}
+                  fill='#212121'
+                >
+                  {HDI_LEVELS[i]}
+                </text>
+              </g>
+            )) : colorDomain.map((d, i) => (
+              <g
+                transform='translate(0,20)'
+                key={i}
+                onMouseOver={() => { setSelectedColor(colorList[i]); }}
+                onMouseLeave={() => { setSelectedColor(undefined); }}
+                style={{ cursor: 'pointer' }}
               >
-                {d}
-              </text>
-            </g>
-          ))
-        }
+                <rect
+                  x={(i * (graphWidth - 50)) / colorDomain.length + 1}
+                  y={1}
+                  width={((graphWidth - 50) / colorDomain.length) - 2}
+                  height={8}
+                  fill={colorList[i]}
+                  stroke={selectedColor === colorList[i] ? '#212121' : colorList[i]}
+                />
+                <text
+                  x={((i * (graphWidth - 50)) / colorDomain.length) + (((graphWidth - 50) / 2) / colorDomain.length)}
+                  y={25}
+                  textAnchor='middle'
+                  fontSize={12}
+                  fill='#212121'
+                >
+                  {d}
+                </text>
+              </g>
+            ))
+          }
           <g
             transform='translate(0,20)'
           >
@@ -247,36 +243,63 @@ export const HorizontalBarChart = (props: Props) => {
             </text>
           </g>
         </g>
-        <g
-          transform={`translate(${margin.left},${margin.top})`}
-        >
-          {
-            xTicks.map((d, i) => (
-              <g
-                key={i}
-              >
-                <text
-                  x={widthScale(d)}
-                  y={-12.5}
-                  fill='#AAA'
-                  textAnchor='middle'
-                  fontSize={12}
-                >
-                  {Math.abs(d) < 1 ? d : format('~s')(d).replace('G', 'B')}
-                </text>
-                <line
-                  x1={widthScale(d)}
-                  x2={widthScale(d)}
-                  y1={-2.5}
-                  y2={dataFormatted.length * 25 - 2.5}
-                  stroke='#AAA'
-                  strokeWidth={1}
-                  strokeDasharray='4,8'
-                  opacity={d === 0 ? 0 : 1}
-                />
-              </g>
-            ))
-          }
+        <g transform={`translate(${margin.left},${margin.top})`}>
+          <g>
+            {
+              yTicks.map((d, i) => (
+                <g key={i} opacity={d === 0 ? 0 : 1}>
+                  <line
+                    y1={heightScale(d)}
+                    y2={heightScale(d)}
+                    x1={0}
+                    x2={graphWidth}
+                    stroke='#AAA'
+                    strokeWidth={1}
+                    strokeDasharray='4,8'
+                  />
+                  <text
+                    x={0}
+                    y={heightScale(d)}
+                    fill={UNDPColorModule.graphGray}
+                    textAnchor='end'
+                    fontSize={12}
+                    dy={3}
+                    dx={-2}
+                  >
+                    {Math.abs(d) < 1 ? d : format('~s')(d).replace('G', 'B')}
+                  </text>
+                </g>
+              ))
+            }
+            <line
+              y1={heightScale(0)}
+              y2={heightScale(0)}
+              x1={0}
+              x2={graphWidth}
+              stroke={UNDPColorModule.graphGray}
+              strokeWidth={1}
+            />
+            <text
+              x={0}
+              y={heightScale(0)}
+              fill={UNDPColorModule.graphGray}
+              textAnchor='end'
+              fontSize={12}
+              dy={3}
+              dx={-2}
+            >
+              {0}
+            </text>
+            <text
+              transform={`translate(-50, ${graphHeight / 2}) rotate(-90)`}
+              fill='#212121'
+              textAnchor='middle'
+              fontSize={12}
+            >
+              {xIndicatorMetaData.IndicatorLabelTable.length > MAX_TEXT_LENGTH ? `${xIndicatorMetaData.IndicatorLabelTable.substring(0, MAX_TEXT_LENGTH)}...` : xIndicatorMetaData.IndicatorLabelTable}
+            </text>
+          </g>
+
           {
             dataFormatted.map((d, i) => {
               const countryData = data[data.findIndex((el) => el['Alpha-3 code'] === d.countryCode)];
@@ -302,6 +325,7 @@ export const HorizontalBarChart = (props: Props) => {
                   suffix: colorIndicatorMetaData?.LabelSuffix,
                 });
               }
+
               if (d.xVal === undefined) return null;
               return (
                 <g
@@ -333,55 +357,60 @@ export const HorizontalBarChart = (props: Props) => {
                     setHoverData(undefined);
                   }}
                 >
-                  <text
-                    fill={d.colorVal ? colorScale(d.colorVal) : '#212121'}
-                    y={i * 25}
-                    x={0}
-                    dx={-15}
-                    dy={14}
-                    fontSize={12}
-                    textAnchor='end'
-                  >
-                    {d.countryName.length < 25 ? d.countryName : `${d.countryName.substring(0, 25)}...`}
-                  </text>
                   <rect
-                    y={i * 25}
-                    x={widthScale(Math.min(0, d.xVal))}
-                    height={20}
+                    x={xScale(d.countryCode)}
+                    y={heightScale(Math.max(0, d.xVal))}
+                    width={xScale.bandwidth()}
                     fill={d.colorVal ? colorScale(d.colorVal) : UNDPColorModule.graphGray}
-                    width={Math.abs(widthScale(d.xVal) - widthScale(0))}
-                    rx={3}
-                    ry={3}
+                    height={Math.abs(heightScale(d.xVal) - heightScale(0))}
                   />
-                  <text
-                    fill='#212121'
-                    fontWeight='bold'
-                    y={i * 25}
-                    x={d.xVal < 0 ? widthScale(Math.min(0, d.xVal)) : widthScale(d.xVal)}
-                    dx={d.xVal < 0 ? -5 : 5}
-                    textAnchor={d.xVal < 0 ? 'end' : 'start'}
-                    dy={14}
-                    fontSize={12}
-                  >
-                    {d.xVal < 1000000 ? format(',')(parseFloat(d.xVal.toFixed(2))).replace(',', ' ') : format('.3s')(d.xVal).replace('G', 'B')}
-                  </text>
+                  {
+                    xScale.bandwidth() >= 7 && xScale.bandwidth() < 20
+                      ? (
+                        <g
+                          transform={`translate(${xScale(d.countryCode) as number + (xScale.bandwidth() / 2)},${heightScale(0)})`}
+                        >
+                          <text
+                            x={0}
+                            y={0}
+                            fontSize='10px'
+                            textAnchor={d.xVal >= 0 ? 'end' : 'start'}
+                            fill='#110848'
+                            transform='rotate(-90)'
+                            dy='5px'
+                            dx={d.xVal >= 0 ? '-5px' : '19px'}
+                          >
+                            {countryData['Alpha-3 code']}
+                          </text>
+                        </g>
+                      )
+                      : null
+                  }
+                  {
+                    xScale.bandwidth() >= 20
+                      ? (
+                        <text
+                          x={xScale(d.countryCode) as number + (xScale.bandwidth() / 2)}
+                          y={heightScale(0)}
+                          fontSize='12px'
+                          textAnchor='middle'
+                          fill='#110848'
+                          dy={d.xVal >= 0 ? '15px' : '-5px'}
+                        >
+                          {d.countryCode}
+                        </text>
+                      )
+                      : null
+                  }
                 </g>
               );
             })
           }
-          <line
-            x1={widthScale(0)}
-            x2={widthScale(0)}
-            y1={-2.5}
-            y2={dataFormatted.length * 25 - 2.5}
-            stroke='#212121'
-            strokeWidth={1}
-          />
         </g>
       </svg>
       {
         hoverData ? <Tooltip data={hoverData} /> : null
       }
-    </div>
+    </>
   );
 };

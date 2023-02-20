@@ -22,9 +22,9 @@ __Pages Where the Visualization is Used__
 * This is also used in the Country pages in DFP. For ex. [here](https://data.undp.acsitefactory.com/countries/AFG)
 
 ## Related Repos
-* [__Indicators-MetaData__](https://github.com/UNDP-Data/Indicators-MetaData): This is the metadata sheet for indicators unsed in the visualization
+* [__Indicators-MetaData__](https://github.com/UNDP-Data/Indicators-MetaData): This is the metadata sheet for indicators used in the visualization
 * [__country-taxonomy-from-azure__](https://github.com/UNDP-Data/country-taxonomy-from-azure): This is data sheet with meta data for Countries
-* [__Access-All-Data-Data-Repo__](https://github.com/UNDP-Data/Access-All-Data-Data-Repo): This is the data sheet for visualziation
+* [__Access-All-Data-Data-Repo__](https://github.com/UNDP-Data/Access-All-Data-Data-Repo): This is the data sheet for visualization
 * [__stylesheet-for-viz__](https://github.com/UNDP-Data/stylesheets-for-viz): Repo which defines the css settings for the project
 
 ## Global CSS for UI and Graphs
@@ -38,7 +38,7 @@ __Link for stylesheets__
 ## Build with
 * __React__: Used as MVC framework.
 * __CRACO__: Used to configure different scripts (See Available Scripts for more details)
-* __styled-components__: Utilises tagged template literals and the power of CSS, allows to write actual CSS code to style the components in JS/TS.
+* __styled-components__: Utilizes tagged template literals and the power of CSS, allows to write actual CSS code to style the components in JS/TS.
 * __Various D3 Libraries__: Used for visualizations, adding interaction and reading the csv data file.
 * __AntD__: For UI elements like dropdown, buttons, checkbox, and slider.
 * __dom-to-image__: Used to allow users to download images of various visualization views they create.
@@ -50,7 +50,7 @@ __Link for stylesheets__
 ## Installation
 This project uses `npm`. For installation you will need to install `node` and `npm`, if you don't already have it. `node` and `npm` can be installed from [here](https://nodejs.org/en/download/).
 
-To install the project, sinply clone the the repo and them run `npm install` in the project folder. You can use terminal on Mac and Command Prompt on Windows.
+To install the project, simply clone the the repo and them run `npm install` in the project folder. You can use terminal on Mac and Command Prompt on Windows.
 
 Run the terminal or command prompt and then run the following
 
@@ -68,7 +68,7 @@ This is run the app in development mode. Open [http://localhost:3000](http://loc
 The page will reload if you make edits. You will also see any lint errors in the console.
 
 ## Available Scripts
-Craco is used to add a cofiguration layer for CRA. The primary function is to stop the `build` to have optimized chunks of the built script. _This make the using the script in the Wordpress easier._ The configuration file for Craco is placed in the root folder and called `craco.config.js`
+Craco is used to add a configuration layer for CRA. The primary function is to stop the `build` to have optimized chunks of the built script. _This make the using the script in the Wordpress easier._ The configuration file for Craco is placed in the root folder and called `craco.config.js`
 * `npm run build`: Executes `craco build` and builds the app without chunking the main js script file.
 * `npm run start`: Executes `craco start` and start the local server for local deployment.
 * `npm install`: Installs all the dependencies.

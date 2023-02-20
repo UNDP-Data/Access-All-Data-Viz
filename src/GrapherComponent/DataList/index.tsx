@@ -7,8 +7,8 @@ import {
   CountryListType,
   CtxDataType,
   IndicatorMetaDataWithYear,
-} from '../Types';
-import Context from '../Context/Context';
+} from '../../Types';
+import Context from '../../Context/Context';
 import { TrendChartSmall } from './TrendChartSmall';
 
 interface Props {
@@ -44,7 +44,7 @@ export const DataList = (props: Props) => {
   return (
     <>
       {
-        dataFiltered && countryName && dataListCountry
+        (selectedCountry || dataListCountry) && dataFiltered && countryName
           ? (
             <>
               <div style={{

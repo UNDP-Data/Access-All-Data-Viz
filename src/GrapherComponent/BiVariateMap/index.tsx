@@ -13,17 +13,17 @@ import {
 } from 'd3-scale';
 import {
   CtxDataType, CountryGroupDataType, HoverDataType, HoverRowDataType, IndicatorMetaDataWithYear,
-} from '../Types';
-import Context from '../Context/Context';
-import World from '../Data/worldMap.json';
-import { Tooltip } from '../Components/Tooltip';
+} from '../../Types';
+import Context from '../../Context/Context';
+import World from '../../Data/worldMap.json';
+import { Tooltip } from '../../Components/Tooltip';
 
 interface Props {
   data: CountryGroupDataType[];
   indicators: IndicatorMetaDataWithYear[];
 }
 
-export const BivariateMap = (props: Props) => {
+export const BiVariateMap = (props: Props) => {
   const {
     data,
     indicators,

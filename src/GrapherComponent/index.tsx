@@ -13,7 +13,6 @@ import { Graph } from './Graph';
 import { DataSources } from './DataSources';
 import { GetEmbedParams } from '../Components/GetEmbedParams';
 import { CopyLinkWithParamButton } from '../Components/CopyLinkWithParamButton';
-import { CountrySummary } from './CountrySummary';
 
 interface Props {
   data: CountryGroupDataType[];
@@ -52,9 +51,6 @@ export const GrapherComponent = (props: Props) => {
   return (
     <>
       <div className='margin-top-06 margin-bottom-06'>
-        {
-          selectedCountry && queryParams.get('featuredIndicator') !== 'false' ? <CountrySummary data={data} indicators={indicators} countries={countries} /> : null
-        }
         {
           queryParams.get('accessAllData') !== 'false' ? (
             <>

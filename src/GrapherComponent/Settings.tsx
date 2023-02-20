@@ -276,32 +276,32 @@ export const Settings = (props: Props) => {
                 </div>
               ) : null
           }
-          {
-            graphType !== 'dataList'
-              ? (
-                <div className='flex-div flex-wrap'>
-                  <button className='undp-button button-primary' type='button' onClick={() => { updateShowSource(true); }}>Download Data</button>
-                  <button
-                    className='undp-button button-secondary'
-                    type='button'
-                    onClick={() => {
-                      const node = document.getElementById('graph-node') as HTMLElement;
-                      domtoimage
-                        .toPng(node, { height: node.scrollHeight })
-                        .then((dataUrl: any) => {
-                          const link = document.createElement('a');
-                          link.download = 'graph.png';
-                          link.href = dataUrl;
-                          link.click();
-                        });
-                    }}
-                  >
-                    Download Graph
-                  </button>
-                </div>
-              ) : null
-          }
         </div>
+        {
+          graphType !== 'dataList'
+            ? (
+              <div className='flex-div flex-wrap margin-top-05'>
+                <button className='undp-button button-primary' type='button' onClick={() => { updateShowSource(true); }}>Download Data</button>
+                <button
+                  className='undp-button button-secondary'
+                  type='button'
+                  onClick={() => {
+                    const node = document.getElementById('graph-node') as HTMLElement;
+                    domtoimage
+                      .toPng(node, { height: node.scrollHeight })
+                      .then((dataUrl: any) => {
+                        const link = document.createElement('a');
+                        link.download = 'graph.png';
+                        link.href = dataUrl;
+                        link.click();
+                      });
+                  }}
+                >
+                  Download Graph
+                </button>
+              </div>
+            ) : null
+        }
       </div>
       {
         graphType !== 'dataList' ? (

@@ -6,7 +6,7 @@ import maxBy from 'lodash.maxby';
 import minBy from 'lodash.minby';
 import UNDPColorModule from 'undp-viz-colors';
 import { format } from 'd3-format';
-import { IndicatorMetaDataWithYear } from '../Types';
+import { IndicatorMetaDataWithYear } from '../../Types';
 
 interface Props {
   data: {

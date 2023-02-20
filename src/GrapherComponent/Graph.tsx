@@ -9,9 +9,8 @@ import {
 import Context from '../Context/Context';
 import { HorizontalBarChart } from './HorizontalBarChart';
 import { ScatterPlot } from './ScatterPlot';
-import { BivariateMap } from './BivariateMap';
+import { BiVariateMap } from './BiVariateMap';
 import { UnivariateMap } from './UnivariateMap';
-import { DualAxisLineChart } from './DualAxisLineChart';
 import { MultiLineChart } from './MultiLineChart';
 import { BarChart } from './BarChart';
 import { LineChart } from './LineChart';
@@ -161,7 +160,7 @@ export const Graph = (props: Props) => {
             : graphType === 'map'
               ? yAxisIndicator
                 ? (
-                  <BivariateMap
+                  <BiVariateMap
                     data={data}
                     indicators={indicators}
                   />
@@ -186,21 +185,13 @@ export const Graph = (props: Props) => {
                     />
                   )
                 : graphType === 'trendLine'
-                  ? yAxisIndicator
-                    ? (
-                      <DualAxisLineChart
-                        data={data}
-                        indicators={indicators}
-                        countries={countries}
-                      />
-                    )
-                    : (
-                      <LineChart
-                        data={data}
-                        indicators={indicators}
-                        countries={countries}
-                      />
-                    )
+                  ? (
+                    <LineChart
+                      data={data}
+                      indicators={indicators}
+                      countries={countries}
+                    />
+                  )
                   : graphType === 'dataList'
                     ? (
                       <DataList

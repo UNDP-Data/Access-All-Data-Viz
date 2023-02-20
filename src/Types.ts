@@ -5,7 +5,20 @@ export interface IndicatorDataType {
     value: number,
   }[]
 }
-export interface CountryGroupDataType {
+export interface CountryTaxonomyDataType {
+  'Alpha-3 code-1': string;
+  'Country or Area': string;
+  'Group 1': string;
+  'Group 2': string;
+  'LDC': boolean;
+  'LLDC': boolean;
+  'Latitude (average)': number;
+  'Longitude (average)': number;
+  'SIDS': boolean;
+  'Income group': string;
+}
+
+export interface CountryGroupDataType{
   'Alpha-3 code': string;
   'Country or Area': string;
   'Group 1': string;

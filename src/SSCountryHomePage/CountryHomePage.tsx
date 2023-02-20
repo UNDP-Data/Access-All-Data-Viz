@@ -28,7 +28,6 @@ const CountryHomePageContext = (props:Props) => {
     countryId,
     signatureSolution,
   } = props;
-  const countryFromLink = countryId;
   const signatureSolutionFromLink = useParams().signatureSolution;
 
   const firstMetric = indicatorsList.findIndex((d) => d.IndicatorLabelTable === DEFAULT_VALUES.firstMetric) === -1 ? indicatorsList[0].IndicatorLabelTable : DEFAULT_VALUES.firstMetric;
@@ -54,7 +53,7 @@ const CountryHomePageContext = (props:Props) => {
     useSameRange: queryParams.get('useSameRange') === 'true',
     reverseOrder: queryParams.get('reverseOrder') === 'true',
     verticalBarLayout: queryParams.get('verticalBarLayout') !== 'false',
-    selectedCountry: countryFromLink || countryId,
+    selectedCountry: countryId,
     signatureSolution: signatureSolutionFromLink || signatureSolution,
     signatureSolutionForDataList: 'All',
   };
@@ -225,7 +224,7 @@ const CountryHomePageContext = (props:Props) => {
       }}
     >
       <div className='undp-container'>
-        <CountrySummary data={finalData} indicators={indicatorsList} countries={countryList} />
+        <CountrySummary data={finalData[0]} />
         <GrapherComponent
           data={finalData}
           indicators={indicatorsList}
