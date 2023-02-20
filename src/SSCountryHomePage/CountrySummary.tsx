@@ -12,9 +12,6 @@ export const CountrySummary = (props: Props) => {
   const {
     data,
   } = props;
-  console.log(
-    data.indicators.findIndex((d) => d.indicator === 'Poverty headcount ratio at $2.15 a day (2017 PPP) (% of population)') !== -1,
-  );
   return (
     <div className='margin-bottom-07'>
       <div className='flex-div flex-wrap stat-container'>
