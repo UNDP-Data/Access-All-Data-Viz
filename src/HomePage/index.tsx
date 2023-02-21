@@ -5,6 +5,7 @@ import sortedUniq from 'lodash.sorteduniq';
 import { json } from 'd3-request';
 import uniqBy from 'lodash.uniqby';
 import { queue } from 'd3-queue';
+import sortBy from 'lodash.sortby';
 import {
   CountryGroupDataType, IndicatorMetaDataType, IndicatorMetaDataWithYear, CountryListType,
 } from '../Types';
@@ -37,7 +38,7 @@ const HomePage = (props:Props) => {
         setFinalData(data);
         setCountryList(data.map((d) => ({ name: d['Country or Area'], code: d['Alpha-3 code'] })));
         setRegionList(uniqBy(data, (d) => d['Group 2']).map((d) => d['Group 2']));
-        const indicatorsFilteredBySS = signatureSolution ? indicatorMetaData.filter((d) => d.SignatureSolution.indexOf(signatureSolution) !== -1) : indicatorMetaData;
+        const indicatorsFilteredBySS = signatureSolution ? sortBy(indicatorMetaData, (d) => d.IndicatorLabelTable).filter((d) => d.SignatureSolution.indexOf(signatureSolution) !== -1) : sortBy(indicatorMetaData, (d) => d.IndicatorLabelTable);
         const indicatorsFiltered = topic ? indicatorsFilteredBySS.filter((d) => d.SSTopics.indexOf(topic) !== -1) : indicatorsFilteredBySS;
         const indicatorWithYears: IndicatorMetaDataWithYear[] = indicatorsFiltered.map((d) => {
           const years: number[][] = [];

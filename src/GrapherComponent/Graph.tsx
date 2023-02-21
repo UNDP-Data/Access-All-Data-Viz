@@ -128,7 +128,9 @@ export const Graph = (props: Props) => {
                 style={{ width: '97%', margin: '0 auto' }}
                 onChange={(d) => { updateYear(d); setYearForPlay(d); }}
                 className='undp-slider'
-                tooltip={{ open: true, prefixCls: 'undp-slider-tooltip' }}
+                tooltip={{
+                  open: true, placement: 'top', prefixCls: 'undp-slider-tooltip', getPopupContainer: (triggerNode) => triggerNode.parentNode as HTMLElement,
+                }}
               />
             </div>
           ) : commonYears.length === 0 || showMostRecentData ? (

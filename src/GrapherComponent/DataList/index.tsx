@@ -41,10 +41,11 @@ export const DataList = (props: Props) => {
   const dataFiltered = signatureSolutionForDataList === 'All' || dataFilteredByCountry === undefined
     ? dataFilteredByCountry
     : dataFilteredByCountry.filter((d) => filteredIndicators.findIndex((el) => el.DataKey === d.indicator) !== -1);
+  const dataFilteredByMetaData = dataFiltered?.filter((d) => indicators.findIndex((el) => el.DataKey === d.indicator) !== -1);
   return (
     <>
       {
-        (selectedCountry || dataListCountry) && dataFiltered && countryName
+        (selectedCountry || dataListCountry) && dataFilteredByMetaData && countryName
           ? (
             <>
               <div style={{
@@ -71,7 +72,7 @@ export const DataList = (props: Props) => {
                   </div>
                 </div>
                 {
-                  sortBy(dataFiltered, (d) => indicators[indicators.findIndex((el) => el.DataKey === d.indicator)].IndicatorLabelTable).map((d, i) => (indicators.findIndex((el) => el.DataKey === d.indicator) !== -1
+                  sortBy(dataFilteredByMetaData, (d) => indicators[indicators.findIndex((el) => el.DataKey === d.indicator)].IndicatorLabelTable).map((d, i) => (indicators.findIndex((el) => el.DataKey === d.indicator) !== -1
                     ? (
                       <div key={i} className='undp-table-row'>
                         <div style={{ width: '50%', fontSize: '1rem' }} className='undp-table-row-cell'>
