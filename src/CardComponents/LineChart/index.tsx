@@ -11,6 +11,7 @@ interface Props {
   graphTitle: string;
   strokeWidth: number;
   suffix?: string;
+  source: string;
 }
 
 const StatCardsEl = styled.div`
@@ -22,15 +23,21 @@ const StatCardsEl = styled.div`
   flex-basis: 22.5rem;
   min-height: 22.5rem;
   background-color: var(--gray-200);
+  justify-content: space-between;
   font-size: 1.25rem;
   color: var(--black);
   transition: 300ms all;
   height: auto !important;
 `;
 
+const SourceEl = styled.div`
+  font-size: 1rem;
+  color: var(--gray-500);
+`;
+
 export function LineChart(props: Props) {
   const {
-    data, lineColor, graphTitle, strokeWidth, suffix,
+    data, lineColor, graphTitle, strokeWidth, suffix, source,
   } = props;
   const [mouseOverData, setMouseOverData] = useState<any>(
     data[data.length - 1],
@@ -80,6 +87,11 @@ export function LineChart(props: Props) {
           ) : null}
         </div>
       </div>
+      <SourceEl className='margin-top-05'>
+        Source:
+        {' '}
+        {source}
+      </SourceEl>
     </StatCardsEl>
   );
 }

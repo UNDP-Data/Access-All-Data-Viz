@@ -71,7 +71,7 @@ export const DataList = (props: Props) => {
                   </div>
                 </div>
                 {
-                  dataFiltered.map((d, i) => (indicators.findIndex((el) => el.DataKey === d.indicator) !== -1
+                  sortBy(dataFiltered, (d) => indicators[indicators.findIndex((el) => el.DataKey === d.indicator)].IndicatorLabelTable).map((d, i) => (indicators.findIndex((el) => el.DataKey === d.indicator) !== -1
                     ? (
                       <div key={i} className='undp-table-row'>
                         <div style={{ width: '50%', fontSize: '1rem' }} className='undp-table-row-cell'>

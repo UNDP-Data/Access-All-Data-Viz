@@ -224,7 +224,7 @@ const CountryHomePageContext = (props:Props) => {
       }}
     >
       <div className='undp-container'>
-        <CountrySummary data={finalData[0]} />
+        <CountrySummary data={finalData[0]} indicators={indicatorsList} />
         <GrapherComponent
           data={finalData}
           indicators={indicatorsList}

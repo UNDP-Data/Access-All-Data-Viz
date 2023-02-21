@@ -132,7 +132,7 @@ export function LineChartGraph(props: Props) {
         <g transform={`translate(${margin.left},${margin.top})`}>
           <path
             clipPath='url(#clip)'
-            d={mainGraphArea(dataFormatted as any) as string}
+            d={mainGraphArea(dataFiltered as any) as string}
             fill='url(#Gradient2)'
           />
           <g>

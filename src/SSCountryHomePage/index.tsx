@@ -75,6 +75,7 @@ const CountryHomePage = (props:Props) => {
             <Select
               className='undp-select margin-bottom-05'
               placeholder='Select A Country'
+              showSearch
               value={countryTaxonomy[countryTaxonomy.findIndex((el) => el.code === countryId)].name}
               onChange={(d) => { setCountryId(countryTaxonomy[countryTaxonomy.findIndex((el) => el.name === d)].code); }}
             >
