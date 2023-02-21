@@ -75,6 +75,7 @@ export const CountrySummary = (props: Props) => {
               <DotPlot
                 graphTitle='People of age 15-24 are unemployed'
                 size={200}
+                dotColors='var(--dark-red)'
                 value={data.indicators[data.indicators.findIndex((d) => d.indicator === 'Unemployment, youth total (% of total labor force ages 15-24) (modeled ILO estimate)')].yearlyData[data.indicators[data.indicators.findIndex((d) => d.indicator === 'Unemployment, youth total (% of total labor force ages 15-24) (modeled ILO estimate)')].yearlyData.length - 1].value}
                 year={data.indicators[data.indicators.findIndex((d) => d.indicator === 'Unemployment, youth total (% of total labor force ages 15-24) (modeled ILO estimate)')].yearlyData[data.indicators[data.indicators.findIndex((d) => d.indicator === 'Unemployment, youth total (% of total labor force ages 15-24) (modeled ILO estimate)')].yearlyData.length - 1].year}
                 source={indicators[indicators.findIndex((d) => d.DataKey === 'Unemployment, youth total (% of total labor force ages 15-24) (modeled ILO estimate)')].DataSourceName}

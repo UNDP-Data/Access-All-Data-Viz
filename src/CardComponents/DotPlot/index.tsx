@@ -6,6 +6,7 @@ interface Props {
   size: number;
   graphTitle: string;
   source: string;
+  dotColors? :string;
 }
 
 const StatCardsEl = styled.div`
@@ -30,7 +31,7 @@ const SourceEl = styled.div`
 
 export function DotPlot(props: Props) {
   const {
-    value, size, graphTitle, year, source,
+    value, size, graphTitle, year, source, dotColors,
   } = props;
   const margin = {
     top: 0,
@@ -42,16 +43,22 @@ export function DotPlot(props: Props) {
   const radius = (gridSize - 6) / 2;
   return (
     <StatCardsEl>
+      <p className='undp-typography'>
+        {graphTitle}
+        {' '}
+        (
+        {year}
+        )
+      </p>
       <h2
-        className='undp-typography bold margin-bottom-00'
-        style={{ textAlign: 'center' }}
+        className='undp-typography bold margin-bottom-02'
       >
         {value}
         {' '}
         out of 100
       </h2>
       <svg
-        style={{ maxWidth: '15rem', margin: 'var(--spacing-00) auto 0 auto' }}
+        style={{ maxWidth: '15rem', margin: '0' }}
         width='100%'
         viewBox={`0 0 ${size} ${size}`}
       >
@@ -64,11 +71,11 @@ export function DotPlot(props: Props) {
               style={{
                 fill:
                   d <= Math.round(value)
-                    ? 'var(--dark-green)'
+                    ? dotColors || 'var(--dark-green)'
                     : 'var(--white)',
                 stroke:
                   d <= Math.round(value)
-                    ? 'var(--dark-green)'
+                    ? dotColors || 'var(--dark-green)'
                     : 'var(--gray-500)',
                 strokeWidth: 1,
               }}
@@ -77,14 +84,7 @@ export function DotPlot(props: Props) {
           ))}
         </g>
       </svg>
-      <h6 className='undp-typography bold margin-top-03 margin-top-05' style={{ textAlign: 'center' }}>
-        {graphTitle}
-        {' '}
-        (
-        {year}
-        )
-      </h6>
-      <SourceEl>
+      <SourceEl className='margin-top-05'>
         Source:
         {' '}
         {source}

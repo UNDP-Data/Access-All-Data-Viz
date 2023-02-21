@@ -36,24 +36,25 @@ const SourceEl = styled.div`
 `;
 
 const StatEl = styled.h3`
-  font-size: 4.375rem;
-  line-height: 0.75;
-  text-shadow: none;
-  -webkit-text-stroke: 2px var(--black);
-  color: var(--gray-200);
-  letter-spacing: .05rem;
-  margin-top: 0;
-  margin-bottom: 1rem;
+  font-size: 4.375rem !important;
+  line-height: 0.75 !important;
+  text-shadow: none !important;
+  -webkit-text-stroke: 2px var(--black) !important;
+  color: var(--gray-200) !important;
+  letter-spacing: .05rem !important;
+  margin-top: 0 !important;
+  margin-bottom: 1rem !important;
+  font-family: var(--fontFamilyHeadings) !important;
 `;
 
 const YearEl = styled.span`
-  font-size: 2.5rem;
-  line-height: 1.09;
-  text-shadow: none;
-  -webkit-text-stroke: 0px var(--black);
-  color: var(--gray-500);
-  margin-top: 0;
-  margin-bottom: 1rem;
+  font-size: 2.5rem !important;
+  line-height: 1.09 !important;
+  text-shadow: none !important;
+  -webkit-text-stroke: 0px var(--black) !important;
+  color: var(--gray-500) !important;
+  margin-top: 0 !important;
+  margin-bottom: 1rem !important;
 `;
 
 export function LineChart(props: Props) {
@@ -76,7 +77,7 @@ export function LineChart(props: Props) {
   }, [graphDiv]);
   return (
     <StatCardsEl>
-      <h6 className='undp-typography bold margin-bottom-05'>{graphTitle}</h6>
+      <p className='undp-typography'>{graphTitle}</p>
       <div
         style={{
           flexGrow: 1,
@@ -92,7 +93,7 @@ export function LineChart(props: Props) {
                 {mouseOverData.value}
                 {suffix || ''}
                 {' '}
-                <span style={{ opacity: '0.25' }}>
+                <span style={{ color: 'var(--gray-500)', fontSize: '1.5rem' }}>
                   (
                   {mouseOverData.year}
                   )
