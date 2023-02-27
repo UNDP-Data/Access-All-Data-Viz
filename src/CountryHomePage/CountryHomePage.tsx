@@ -225,13 +225,17 @@ const CountryHomePageContext = (props:Props) => {
       }}
     >
       <div className='undp-container'>
-        <CountrySummary data={finalData} indicators={indicatorsList} countries={countryList} />
-        <GrapherComponent
-          data={finalData}
-          indicators={indicatorsList}
-          regions={regionList}
-          countries={countryList}
-        />
+        <CountrySummary data={finalData} indicators={indicatorsList} />
+        <div className='margin-top-09' style={{ backgroundColor: 'var(--gray-200)', padding: 'var(--spacing-09)' }}>
+          <div style={{ maxWidth: '1392px', margin: 'auto' }}>
+            <GrapherComponent
+              data={finalData}
+              indicators={indicatorsList}
+              regions={regionList}
+              countries={countryList}
+            />
+          </div>
+        </div>
       </div>
     </Context.Provider>
   );

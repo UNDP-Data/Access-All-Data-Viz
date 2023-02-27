@@ -41,7 +41,7 @@ if (containerEmbed) {
   rootEmbed.render(<App
     countryId={getCountry('[data-bucket-embed]')}
     signatureSolution={getSS('[data-bucket-embed]')}
-    isSSSCountryEmbed={false}
+    isSignatureSolutionCountryEmbed={false}
   />);
 }
 
@@ -53,7 +53,7 @@ if (containerCountryEmbed) {
   rootEmbed.render(<App
     countryId={countryCode.toUpperCase()}
     signatureSolution={undefined}
-    isSSSCountryEmbed={false}
+    isSignatureSolutionCountryEmbed={false}
   />);
 }
 
@@ -63,7 +63,7 @@ if (containerSSCountryEmbed) {
   rootEmbed.render(<App
     countryId={undefined}
     signatureSolution={getSS('[data-bucket-ss-country-embed]')}
-    isSSSCountryEmbed
+    isSignatureSolutionCountryEmbed
   />);
 }
 reportWebVitals();

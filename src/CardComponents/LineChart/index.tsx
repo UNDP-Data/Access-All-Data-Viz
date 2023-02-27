@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
+import { format } from 'd3-format';
 import { LineChartGraph } from './Graph';
 
 interface Props {
@@ -11,7 +12,10 @@ interface Props {
   graphTitle: string;
   strokeWidth: number;
   suffix?: string;
+  prefix?: string;
+  labelFormat?: string;
   source: string;
+  graphDescription?: string;
 }
 
 const StatCardsEl = styled.div`
@@ -59,7 +63,7 @@ const YearEl = styled.span`
 
 export function LineChart(props: Props) {
   const {
-    data, lineColor, graphTitle, strokeWidth, suffix, source,
+    data, lineColor, graphTitle, strokeWidth, suffix, source, prefix, labelFormat, graphDescription,
   } = props;
   const [mouseOverData, setMouseOverData] = useState<any>(
     data[data.length - 1],
@@ -74,10 +78,13 @@ export function LineChart(props: Props) {
       setSvgHeight(graphDiv.current.clientHeight);
       setSvgWidth(graphDiv.current.clientWidth);
     }
-  }, [graphDiv]);
+  }, [graphDiv?.current]);
   return (
     <StatCardsEl>
-      <p className='undp-typography'>{graphTitle}</p>
+      <p className='undp-typography margin-bottom-00'>{graphTitle}</p>
+      {
+        graphDescription ? <p className='undp-typography small-font margin-bottom-00' style={{ color: 'var(--gray-500)' }}>{graphDescription}</p> : null
+      }
       <div
         style={{
           flexGrow: 1,
@@ -89,8 +96,15 @@ export function LineChart(props: Props) {
         {
           data.length > 1 ? (
             <>
-              <h2 className='undp-typography bold margin-bottom-00'>
-                {mouseOverData.value}
+              <h2 className='undp-typography bold margin-top-03 margin-bottom-00'>
+                {prefix || ''}
+                {' '}
+                {Math.abs(mouseOverData.value) < 1
+                  ? mouseOverData.value
+                  : format(labelFormat || '.3s')(mouseOverData.value).replace(
+                    'G',
+                    'B',
+                  )}
                 {suffix || ''}
                 {' '}
                 <span style={{ color: 'var(--gray-500)', fontSize: '1.5rem' }}>
@@ -117,7 +131,15 @@ export function LineChart(props: Props) {
             </>
           ) : (
             <StatEl>
-              {data[0].value}
+              {prefix || ''}
+              {' '}
+              {Math.abs(mouseOverData.value) < 1
+                ? mouseOverData.value
+                : format(labelFormat || '.3s')(data[0].value).replace(
+                  'G',
+                  'B',
+                )}
+              {suffix || ''}
               {' '}
               <YearEl>
                 (

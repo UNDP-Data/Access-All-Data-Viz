@@ -5,19 +5,19 @@ import HomePage from './HomePage';
 interface Props {
   countryId?: string;
   signatureSolution?: string;
-  isSSSCountryEmbed: boolean;
+  isSignatureSolutionCountryEmbed: boolean;
 }
 
 const App = (props:Props) => {
   const {
     countryId,
     signatureSolution,
-    isSSSCountryEmbed,
+    isSignatureSolutionCountryEmbed,
   } = props;
   return (
     <div className='undp-container'>
       {
-        isSSSCountryEmbed
+        isSignatureSolutionCountryEmbed
           ? <SSCountryHomePage signatureSolution={signatureSolution} />
           : countryId
             ? <CountryHomePage countryId={countryId} />

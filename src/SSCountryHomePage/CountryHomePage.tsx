@@ -8,7 +8,11 @@ import { GrapherComponent } from '../GrapherComponent';
 import Reducer from '../Context/Reducer';
 import Context from '../Context/Context';
 import { DEFAULT_VALUES } from '../Constants';
-import { CountrySummary } from './CountrySummary';
+import { PovertyAndInequalityCountrySummary } from './PovertyAndInequalityCountrySummary';
+import { EnvironmentCountrySummary } from './EnvironmentCountrySummary';
+import { GenderCountrySummary } from './GenderCountrySummary';
+import { GovernanceCountrySummary } from './GovernanceCountrySummary';
+import { ResilienceCountrySummary } from './ResilienceCountrySummary';
 
 interface Props {
   indicatorsList: IndicatorMetaDataWithYear[];
@@ -224,7 +228,22 @@ const CountryHomePageContext = (props:Props) => {
       }}
     >
       <div className='undp-container'>
-        <CountrySummary data={finalData[0]} indicators={indicatorsList} />
+        {
+
+          signatureSolution === 'Poverty and Inequality' ? (
+            <PovertyAndInequalityCountrySummary indicators={indicatorsList} data={finalData[0]} />
+          ) : signatureSolution === 'Environment' ? (
+            <EnvironmentCountrySummary indicators={indicatorsList} data={finalData[0]} />
+          ) : signatureSolution === 'Gender' ? (
+            <GenderCountrySummary indicators={indicatorsList} data={finalData[0]} />
+          ) : signatureSolution === 'Governance' ? (
+            <GovernanceCountrySummary indicators={indicatorsList} data={finalData[0]} />
+          ) : signatureSolution === 'Resilience' ? (
+            <ResilienceCountrySummary indicators={indicatorsList} data={finalData[0]} />
+          ) : signatureSolution === 'Energy' ? (
+            <GenderCountrySummary indicators={indicatorsList} data={finalData[0]} />
+          ) : null
+        }
         <GrapherComponent
           data={finalData}
           indicators={indicatorsList}

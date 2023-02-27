@@ -9,7 +9,7 @@ interface Props {
   indicators: IndicatorMetaDataWithYear[];
 }
 
-export const CountrySummary = (props: Props) => {
+export const PovertyAndInequalityCountrySummary = (props: Props) => {
   const {
     data,
     indicators,
@@ -52,6 +52,7 @@ export const CountrySummary = (props: Props) => {
                 strokeWidth={1}
                 lineColor='#232E3D'
                 graphTitle='GINI Index'
+                graphDescription={indicators[indicators.findIndex((d) => d.DataKey === 'GINI index (World Bank estimate)')].IndicatorDescription}
                 suffix=''
                 source={indicators[indicators.findIndex((d) => d.DataKey === 'GINI index (World Bank estimate)')].DataSourceName}
               />

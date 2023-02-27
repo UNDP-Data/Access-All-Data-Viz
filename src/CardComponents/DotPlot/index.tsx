@@ -7,6 +7,7 @@ interface Props {
   graphTitle: string;
   source: string;
   dotColors? :string;
+  graphDescription?: string;
 }
 
 const StatCardsEl = styled.div`
@@ -31,7 +32,7 @@ const SourceEl = styled.div`
 
 export function DotPlot(props: Props) {
   const {
-    value, size, graphTitle, year, source, dotColors,
+    value, size, graphTitle, year, source, dotColors, graphDescription,
   } = props;
   const margin = {
     top: 0,
@@ -43,15 +44,18 @@ export function DotPlot(props: Props) {
   const radius = (gridSize - 6) / 2;
   return (
     <StatCardsEl>
-      <p className='undp-typography'>
+      <p className='undp-typography margin-bottom-00'>
         {graphTitle}
         {' '}
         (
         {year}
         )
       </p>
+      {
+        graphDescription ? <p className='undp-typography small-font margin-bottom-00' style={{ color: 'var(--gray-500)' }}>{graphDescription}</p> : null
+      }
       <h2
-        className='undp-typography bold margin-bottom-02'
+        className='undp-typography bold margin-bottom-02 margin-top-03'
       >
         {value}
         {' '}

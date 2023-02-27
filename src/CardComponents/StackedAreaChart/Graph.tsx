@@ -2,34 +2,33 @@ import { line, area, curveMonotoneX } from 'd3-shape';
 import { scaleLinear } from 'd3-scale';
 import maxBy from 'lodash.maxby';
 import minBy from 'lodash.minby';
-import { useEffect, useRef } from 'react';
 import { bisector } from 'd3-array';
+import { useEffect, useRef } from 'react';
 import { pointer, select } from 'd3-selection';
-
-interface DataType {
-  year: number;
-  value: number;
-}
-
-interface Props {
-  data: DataType[];
-  lineColor: string;
-  svgWidth: number;
-  svgHeight: number;
-  strokeWidth: number;
-  setMouseOverData: (_d: DataType) => void;
-  mouseOverData: DataType;
-}
 
 interface DataFormattedType {
   year: number;
-  param?: number;
+  param1?: number;
+  param2?: number;
+  total?: number;
 }
 
-export function LineChartGraph(props: Props) {
+interface Props {
+  data: DataFormattedType[];
+  lineColor1: string;
+  lineColor2: string;
+  svgWidth: number;
+  svgHeight: number;
+  strokeWidth: number;
+  setMouseOverData: (_d: DataFormattedType) => void;
+  mouseOverData: DataFormattedType;
+}
+
+export function StackedAreaChartGraph(props: Props) {
   const {
     data,
-    lineColor,
+    lineColor1,
+    lineColor2,
     svgWidth,
     svgHeight,
     strokeWidth,
@@ -49,27 +48,13 @@ export function LineChartGraph(props: Props) {
   const minYear = data[0].year;
   const maxYear = data[data.length - 1].year;
 
-  const dataFormatted: DataFormattedType[] = [];
-  const bisect = bisector((d: any) => d.year).left;
-  for (let i = minYear; i < maxYear + 1; i += 1) {
-    dataFormatted.push({
-      year: i,
-      param:
-        data.findIndex((d) => d.year === i) !== -1
-          ? +data[data.findIndex((d) => d.year === i)].value
-          : undefined,
-    });
-  }
-  const minParam: number = minBy(dataFormatted, (d) => d.param)?.param
-    ? (minBy(dataFormatted, (d) => d.param)?.param as number) > 0
-      ? 0
-      : (minBy(dataFormatted, (d) => d.param)?.param as number)
-    : 0;
-  const maxParam: number = maxBy(dataFormatted, (d) => d.param)?.param
-    ? (maxBy(dataFormatted, (d) => d.param)?.param as number)
+  const minParam = 0;
+  const maxParam: number = maxBy(data, (d) => d.total)?.total
+    ? (maxBy(data, (d) => d.total)?.total as number)
     : 0;
 
-  const dataFiltered = dataFormatted.filter((d) => d.param !== undefined);
+  const dataFiltered = data.filter((d) => d.total !== undefined);
+  const bisect = bisector((d: any) => d.year).left;
   const minYearFiltered = minBy(dataFiltered, (d) => d.year)?.year
     ? minBy(dataFiltered, (d) => d.year)?.year
     : minYear;
@@ -85,16 +70,27 @@ export function LineChartGraph(props: Props) {
     .range([graphHeight, 0])
     .nice();
 
-  const lineShape = line()
-    .defined((d: any) => d.param !== undefined)
+  const lineShape1 = line()
+    .defined((d: any) => d.param1 !== undefined)
     .x((d: any) => x(d.year))
     .y((d: any) => y(d.param))
     .curve(curveMonotoneX);
 
-  const mainGraphArea = area()
+  const lineShape2 = line()
+    .defined((d: any) => d.total !== undefined)
     .x((d: any) => x(d.year))
-    .y1((d: any) => y(d.param))
-    .y0(graphHeight)
+    .y((d: any) => y(d.param))
+    .curve(curveMonotoneX);
+
+  const mainGraphArea1 = area()
+    .x((d: any) => x(d.year))
+    .y1((d: any) => y(d.param1))
+    .y0(y(0))
+    .curve(curveMonotoneX);
+  const mainGraphArea2 = area()
+    .x((d: any) => x(d.year))
+    .y1((d: any) => y(d.total))
+    .y0(y(0))
     .curve(curveMonotoneX);
 
   useEffect(() => {
@@ -111,12 +107,6 @@ export function LineChartGraph(props: Props) {
   }, [x, data]);
   return (
     <svg width='100%' viewBox={`0 0 ${svgWidth} ${svgHeight}`}>
-      <defs>
-        <linearGradient id='Gradient2' x1='0' x2='0' y1='0' y2='1'>
-          <stop stopColor='##232E3D' stopOpacity='0.1' offset='0%' />
-          <stop stopColor='##232E3D' stopOpacity='0' offset='100%' />
-        </linearGradient>
-      </defs>
       {data.length === 0 ? (
         <text
           x={svgWidth / 2}
@@ -132,8 +122,15 @@ export function LineChartGraph(props: Props) {
         <g transform={`translate(${margin.left},${margin.top})`}>
           <path
             clipPath='url(#clip)'
-            d={mainGraphArea(dataFiltered as any) as string}
-            fill='url(#Gradient2)'
+            d={mainGraphArea2(dataFiltered as any) as string}
+            fill={lineColor2}
+            opacity={1}
+          />
+          <path
+            clipPath='url(#clip)'
+            d={mainGraphArea1(dataFiltered as any) as string}
+            fill={lineColor1}
+            opacity={1}
           />
           <g>
             {minYearFiltered === maxYearFiltered ? (
@@ -174,27 +171,39 @@ export function LineChartGraph(props: Props) {
           </g>
           <g>
             <path
-              d={lineShape(dataFormatted as any) as string}
+              d={lineShape1(dataFiltered as any) as string}
               fill='none'
-              stroke={lineColor}
-              shapeRendering='geometricPrecision'
+              stroke={lineColor1}
               strokeWidth={strokeWidth}
+              shapeRendering='geometricPrecision'
             />
             <path
-              d={lineShape(dataFiltered as any) as string}
+              d={lineShape2(dataFiltered as any) as string}
               fill='none'
-              stroke={lineColor}
+              stroke={lineColor2}
               strokeWidth={strokeWidth}
               shapeRendering='geometricPrecision'
-              strokeDasharray='4 8'
             />
+            {
+              mouseOverData.param1 && mouseOverData.total
+                ? (
+                  <>
+                    <circle
+                      cx={x(mouseOverData.year)}
+                      cy={y(mouseOverData.param1)}
+                      r={5}
+                      style={{ fill: 'var(--gray-700)' }}
+                    />
+                    <circle
+                      cx={x(mouseOverData.year)}
+                      cy={y(mouseOverData.total)}
+                      r={5}
+                      style={{ fill: 'var(--gray-700)' }}
+                    />
+                  </>
+                ) : null
+            }
           </g>
-          <circle
-            cx={x(mouseOverData.year)}
-            cy={y(mouseOverData.value)}
-            r={5}
-            fill={lineColor}
-          />
         </g>
       )}
       <rect
