@@ -77,7 +77,6 @@ export const Settings = (props: Props) => {
       updateYAxisIndicator(options[0]);
     }
   }, [graphType, options]);
-  console.log(selectedCountry);
   return (
     <div className='undp-scrollbar settings-container'>
       <div className='settings-sections-container'>
