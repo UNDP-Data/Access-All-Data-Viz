@@ -11,6 +11,7 @@ import { EnvironmentCountrySummary } from '../SSCountryHomePage/EnvironmentCount
 import { GenderCountrySummary } from '../SSCountryHomePage/GenderCountrySummary';
 import { GovernanceCountrySummary } from '../SSCountryHomePage/GovernanceCountrySummary';
 import { ResilienceCountrySummary } from '../SSCountryHomePage/ResilienceCountrySummary';
+import { EnergyCountrySummary } from '../SSCountryHomePage/EnergyCountrySummary';
 
 interface Props {
   data: CountryGroupDataType[];
@@ -86,7 +87,7 @@ export const CountrySummary = (props: Props) => {
           ) : signatureSolution === 'Resilience' ? (
             <ResilienceCountrySummary indicators={indicators} data={data[0]} />
           ) : signatureSolution === 'Energy' ? (
-            <GenderCountrySummary indicators={indicators} data={data[0]} />
+            <EnergyCountrySummary indicators={indicators} data={data[0]} />
           ) : null
         }
       </div>
