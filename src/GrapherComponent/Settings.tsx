@@ -77,6 +77,7 @@ export const Settings = (props: Props) => {
       updateYAxisIndicator(options[0]);
     }
   }, [graphType, options]);
+  console.log(selectedCountry);
   return (
     <div className='undp-scrollbar settings-container'>
       <div className='settings-sections-container'>
@@ -113,25 +114,30 @@ export const Settings = (props: Props) => {
               )
               : (
                 <>
-                  <div className='settings-option-div'>
-                    <p className='label'>
-                      Select a Country
-                    </p>
-                    <Select
-                      showSearch
-                      className='undp-select'
-                      placeholder='Please select a country'
-                      value={selectedCountry || dataListCountry}
-                      onChange={(d) => { updateDataListCountry(d); }}
-                      disabled={selectedCountry !== undefined}
-                    >
-                      {
-                        countries.map((d) => d.name).map((d) => (
-                          <Select.Option className='undp-select-option' key={d}>{d}</Select.Option>
-                        ))
-                      }
-                    </Select>
-                  </div>
+                  {
+                    selectedCountry === undefined
+                      ? (
+                        <div className='settings-option-div'>
+                          <p className='label'>
+                            Select a Country
+                          </p>
+                          <Select
+                            showSearch
+                            className='undp-select'
+                            placeholder='Please select a country'
+                            value={selectedCountry || dataListCountry}
+                            onChange={(d) => { updateDataListCountry(d); }}
+                            disabled={selectedCountry !== undefined}
+                          >
+                            {
+                          countries.map((d) => d.name).map((d) => (
+                            <Select.Option className='undp-select-option' key={d}>{d}</Select.Option>
+                          ))
+                        }
+                          </Select>
+                        </div>
+                      ) : null
+                  }
                   <div className='settings-option-div'>
                     <p className='label'>
                       Filter by Signature Solutions

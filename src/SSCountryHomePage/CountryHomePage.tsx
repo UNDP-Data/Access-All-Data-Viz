@@ -13,6 +13,7 @@ import { EnvironmentCountrySummary } from './EnvironmentCountrySummary';
 import { GenderCountrySummary } from './GenderCountrySummary';
 import { GovernanceCountrySummary } from './GovernanceCountrySummary';
 import { ResilienceCountrySummary } from './ResilienceCountrySummary';
+import { EnergyCountrySummary } from './EnergyCountrySummary';
 
 interface Props {
   indicatorsList: IndicatorMetaDataWithYear[];
@@ -241,7 +242,7 @@ const CountryHomePageContext = (props:Props) => {
           ) : signatureSolution === 'Resilience' ? (
             <ResilienceCountrySummary indicators={indicatorsList} data={finalData[0]} />
           ) : signatureSolution === 'Energy' ? (
-            <GenderCountrySummary indicators={indicatorsList} data={finalData[0]} />
+            <EnergyCountrySummary indicators={indicatorsList} data={finalData[0]} />
           ) : null
         }
         <GrapherComponent
