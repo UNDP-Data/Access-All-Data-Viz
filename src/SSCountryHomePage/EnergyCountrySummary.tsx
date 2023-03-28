@@ -80,7 +80,7 @@ export const EnergyCountrySummary = (props: Props) => {
                 strokeWidth={1}
                 lineColor='#232E3D'
                 graphTitle='Primary energy consumption per capita, measured in kilowatt-hours'
-                suffix='KwH'
+                suffix=' kWh'
                 source={indicators[indicators.findIndex((d) => d.DataKey === 'Primary energy consumption per capita, measured in kilowatt-hours')].DataSourceName}
               />
             ) : null
