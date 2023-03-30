@@ -14,6 +14,7 @@ interface Props {
   finalData: CountryGroupDataType[];
   regionList: string[];
   countryList: CountryListType[];
+  region?: string;
 }
 
 const HomePageContext = (props:Props) => {
@@ -23,13 +24,14 @@ const HomePageContext = (props:Props) => {
     finalData,
     regionList,
     countryList,
+    region,
   } = props;
   const queryParams = new URLSearchParams(window.location.search);
   const firstMetric = indicatorsList.findIndex((d) => d.IndicatorLabelTable === DEFAULT_VALUES.firstMetric) === -1 ? indicatorsList[0].IndicatorLabelTable : DEFAULT_VALUES.firstMetric;
   const secondMetric = indicatorsList.findIndex((d) => d.IndicatorLabelTable === DEFAULT_VALUES.secondMetric) === -1 ? indicatorsList[1].IndicatorLabelTable : DEFAULT_VALUES.secondMetric;
-
+  const countryListForMultiLineChart = region ? finalData.filter((_d, i) => i < 5).map((d) => d['Country or Area']) : ['China', 'India', 'United States of America', 'Indonesia', 'Pakistan'];
   const initialState = {
-    graphType: queryParams.get('graphType') ? queryParams.get('graphType') : 'map',
+    graphType: queryParams.get('graphType') ? queryParams.get('graphType') : region ? 'barGraph' : 'map',
     selectedRegions: queryParams.get('regions')?.split('~') || [],
     selectedCountries: queryParams.get('countries')?.split('~') || [],
     selectedIncomeGroups: queryParams.get('incomeGroups')?.split('~') || [],
@@ -44,11 +46,11 @@ const HomePageContext = (props:Props) => {
     showSource: false,
     trendChartCountry: queryParams.get('trendChartCountry') || undefined,
     dataListCountry: queryParams.get('dataListCountry') || undefined,
-    multiCountryTrendChartCountries: queryParams.get('multiCountryTrendChartCountries')?.split('~') || ['China', 'India', 'United States of America', 'Indonesia', 'Pakistan'],
+    multiCountryTrendChartCountries: queryParams.get('multiCountryTrendChartCountries')?.split('~') || countryListForMultiLineChart,
     useSameRange: queryParams.get('useSameRange') === 'true',
     reverseOrder: queryParams.get('reverseOrder') === 'true',
     verticalBarLayout: queryParams.get('verticalBarLayout') !== 'false',
-    selectedCountry: undefined,
+    selectedCountryOrRegion: undefined,
     signatureSolution,
     signatureSolutionForDataList: 'All',
   };
@@ -225,6 +227,7 @@ const HomePageContext = (props:Props) => {
             indicators={indicatorsList}
             regions={regionList}
             countries={countryList}
+            region={region}
           />
         </div>
       </Context.Provider>

@@ -33,13 +33,13 @@ export const CopyLinkWithParamButton = () => {
     useSameRange,
     reverseOrder,
     verticalBarLayout,
-    selectedCountry,
+    selectedCountryOrRegion,
     signatureSolution,
   } = useContext(Context) as CtxDataType;
   const graphParam = `graphType=${graphType}`;
   const regionsParam = selectedRegions.length > 0 ? `&regions=${ArrToString(selectedRegions)}` : '';
   const countries = selectedCountries.length > 0 ? `&countries=${ArrToString(selectedCountries)}` : '';
-  const selectCountryParam = selectedCountry ? `&selectedCountry=${selectedCountry}` : '';
+  const selectCountryOrRegionParam = selectedCountryOrRegion ? `&selectedCountryOrRegion=${selectedCountryOrRegion}` : '';
   const signatureSolutionParam = signatureSolution ? `&signatureSolution=${signatureSolution}` : '';
   const incomeGroupsParam = selectedRegions.length > 0 ? `&incomeGroups=${ArrToString(selectedIncomeGroups)}` : '';
   const countryGroupParam = selectedCountryGroup === 'All' ? '' : `&countryGroup=${CovertStringForParam(selectedCountryGroup)}`;
@@ -57,7 +57,7 @@ export const CopyLinkWithParamButton = () => {
   const queryParams = graphParam
     + regionsParam
     + countries
-    + selectCountryParam
+    + selectCountryOrRegionParam
     + signatureSolutionParam
     + incomeGroupsParam
     + countryGroupParam

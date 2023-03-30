@@ -34,7 +34,7 @@ export const GetEmbedParams = () => {
     useSameRange,
     reverseOrder,
     verticalBarLayout,
-    selectedCountry,
+    selectedCountryOrRegion,
     signatureSolution,
   } = useContext(Context) as CtxDataType;
   const queryParamsFromLink = new URLSearchParams(window.location.search);
@@ -88,7 +88,7 @@ export const GetEmbedParams = () => {
         }}
       >
         {
-          selectedCountry ? `<iframe src="${EMBED_LINK_ROOT}/country-profile/${selectedCountry}?${queryParams}&embeded=true&featuredIndicator=false" loading="lazy" style="width: 100%; border: 0px none"></iframe>` : `<iframe src="${EMBED_LINK_ROOT}?${queryParams}&embeded=true" loading="lazy" style="width: 100%; border: 0px none"></iframe>`
+          selectedCountryOrRegion ? `<iframe src="${EMBED_LINK_ROOT}/country-profile/${selectedCountryOrRegion}?${queryParams}&embeded=true&featuredIndicator=false" loading="lazy" style="width: 100%; border: 0px none"></iframe>` : `<iframe src="${EMBED_LINK_ROOT}?${queryParams}&embeded=true" loading="lazy" style="width: 100%; border: 0px none"></iframe>`
         }
       </div>
       <div className='flex-div flex-vert-align-center flex-space-between'>
@@ -97,7 +97,7 @@ export const GetEmbedParams = () => {
           type='button'
           className='undp-button button-tertiary'
           onClick={() => {
-            navigator.clipboard.writeText(selectedCountry ? `<iframe src="${EMBED_LINK_ROOT}/country-profile/${selectedCountry}?${queryParams}&embeded=true&featuredIndicator=false" loading="lazy" style="width: 100%; border: 0px none"></iframe>` : `<iframe src="${EMBED_LINK_ROOT}?${queryParams}&embeded=true" loading="lazy" style="width: 100%; border: 0px none"></iframe>`);
+            navigator.clipboard.writeText(selectedCountryOrRegion ? `<iframe src="${EMBED_LINK_ROOT}/country-profile/${selectedCountryOrRegion}?${queryParams}&embeded=true&featuredIndicator=false" loading="lazy" style="width: 100%; border: 0px none"></iframe>` : `<iframe src="${EMBED_LINK_ROOT}?${queryParams}&embeded=true" loading="lazy" style="width: 100%; border: 0px none"></iframe>`);
             message.success({ content: 'Embed Link Copied', duration: 2 });
           }}
         >
@@ -111,7 +111,7 @@ export const GetEmbedParams = () => {
 export const GetEmbedParamsForCountrySummary = () => {
   const [showSettingsInEmbed, setShowSettingsInEmbed] = useState(true);
   const {
-    selectedCountry,
+    selectedCountryOrRegion,
   } = useContext(Context) as CtxDataType;
   return (
     <>
@@ -125,7 +125,7 @@ export const GetEmbedParamsForCountrySummary = () => {
         }}
       >
         {
-          `<iframe src="${EMBED_LINK_ROOT}/country-profile/${selectedCountry}?embeded=true&featuredIndicator=true&accessAllData=false" loading="lazy" style="width: 100%; border: 0px none"></iframe>`
+          `<iframe src="${EMBED_LINK_ROOT}/country-profile/${selectedCountryOrRegion}?embeded=true&featuredIndicator=true&accessAllData=false" loading="lazy" style="width: 100%; border: 0px none"></iframe>`
         }
       </div>
       <div className='flex-div flex-vert-align-center flex-space-between'>
@@ -134,7 +134,7 @@ export const GetEmbedParamsForCountrySummary = () => {
           type='button'
           className='undp-button button-tertiary'
           onClick={() => {
-            navigator.clipboard.writeText(`<iframe src="${EMBED_LINK_ROOT}/country-profile/${selectedCountry}?&embeded=true&featuredIndicator=true&accessAllData=false" loading="lazy" style="width: 100%; border: 0px none"></iframe>`);
+            navigator.clipboard.writeText(`<iframe src="${EMBED_LINK_ROOT}/country-profile/${selectedCountryOrRegion}?&embeded=true&featuredIndicator=true&accessAllData=false" loading="lazy" style="width: 100%; border: 0px none"></iframe>`);
             message.success({ content: 'Embed Link Copied', duration: 2 });
           }}
         >

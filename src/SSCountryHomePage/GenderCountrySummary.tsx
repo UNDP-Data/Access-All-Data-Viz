@@ -82,14 +82,14 @@ export const GenderCountrySummary = (props: Props) => {
             ) : null
         }
         {
-          data.indicators.findIndex((d) => d.indicator === 'Gender Inequality Index') !== -1
+          data.indicators.findIndex((d) => d.indicator === 'Gender Inequality Index-Gender Inequality Index') !== -1
             ? (
               <LineChart
                 data={
                   data.indicators[
                     data.indicators.findIndex(
                       (d) => d.indicator
-                        === 'Gender Inequality Index',
+                        === 'Gender Inequality Index-Gender Inequality Index',
                     )
                   ].yearlyData
                 }
@@ -97,7 +97,7 @@ export const GenderCountrySummary = (props: Props) => {
                 lineColor='#232E3D'
                 graphTitle='Gender Inequality Index'
                 suffix=''
-                source={indicators[indicators.findIndex((d) => d.DataKey === 'Gender Inequality Index')].DataSourceName}
+                source={indicators[indicators.findIndex((d) => d.DataKey === 'Gender Inequality Index-Gender Inequality Index')].DataSourceName}
               />
             ) : null
         }

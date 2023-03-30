@@ -10,7 +10,7 @@ import {
 
 interface Props {
   indicators: IndicatorMetaDataWithYear[];
-  regions: string[];
+  regions?: string[];
   countries: CountryListType[];
 }
 
@@ -32,7 +32,7 @@ export const Settings = (props: Props) => {
     selectedIncomeGroups,
     selectedRegions,
     reverseOrder,
-    selectedCountry,
+    selectedCountryOrRegion,
     dataListCountry,
     signatureSolution,
     signatureSolutionForDataList,
@@ -114,7 +114,7 @@ export const Settings = (props: Props) => {
               : (
                 <>
                   {
-                    selectedCountry === undefined
+                    selectedCountryOrRegion === undefined && countries.length > 1
                       ? (
                         <div className='settings-option-div'>
                           <p className='label'>
@@ -124,9 +124,9 @@ export const Settings = (props: Props) => {
                             showSearch
                             className='undp-select'
                             placeholder='Please select a country'
-                            value={selectedCountry || dataListCountry}
+                            value={selectedCountryOrRegion || dataListCountry}
                             onChange={(d) => { updateDataListCountry(d); }}
-                            disabled={selectedCountry !== undefined}
+                            disabled={selectedCountryOrRegion !== undefined}
                           >
                             {
                           countries.map((d) => d.name).map((d) => (
@@ -258,7 +258,7 @@ export const Settings = (props: Props) => {
           }
           {
             graphType === 'barGraph' || graphType === 'scatterPlot'
-              ? selectedCountry ? null : (
+              ? selectedCountryOrRegion ? null : (
                 <div className='settings-option-div'>
                   <p className='label'>
                     Color By
@@ -372,7 +372,7 @@ export const Settings = (props: Props) => {
         ) : null
       }
       {
-        graphType !== 'trendLine' && graphType !== 'multiCountryTrendLine' && !selectedCountry && graphType !== 'dataList'
+        graphType !== 'trendLine' && graphType !== 'multiCountryTrendLine' && !selectedCountryOrRegion && graphType !== 'dataList' && countries.length > 1
           ? (
             <div className='settings-sections-container'>
               <button type='button' aria-label='Expand or collapse filters' className='settings-sections-container-title' onClick={() => { setFilterExpanded(!filterExpanded); }}>
@@ -387,28 +387,33 @@ export const Settings = (props: Props) => {
                 </h6>
               </button>
               <div className='settings-sections-options-container' style={{ display: filterExpanded ? 'flex' : 'none' }}>
-                <div className='settings-option-div'>
-                  <p className='label'>
-                    Region
-                  </p>
-                  <Select
-                    className='undp-select'
-                    mode='multiple'
-                    maxTagCount='responsive'
-                    allowClear
-                    clearIcon={<div className='clearIcon' />}
-                    style={{ width: '100%' }}
-                    placeholder='Filter By Regions'
-                    value={selectedRegions}
-                    onChange={(d: string[]) => { updateSelectedRegions(d); }}
-                  >
-                    {
-                  regions.map((d) => (
-                    <Select.Option className='undp-select-option' key={d}>{d}</Select.Option>
-                  ))
+                {
+                  regions
+                    ? (
+                      <div className='settings-option-div'>
+                        <p className='label'>
+                          Region
+                        </p>
+                        <Select
+                          className='undp-select'
+                          mode='multiple'
+                          maxTagCount='responsive'
+                          allowClear
+                          clearIcon={<div className='clearIcon' />}
+                          style={{ width: '100%' }}
+                          placeholder='Filter By Regions'
+                          value={selectedRegions}
+                          onChange={(d: string[]) => { updateSelectedRegions(d); }}
+                        >
+                          {
+                        regions.map((d) => (
+                          <Select.Option className='undp-select-option' key={d}>{d}</Select.Option>
+                        ))
+                      }
+                        </Select>
+                      </div>
+                    ) : null
                 }
-                  </Select>
-                </div>
                 <div className='settings-option-div'>
                   <p className='label'>
                     Income Group
@@ -458,10 +463,10 @@ export const Settings = (props: Props) => {
                     onChange={(d: string[]) => { updateSelectedCountries(d); updateMultiCountryTrendChartCountries(d); }}
                   >
                     {
-                      countries.map((d) => d.name).map((d) => (
-                        <Select.Option className='undp-select-option' key={d}>{d}</Select.Option>
-                      ))
-                    }
+                  countries.map((d) => d.name).map((d) => (
+                    <Select.Option className='undp-select-option' key={d}>{d}</Select.Option>
+                  ))
+                }
                   </Select>
                 </div>
               </div>

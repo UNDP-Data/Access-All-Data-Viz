@@ -40,20 +40,20 @@ export const LineChart = (props: Props) => {
   const {
     trendChartCountry,
     updateTrendChartCountry,
-    selectedCountry,
+    selectedCountryOrRegion,
     yAxisIndicator,
   } = useContext(Context) as CtxDataType;
 
   const [svgWidth, setSvgWidth] = useState(0);
   const [svgHeight, setSvgHeight] = useState(0);
   const graphDiv = useRef<HTMLDivElement>(null);
-  const country = selectedCountry ? countries[countries.findIndex((d) => d.code === selectedCountry)].name : trendChartCountry;
+  const country = selectedCountryOrRegion ? countries[countries.findIndex((d) => d.code === selectedCountryOrRegion)].name : trendChartCountry;
   useEffect(() => {
     if (graphDiv.current) {
       setSvgHeight(graphDiv.current.clientHeight);
       setSvgWidth(graphDiv.current.clientWidth);
     }
-  }, [graphDiv, selectedCountry, trendChartCountry]);
+  }, [graphDiv, selectedCountryOrRegion, trendChartCountry]);
   return (
     <>
       <div style={{ padding: 'var(--spacing-06)', backgroundColor: 'var(--white)', borderBottom: '1px solid var(--gray-400)' }}>
@@ -62,8 +62,8 @@ export const LineChart = (props: Props) => {
           className='undp-select'
           placeholder='Please select a country'
           onChange={(d) => { updateTrendChartCountry(d); }}
-          disabled={selectedCountry !== undefined}
-          value={countries[countries.findIndex((d) => d.code === selectedCountry)]?.name || trendChartCountry}
+          disabled={selectedCountryOrRegion !== undefined}
+          value={countries[countries.findIndex((d) => d.code === selectedCountryOrRegion)]?.name || trendChartCountry}
         >
           {
             countries.map((d) => d.name).map((d) => (

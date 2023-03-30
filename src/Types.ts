@@ -48,9 +48,6 @@ export interface IndicatorOptionsDataType {
 }
 
 export interface IndicatorMetaDataType {
-  Pillar: string[];
-  Goal: string[];
-  Indicator: string;
   IndicatorLabelTable: string;
   IndicatorDescription: string;
   DataKey: string;
@@ -70,6 +67,7 @@ export interface IndicatorMetaDataType {
   BarGraph?: boolean;
   Sizing?: boolean;
   Color?: boolean;
+  RegionalAggregation: boolean;
   SSTopics: string[];
   SignatureSolution: string[];
 }
@@ -115,7 +113,7 @@ export interface CtxDataType {
   useSameRange: boolean;
   reverseOrder: boolean;
   verticalBarLayout: boolean;
-  selectedCountry?: string;
+  selectedCountryOrRegion?: string;
   signatureSolution?: string;
   signatureSolutionForDataList: 'All' | 'Energy' | 'Environment' | 'Gender' | 'Governance' | 'Poverty and Inequality' | 'Resilience';
   updateGraphType: (_d: 'scatterPlot' | 'map' | 'barGraph' | 'trendLine' | 'multiCountryTrendLine' | 'dataList') => void;

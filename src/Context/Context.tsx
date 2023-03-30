@@ -21,7 +21,7 @@ const Context = createContext<CtxDataType>({
   reverseOrder: true,
   verticalBarLayout: true,
   multiCountryTrendChartCountries: ['China', 'India', 'United States of America', 'Indonesia', 'Pakistan'],
-  selectedCountry: undefined,
+  selectedCountryOrRegion: undefined,
   signatureSolution: undefined,
   signatureSolutionForDataList: 'All',
   updateGraphType: (_d: 'scatterPlot' | 'map' | 'barGraph' | 'trendLine' | 'multiCountryTrendLine' | 'dataList') => {},

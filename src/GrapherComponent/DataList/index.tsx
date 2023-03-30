@@ -24,7 +24,7 @@ export const DataList = (props: Props) => {
     countries,
   } = props;
   const {
-    selectedCountry,
+    selectedCountryOrRegion,
     dataListCountry,
     signatureSolutionForDataList,
     updateDataListCountry,
@@ -32,9 +32,9 @@ export const DataList = (props: Props) => {
   const [search, updateSearch] = useState<string | undefined>(undefined);
   const filteredIndicatorsBySearch = search ? indicators.filter((d) => d.IndicatorLabelTable.toLowerCase().includes(search || '')) : indicators;
   const filteredIndicators = signatureSolutionForDataList === 'All' ? filteredIndicatorsBySearch : filteredIndicatorsBySearch.filter((d) => d.SignatureSolution.indexOf(signatureSolutionForDataList) !== -1);
-  const countryName = selectedCountry ? countries[countries.findIndex((d) => d.code === selectedCountry)].name : dataListCountry;
-  const dataFilteredByCountry = selectedCountry
-    ? data.filter((d) => d['Alpha-3 code'] === selectedCountry)[0].indicators.map((d) => ({ ...d, yearlyData: sortBy(d.yearlyData.filter((el) => el.value !== undefined), 'year') }))
+  const countryName = selectedCountryOrRegion ? countries[countries.findIndex((d) => d.code === selectedCountryOrRegion)].name : dataListCountry;
+  const dataFilteredByCountry = selectedCountryOrRegion
+    ? data.filter((d) => d['Alpha-3 code'] === selectedCountryOrRegion)[0].indicators.map((d) => ({ ...d, yearlyData: sortBy(d.yearlyData.filter((el) => el.value !== undefined), 'year') }))
     : dataListCountry
       ? data.filter((d) => d['Country or Area'] === dataListCountry)[0].indicators.map((d) => ({ ...d, yearlyData: sortBy(d.yearlyData.filter((el) => el.value !== undefined), 'year') }))
       : undefined;
@@ -45,7 +45,7 @@ export const DataList = (props: Props) => {
   return (
     <>
       {
-        (selectedCountry || dataListCountry) && dataFilteredByMetaData && countryName
+        (selectedCountryOrRegion || dataListCountry) && dataFilteredByMetaData && countryName
           ? (
             <>
               <div style={{
@@ -72,7 +72,7 @@ export const DataList = (props: Props) => {
                   </div>
                 </div>
                 {
-                  sortBy(dataFilteredByMetaData, (d) => indicators[indicators.findIndex((el) => el.DataKey === d.indicator)].IndicatorLabelTable).map((d, i) => (indicators.findIndex((el) => el.DataKey === d.indicator) !== -1
+                  sortBy(dataFilteredByMetaData.filter((d) => (search ? indicators[indicators.findIndex((el) => el.DataKey === d.indicator)].IndicatorLabelTable.toLowerCase().includes(search.toLowerCase()) : d)), (d) => indicators[indicators.findIndex((el) => el.DataKey === d.indicator)].IndicatorLabelTable).map((d, i) => (indicators.findIndex((el) => el.DataKey === d.indicator) !== -1
                     ? (
                       <div key={i} className='undp-table-row'>
                         <div style={{ width: '50%', fontSize: '1rem' }} className='undp-table-row-cell'>

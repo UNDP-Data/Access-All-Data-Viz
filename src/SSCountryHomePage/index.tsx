@@ -11,19 +11,22 @@ import {
 } from '../Types';
 
 import {
+  COUNTRIES_BY_UNDP_REGIONS,
   METADATALINK,
 } from '../Constants';
 import CountryHomePageContext from './CountryHomePage';
 
 interface Props {
   signatureSolution?: string;
+  region?: string;
 }
 
 const CountryHomePage = (props:Props) => {
   const {
     signatureSolution,
+    region,
   } = props;
-  const [countryId, setCountryId] = useState('AFG');
+  const [countryId, setCountryId] = useState(region ? COUNTRIES_BY_UNDP_REGIONS[COUNTRIES_BY_UNDP_REGIONS.findIndex((d) => d.region === `UNDP_${region}`)].Countries[0] : 'AFG');
   const [finalData, setFinalData] = useState<CountryGroupDataType[] | undefined>(undefined);
   const [indicatorsList, setIndicatorsList] = useState<IndicatorMetaDataWithYear[] | undefined>(undefined);
   const [regionList, setRegionList] = useState<string[] | undefined>(undefined);
@@ -37,7 +40,8 @@ const CountryHomePage = (props:Props) => {
       .defer(json, METADATALINK)
       .await((err: any, data: CountryTaxonomyDataType[], indicatorMetaDataFromFIle: IndicatorMetaDataType[]) => {
         if (err) throw err;
-        setCountryTaxonomyList(data.map((d) => ({ name: d['Country or Area'], code: d['Alpha-3 code-1'] })));
+        const filteredCountry = region ? data.filter((d) => COUNTRIES_BY_UNDP_REGIONS[COUNTRIES_BY_UNDP_REGIONS.findIndex((el) => el.region === `UNDP_${region}`)].Countries.indexOf(d['Alpha-3 code-1']) !== -1) : data;
+        setCountryTaxonomyList(filteredCountry.map((d) => ({ name: d['Country or Area'], code: d['Alpha-3 code-1'] })));
         setIndicatorMetaData(indicatorMetaDataFromFIle);
       });
   }, []);

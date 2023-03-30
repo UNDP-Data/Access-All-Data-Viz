@@ -54,7 +54,7 @@ const CountryHomePageContext = (props:Props) => {
     useSameRange: queryParams.get('useSameRange') === 'true',
     reverseOrder: queryParams.get('reverseOrder') === 'true',
     verticalBarLayout: queryParams.get('verticalBarLayout') !== 'false',
-    selectedCountry: countryFromLink || countryId,
+    selectedCountryOrRegion: countryFromLink || countryId,
     signatureSolution: signatureSolutionFromLink || signatureSolution,
     signatureSolutionForDataList: 'All',
   };

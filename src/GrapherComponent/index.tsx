@@ -13,12 +13,14 @@ import { Graph } from './Graph';
 import { DataSources } from './DataSources';
 import { GetEmbedParams } from '../Components/GetEmbedParams';
 import { CopyLinkWithParamButton } from '../Components/CopyLinkWithParamButton';
+import { COUNTRIES_BY_UNDP_REGIONS } from '../Constants';
 
 interface Props {
   data: CountryGroupDataType[];
   indicators: IndicatorMetaDataWithYear[];
-  regions: string[];
+  regions?: string[];
   countries: CountryListType[];
+  region?: string;
 }
 
 const IconEl = styled.div`
@@ -34,11 +36,12 @@ export const GrapherComponent = (props: Props) => {
     indicators,
     regions,
     countries,
+    region,
   } = props;
   const {
     graphType,
     showSource,
-    selectedCountry,
+    selectedCountryOrRegion,
     signatureSolution,
     updateGraphType,
     updateShowSource,
@@ -62,7 +65,8 @@ export const GrapherComponent = (props: Props) => {
                     <h6 className='undp-typography margin-bottom-00'>
                       Explore All Data
                       {queryParams.get('topic') ? ` for ${queryParams.get('topic')}` : null}
-                      {selectedCountry ? ` for ${countries[countries.findIndex((d) => d.code === selectedCountry)].name}` : null}
+                      {region ? ` for ${COUNTRIES_BY_UNDP_REGIONS[COUNTRIES_BY_UNDP_REGIONS.findIndex((d) => d.region === `UNDP_${region}`)].name}` : null}
+                      {selectedCountryOrRegion ? ` for ${countries[countries.findIndex((d) => d.code === selectedCountryOrRegion)].name}` : null}
                       {signatureSolution ? ` for ${signatureSolution}` : null}
                     </h6>
                   </div>
@@ -87,7 +91,7 @@ export const GrapherComponent = (props: Props) => {
                     : (
                       <div className='tabs-for-graphing-interface-container'>
                         {
-                          selectedCountry ? null
+                          selectedCountryOrRegion || region ? null
                             : (
                               <button type='button' className={`tabs-for-graphing-interface${graphType === 'map' ? ' selected' : ''}`} onClick={() => { updateGraphType('map'); }}>
                                 <IconEl>
@@ -98,7 +102,7 @@ export const GrapherComponent = (props: Props) => {
                             )
                         }
                         {
-                          selectedCountry ? null
+                          selectedCountryOrRegion ? null
                             : (
                               <button type='button' className={`tabs-for-graphing-interface${graphType === 'scatterPlot' ? ' selected' : ''}`} onClick={() => { updateGraphType('scatterPlot'); }}>
                                 <IconEl>
@@ -109,7 +113,7 @@ export const GrapherComponent = (props: Props) => {
                             )
                         }
                         {
-                          selectedCountry ? (
+                          selectedCountryOrRegion ? (
                             <>
                               <button type='button' className={`tabs-for-graphing-interface${graphType === 'dataList' ? ' selected' : ''}`} onClick={() => { updateGraphType('dataList'); }}>
                                 <IconEl>
@@ -142,7 +146,7 @@ export const GrapherComponent = (props: Props) => {
                           )
                         }
                         {
-                          selectedCountry ? null
+                          selectedCountryOrRegion ? null
                             : (
                               <>
                                 <button type='button' className={`tabs-for-graphing-interface${graphType === 'multiCountryTrendLine' ? ' selected' : ''}`} onClick={() => { updateGraphType('multiCountryTrendLine'); }}>

@@ -1,40 +1,27 @@
 /* eslint-disable jsx-a11y/iframe-has-title */
 import { useReducer } from 'react';
-import { useParams } from 'react-router-dom';
 import {
-  CountryGroupDataType, IndicatorMetaDataWithYear, CountryListType,
+  CountryGroupDataType, CountryListType, IndicatorMetaDataWithYear,
 } from '../Types';
 import { GrapherComponent } from '../GrapherComponent';
 import Reducer from '../Context/Reducer';
 import Context from '../Context/Context';
 import { DEFAULT_VALUES } from '../Constants';
-import { PovertyAndInequalityCountrySummary } from './PovertyAndInequalityCountrySummary';
-import { EnvironmentCountrySummary } from './EnvironmentCountrySummary';
-import { GenderCountrySummary } from './GenderCountrySummary';
-import { GovernanceCountrySummary } from './GovernanceCountrySummary';
-import { ResilienceCountrySummary } from './ResilienceCountrySummary';
-import { EnergyCountrySummary } from './EnergyCountrySummary';
-import { DefaultCountrySummary } from './DefaultCountrySummary';
 
 interface Props {
   indicatorsList: IndicatorMetaDataWithYear[];
   finalData: CountryGroupDataType[];
-  regionList: string[];
   countryList: CountryListType[];
-  countryId?: string;
-  signatureSolution?: string;
+  region?:string;
 }
 
-const CountryHomePageContext = (props:Props) => {
+const RegionalHomePageContext = (props:Props) => {
   const {
     indicatorsList,
     finalData,
-    regionList,
     countryList,
-    countryId,
-    signatureSolution,
+    region,
   } = props;
-  const signatureSolutionFromLink = useParams().signatureSolution;
 
   const firstMetric = indicatorsList.findIndex((d) => d.IndicatorLabelTable === DEFAULT_VALUES.firstMetric) === -1 ? indicatorsList[0].IndicatorLabelTable : DEFAULT_VALUES.firstMetric;
   const secondMetric = indicatorsList.findIndex((d) => d.IndicatorLabelTable === DEFAULT_VALUES.secondMetric) === -1 ? indicatorsList[1].IndicatorLabelTable : DEFAULT_VALUES.secondMetric;
@@ -59,8 +46,8 @@ const CountryHomePageContext = (props:Props) => {
     useSameRange: queryParams.get('useSameRange') === 'true',
     reverseOrder: queryParams.get('reverseOrder') === 'true',
     verticalBarLayout: queryParams.get('verticalBarLayout') !== 'false',
-    selectedCountryOrRegion: countryId,
-    signatureSolution: signatureSolutionFromLink || signatureSolution,
+    selectedCountryOrRegion: region,
+    signatureSolution: undefined,
     signatureSolutionForDataList: 'All',
   };
 
@@ -230,28 +217,9 @@ const CountryHomePageContext = (props:Props) => {
       }}
     >
       <div className='undp-container'>
-        {
-
-          signatureSolution === 'Poverty and Inequality' ? (
-            <PovertyAndInequalityCountrySummary indicators={indicatorsList} data={finalData[0]} />
-          ) : signatureSolution === 'Environment' ? (
-            <EnvironmentCountrySummary indicators={indicatorsList} data={finalData[0]} />
-          ) : signatureSolution === 'Gender' ? (
-            <GenderCountrySummary indicators={indicatorsList} data={finalData[0]} />
-          ) : signatureSolution === 'Governance' ? (
-            <GovernanceCountrySummary indicators={indicatorsList} data={finalData[0]} />
-          ) : signatureSolution === 'Resilience' ? (
-            <ResilienceCountrySummary indicators={indicatorsList} data={finalData[0]} />
-          ) : signatureSolution === 'Energy' ? (
-            <EnergyCountrySummary indicators={indicatorsList} data={finalData[0]} />
-          ) : (
-            <DefaultCountrySummary indicators={indicatorsList} data={finalData[0]} />
-          )
-        }
         <GrapherComponent
           data={finalData}
           indicators={indicatorsList}
-          regions={regionList}
           countries={countryList}
         />
       </div>
@@ -259,4 +227,4 @@ const CountryHomePageContext = (props:Props) => {
   );
 };
 
-export default CountryHomePageContext;
+export default RegionalHomePageContext;
