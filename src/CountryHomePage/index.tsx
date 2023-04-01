@@ -17,12 +17,14 @@ import CountryHomePageContext from './CountryHomePage';
 interface Props {
   countryId?: string;
   signatureSolution?: string;
+  showCountrySummary: boolean;
 }
 
 const CountryHomePage = (props:Props) => {
   const {
     countryId,
     signatureSolution,
+    showCountrySummary,
   } = props;
   const countryFromLink = countryId;
   const [finalData, setFinalData] = useState<CountryGroupDataType[] | undefined>(undefined);
@@ -67,6 +69,7 @@ const CountryHomePage = (props:Props) => {
                 countryList={countryList}
                 countryId={countryId}
                 signatureSolution={signatureSolution}
+                showCountrySummary={showCountrySummary}
               />
             </div>
           )

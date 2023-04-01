@@ -1,6 +1,8 @@
 import { createRoot } from 'react-dom/client';
-import App from './App';
-import { RegionCountryApp, RegionApp, RegionCountriesApp } from './RegionApp';
+import { CountryApp, CountryWithoutSummaryApp } from './Apps/CountryApp';
+import { App } from './Apps/MainApp';
+import { RegionCountryApp, RegionApp, RegionCountriesApp } from './Apps/RegionApp';
+import { SSApp, SSCountryApp } from './Apps/SignatureSolutionApp';
 import reportWebVitals from './reportWebVitals';
 
 const getEl = (embedSelector: string) => {
@@ -46,13 +48,42 @@ const getSS = (embedSelector: string) => {
   return undefined;
 };
 
+/*
+! Main visualization renderer
+*/
 const containerEmbed = getEl('[data-bucket-embed]');
 if (containerEmbed) {
-  const rootEmbed = createRoot(containerEmbed!); // createRoot(container!) if you use TypeScript
-  rootEmbed.render(<App
-    countryId={getCountry('[data-bucket-embed]')}
-    signatureSolution={getSS('[data-bucket-embed]')}
-    isSignatureSolutionCountryEmbed={false}
+  const rootEmbed = createRoot(containerEmbed!);
+  rootEmbed.render(<App />);
+}
+
+/*
+! Visualizations on the signature solution pages
+*/
+const containerSSEmbed = getEl('[data-bucket-ss-embed]');
+if (containerSSEmbed) {
+  const rootEmbed = createRoot(containerSSEmbed!);
+  rootEmbed.render(<SSApp
+    signatureSolution={getSS('[data-bucket-ss-embed]')}
+  />);
+}
+
+const containerSSCountryEmbed = getEl('[data-bucket-ss-country-embed]');
+if (containerSSCountryEmbed) {
+  const rootEmbed = createRoot(containerSSCountryEmbed!);
+  rootEmbed.render(<SSCountryApp
+    signatureSolution={getSS('[data-bucket-ss-country-embed]')}
+  />);
+}
+
+/*
+! Visualizations on the country pages
+*/
+const containerCountryWithoutSummaryEmbed = getEl('[data-bucket-country-without-summary-embed]');
+if (containerCountryWithoutSummaryEmbed) {
+  const rootEmbed = createRoot(containerCountryWithoutSummaryEmbed!);
+  rootEmbed.render(<CountryWithoutSummaryApp
+    countryId={getCountry('[data-bucket-country-without-summary-embed]')}
   />);
 }
 
@@ -60,17 +91,18 @@ const containerCountryEmbed = getEl('[data-bucket-country-embed]');
 if (containerCountryEmbed) {
   const currentURL = window.location;
   const countryCode = currentURL.href.split('?')[0].substr(-1) === '/' ? currentURL.href.split('?')[0].substr(-4).substring(0, 3) : currentURL.href.split('?')[0].substr(-3);
-  const rootEmbed = createRoot(containerCountryEmbed!); // createRoot(container!) if you use TypeScript
-  rootEmbed.render(<App
+  const rootEmbed = createRoot(containerCountryEmbed!);
+  rootEmbed.render(<CountryApp
     countryId={getCountry('[data-bucket-country-embed]') || countryCode.toUpperCase()}
-    signatureSolution={undefined}
-    isSignatureSolutionCountryEmbed={false}
   />);
 }
 
+/*
+! Visualizations on the regional pages
+*/
 const containerRegionEmbed = getEl('[data-bucket-region-embed]');
 if (containerRegionEmbed) {
-  const rootEmbed = createRoot(containerRegionEmbed!); // createRoot(container!) if you use TypeScript
+  const rootEmbed = createRoot(containerRegionEmbed!);
   rootEmbed.render(<RegionApp
     region={getRegion('[data-bucket-region-embed]')}
   />);
@@ -78,7 +110,7 @@ if (containerRegionEmbed) {
 
 const containerRegionCountryEmbed = getEl('[data-bucket-region-country-embed]');
 if (containerRegionEmbed) {
-  const rootEmbed = createRoot(containerRegionCountryEmbed!); // createRoot(container!) if you use TypeScript
+  const rootEmbed = createRoot(containerRegionCountryEmbed!);
   rootEmbed.render(<RegionCountryApp
     region={getRegion('[data-bucket-region-country-embed]')}
   />);
@@ -86,19 +118,9 @@ if (containerRegionEmbed) {
 
 const containerRegionCountriesEmbed = getEl('[data-bucket-region-countries-embed]');
 if (containerRegionEmbed) {
-  const rootEmbed = createRoot(containerRegionCountriesEmbed!); // createRoot(container!) if you use TypeScript
+  const rootEmbed = createRoot(containerRegionCountriesEmbed!);
   rootEmbed.render(<RegionCountriesApp
     region={getRegion('[data-bucket-region-countries-embed]')}
-  />);
-}
-
-const containerSSCountryEmbed = getEl('[data-bucket-ss-country-embed]');
-if (containerSSCountryEmbed) {
-  const rootEmbed = createRoot(containerSSCountryEmbed!); // createRoot(container!) if you use TypeScript
-  rootEmbed.render(<App
-    countryId={undefined}
-    signatureSolution={getSS('[data-bucket-ss-country-embed]')}
-    isSignatureSolutionCountryEmbed
   />);
 }
 

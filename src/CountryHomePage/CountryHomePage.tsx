@@ -17,6 +17,7 @@ interface Props {
   countryList: CountryListType[];
   countryId?: string;
   signatureSolution?: string;
+  showCountrySummary: boolean;
 }
 
 const CountryHomePageContext = (props:Props) => {
@@ -27,6 +28,7 @@ const CountryHomePageContext = (props:Props) => {
     countryList,
     countryId,
     signatureSolution,
+    showCountrySummary,
   } = props;
   const countryFromLink = countryId;
   const signatureSolutionFromLink = useParams().signatureSolution;
@@ -225,8 +227,10 @@ const CountryHomePageContext = (props:Props) => {
       }}
     >
       <div className='undp-container'>
-        <CountrySummary data={finalData} indicators={indicatorsList} />
-        <div className='margin-top-09' style={{ backgroundColor: 'var(--gray-200)', padding: 'var(--spacing-09)' }}>
+        {
+          showCountrySummary ? <CountrySummary data={finalData} indicators={indicatorsList} /> : null
+        }
+        <div className={showCountrySummary ? 'margin-top-09' : 'margin-top-00'} style={{ backgroundColor: 'var(--gray-200)', padding: 'var(--spacing-09)' }}>
           <div style={{ maxWidth: '1392px', margin: 'auto' }}>
             <GrapherComponent
               data={finalData}

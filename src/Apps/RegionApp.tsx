@@ -1,6 +1,6 @@
-import HomePage from './HomePage';
-import RegionHomePage from './RegionHomePage';
-import CountryHomePage from './SSCountryHomePage';
+import HomePage from '../HomePage';
+import RegionHomePage from '../RegionHomePage';
+import CountryHomePage from '../SSCountryHomePage';
 
 interface Props {
   region?: string;
