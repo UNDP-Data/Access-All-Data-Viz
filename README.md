@@ -35,7 +35,7 @@ There are many type of visualization in this page:
 
 This is the parent visualization with all the data for all the countries. This visualization is used in teh __Access All Data__ page in DFP.
 
-![Main VIz Image](readmeImgs/mainViz.png)
+![Main VIz Image](readMeImgs/mainViz.png)
 
 Main visualization `Explore All Data` will be rendered within the following div on a static page:
 ```
@@ -49,7 +49,7 @@ This is the visualization which are embedded in the country pages. There two sub
 
 #### With the summary visualization on the top categorized by signature solutions
 
-![Main VIz Image](readmeImgs/countryViz01.png)
+![Main VIz Image](readMeImgs/countryViz01.png)
 
 This visualization will be rendered within the following div on a static page:
 
@@ -60,7 +60,7 @@ ___
 
 #### Without the summary visualization on the top
 
-![Main VIz Image](readmeImgs/countryViz02.png)
+![Main VIz Image](readMeImgs/countryViz02.png)
 
 This visualization will be rendered within the following div on a static page:
 ```
@@ -78,7 +78,7 @@ This is the visualization which are embedded in the regional pages. There three 
 
 #### Main regional level visualization
 
-![Main VIz Image](readmeImgs/regionViz01.png)
+![Main VIz Image](readMeImgs/regionViz01.png)
 
 This visualization will be rendered within the following div on a static page:
 ```
@@ -91,7 +91,7 @@ _The difference between this visualization and main visualization are as follow:
 
 #### Country Profile with country selection within the region
 
-![Main VIz Image](readmeImgs/regionViz02.png)
+![Main VIz Image](readMeImgs/regionViz02.png)
 
 This visualization will be rendered within the following div on a static page:
 ```
@@ -104,7 +104,7 @@ _This visualization is very similar to the Country Level visualization with some
 
 #### Regional visualization comparing countries within the region
 
-![Main VIz Image](readmeImgs/regionViz03.png)
+![Main VIz Image](readMeImgs/regionViz03.png)
 
 This visualization will be rendered within the following div on a static page:
 ```
@@ -129,7 +129,7 @@ This is the visualization which are embedded in the signature solution pages. Th
 
 #### With the visualization data filtered by signature solutions
 
-![Main VIz Image](readmeImgs/ssViz01.png)
+![Main VIz Image](readMeImgs/ssViz01.png)
 
 This visualization will be rendered within the following div on a static page:
 ```
@@ -140,7 +140,7 @@ _This visualization is very similar to the Main visualization the only differenc
 
 #### Country Profile with country selection
 
-![Main VIz Image](readmeImgs/ssViz02.png)
+![Main VIz Image](readMeImgs/ssViz02.png)
 
 This visualization will be rendered within the following div on a static page:
 ```
