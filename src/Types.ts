@@ -1,33 +1,33 @@
 export interface IndicatorDataType {
   indicator: string;
   yearlyData: {
-    year: number,
-    value: number,
-  }[]
+    year: number;
+    value: number;
+  }[];
 }
 export interface CountryTaxonomyDataType {
   'Alpha-3 code-1': string;
   'Country or Area': string;
   'Group 1': string;
   'Group 2': string;
-  'LDC': boolean;
-  'LLDC': boolean;
+  LDC: boolean;
+  LLDC: boolean;
   'Latitude (average)': number;
   'Longitude (average)': number;
-  'SIDS': boolean;
+  SIDS: boolean;
   'Income group': string;
 }
 
-export interface CountryGroupDataType{
+export interface CountryGroupDataType {
   'Alpha-3 code': string;
   'Country or Area': string;
   'Group 1': string;
   'Group 2': string;
-  'LDC': boolean;
-  'LLDC': boolean;
+  LDC: boolean;
+  LLDC: boolean;
   'Latitude (average)': number;
   'Longitude (average)': number;
-  'SIDS': boolean;
+  SIDS: boolean;
   'Income group': string;
   indicators: IndicatorDataType[];
 }
@@ -40,11 +40,11 @@ export interface DataType extends CountryGroupDataType {
 export interface IndicatorOptionsDataType {
   'Data source link': string;
   'Data source name': string;
-  'Indicator': string;
+  Indicator: string;
   'Indicator Description': string;
   'Time period': string;
-  'Year': string;
-  'Categorical': boolean;
+  Year: string;
+  Categorical: boolean;
 }
 
 export interface IndicatorMetaDataType {
@@ -79,7 +79,7 @@ export interface HoverRowDataType {
   title?: string;
   value?: string | number;
   prefix?: string;
-  suffix?:string;
+  suffix?: string;
   type: 'x-axis' | 'y-axis' | 'color' | 'size';
   year?: number;
   color?: string;
@@ -94,7 +94,13 @@ export interface HoverDataType {
 }
 
 export interface CtxDataType {
-  graphType: 'scatterPlot' | 'map' | 'barGraph' | 'trendLine' | 'multiCountryTrendLine' | 'dataList' ;
+  graphType:
+    | 'scatterPlot'
+    | 'map'
+    | 'barGraph'
+    | 'trendLine'
+    | 'multiCountryTrendLine'
+    | 'dataList';
   selectedRegions: string[];
   selectedCountries: string[];
   selectedIncomeGroups: string[];
@@ -115,8 +121,23 @@ export interface CtxDataType {
   verticalBarLayout: boolean;
   selectedCountryOrRegion?: string;
   signatureSolution?: string;
-  signatureSolutionForDataList: 'All' | 'Energy' | 'Environment' | 'Gender' | 'Governance' | 'Poverty and Inequality' | 'Resilience';
-  updateGraphType: (_d: 'scatterPlot' | 'map' | 'barGraph' | 'trendLine' | 'multiCountryTrendLine' | 'dataList') => void;
+  signatureSolutionForDataList:
+    | 'All'
+    | 'Energy'
+    | 'Environment'
+    | 'Gender'
+    | 'Governance'
+    | 'Poverty and Inequality'
+    | 'Resilience';
+  updateGraphType: (
+    _d:
+      | 'scatterPlot'
+      | 'map'
+      | 'barGraph'
+      | 'trendLine'
+      | 'multiCountryTrendLine'
+      | 'dataList',
+  ) => void;
   updateSelectedRegions: (_d: string[]) => void;
   updateSelectedCountries: (_d: string[]) => void;
   updateSelectedIncomeGroups: (_d: string[]) => void;
@@ -135,7 +156,16 @@ export interface CtxDataType {
   updateDataListCountry: (_d: string) => void;
   updateMultiCountryTrendChartCountries: (_d: string[]) => void;
   updateBarLayout: (_d: boolean) => void;
-  updateSignatureSolutionForDataList: (_d: 'All' | 'Energy' | 'Environment' | 'Gender' | 'Governance' | 'Poverty and Inequality' | 'Resilience') => void;
+  updateSignatureSolutionForDataList: (
+    _d:
+      | 'All'
+      | 'Energy'
+      | 'Environment'
+      | 'Gender'
+      | 'Governance'
+      | 'Poverty and Inequality'
+      | 'Resilience',
+  ) => void;
 }
 
 export interface CountryListType {

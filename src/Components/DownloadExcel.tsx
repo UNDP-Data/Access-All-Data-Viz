@@ -1,18 +1,15 @@
 import FileSaver from 'file-saver';
-
-const XLSX = require('xlsx');
+import * as XLSX from 'xlsx';
 
 interface Props {
-    data: any;
-    indicatorTitle: string;
+  data: any;
+  indicatorTitle: string;
 }
 
-const ExportExcel = (props: Props) => {
-  const {
-    data,
-    indicatorTitle,
-  } = props;
-  const fileType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+function ExportExcel(props: Props) {
+  const { data, indicatorTitle } = props;
+  const fileType =
+    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
 
   const Heading = [
     {
@@ -29,11 +26,7 @@ const ExportExcel = (props: Props) => {
       skipHeader: true,
     });
 
-    const wscols = [
-      { wch: 20 },
-      { wch: 5 },
-      { wch: 15 },
-    ];
+    const wscols = [{ wch: 20 }, { wch: 5 }, { wch: 15 }];
 
     ws['!cols'] = wscols;
     XLSX.utils.sheet_add_json(ws, csvData, {
@@ -44,7 +37,10 @@ const ExportExcel = (props: Props) => {
     const wb = { Sheets: { data: ws }, SheetNames: ['data'] };
     const excelBuffer = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
     const dataForExcel = new Blob([excelBuffer], { type: fileType });
-    FileSaver.saveAs(dataForExcel, `${indicatorTitle.replaceAll(',', '').replaceAll('.', ' ')}.xlsx`);
+    FileSaver.saveAs(
+      dataForExcel,
+      `${indicatorTitle.replaceAll(',', '').replaceAll('.', ' ')}.xlsx`,
+    );
   };
 
   return (
@@ -56,6 +52,6 @@ const ExportExcel = (props: Props) => {
       Download Data as XLSX
     </button>
   );
-};
+}
 
 export default ExportExcel;

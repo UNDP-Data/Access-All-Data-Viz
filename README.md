@@ -16,8 +16,7 @@
 * [Local Deployment](#section-08)
 * [Available Scripts](#section-09)
 * [Tooling Setup](#section-10)
-* [Future Scope](#section-11)
-* [Contact](#section-12)
+* [Contact](#section-11)
 
 ## Link for the visualization<a name="section-01"></a>
 [https://undp-vaccine-equity-dashboard.netlify.app/](https://undp-vaccine-equity-dashboard.netlify.app/)
@@ -194,7 +193,6 @@ __Link for stylesheets__
 
 ## Build with<a name="section-06"></a>
 * __React__: Used as MVC framework.
-* __CRACO__: Used to configure different scripts (See Available Scripts for more details)
 * __styled-components__: Utilizes tagged template literals and the power of CSS, allows to write actual CSS code to style the components in JS/TS.
 * __Various D3 Libraries__: Used for visualizations, adding interaction and reading the csv data file.
 * __AntD__: For UI elements like dropdown, buttons, checkbox, and slider.
@@ -209,6 +207,8 @@ This project uses `npm`. For installation you will need to install `node` and `n
 
 To install the project, simply clone the the repo and them run `npm install` in the project folder. You can use terminal on Mac and Command Prompt on Windows.
 
+This project is bootstrapped with [`Vite`](https://vitejs.dev/) and was created using `npm create vite@latest` command.
+
 Run the terminal or command prompt and then run the following
 
 ```
@@ -218,25 +218,20 @@ npm install
 ```
 
 ## Local Development<a name="section-08"></a>
-To start the project locally, you can run `npm run start` in the project folder in terminal or command prompt.
+To start the project locally, you can run `npm run dev` in the project folder in terminal or command prompt.
 
-This is run the app in development mode. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+This is run the app in development mode. Open [http://localhost:5173/](http://localhost:5173/) to view it in the browser.
 
 The page will reload if you make edits. You will also see any lint errors in the console.
 
 ## Available Scripts<a name="section-09"></a>
-Craco is used to add a configuration layer for CRA. The primary function is to stop the `build` to have optimized chunks of the built script. _This make the using the script in the Wordpress easier._ The configuration file for Craco is placed in the root folder and called `craco.config.js`
-* `npm run build`: Executes `craco build` and builds the app without chunking the main js script file.
-* `npm run start`: Executes `craco start` and start the local server for local deployment.
-* `npm install`: Installs all the dependencies.
+* `npm run dev`: Executes `vite` and start the local server for local deployment.
+* `npm run build`: Executes `tsc && vite build` and builds the app for production and deployment.
 
 ## Tooling Setup<a name="section-10"></a>
 This project uses ESLint integrated with prettier, which verifies and formats your code so you don't have to do it manually. You should have your editor set up to display lint errors and automatically fix those which it is possible to fix. See [http://eslint.org/docs/user-guide/integrations](http://eslint.org/docs/user-guide/integrations).
 
 This project is build in Visual Studio Code, therefore the project is already set up to work with. Install it from [here](https://code.visualstudio.com/) and then install this [eslint plugin](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) and you should be good to go.
 
-## Future Scope<a name="section-11"></a>
-* Migrate from CRA to Vite for better developer experience
-
-## Contact<a name="section-12"></a>
+## Contact<a name="section-11"></a>
 [**Mustafa Saifee**](mailto:mustafa.saifee@undp.org)

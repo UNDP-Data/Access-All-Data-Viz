@@ -49,17 +49,17 @@ export function StackedAreaChartGraph(props: Props) {
   const maxYear = data[data.length - 1].year;
 
   const minParam = 0;
-  const maxParam: number = maxBy(data, (d) => d.total)?.total
-    ? (maxBy(data, (d) => d.total)?.total as number)
+  const maxParam: number = maxBy(data, d => d.total)?.total
+    ? (maxBy(data, d => d.total)?.total as number)
     : 0;
 
-  const dataFiltered = data.filter((d) => d.total !== undefined);
+  const dataFiltered = data.filter(d => d.total !== undefined);
   const bisect = bisector((d: any) => d.year).left;
-  const minYearFiltered = minBy(dataFiltered, (d) => d.year)?.year
-    ? minBy(dataFiltered, (d) => d.year)?.year
+  const minYearFiltered = minBy(dataFiltered, d => d.year)?.year
+    ? minBy(dataFiltered, d => d.year)?.year
     : minYear;
-  const maxYearFiltered = maxBy(dataFiltered, (d) => d.year)?.year
-    ? maxBy(dataFiltered, (d) => d.year)?.year
+  const maxYearFiltered = maxBy(dataFiltered, d => d.year)?.year
+    ? maxBy(dataFiltered, d => d.year)?.year
     : maxYear;
 
   const x = scaleLinear()
@@ -184,25 +184,22 @@ export function StackedAreaChartGraph(props: Props) {
               strokeWidth={strokeWidth}
               shapeRendering='geometricPrecision'
             />
-            {
-              mouseOverData.param1 && mouseOverData.total
-                ? (
-                  <>
-                    <circle
-                      cx={x(mouseOverData.year)}
-                      cy={y(mouseOverData.param1)}
-                      r={5}
-                      style={{ fill: 'var(--gray-700)' }}
-                    />
-                    <circle
-                      cx={x(mouseOverData.year)}
-                      cy={y(mouseOverData.total)}
-                      r={5}
-                      style={{ fill: 'var(--gray-700)' }}
-                    />
-                  </>
-                ) : null
-            }
+            {mouseOverData.param1 && mouseOverData.total ? (
+              <>
+                <circle
+                  cx={x(mouseOverData.year)}
+                  cy={y(mouseOverData.param1)}
+                  r={5}
+                  style={{ fill: 'var(--gray-700)' }}
+                />
+                <circle
+                  cx={x(mouseOverData.year)}
+                  cy={y(mouseOverData.total)}
+                  r={5}
+                  style={{ fill: 'var(--gray-700)' }}
+                />
+              </>
+            ) : null}
           </g>
         </g>
       )}

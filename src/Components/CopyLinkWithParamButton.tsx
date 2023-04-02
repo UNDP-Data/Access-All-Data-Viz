@@ -6,7 +6,7 @@ import { CtxDataType } from '../Types';
 
 const ArrToString = (d: string[]) => {
   let stringValTemp = '';
-  d.forEach((el) => {
+  d.forEach(el => {
     stringValTemp += `~${el.replace(/ /g, '+')}`;
   });
   const stringVal = stringValTemp.substring(1);
@@ -15,7 +15,7 @@ const ArrToString = (d: string[]) => {
 
 const CovertStringForParam = (d: string) => d.replace(/ /g, '+');
 
-export const CopyLinkWithParamButton = () => {
+export function CopyLinkWithParamButton() {
   const {
     graphType,
     selectedRegions,
@@ -37,41 +37,75 @@ export const CopyLinkWithParamButton = () => {
     signatureSolution,
   } = useContext(Context) as CtxDataType;
   const graphParam = `graphType=${graphType}`;
-  const regionsParam = selectedRegions.length > 0 ? `&regions=${ArrToString(selectedRegions)}` : '';
-  const countries = selectedCountries.length > 0 ? `&countries=${ArrToString(selectedCountries)}` : '';
-  const selectCountryOrRegionParam = selectedCountryOrRegion ? `&selectedCountryOrRegion=${selectedCountryOrRegion}` : '';
-  const signatureSolutionParam = signatureSolution ? `&signatureSolution=${signatureSolution}` : '';
-  const incomeGroupsParam = selectedRegions.length > 0 ? `&incomeGroups=${ArrToString(selectedIncomeGroups)}` : '';
-  const countryGroupParam = selectedCountryGroup === 'All' ? '' : `&countryGroup=${CovertStringForParam(selectedCountryGroup)}`;
-  const firstMetricParam = `&firstMetric=${CovertStringForParam(xAxisIndicator)}`;
-  const secondMetricParam = yAxisIndicator ? `&secondMetric=${CovertStringForParam(yAxisIndicator)}` : '';
-  const colorMetricParam = `&colorMetric=${CovertStringForParam(colorIndicator)}`;
-  const sizeMetricParam = sizeIndicator ? `&sizeMetric=${CovertStringForParam(sizeIndicator)}` : '';
-  const showMostRecentDataParam = showMostRecentData === true ? '&showMostRecentData=true' : '';
+  const regionsParam =
+    selectedRegions.length > 0
+      ? `&regions=${ArrToString(selectedRegions)}`
+      : '';
+  const countries =
+    selectedCountries.length > 0
+      ? `&countries=${ArrToString(selectedCountries)}`
+      : '';
+  const selectCountryOrRegionParam = selectedCountryOrRegion
+    ? `&selectedCountryOrRegion=${selectedCountryOrRegion}`
+    : '';
+  const signatureSolutionParam = signatureSolution
+    ? `&signatureSolution=${signatureSolution}`
+    : '';
+  const incomeGroupsParam =
+    selectedRegions.length > 0
+      ? `&incomeGroups=${ArrToString(selectedIncomeGroups)}`
+      : '';
+  const countryGroupParam =
+    selectedCountryGroup === 'All'
+      ? ''
+      : `&countryGroup=${CovertStringForParam(selectedCountryGroup)}`;
+  const firstMetricParam = `&firstMetric=${CovertStringForParam(
+    xAxisIndicator,
+  )}`;
+  const secondMetricParam = yAxisIndicator
+    ? `&secondMetric=${CovertStringForParam(yAxisIndicator)}`
+    : '';
+  const colorMetricParam = `&colorMetric=${CovertStringForParam(
+    colorIndicator,
+  )}`;
+  const sizeMetricParam = sizeIndicator
+    ? `&sizeMetric=${CovertStringForParam(sizeIndicator)}`
+    : '';
+  const showMostRecentDataParam =
+    showMostRecentData === true ? '&showMostRecentData=true' : '';
   const showLabelParam = showLabel === true ? '&showLabel=true' : '';
-  const trendChartCountryParam = trendChartCountry ? `&trendChartCountry=${CovertStringForParam(trendChartCountry)}` : '';
-  const multiCountryTrendChartCountriesParam = multiCountryTrendChartCountries.length > 0 ? `&multiCountryTrendChartCountries=${ArrToString(multiCountryTrendChartCountries)}` : '';
+  const trendChartCountryParam = trendChartCountry
+    ? `&trendChartCountry=${CovertStringForParam(trendChartCountry)}`
+    : '';
+  const multiCountryTrendChartCountriesParam =
+    multiCountryTrendChartCountries.length > 0
+      ? `&multiCountryTrendChartCountries=${ArrToString(
+          multiCountryTrendChartCountries,
+        )}`
+      : '';
   const useSameRangeParam = useSameRange === true ? '&useSameRange=true' : '';
   const reverseOrderParam = reverseOrder === true ? '&reverseOrder=true' : '';
-  const verticalBarLayoutParam = verticalBarLayout === false ? '&verticalBarLayout=false' : '';
-  const queryParams = graphParam
-    + regionsParam
-    + countries
-    + selectCountryOrRegionParam
-    + signatureSolutionParam
-    + incomeGroupsParam
-    + countryGroupParam
-    + firstMetricParam
-    + secondMetricParam
-    + colorMetricParam
-    + sizeMetricParam
-    + showMostRecentDataParam
-    + showLabelParam
-    + trendChartCountryParam
-    + multiCountryTrendChartCountriesParam
-    + useSameRangeParam
-    + reverseOrderParam
-    + verticalBarLayoutParam;
+  const verticalBarLayoutParam =
+    verticalBarLayout === false ? '&verticalBarLayout=false' : '';
+  const queryParams =
+    graphParam +
+    regionsParam +
+    countries +
+    selectCountryOrRegionParam +
+    signatureSolutionParam +
+    incomeGroupsParam +
+    countryGroupParam +
+    firstMetricParam +
+    secondMetricParam +
+    colorMetricParam +
+    sizeMetricParam +
+    showMostRecentDataParam +
+    showLabelParam +
+    trendChartCountryParam +
+    multiCountryTrendChartCountriesParam +
+    useSameRangeParam +
+    reverseOrderParam +
+    verticalBarLayoutParam;
   return (
     <button
       className='undp-button button-secondary'
@@ -84,4 +118,4 @@ export const CopyLinkWithParamButton = () => {
       Copy Link
     </button>
   );
-};
+}

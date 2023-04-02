@@ -52,26 +52,41 @@ const SourceEl = styled.div`
 
 export function StackedAreaChart(props: Props) {
   const {
-    data1, data2, lineColor1, lineColor2, graphTitle, strokeWidth, source, graphDescription,
+    data1,
+    data2,
+    lineColor1,
+    lineColor2,
+    graphTitle,
+    strokeWidth,
+    source,
+    graphDescription,
   } = props;
 
   const minYear = min([data1[0].year, data2[0].year]);
-  const maxYear = max([data1[data1.length - 1].year, data2[data1.length - 1].year]);
+  const maxYear = max([
+    data1[data1.length - 1].year,
+    data2[data1.length - 1].year,
+  ]);
 
   const dataFormatted: DataFormattedType[] = [];
   for (let i = minYear as number; i < (maxYear as number) + 1; i += 1) {
     dataFormatted.push({
       year: i,
-      param1: data1.findIndex((d) => d.year === i) !== -1 && data2.findIndex((d) => d.year === i) !== -1
-        ? +data1[data1.findIndex((d) => d.year === i)].value
-        : undefined,
+      param1:
+        data1.findIndex(d => d.year === i) !== -1 &&
+        data2.findIndex(d => d.year === i) !== -1
+          ? +data1[data1.findIndex(d => d.year === i)].value
+          : undefined,
       param2:
-        data2.findIndex((d) => d.year === i) !== -1 && data1.findIndex((d) => d.year === i) !== -1
-          ? +data2[data2.findIndex((d) => d.year === i)].value
+        data2.findIndex(d => d.year === i) !== -1 &&
+        data1.findIndex(d => d.year === i) !== -1
+          ? +data2[data2.findIndex(d => d.year === i)].value
           : undefined,
       total:
-        data2.findIndex((d) => d.year === i) !== -1 && data1.findIndex((d) => d.year === i) !== -1
-          ? data1[data1.findIndex((d) => d.year === i)].value + data2[data2.findIndex((d) => d.year === i)].value
+        data2.findIndex(d => d.year === i) !== -1 &&
+        data1.findIndex(d => d.year === i) !== -1
+          ? data1[data1.findIndex(d => d.year === i)].value +
+            data2[data2.findIndex(d => d.year === i)].value
           : undefined,
     });
   }
@@ -92,32 +107,41 @@ export function StackedAreaChart(props: Props) {
   return (
     <StatCardsEl>
       <p className='undp-typography margin-bottom-00'>{graphTitle}</p>
-      {
-        graphDescription ? <p className='undp-typography small-font margin-bottom-00' style={{ color: 'var(--gray-500)' }}>{graphDescription}</p> : null
-      }
+      {graphDescription ? (
+        <p
+          className='undp-typography small-font margin-bottom-00'
+          style={{ color: 'var(--gray-500)' }}
+        >
+          {graphDescription}
+        </p>
+      ) : null}
       <div className='flex-div flex-wrap gap-05 margin-top-03'>
         <div className='flex-div gap-03 flex-vert-align-center'>
-          <div style={{ width: '1rem', height: '1rem', backgroundColor: lineColor1 }} />
+          <div
+            style={{
+              width: '1rem',
+              height: '1rem',
+              backgroundColor: lineColor1,
+            }}
+          />
           <p className='undp-typography margin-bottom-00'>
-            Rural:
-            {' '}
-            <span className='bold'>{format('.3s')(mouseOverData.param1)}</span>
-            {' '}
-            (
-            {mouseOverData.year}
-            )
+            Rural:{' '}
+            <span className='bold'>{format('.3s')(mouseOverData.param1)}</span>{' '}
+            ({mouseOverData.year})
           </p>
         </div>
         <div className='flex-div gap-03 flex-vert-align-center'>
-          <div style={{ width: '1rem', height: '1rem', backgroundColor: lineColor2 }} />
+          <div
+            style={{
+              width: '1rem',
+              height: '1rem',
+              backgroundColor: lineColor2,
+            }}
+          />
           <p className='undp-typography margin-bottom-00'>
-            Urban:
-            {' '}
-            <span className='bold'>{format('.3s')(mouseOverData.param2)}</span>
-            {' '}
-            (
-            {mouseOverData.year}
-            )
+            Urban:{' '}
+            <span className='bold'>{format('.3s')(mouseOverData.param2)}</span>{' '}
+            ({mouseOverData.year})
           </p>
         </div>
       </div>
@@ -129,30 +153,22 @@ export function StackedAreaChart(props: Props) {
           justifyContent: 'center',
         }}
       >
-        <>
-          <div style={{ flexGrow: 1, width: '100%' }} ref={graphDiv}>
-            {svgWidth && svgHeight ? (
-              <>
-                <StackedAreaChartGraph
-                  data={dataFormatted}
-                  lineColor1={lineColor1}
-                  lineColor2={lineColor2}
-                  svgWidth={svgWidth}
-                  svgHeight={svgHeight}
-                  strokeWidth={strokeWidth}
-                  setMouseOverData={setMouseOverData}
-                  mouseOverData={mouseOverData}
-                />
-              </>
-            ) : null}
-          </div>
-        </>
+        <div style={{ flexGrow: 1, width: '100%' }} ref={graphDiv}>
+          {svgWidth && svgHeight ? (
+            <StackedAreaChartGraph
+              data={dataFormatted}
+              lineColor1={lineColor1}
+              lineColor2={lineColor2}
+              svgWidth={svgWidth}
+              svgHeight={svgHeight}
+              strokeWidth={strokeWidth}
+              setMouseOverData={setMouseOverData}
+              mouseOverData={mouseOverData}
+            />
+          ) : null}
+        </div>
       </div>
-      <SourceEl className='margin-top-05'>
-        Source:
-        {' '}
-        {source}
-      </SourceEl>
+      <SourceEl className='margin-top-05'>Source: {source}</SourceEl>
     </StatCardsEl>
   );
 }

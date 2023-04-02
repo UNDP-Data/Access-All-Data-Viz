@@ -55,26 +55,26 @@ export function LineChartGraph(props: Props) {
     dataFormatted.push({
       year: i,
       param:
-        data.findIndex((d) => d.year === i) !== -1
-          ? +data[data.findIndex((d) => d.year === i)].value
+        data.findIndex(d => d.year === i) !== -1
+          ? +data[data.findIndex(d => d.year === i)].value
           : undefined,
     });
   }
-  const minParam: number = minBy(dataFormatted, (d) => d.param)?.param
-    ? (minBy(dataFormatted, (d) => d.param)?.param as number) > 0
+  const minParam: number = minBy(dataFormatted, d => d.param)?.param
+    ? (minBy(dataFormatted, d => d.param)?.param as number) > 0
       ? 0
-      : (minBy(dataFormatted, (d) => d.param)?.param as number)
+      : (minBy(dataFormatted, d => d.param)?.param as number)
     : 0;
-  const maxParam: number = maxBy(dataFormatted, (d) => d.param)?.param
-    ? (maxBy(dataFormatted, (d) => d.param)?.param as number)
+  const maxParam: number = maxBy(dataFormatted, d => d.param)?.param
+    ? (maxBy(dataFormatted, d => d.param)?.param as number)
     : 0;
 
-  const dataFiltered = dataFormatted.filter((d) => d.param !== undefined);
-  const minYearFiltered = minBy(dataFiltered, (d) => d.year)?.year
-    ? minBy(dataFiltered, (d) => d.year)?.year
+  const dataFiltered = dataFormatted.filter(d => d.param !== undefined);
+  const minYearFiltered = minBy(dataFiltered, d => d.year)?.year
+    ? minBy(dataFiltered, d => d.year)?.year
     : minYear;
-  const maxYearFiltered = maxBy(dataFiltered, (d) => d.year)?.year
-    ? maxBy(dataFiltered, (d) => d.year)?.year
+  const maxYearFiltered = maxBy(dataFiltered, d => d.year)?.year
+    ? maxBy(dataFiltered, d => d.year)?.year
     : maxYear;
 
   const x = scaleLinear()

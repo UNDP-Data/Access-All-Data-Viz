@@ -20,11 +20,25 @@ const Context = createContext<CtxDataType>({
   useSameRange: false,
   reverseOrder: true,
   verticalBarLayout: true,
-  multiCountryTrendChartCountries: ['China', 'India', 'United States of America', 'Indonesia', 'Pakistan'],
+  multiCountryTrendChartCountries: [
+    'China',
+    'India',
+    'United States of America',
+    'Indonesia',
+    'Pakistan',
+  ],
   selectedCountryOrRegion: undefined,
   signatureSolution: undefined,
   signatureSolutionForDataList: 'All',
-  updateGraphType: (_d: 'scatterPlot' | 'map' | 'barGraph' | 'trendLine' | 'multiCountryTrendLine' | 'dataList') => {},
+  updateGraphType: (
+    _d:
+      | 'scatterPlot'
+      | 'map'
+      | 'barGraph'
+      | 'trendLine'
+      | 'multiCountryTrendLine'
+      | 'dataList',
+  ) => {},
   updateSelectedRegions: (_d: string[]) => {},
   updateSelectedCountries: (_d: string[]) => {},
   updateSelectedIncomeGroups: (_d: string[]) => {},
@@ -43,7 +57,16 @@ const Context = createContext<CtxDataType>({
   updateMultiCountryTrendChartCountries: (_d: string[]) => {},
   updateReverseOrder: (_d: boolean) => {},
   updateBarLayout: (_d: boolean) => {},
-  updateSignatureSolutionForDataList: (_d: 'All' | 'Energy' | 'Environment' | 'Gender' | 'Governance' | 'Poverty and Inequality' | 'Resilience') => {},
+  updateSignatureSolutionForDataList: (
+    _d:
+      | 'All'
+      | 'Energy'
+      | 'Environment'
+      | 'Gender'
+      | 'Governance'
+      | 'Poverty and Inequality'
+      | 'Resilience',
+  ) => {},
 });
 
 export default Context;

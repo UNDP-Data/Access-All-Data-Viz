@@ -6,35 +6,29 @@ interface Props {
   region?: string;
 }
 
-export const RegionApp = (props:Props) => {
-  const {
-    region,
-  } = props;
+export function RegionApp(props: Props) {
+  const { region } = props;
   return (
     <div className='undp-container'>
       <RegionHomePage region={region} />
     </div>
   );
-};
+}
 
-export const RegionCountryApp = (props:Props) => {
-  const {
-    region,
-  } = props;
+export function RegionCountryApp(props: Props) {
+  const { region } = props;
   return (
     <div className='undp-container'>
       <CountryHomePage region={region} />
     </div>
   );
-};
+}
 
-export const RegionCountriesApp = (props:Props) => {
-  const {
-    region,
-  } = props;
+export function RegionCountriesApp(props: Props) {
+  const { region } = props;
   return (
     <div className='undp-container'>
       <HomePage region={region} />
     </div>
   );
-};
+}

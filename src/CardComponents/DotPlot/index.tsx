@@ -6,7 +6,7 @@ interface Props {
   size: number;
   graphTitle: string;
   source: string;
-  dotColors? :string;
+  dotColors?: string;
   graphDescription?: string;
 }
 
@@ -31,9 +31,8 @@ const SourceEl = styled.div`
 `;
 
 export function DotPlot(props: Props) {
-  const {
-    value, size, graphTitle, year, source, dotColors, graphDescription,
-  } = props;
+  const { value, size, graphTitle, year, source, dotColors, graphDescription } =
+    props;
   const margin = {
     top: 0,
     bottom: 0,
@@ -45,21 +44,18 @@ export function DotPlot(props: Props) {
   return (
     <StatCardsEl>
       <p className='undp-typography margin-bottom-00'>
-        {graphTitle}
-        {' '}
-        (
-        {year}
-        )
+        {graphTitle} ({year})
       </p>
-      {
-        graphDescription ? <p className='undp-typography small-font margin-bottom-00' style={{ color: 'var(--gray-500)' }}>{graphDescription}</p> : null
-      }
-      <h2
-        className='undp-typography bold margin-bottom-02 margin-top-03'
-      >
-        {value}
-        {' '}
-        out of 100
+      {graphDescription ? (
+        <p
+          className='undp-typography small-font margin-bottom-00'
+          style={{ color: 'var(--gray-500)' }}
+        >
+          {graphDescription}
+        </p>
+      ) : null}
+      <h2 className='undp-typography bold margin-bottom-02 margin-top-03'>
+        {value} out of 100
       </h2>
       <svg
         style={{ maxWidth: '15rem', margin: '0' }}
@@ -67,7 +63,7 @@ export function DotPlot(props: Props) {
         viewBox={`0 0 ${size} ${size}`}
       >
         <g transform={`translate(${margin.left},${margin.top})`}>
-          {Array.from(Array(100), (_, index) => index + 1).map((d) => (
+          {Array.from(Array(100), (_, index) => index + 1).map(d => (
             <circle
               key={d}
               cx={((d - 1) % 10) * gridSize + gridSize / 2}
@@ -88,11 +84,7 @@ export function DotPlot(props: Props) {
           ))}
         </g>
       </svg>
-      <SourceEl className='margin-top-05'>
-        Source:
-        {' '}
-        {source}
-      </SourceEl>
+      <SourceEl className='margin-top-05'>Source: {source}</SourceEl>
     </StatCardsEl>
   );
 }

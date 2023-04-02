@@ -6,7 +6,7 @@ import { CtxDataType } from '../Types';
 
 const ArrToString = (d: string[]) => {
   let stringValTemp = '';
-  d.forEach((el) => {
+  d.forEach(el => {
     stringValTemp += `~${el.replace(/ /g, '+')}`;
   });
   const stringVal = stringValTemp.substring(1);
@@ -15,7 +15,7 @@ const ArrToString = (d: string[]) => {
 
 const CovertStringForParam = (d: string) => d.replace(/ /g, '+');
 
-export const GetEmbedParams = () => {
+export function GetEmbedParams() {
   const [showSettingsInEmbed, setShowSettingsInEmbed] = useState(true);
   const {
     graphType,
@@ -39,43 +39,80 @@ export const GetEmbedParams = () => {
   } = useContext(Context) as CtxDataType;
   const queryParamsFromLink = new URLSearchParams(window.location.search);
   const graphParam = `graphType=${graphType}`;
-  const regionsParam = selectedRegions.length > 0 ? `&regions=${ArrToString(selectedRegions)}` : '';
-  const countries = selectedCountries.length > 0 ? `&countries=${ArrToString(selectedCountries)}` : '';
-  const signatureSolutionParam = signatureSolution ? `&signatureSolution=${signatureSolution}` : '';
-  const incomeGroupsParam = selectedRegions.length > 0 ? `&incomeGroups=${ArrToString(selectedIncomeGroups)}` : '';
-  const countryGroupParam = selectedCountryGroup === 'All' ? '' : `&countryGroup=${CovertStringForParam(selectedCountryGroup)}`;
-  const firstMetricParam = `&firstMetric=${CovertStringForParam(xAxisIndicator)}`;
-  const secondMetricParam = yAxisIndicator ? `&secondMetric=${CovertStringForParam(yAxisIndicator)}` : '';
-  const colorMetricParam = `&colorMetric=${CovertStringForParam(colorIndicator)}`;
-  const sizeMetricParam = sizeIndicator ? `&sizeMetric=${CovertStringForParam(sizeIndicator)}` : '';
-  const showMostRecentDataParam = showMostRecentData === true ? '&showMostRecentData=true' : '';
+  const regionsParam =
+    selectedRegions.length > 0
+      ? `&regions=${ArrToString(selectedRegions)}`
+      : '';
+  const countries =
+    selectedCountries.length > 0
+      ? `&countries=${ArrToString(selectedCountries)}`
+      : '';
+  const signatureSolutionParam = signatureSolution
+    ? `&signatureSolution=${signatureSolution}`
+    : '';
+  const incomeGroupsParam =
+    selectedRegions.length > 0
+      ? `&incomeGroups=${ArrToString(selectedIncomeGroups)}`
+      : '';
+  const countryGroupParam =
+    selectedCountryGroup === 'All'
+      ? ''
+      : `&countryGroup=${CovertStringForParam(selectedCountryGroup)}`;
+  const firstMetricParam = `&firstMetric=${CovertStringForParam(
+    xAxisIndicator,
+  )}`;
+  const secondMetricParam = yAxisIndicator
+    ? `&secondMetric=${CovertStringForParam(yAxisIndicator)}`
+    : '';
+  const colorMetricParam = `&colorMetric=${CovertStringForParam(
+    colorIndicator,
+  )}`;
+  const sizeMetricParam = sizeIndicator
+    ? `&sizeMetric=${CovertStringForParam(sizeIndicator)}`
+    : '';
+  const showMostRecentDataParam =
+    showMostRecentData === true ? '&showMostRecentData=true' : '';
   const showLabelParam = showLabel === true ? '&showLabel=true' : '';
-  const trendChartCountryParam = trendChartCountry ? `&trendChartCountry=${CovertStringForParam(trendChartCountry)}` : '';
-  const multiCountryTrendChartCountriesParam = multiCountryTrendChartCountries.length > 0 ? `&multiCountryTrendChartCountries=${ArrToString(multiCountryTrendChartCountries)}` : '';
+  const trendChartCountryParam = trendChartCountry
+    ? `&trendChartCountry=${CovertStringForParam(trendChartCountry)}`
+    : '';
+  const multiCountryTrendChartCountriesParam =
+    multiCountryTrendChartCountries.length > 0
+      ? `&multiCountryTrendChartCountries=${ArrToString(
+          multiCountryTrendChartCountries,
+        )}`
+      : '';
   const useSameRangeParam = useSameRange === true ? '&useSameRange=true' : '';
   const reverseOrderParam = reverseOrder === true ? '&reverseOrder=true' : '';
-  const verticalBarLayoutParam = verticalBarLayout === false ? '&verticalBarLayout=false' : '';
-  const showSettingsParam = showSettingsInEmbed === false ? '&showSettings=false' : '&showSettings=true';
-  const topicParam = queryParamsFromLink.get('topic') ? `&topic=${queryParamsFromLink.get('topic')}` : '';
-  const queryParams = graphParam
-    + regionsParam
-    + countries
-    + signatureSolutionParam
-    + incomeGroupsParam
-    + countryGroupParam
-    + firstMetricParam
-    + secondMetricParam
-    + colorMetricParam
-    + sizeMetricParam
-    + showMostRecentDataParam
-    + showLabelParam
-    + trendChartCountryParam
-    + multiCountryTrendChartCountriesParam
-    + useSameRangeParam
-    + reverseOrderParam
-    + verticalBarLayoutParam
-    + showSettingsParam
-    + topicParam;
+  const verticalBarLayoutParam =
+    verticalBarLayout === false ? '&verticalBarLayout=false' : '';
+  const showSettingsParam =
+    showSettingsInEmbed === false
+      ? '&showSettings=false'
+      : '&showSettings=true';
+  const topicParam = queryParamsFromLink.get('topic')
+    ? `&topic=${queryParamsFromLink.get('topic')}`
+    : '';
+  const queryParams =
+    graphParam +
+    regionsParam +
+    countries +
+    signatureSolutionParam +
+    incomeGroupsParam +
+    countryGroupParam +
+    firstMetricParam +
+    secondMetricParam +
+    colorMetricParam +
+    sizeMetricParam +
+    showMostRecentDataParam +
+    showLabelParam +
+    trendChartCountryParam +
+    multiCountryTrendChartCountriesParam +
+    useSameRangeParam +
+    reverseOrderParam +
+    verticalBarLayoutParam +
+    showSettingsParam +
+    topicParam;
   return (
     <>
       <div
@@ -87,17 +124,29 @@ export const GetEmbedParams = () => {
           border: '2px solid var(--gray-700)',
         }}
       >
-        {
-          selectedCountryOrRegion ? `<iframe src="${EMBED_LINK_ROOT}/country-profile/${selectedCountryOrRegion}?${queryParams}&embeded=true&featuredIndicator=false" loading="lazy" style="width: 100%; border: 0px none"></iframe>` : `<iframe src="${EMBED_LINK_ROOT}?${queryParams}&embeded=true" loading="lazy" style="width: 100%; border: 0px none"></iframe>`
-        }
+        {selectedCountryOrRegion
+          ? `<iframe src="${EMBED_LINK_ROOT}/country-profile/${selectedCountryOrRegion}?${queryParams}&embeded=true&featuredIndicator=false" loading="lazy" style="width: 100%; border: 0px none"></iframe>`
+          : `<iframe src="${EMBED_LINK_ROOT}?${queryParams}&embeded=true" loading="lazy" style="width: 100%; border: 0px none"></iframe>`}
       </div>
       <div className='flex-div flex-vert-align-center flex-space-between'>
-        <Checkbox className='undp-checkbox' checked={showSettingsInEmbed} onChange={(e) => { setShowSettingsInEmbed(e.target.checked); }}>Show Settings</Checkbox>
+        <Checkbox
+          className='undp-checkbox'
+          checked={showSettingsInEmbed}
+          onChange={e => {
+            setShowSettingsInEmbed(e.target.checked);
+          }}
+        >
+          Show Settings
+        </Checkbox>
         <button
           type='button'
           className='undp-button button-tertiary'
           onClick={() => {
-            navigator.clipboard.writeText(selectedCountryOrRegion ? `<iframe src="${EMBED_LINK_ROOT}/country-profile/${selectedCountryOrRegion}?${queryParams}&embeded=true&featuredIndicator=false" loading="lazy" style="width: 100%; border: 0px none"></iframe>` : `<iframe src="${EMBED_LINK_ROOT}?${queryParams}&embeded=true" loading="lazy" style="width: 100%; border: 0px none"></iframe>`);
+            navigator.clipboard.writeText(
+              selectedCountryOrRegion
+                ? `<iframe src="${EMBED_LINK_ROOT}/country-profile/${selectedCountryOrRegion}?${queryParams}&embeded=true&featuredIndicator=false" loading="lazy" style="width: 100%; border: 0px none"></iframe>`
+                : `<iframe src="${EMBED_LINK_ROOT}?${queryParams}&embeded=true" loading="lazy" style="width: 100%; border: 0px none"></iframe>`,
+            );
             message.success({ content: 'Embed Link Copied', duration: 2 });
           }}
         >
@@ -106,13 +155,11 @@ export const GetEmbedParams = () => {
       </div>
     </>
   );
-};
+}
 
-export const GetEmbedParamsForCountrySummary = () => {
+export function GetEmbedParamsForCountrySummary() {
   const [showSettingsInEmbed, setShowSettingsInEmbed] = useState(true);
-  const {
-    selectedCountryOrRegion,
-  } = useContext(Context) as CtxDataType;
+  const { selectedCountryOrRegion } = useContext(Context) as CtxDataType;
   return (
     <>
       <div
@@ -124,17 +171,25 @@ export const GetEmbedParamsForCountrySummary = () => {
           border: '2px solid var(--gray-700)',
         }}
       >
-        {
-          `<iframe src="${EMBED_LINK_ROOT}/country-profile/${selectedCountryOrRegion}?embeded=true&featuredIndicator=true&accessAllData=false" loading="lazy" style="width: 100%; border: 0px none"></iframe>`
-        }
+        {`<iframe src="${EMBED_LINK_ROOT}/country-profile/${selectedCountryOrRegion}?embeded=true&featuredIndicator=true&accessAllData=false" loading="lazy" style="width: 100%; border: 0px none"></iframe>`}
       </div>
       <div className='flex-div flex-vert-align-center flex-space-between'>
-        <Checkbox className='undp-checkbox' checked={showSettingsInEmbed} onChange={(e) => { setShowSettingsInEmbed(e.target.checked); }}>Show Settings</Checkbox>
+        <Checkbox
+          className='undp-checkbox'
+          checked={showSettingsInEmbed}
+          onChange={e => {
+            setShowSettingsInEmbed(e.target.checked);
+          }}
+        >
+          Show Settings
+        </Checkbox>
         <button
           type='button'
           className='undp-button button-tertiary'
           onClick={() => {
-            navigator.clipboard.writeText(`<iframe src="${EMBED_LINK_ROOT}/country-profile/${selectedCountryOrRegion}?&embeded=true&featuredIndicator=true&accessAllData=false" loading="lazy" style="width: 100%; border: 0px none"></iframe>`);
+            navigator.clipboard.writeText(
+              `<iframe src="${EMBED_LINK_ROOT}/country-profile/${selectedCountryOrRegion}?&embeded=true&featuredIndicator=true&accessAllData=false" loading="lazy" style="width: 100%; border: 0px none"></iframe>`,
+            );
             message.success({ content: 'Embed Link Copied', duration: 2 });
           }}
         >
@@ -143,4 +198,4 @@ export const GetEmbedParamsForCountrySummary = () => {
       </div>
     </>
   );
-};
+}

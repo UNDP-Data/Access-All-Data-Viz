@@ -1,10 +1,6 @@
-import {
-  useEffect, useRef, useState,
-} from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
-import {
-  CountryGroupDataType, IndicatorMetaDataWithYear,
-} from '../../Types';
+import { CountryGroupDataType, IndicatorMetaDataWithYear } from '../../Types';
 import { Graph } from './Graph';
 
 interface Props {
@@ -14,17 +10,14 @@ interface Props {
 
 const GraphDiv = styled.div`
   flex-grow: 1;
-  @media  (max-width: 960px) {
+  @media (max-width: 960px) {
     height: 70vw;
     max-height: 31.25rem;
   }
 `;
 
-export const ScatterPlot = (props: Props) => {
-  const {
-    data,
-    indicators,
-  } = props;
+export function ScatterPlot(props: Props) {
+  const { data, indicators } = props;
 
   const [svgWidth, setSvgWidth] = useState(0);
   const [svgHeight, setSvgHeight] = useState(0);
@@ -37,17 +30,14 @@ export const ScatterPlot = (props: Props) => {
   }, [graphDiv]);
   return (
     <GraphDiv ref={graphDiv}>
-      {
-        svgHeight && svgWidth
-          ? (
-            <Graph
-              data={data}
-              indicators={indicators}
-              svgWidth={svgWidth}
-              svgHeight={svgHeight}
-            />
-          ) : null
-      }
+      {svgHeight && svgWidth ? (
+        <Graph
+          data={data}
+          indicators={indicators}
+          svgWidth={svgWidth}
+          svgHeight={svgHeight}
+        />
+      ) : null}
     </GraphDiv>
   );
-};
+}

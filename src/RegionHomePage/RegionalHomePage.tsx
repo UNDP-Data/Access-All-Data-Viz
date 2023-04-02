@@ -1,7 +1,9 @@
 /* eslint-disable jsx-a11y/iframe-has-title */
 import { useReducer } from 'react';
 import {
-  CountryGroupDataType, CountryListType, IndicatorMetaDataWithYear,
+  CountryGroupDataType,
+  CountryListType,
+  IndicatorMetaDataWithYear,
 } from '../Types';
 import { GrapherComponent } from '../GrapherComponent';
 import Reducer from '../Context/Reducer';
@@ -12,19 +14,24 @@ interface Props {
   indicatorsList: IndicatorMetaDataWithYear[];
   finalData: CountryGroupDataType[];
   countryList: CountryListType[];
-  region?:string;
+  region?: string;
 }
 
-const RegionalHomePageContext = (props:Props) => {
-  const {
-    indicatorsList,
-    finalData,
-    countryList,
-    region,
-  } = props;
+function RegionalHomePageContext(props: Props) {
+  const { indicatorsList, finalData, countryList, region } = props;
 
-  const firstMetric = indicatorsList.findIndex((d) => d.IndicatorLabelTable === DEFAULT_VALUES.firstMetric) === -1 ? indicatorsList[0].IndicatorLabelTable : DEFAULT_VALUES.firstMetric;
-  const secondMetric = indicatorsList.findIndex((d) => d.IndicatorLabelTable === DEFAULT_VALUES.secondMetric) === -1 ? indicatorsList[1].IndicatorLabelTable : DEFAULT_VALUES.secondMetric;
+  const firstMetric =
+    indicatorsList.findIndex(
+      d => d.IndicatorLabelTable === DEFAULT_VALUES.firstMetric,
+    ) === -1
+      ? indicatorsList[0].IndicatorLabelTable
+      : DEFAULT_VALUES.firstMetric;
+  const secondMetric =
+    indicatorsList.findIndex(
+      d => d.IndicatorLabelTable === DEFAULT_VALUES.secondMetric,
+    ) === -1
+      ? indicatorsList[1].IndicatorLabelTable
+      : DEFAULT_VALUES.secondMetric;
   const queryParams = new URLSearchParams(window.location.search);
   const initialState = {
     graphType: queryParams.get('graphType') || 'dataList',
@@ -35,14 +42,23 @@ const RegionalHomePageContext = (props:Props) => {
     selectedCountryGroup: queryParams.get('countryGroup') || 'All',
     xAxisIndicator: queryParams.get('firstMetric') || firstMetric,
     yAxisIndicator: queryParams.get('secondMetric') || secondMetric,
-    colorIndicator: queryParams.get('colorMetric') || DEFAULT_VALUES.colorMetric,
+    colorIndicator:
+      queryParams.get('colorMetric') || DEFAULT_VALUES.colorMetric,
     sizeIndicator: queryParams.get('sizeMetric') || undefined,
     showMostRecentData: queryParams.get('showMostRecentData') === 'true',
     showLabel: queryParams.get('showLabel') === 'true',
     showSource: false,
     trendChartCountry: queryParams.get('trendChartCountry') || undefined,
     dataListCountry: queryParams.get('dataListCountry') || undefined,
-    multiCountryTrendChartCountries: queryParams.get('multiCountryTrendChartCountries')?.split('~') || ['China', 'India', 'United States of America', 'Indonesia', 'Pakistan'],
+    multiCountryTrendChartCountries: queryParams
+      .get('multiCountryTrendChartCountries')
+      ?.split('~') || [
+      'China',
+      'India',
+      'United States of America',
+      'Indonesia',
+      'Pakistan',
+    ],
     useSameRange: queryParams.get('useSameRange') === 'true',
     reverseOrder: queryParams.get('reverseOrder') === 'true',
     verticalBarLayout: queryParams.get('verticalBarLayout') !== 'false',
@@ -53,21 +69,34 @@ const RegionalHomePageContext = (props:Props) => {
 
   const [state, dispatch] = useReducer(Reducer, initialState);
 
-  const updateGraphType = (graphType: 'dataList' | 'map' | 'barGraph' | 'trendLine') => {
+  const updateGraphType = (
+    graphType: 'dataList' | 'map' | 'barGraph' | 'trendLine',
+  ) => {
     dispatch({
       type: 'UPDATE_GRAPH_TYPE',
       payload: graphType,
     });
   };
 
-  const updateMultiCountryTrendChartCountries = (multiCountryTrendChartCountries: string[]) => {
+  const updateMultiCountryTrendChartCountries = (
+    multiCountryTrendChartCountries: string[],
+  ) => {
     dispatch({
       type: 'UPDATE_MULTI_COUNTRY_TREND_CHART_COUNTRIES',
       payload: multiCountryTrendChartCountries,
     });
   };
 
-  const updateSignatureSolutionForDataList = (ss: 'All' | 'Energy' | 'Environment' | 'Gender' | 'Governance' | 'Poverty and Inequality' | 'Resilience') => {
+  const updateSignatureSolutionForDataList = (
+    ss:
+      | 'All'
+      | 'Energy'
+      | 'Environment'
+      | 'Gender'
+      | 'Governance'
+      | 'Poverty and Inequality'
+      | 'Resilience',
+  ) => {
     dispatch({
       type: 'UPDATE_SIGNATURE_SOLUTION_FOR_DATALIST',
       payload: ss,
@@ -115,7 +144,9 @@ const RegionalHomePageContext = (props:Props) => {
     });
   };
 
-  const updateSelectedCountryGroup = (selectedCountryGroup: 'All' | 'SIDS' | 'LLDC' | 'LDC') => {
+  const updateSelectedCountryGroup = (
+    selectedCountryGroup: 'All' | 'SIDS' | 'LLDC' | 'LDC',
+  ) => {
     dispatch({
       type: 'UPDATE_SELECTED_COUNTRY_GROUP',
       payload: selectedCountryGroup,
@@ -192,6 +223,7 @@ const RegionalHomePageContext = (props:Props) => {
   };
   return (
     <Context.Provider
+      // eslint-disable-next-line react/jsx-no-constructed-context-values
       value={{
         ...state,
         updateGraphType,
@@ -225,6 +257,6 @@ const RegionalHomePageContext = (props:Props) => {
       </div>
     </Context.Provider>
   );
-};
+}
 
 export default RegionalHomePageContext;
