@@ -1,8 +1,9 @@
 # Access All Data Visualization in UNDP's Data Futures Platform
-#### This project aims to provide interactive visualizations for exploring and analyzing multi dimensional data. [Click here to see the interface](https://data.undp.org/explore-all-data/).
+#### This project aims to provide interactive visualizations for exploring and analyzing multi dimensional data. [Click here to see the interface](https://zealous-sky-017344110.2.azurestaticapps.net).
 
 ## Table of Contents
 * [Link for the visualization](#section-01)
+* [Deployment](#deployment)
 * [Steps to integrate the vis in static page](#section-02)
     * [Steps to integrate Main Viz](#section-02-01)
     * [Steps to integrate Country Level Viz](#section-02-02)
@@ -19,7 +20,10 @@
 * [Contact](#section-11)
 
 ## Link for the visualization<a name="section-01"></a>
-[https://undp-vaccine-equity-dashboard.netlify.app/](https://undp-vaccine-equity-dashboard.netlify.app/)
+[https://zealous-sky-017344110.2.azurestaticapps.net](https://zealous-sky-017344110.2.azurestaticapps.net)
+
+## Deployment<a name="deployment"></a>
+The Production site deployed using Azure Static Web App and work flow can be found [here](https://github.com/UNDP-Data/Access-All-Data-Viz/blob/production/.github/workflows/azure-static-web-apps-zealous-sky-017344110.yml)
 
 ## Steps to Integrating the Visualization in the Data Future Platform or Any Other Page<a name="section-02"></a>
 _Only editor and admins of Data Futures Platform are allowed to edit pages and embed the visualization in any page on data futures platform._
