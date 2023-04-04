@@ -37,7 +37,7 @@ const SourceEl = styled.div`
 
 const StatEl = styled.h3`
   font-size: 4.375rem !important;
-  line-height: 0.75 !important;
+  line-height: 1 !important;
   text-shadow: none !important;
   -webkit-text-stroke: 2px var(--black) !important;
   color: var(--gray-200) !important;
