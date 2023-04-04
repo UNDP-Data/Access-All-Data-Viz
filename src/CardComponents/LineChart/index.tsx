@@ -22,7 +22,9 @@ const StatCardsEl = styled.div`
   padding: 2rem;
   display: flex;
   flex-direction: column;
+  flex-shrink: 0;
   flex-grow: 1;
+  flex-basis: 22.5rem;
   min-width: 22.5rem;
   min-height: 22.5rem;
   background-color: var(--gray-200);

@@ -15,7 +15,10 @@ const StatCardsEl = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  flex-shrink: 0;
   flex-grow: 1;
+  flex-basis: 22.5rem;
+  min-width: 22.5rem;
   min-width: 22.5rem;
   background-color: var(--gray-200);
   font-size: 1.25rem;
