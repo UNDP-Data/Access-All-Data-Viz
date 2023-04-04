@@ -152,7 +152,7 @@ export function CountrySummary(props: Props) {
           <p className='undp-typography small-font'>Gender Equality</p>
         </TabButtonEl>
       </div>
-      <div style={{ maxWidth: '1392px', margin: 'auto' }}>
+      <div style={{ padding: '0 1rem', margin: 'auto' }}>
         {signatureSolution === 'Poverty and Inequality' ? (
           <PovertyAndInequalityCountrySummary
             indicators={indicators}

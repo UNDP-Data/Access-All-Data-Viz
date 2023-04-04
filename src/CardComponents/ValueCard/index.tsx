@@ -17,8 +17,7 @@ const StatCardsEl = styled.div`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  flex-shrink: 1;
-  flex-basis: 22.5rem;
+  min-width: 22.5rem;
   min-height: 22.5rem;
   background-color: var(--gray-200);
   justify-content: space-between;
@@ -26,6 +25,7 @@ const StatCardsEl = styled.div`
   color: var(--black);
   transition: 300ms all;
   height: auto !important;
+  scroll-snap-align: start;
 `;
 
 const SourceEl = styled.div`

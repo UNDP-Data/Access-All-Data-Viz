@@ -16,13 +16,13 @@ const StatCardsEl = styled.div`
   flex-direction: column;
   justify-content: space-between;
   flex-grow: 1;
-  flex-shrink: 1;
-  flex-basis: 22.5rem;
+  min-width: 22.5rem;
   background-color: var(--gray-200);
   font-size: 1.25rem;
   color: var(--black);
   transition: 300ms all;
   height: auto !important;
+  scroll-snap-align: start;
 `;
 
 const SourceEl = styled.div`
