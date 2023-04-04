@@ -110,13 +110,13 @@ export function DataList(props: Props) {
                 Indicator
               </div>
               <div
-                style={{ width: '20%' }}
+                style={{ width: '30%' }}
                 className='undp-table-head-cell undp-sticky-head-column align-right'
               >
                 Recent Value
               </div>
               <div
-                style={{ width: '30%' }}
+                style={{ width: '20%' }}
                 className='undp-table-head-cell undp-sticky-head-column'
               >
                 Trend
@@ -138,26 +138,32 @@ export function DataList(props: Props) {
                 ].IndicatorLabelTable,
             ).map((d, i) =>
               indicators.findIndex(el => el.DataKey === d.indicator) !== -1 ? (
-                <div key={i} className='undp-table-row'>
+                <div
+                  key={i}
+                  className='undp-table-row flex-vert-align-center'
+                  style={{ backgroundColor: 'var(--white)' }}
+                >
                   <div
                     style={{ width: '50%', fontSize: '1rem' }}
                     className='undp-table-row-cell'
                   >
-                    {
-                      indicators[
-                        indicators.findIndex(el => el.DataKey === d.indicator)
-                      ].IndicatorLabelTable
-                    }
+                    <h5 className='undp-typography'>
+                      {
+                        indicators[
+                          indicators.findIndex(el => el.DataKey === d.indicator)
+                        ].IndicatorLabelTable
+                      }
+                    </h5>
                   </div>
                   <div
-                    style={{ width: '20%' }}
+                    style={{ width: '30%' }}
                     className='undp-table-row-cell align-right'
                   >
                     {d.yearlyData.length === 0 ? (
                       'NA'
                     ) : (
                       <>
-                        <span className='bold'>
+                        <h4 className='undp-typography margin-bottom-00 bold'>
                           {indicators[
                             indicators.findIndex(
                               el => el.DataKey === d.indicator,
@@ -201,17 +207,20 @@ export function DataList(props: Props) {
                                 ].LabelSuffix
                               }`
                             : ''}
-                        </span>
-                        <br />
-                        <span
-                          style={{ fontSize: '1rem', color: 'var(--gray-500)' }}
+                        </h4>
+                        <p
+                          className='undp-typography margin-bottom-00'
+                          style={{
+                            fontSize: '1rem',
+                            color: 'var(--gray-500)',
+                          }}
                         >
                           ({d.yearlyData[d.yearlyData.length - 1].year})
-                        </span>
+                        </p>
                       </>
                     )}
                   </div>
-                  <div style={{ width: '30%' }} className='undp-table-row-cell'>
+                  <div style={{ width: '20%' }} className='undp-table-row-cell'>
                     <TrendChartSmall
                       countryName={countryName}
                       data={d.yearlyData}
