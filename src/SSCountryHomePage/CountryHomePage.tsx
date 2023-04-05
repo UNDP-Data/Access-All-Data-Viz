@@ -52,7 +52,7 @@ function CountryHomePageContext(props: Props) {
       : DEFAULT_VALUES.secondMetric;
   const queryParams = new URLSearchParams(window.location.search);
   const initialState = {
-    graphType: queryParams.get('graphType') || 'dataList',
+    graphType: queryParams.get('graphType') || 'trendLine',
     selectedRegions: queryParams.get('regions')?.split('~') || [],
     selectedCountries: queryParams.get('countries')?.split('~') || [],
     selectedIncomeGroups: queryParams.get('incomeGroups')?.split('~') || [],

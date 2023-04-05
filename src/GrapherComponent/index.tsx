@@ -164,27 +164,6 @@ export function GrapherComponent(props: Props) {
                       <button
                         type='button'
                         className={`tabs-for-graphing-interface${
-                          graphType === 'dataList' ? ' selected' : ''
-                        }`}
-                        onClick={() => {
-                          updateGraphType('dataList');
-                        }}
-                      >
-                        <IconEl>
-                          <DualAxesChartIcon
-                            size={48}
-                            fill={
-                              graphType === 'dataList'
-                                ? 'var(--blue-600)'
-                                : 'var(--gray-500)'
-                            }
-                          />
-                        </IconEl>
-                        Data List
-                      </button>
-                      <button
-                        type='button'
-                        className={`tabs-for-graphing-interface${
                           graphType === 'trendLine' ? ' selected' : ''
                         }`}
                         onClick={() => {
@@ -202,6 +181,27 @@ export function GrapherComponent(props: Props) {
                           />
                         </IconEl>
                         Dual Axes Line Chart
+                      </button>
+                      <button
+                        type='button'
+                        className={`tabs-for-graphing-interface${
+                          graphType === 'dataList' ? ' selected' : ''
+                        }`}
+                        onClick={() => {
+                          updateGraphType('dataList');
+                        }}
+                      >
+                        <IconEl>
+                          <DualAxesChartIcon
+                            size={48}
+                            fill={
+                              graphType === 'dataList'
+                                ? 'var(--blue-600)'
+                                : 'var(--gray-500)'
+                            }
+                          />
+                        </IconEl>
+                        Data List
                       </button>
                     </>
                   ) : (
