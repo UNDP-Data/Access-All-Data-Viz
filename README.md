@@ -119,6 +119,7 @@ _This visualization is very similar to the Main visualization with some key diff
 * The visualization only focusses on the countries that belong to a region
 
 Available values of region code in the class element:
+* AP (for Asia and the Pacific)
 * AS (for Arab States)
 * EAP (for East Asia and Pacific)
 * ECA (for Europe and Central Asia)

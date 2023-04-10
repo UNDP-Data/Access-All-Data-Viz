@@ -1,5 +1,5 @@
 import HomePage from '../HomePage';
-import RegionHomePage from '../RegionHomePage';
+import RegionHomePage, { RegionHomePageWithTabs } from '../RegionHomePage';
 import CountryHomePage from '../SSCountryHomePage';
 
 interface Props {
@@ -10,7 +10,22 @@ export function RegionApp(props: Props) {
   const { region } = props;
   return (
     <div className='undp-container'>
-      <RegionHomePage region={region} />
+      {region === 'AP' ? (
+        <RegionHomePageWithTabs
+          subRegions={[
+            {
+              key: 'SA',
+              region: 'South Asia',
+            },
+            {
+              key: 'EAP',
+              region: 'East Asia and Pacific',
+            },
+          ]}
+        />
+      ) : (
+        <RegionHomePage region={region} />
+      )}
     </div>
   );
 }

@@ -172,3 +172,8 @@ export interface CountryListType {
   code: string;
   name: string;
 }
+
+export interface SubRegionsDataType {
+  key: string;
+  region: string;
+}
