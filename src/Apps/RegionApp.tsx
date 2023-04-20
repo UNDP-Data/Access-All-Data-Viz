@@ -1,3 +1,4 @@
+import { Tabs } from 'antd';
 import HomePage from '../HomePage';
 import RegionHomePage, { RegionHomePageWithTabs } from '../RegionHomePage';
 import CountryHomePage from '../SSCountryHomePage';
@@ -6,6 +7,65 @@ interface Props {
   region?: string;
 }
 
+export function RegionMainApp(props: Props) {
+  const { region } = props;
+  const mainTabs =
+    region === 'AP'
+      ? [
+          {
+            key: 'regionalOverviewSA',
+            label: 'Regional Overview (South Asia)',
+            children: <RegionHomePage region='SA' />,
+          },
+          {
+            key: 'regionalOverviewEAP',
+            label: 'Regional Overview (East Asia and Pacific)',
+            children: <RegionHomePage region='EAP' />,
+          },
+          {
+            key: 'countryProfile',
+            label: 'Country Profiles',
+            children: <CountryHomePage region={region} />,
+          },
+          {
+            key: 'allCountries',
+            label: 'All Countries in the Region',
+            children: <HomePage region={region} />,
+          },
+        ]
+      : [
+          {
+            key: 'regionalOverview',
+            label: 'Regional Overview',
+            children: <RegionHomePage region={region} />,
+          },
+          {
+            key: 'countryProfile',
+            label: 'Country Profiles',
+            children: <CountryHomePage region={region} />,
+          },
+          {
+            key: 'allCountries',
+            label: 'All Countries in the Region',
+            children: <HomePage region={region} />,
+          },
+        ];
+  return (
+    <div className='undp-container'>
+      <Tabs
+        defaultActiveKey={
+          region === 'AP' ? 'regionalOverviewSA' : 'regionalOverview'
+        }
+        className='undp-tabs'
+        items={mainTabs.map(d => ({
+          label: d.label,
+          key: d.key,
+          children: d.children,
+        }))}
+      />
+    </div>
+  );
+}
 export function RegionApp(props: Props) {
   const { region } = props;
   return (

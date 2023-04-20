@@ -5,8 +5,9 @@ import {
   RegionCountryApp,
   RegionApp,
   RegionCountriesApp,
+  RegionMainApp,
 } from './Apps/RegionApp';
-import { SSApp, SSCountryApp } from './Apps/SignatureSolutionApp';
+import { SSApp, SSCountryApp, SSMainApp } from './Apps/SignatureSolutionApp';
 import reportWebVitals from './reportWebVitals';
 
 const getEl = (embedSelector: string) => {
@@ -65,6 +66,14 @@ if (containerEmbed) {
 /*
 ! Visualizations on the signature solution pages
 */
+const containerSSEmbedMain = getEl('[data-bucket-ss-embed-main]');
+if (containerSSEmbedMain) {
+  const rootEmbed = ReactDOM.createRoot(containerSSEmbedMain);
+  rootEmbed.render(
+    <SSMainApp signatureSolution={getSS('[data-bucket-ss-embed-main]')} />,
+  );
+}
+
 const containerSSEmbed = getEl('[data-bucket-ss-embed]');
 if (containerSSEmbed) {
   const rootEmbed = ReactDOM.createRoot(containerSSEmbed);
@@ -118,6 +127,14 @@ if (containerCountryEmbed) {
 /*
 ! Visualizations on the regional pages
 */
+const containerRegionMainEmbed = getEl('[data-bucket-region-embed-main]');
+if (containerRegionMainEmbed) {
+  const rootEmbed = ReactDOM.createRoot(containerRegionMainEmbed);
+  rootEmbed.render(
+    <RegionMainApp region={getRegion('[data-bucket-region-embed-main]')} />,
+  );
+}
+
 const containerRegionEmbed = getEl('[data-bucket-region-embed]');
 if (containerRegionEmbed) {
   const rootEmbed = ReactDOM.createRoot(containerRegionEmbed);

@@ -38,7 +38,7 @@ There are many type of visualization in this page:
 
 This is the parent visualization with all the data for all the countries. This visualization is used in teh __Access All Data__ page in DFP.
 
-![Main VIz Image](readMeImgs/mainViz.png)
+![Main Viz Image](readMeImgs/mainViz.png)
 
 Main visualization `Explore All Data` will be rendered within the following div on a static page:
 ```
@@ -52,7 +52,7 @@ This is the visualization which are embedded in the country pages. There two sub
 
 #### With the summary visualization on the top categorized by signature solutions
 
-![Main VIz Image](readMeImgs/countryViz01.png)
+![Main Viz Image](readMeImgs/countryViz01.png)
 
 This visualization will be rendered within the following div on a static page:
 
@@ -63,7 +63,7 @@ ___
 
 #### Without the summary visualization on the top
 
-![Main VIz Image](readMeImgs/countryViz02.png)
+![Main Viz Image](readMeImgs/countryViz02.png)
 
 This visualization will be rendered within the following div on a static page:
 ```
@@ -77,11 +77,11 @@ ___
 
 ### Regional Level Visualization<a name="section-02-03"></a>
 
-This is the visualization which are embedded in the regional pages. There three subcategories here:
+This is the visualization which are embedded in the regional pages. There four subcategories here:
 
 #### Main regional level visualization
 
-![Main VIz Image](readMeImgs/regionViz01.png)
+![Main Viz Image](readMeImgs/regionViz01.png)
 
 This visualization will be rendered within the following div on a static page:
 ```
@@ -92,9 +92,11 @@ _The difference between this visualization and main visualization are as follow:
 * Country viz only uses the aggregated region data
 * Country viz don't have maps, scatter plot, bar charts and multi-line chart
 
+_Please note the region AP is treated differently as its split in 2 sub-regions SA and EAP_
+
 #### Country Profile with country selection within the region
 
-![Main VIz Image](readMeImgs/regionViz02.png)
+![Main Viz Image](readMeImgs/regionViz02.png)
 
 This visualization will be rendered within the following div on a static page:
 ```
@@ -107,7 +109,7 @@ _This visualization is very similar to the Country Level visualization with some
 
 #### Regional visualization comparing countries within the region
 
-![Main VIz Image](readMeImgs/regionViz03.png)
+![Main Viz Image](readMeImgs/regionViz03.png)
 
 This visualization will be rendered within the following div on a static page:
 ```
@@ -117,6 +119,14 @@ This visualization will be rendered within the following div on a static page:
 _This visualization is very similar to the Main visualization with some key difference:_
 * Maps are not available
 * The visualization only focusses on the countries that belong to a region
+
+#### With tabs with each above mentioned visualization
+
+This visualization will be rendered within the following div on a static page:
+```
+<div class="region~<Use Region Code Here>" data-bucket-region-embed-main></div>
+```
+_This visualization is a combination of above mentioned visualization on different tabs. This is the one that is embedded in the region pages_
 
 Available values of region code in the class element:
 * AP (for Asia and the Pacific)
@@ -129,11 +139,11 @@ Available values of region code in the class element:
 ___
 
 ### Signature Solution Level Visualization<a name="section-02-04"></a>
-This is the visualization which are embedded in the signature solution pages. There two subcategories here:
+This is the visualization which are embedded in the signature solution pages. There three subcategories here:
 
 #### With the visualization data filtered by signature solutions
 
-![Main VIz Image](readMeImgs/ssViz01.png)
+![Main Viz Image](readMeImgs/ssViz01.png)
 
 This visualization will be rendered within the following div on a static page:
 ```
@@ -144,14 +154,29 @@ _This visualization is very similar to the Main visualization the only differenc
 
 #### Country Profile with country selection
 
-![Main VIz Image](readMeImgs/ssViz02.png)
+![Main Viz Image](readMeImgs/ssViz02.png)
 
 This visualization will be rendered within the following div on a static page:
 ```
 <div class="signatureSolution~<Use Signature Solution Here>" data-bucket-ss-country-embed></div>
 ```
 
+![Main Viz Image](readMeImgs/ssViz01.png)
+
+This visualization will be rendered within the following div on a static page:
+```
+<div class="signatureSolution~<Use Signature Solution Here>" data-bucket-ss-embed></div>
+```
+
 _This visualization is very similar to `Country Profile with country selection within the region` of __regional level visualization__ with different set of data set for the summary visualizations at teh top. The indicator depends on the selected signature solution_
+
+#### With tabs with each above mentioned visualization
+
+This visualization will be rendered within the following div on a static page:
+```
+<div class="signatureSolution~<Use Signature Solution Here>" data-bucket-ss-country-embed-main></div>
+```
+_This visualization is a combination of above mentioned visualization on different tabs. This is the one that is embedded in the Signature Solutions pages_
 
 Available values for Signature solutions in the class element (Note: _Replace ` ` with a `+`_):
 * Poverty+and+Inequality
