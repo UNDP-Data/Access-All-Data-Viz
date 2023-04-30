@@ -28,7 +28,9 @@ export function DataList(props: Props) {
   const [search, updateSearch] = useState<string | undefined>(undefined);
   const filteredIndicatorsBySearch = search
     ? indicators.filter(d =>
-        d.IndicatorLabelTable.toLowerCase().includes(search || ''),
+        d.IndicatorLabelTable.toLowerCase().includes(
+          search.toLowerCase() || '',
+        ),
       )
     : indicators;
   const filteredIndicators =
