@@ -71,7 +71,7 @@ export function GrapherComponent(props: Props) {
                   <h6 className='undp-typography margin-bottom-00'>
                     Explore All Data
                     {queryParams.get('topic')
-                      ? ` for ${queryParams.get('topic')}`
+                      ? ` for ${queryParams.get('topic')?.replaceAll('_', "'")}`
                       : null}
                     {region
                       ? ` for ${

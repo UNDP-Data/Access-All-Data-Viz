@@ -49,7 +49,7 @@ function HomePage(props: Props) {
           indicatorMetaData: IndicatorMetaDataType[],
         ) => {
           if (err) throw err;
-          const topic = queryParams.get('topic');
+          const topic = queryParams.get('topic')?.replaceAll('_', "'");
           const dataFilteredByRegion = region
             ? data.filter(
                 d =>

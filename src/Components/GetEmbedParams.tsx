@@ -90,8 +90,8 @@ export function GetEmbedParams() {
     showSettingsInEmbed === false
       ? '&showSettings=false'
       : '&showSettings=true';
-  const topicParam = queryParamsFromLink.get('topic')
-    ? `&topic=${queryParamsFromLink.get('topic')}`
+  const topicParam = queryParamsFromLink.get('topic')?.replaceAll("'", '_')
+    ? `&topic=${queryParamsFromLink.get('topic')?.replaceAll("'", '_')}`
     : '';
   const queryParams =
     graphParam +
