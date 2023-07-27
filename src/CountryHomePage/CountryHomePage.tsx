@@ -45,7 +45,9 @@ function CountryHomePageContext(props: Props) {
     indicatorsList.findIndex(
       d => d.IndicatorLabelTable === DEFAULT_VALUES.secondMetric,
     ) === -1
-      ? indicatorsList[1].IndicatorLabelTable
+      ? indicatorsList.length > 1
+        ? indicatorsList[1].IndicatorLabelTable
+        : undefined
       : DEFAULT_VALUES.secondMetric;
   const queryParams = new URLSearchParams(window.location.search);
   const initialState = {
