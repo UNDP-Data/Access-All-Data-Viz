@@ -10,7 +10,7 @@ import {
   CountryGroupDataType,
   HoverDataType,
   HoverRowDataType,
-  IndicatorMetaDataWithYear,
+  IndicatorMetaDataType,
 } from '../../Types';
 import Context from '../../Context/Context';
 import { CONTINENTS, HDI_LEVELS, INCOME_GROUPS } from '../../Constants';
@@ -18,12 +18,13 @@ import { Tooltip } from '../../Components/Tooltip';
 
 interface Props {
   data: CountryGroupDataType[];
-  indicators: IndicatorMetaDataWithYear[];
+  indicators: IndicatorMetaDataType[];
   svgWidth: number;
+  regionData?: CountryGroupDataType;
 }
 
 export function Graph(props: Props) {
-  const { data, indicators, svgWidth } = props;
+  const { data, indicators, svgWidth, regionData } = props;
   const {
     year,
     xAxisIndicator,
@@ -34,6 +35,7 @@ export function Graph(props: Props) {
     selectedIncomeGroups,
     selectedCountryGroup,
     reverseOrder,
+    showReference,
   } = useContext(Context) as CtxDataType;
   const [selectedColor, setSelectedColor] = useState<string | undefined>(
     undefined,
@@ -50,17 +52,32 @@ export function Graph(props: Props) {
   const graphWidth = svgWidth - margin.left - margin.right;
   const xIndicatorMetaData =
     indicators[
-      indicators.findIndex(
-        indicator => indicator.IndicatorLabelTable === xAxisIndicator,
-      )
+      indicators.findIndex(indicator => indicator.DataKey === xAxisIndicator)
     ];
   const colorIndicatorMetaData =
     indicators[
-      indicators.findIndex(
-        indicator => indicator.IndicatorLabelTable === colorIndicator,
-      )
+      indicators.findIndex(indicator => indicator.DataKey === colorIndicator)
     ];
 
+  const refXIndicatorIndex = regionData
+    ? regionData.indicators.findIndex(
+        el => xIndicatorMetaData.DataKey === el.indicator,
+      )
+    : -1;
+  const refXVal =
+    refXIndicatorIndex === -1 ||
+    !regionData ||
+    regionData.indicators[refXIndicatorIndex].yearlyData.length === 0
+      ? undefined
+      : year !== -1 && !showMostRecentData
+      ? regionData.indicators[refXIndicatorIndex].yearlyData[
+          regionData.indicators[refXIndicatorIndex].yearlyData.findIndex(
+            el => el.year === year,
+          )
+        ]?.value
+      : regionData.indicators[refXIndicatorIndex].yearlyData[
+          regionData.indicators[refXIndicatorIndex].yearlyData.length - 1
+        ]?.value;
   const dataFormatted = orderBy(
     data
       .map(d => {
@@ -167,12 +184,19 @@ export function Graph(props: Props) {
 
   const svgHeight = dataFormatted.length * 25 + margin.top + margin.bottom;
   const xMaxValue = maxBy(dataFormatted, d => d.xVal)
-    ? (maxBy(dataFormatted, d => d.xVal)?.xVal as number)
+    ? refXVal && showReference
+      ? (maxBy(dataFormatted, d => d.xVal)?.xVal as number) > refXVal
+        ? (maxBy(dataFormatted, d => d.xVal)?.xVal as number)
+        : refXVal
+      : (maxBy(dataFormatted, d => d.xVal)?.xVal as number)
     : 0;
   const xMinValue = minBy(dataFormatted, d => d.xVal)
-    ? (minBy(dataFormatted, d => d.xVal)?.xVal as number)
+    ? refXVal && showReference
+      ? (minBy(dataFormatted, d => d.xVal)?.xVal as number) < refXVal
+        ? (minBy(dataFormatted, d => d.xVal)?.xVal as number)
+        : refXVal
+      : (minBy(dataFormatted, d => d.xVal)?.xVal as number)
     : 0;
-
   const widthScale = scaleLinear()
     .domain([xMinValue > 0 ? 0 : xMinValue, xMaxValue])
     .range([0, graphWidth])
@@ -516,6 +540,55 @@ export function Graph(props: Props) {
             stroke='#212121'
             strokeWidth={1}
           />
+          {refXVal && showReference ? (
+            <g>
+              <line
+                style={{
+                  stroke: 'var(--gray-700)',
+                  strokeWidth: 1.5,
+                }}
+                strokeDasharray='4,4'
+                x1={widthScale(refXVal)}
+                x2={widthScale(refXVal)}
+                y1={-20}
+                y2={dataFormatted.length * 25 - 2.5}
+              />
+              <text
+                y={0}
+                x={widthScale(refXVal)}
+                style={{
+                  fill: 'var(--gray-700)',
+                }}
+                fontSize={12}
+                dx={5}
+                dy={-11}
+                textAnchor={
+                  widthScale(refXVal) > svgWidth / 2 ? 'end' : 'start'
+                }
+                fontWeight='bold'
+              >
+                {regionData?.['Alpha-3 code']}
+              </text>
+              <text
+                y={0}
+                x={widthScale(refXVal)}
+                style={{
+                  fill: 'var(--gray-700)',
+                }}
+                fontSize={12}
+                fontWeight='bold'
+                dx={5}
+                dy={6}
+                textAnchor={
+                  widthScale(refXVal) > svgWidth / 2 ? 'end' : 'start'
+                }
+              >
+                {Math.abs(refXVal) < 1
+                  ? refXVal
+                  : format('~s')(refXVal).replace('G', 'B')}
+              </text>
+            </g>
+          ) : null}
         </g>
       </svg>
       {hoverData ? <Tooltip data={hoverData} /> : null}

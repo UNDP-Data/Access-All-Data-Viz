@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { format } from 'd3-format';
+import { MoveHorizontal, MoveVertical } from 'lucide-react';
 import { HoverDataType } from '../Types';
-import { HorizontalArrow, VerticalArrow } from '../Icons';
 
 interface Props {
   data: HoverDataType;
@@ -48,10 +48,6 @@ const SizeIcon = styled.div`
   height: 0.875rem;
   border-radius: 0.875rem;
   border: 2px solid var(--gray-700);
-`;
-
-const IconEl = styled.div`
-  margin-top: 10px;
 `;
 
 export function Tooltip(props: Props) {
@@ -103,13 +99,9 @@ export function Tooltip(props: Props) {
           >
             <div>
               {d.type === 'x-axis' ? (
-                <IconEl>
-                  <HorizontalArrow size={20} />
-                </IconEl>
+                <MoveHorizontal size={20} stroke='var(--gray-700)' />
               ) : d.type === 'y-axis' ? (
-                <IconEl>
-                  <VerticalArrow size={20} />
-                </IconEl>
+                <MoveVertical size={20} stroke='var(--gray-700)' />
               ) : d.type === 'color' ? (
                 <ColorIcon fill={d.color} />
               ) : d.type === 'size' ? (

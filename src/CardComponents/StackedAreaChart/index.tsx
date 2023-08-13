@@ -19,6 +19,7 @@ interface Props {
   graphTitle: string;
   strokeWidth: number;
   source: string;
+  sourceLink: string;
   graphDescription?: string;
 }
 
@@ -49,7 +50,7 @@ const StatCardsEl = styled.div`
 
 const SourceEl = styled.div`
   font-size: 1rem;
-  color: var(--gray-500);
+  color: var(--gray-600);
 `;
 
 export function StackedAreaChart(props: Props) {
@@ -62,6 +63,7 @@ export function StackedAreaChart(props: Props) {
     strokeWidth,
     source,
     graphDescription,
+    sourceLink,
   } = props;
 
   const minYear = min([data1[0].year, data2[0].year]);
@@ -170,7 +172,18 @@ export function StackedAreaChart(props: Props) {
           ) : null}
         </div>
       </div>
-      <SourceEl className='margin-top-05'>Source: {source}</SourceEl>
+      <SourceEl className='margin-top-05'>
+        Source:{' '}
+        <a
+          href={sourceLink}
+          target='_blank'
+          rel='noreferrer'
+          style={{ color: 'var(--gray-600)' }}
+          className='undp-style'
+        >
+          {source}
+        </a>
+      </SourceEl>
     </StatCardsEl>
   );
 }

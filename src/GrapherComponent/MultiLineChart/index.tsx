@@ -6,14 +6,15 @@ import {
   CountryGroupDataType,
   CountryListType,
   CtxDataType,
-  IndicatorMetaDataWithYear,
+  IndicatorMetaDataType,
 } from '../../Types';
 import { Graph } from './Graph';
 
 interface Props {
   data: CountryGroupDataType[];
-  indicators: IndicatorMetaDataWithYear[];
+  indicators: IndicatorMetaDataType[];
   countries: CountryListType[];
+  regionData?: CountryGroupDataType;
 }
 
 const GraphDiv = styled.div`
@@ -31,7 +32,7 @@ const CountryAreaEl = styled.div`
 `;
 
 export function MultiLineChart(props: Props) {
-  const { data, indicators, countries } = props;
+  const { data, indicators, countries, regionData } = props;
   const {
     multiCountryTrendChartCountries,
     updateMultiCountryTrendChartCountries,
@@ -109,6 +110,7 @@ export function MultiLineChart(props: Props) {
               indicators={indicators}
               svgWidth={svgWidth}
               svgHeight={svgHeight}
+              regionData={regionData}
             />
           ) : null}
         </GraphDiv>

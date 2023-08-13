@@ -40,6 +40,8 @@ export default (state: any, action: any) => {
       return { ...state, verticalBarLayout: action.payload };
     case 'UPDATE_SIGNATURE_SOLUTION_FOR_DATALIST':
       return { ...state, signatureSolutionForDataList: action.payload };
+    case 'UPDATE_SHOW_REFERENCE':
+      return { ...state, showReference: action.payload };
     default:
       return { ...state };
   }

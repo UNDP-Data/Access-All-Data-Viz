@@ -1,11 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
-import { CountryGroupDataType, IndicatorMetaDataWithYear } from '../../Types';
+import { CountryGroupDataType, IndicatorMetaDataType } from '../../Types';
 import { Graph } from './Graph';
+import { COUNTRIES_BY_UNDP_REGIONS } from '../../Constants';
 
 interface Props {
   data: CountryGroupDataType[];
-  indicators: IndicatorMetaDataWithYear[];
+  indicators: IndicatorMetaDataType[];
+  UNDPRegion?: string;
+  regionData?: CountryGroupDataType;
 }
 
 const GraphDiv = styled.div`
@@ -17,7 +20,7 @@ const GraphDiv = styled.div`
 `;
 
 export function ScatterPlot(props: Props) {
-  const { data, indicators } = props;
+  const { data, indicators, UNDPRegion, regionData } = props;
 
   const [svgWidth, setSvgWidth] = useState(0);
   const [svgHeight, setSvgHeight] = useState(0);
@@ -32,10 +35,22 @@ export function ScatterPlot(props: Props) {
     <GraphDiv ref={graphDiv}>
       {svgHeight && svgWidth ? (
         <Graph
-          data={data}
+          data={
+            !UNDPRegion || UNDPRegion === 'WLD'
+              ? data
+              : data.filter(
+                  d =>
+                    COUNTRIES_BY_UNDP_REGIONS[
+                      COUNTRIES_BY_UNDP_REGIONS.findIndex(
+                        el => el.region === `UNDP_${UNDPRegion}`,
+                      )
+                    ].Countries.indexOf(d['Alpha-3 code']) !== -1,
+                )
+          }
           indicators={indicators}
           svgWidth={svgWidth}
           svgHeight={svgHeight}
+          regionData={regionData}
         />
       ) : null}
     </GraphDiv>

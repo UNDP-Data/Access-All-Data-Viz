@@ -1,0 +1,586 @@
+[
+    {
+      "iso3": "AFG",
+      "url": "https://www.undp.org/afghanistan"
+    },
+    {
+      "iso3": "ALB",
+      "url": "https://www.undp.org/albania"
+    },
+    {
+      "iso3": "DZA",
+      "url": "https://www.undp.org/fr/algeria"
+    },
+    {
+      "iso3": "AGO",
+      "url": "https://www.undp.org/pt/angola"
+    },
+    {
+      "iso3": "ARG",
+      "url": "https://www.undp.org/es/argentina"
+    },
+    {
+      "iso3": "ARM",
+      "url": "https://www.undp.org/armenia"
+    },
+    {
+      "iso3": "ABW",
+      "url": "https://www.undp.org/trinidad-and-tobago"
+    },
+    {
+      "iso3": "AZE",
+      "url": "https://www.undp.org/azerbaijan"
+    },
+    {
+      "iso3": "BHR",
+      "url": "https://www.undp.org/bahrain"
+    },
+    {
+      "iso3": "BGD",
+      "url": "https://www.undp.org/bangladesh"
+    },
+    {
+      "iso3": "BRB",
+      "url": "https://www.undp.org/barbados"
+    },
+    {
+      "iso3": "BLR",
+      "url": "https://www.undp.org/belarus"
+    },
+    {
+      "iso3": "BLZ",
+      "url": "https://www.undp.org/belize"
+    },
+    {
+      "iso3": "BEN",
+      "url": "https://www.undp.org/fr/benin"
+    },
+    {
+      "iso3": "BTN",
+      "url": "https://www.undp.org/bhutan"
+    },
+    {
+      "iso3": "BOL",
+      "url": "https://www.undp.org/es/bolivia"
+    },
+    {
+      "iso3": "BIH",
+      "url": "https://www.undp.org/bosnia-herzegovina"
+    },
+    {
+      "iso3": "BWA",
+      "url": "https://www.undp.org/botswana"
+    },
+    {
+      "iso3": "BRA",
+      "url": "https://www.undp.org/pt/brazil"
+    },
+    {
+      "iso3": "BFA",
+      "url": "https://www.undp.org/fr/burkina-faso"
+    },
+    {
+      "iso3": "BDI",
+      "url": "https://www.undp.org/fr/burundi"
+    },
+    {
+      "iso3": "KHM",
+      "url": "https://www.undp.org/cambodia"
+    },
+    {
+      "iso3": "CMR",
+      "url": "https://www.undp.org/cameroon"
+    },
+    {
+      "iso3": "CPV",
+      "url": "https://caboverde.un.org/"
+    },
+    {
+      "iso3": "CAF",
+      "url": "https://www.undp.org/fr/central-african-republic"
+    },
+    {
+      "iso3": "TCD",
+      "url": "https://www.undp.org/fr/chad"
+    },
+    {
+      "iso3": "CHL",
+      "url": "https://www.undp.org/es/chile"
+    },
+    {
+      "iso3": "CHN",
+      "url": "https://www.undp.org/china"
+    },
+    {
+      "iso3": "COL",
+      "url": "https://www.undp.org/es/colombia"
+    },
+    {
+      "iso3": "COM",
+      "url": "https://www.undp.org/fr/comoros"
+    },
+    {
+      "iso3": "COD",
+      "url": "https://www.undp.org/fr/drcongo"
+    },
+    {
+      "iso3": "COG",
+      "url": "https://www.undp.org/fr/congo"
+    },
+    {
+      "iso3": "COK",
+      "url": "https://www.undp.org/samoa"
+    },
+    {
+      "iso3": "CRI",
+      "url": "https://www.undp.org/es/costa-rica"
+    },
+    {
+      "iso3": "CUB",
+      "url": "https://www.undp.org/es/cuba"
+    },
+    {
+      "iso3": "CUW",
+      "url": "https://www.undp.org/trinidad-and-tobago"
+    },
+    {
+      "iso3": "CYP",
+      "url": "https://www.undp.org/cyprus"
+    },
+    {
+      "iso3": "CIV",
+      "url": "https://www.undp.org/fr/cote-d-ivoire"
+    },
+    {
+      "iso3": "DJI",
+      "url": "https://www.undp.org/djibouti"
+    },
+    {
+      "iso3": "DOM",
+      "url": "https://www.undp.org/es/dominican-republic"
+    },
+    {
+      "iso3": "ECU",
+      "url": "https://www.undp.org/es/ecuador"
+    },
+    {
+      "iso3": "EGY",
+      "url": "https://www.undp.org/egypt"
+    },
+    {
+      "iso3": "SLV",
+      "url": "https://www.undp.org/es/el-salvador"
+    },
+    {
+      "iso3": "GNQ",
+      "url": "https://www.undp.org/es/equatorial-guinea"
+    },
+    {
+      "iso3": "ERI",
+      "url": "https://www.undp.org/eritrea"
+    },
+    {
+      "iso3": "SWZ",
+      "url": "https://www.undp.org/eswatini"
+    },
+    {
+      "iso3": "ETH",
+      "url": "https://www.undp.org/ethiopia"
+    },
+    {
+      "iso3": "FSM",
+      "url": "https://www.undp.org/pacific"
+    },
+    {
+      "iso3": "FJI",
+      "url": "https://www.undp.org/pacific"
+    },
+    {
+      "iso3": "GAB",
+      "url": "https://www.undp.org/fr/gabon"
+    },
+    {
+      "iso3": "GMB",
+      "url": "https://www.undp.org/gambia"
+    },
+    {
+      "iso3": "GEO",
+      "url": "https://www.undp.org/georgia"
+    },
+    {
+      "iso3": "GHA",
+      "url": "https://www.undp.org/ghana"
+    },
+    {
+      "iso3": "GTM",
+      "url": "https://www.undp.org/es/guatemala"
+    },
+    {
+      "iso3": "GIN",
+      "url": "https://www.undp.org/fr/guinea"
+    },
+    {
+      "iso3": "GNB",
+      "url": "https://www.undp.org/guinea-bissau"
+    },
+    {
+      "iso3": "GUY",
+      "url": "https://www.undp.org/guyana"
+    },
+    {
+      "iso3": "HTI",
+      "url": "https://www.undp.org/fr/haiti"
+    },
+    {
+      "iso3": "HND",
+      "url": "https://www.undp.org/es/honduras"
+    },
+    {
+      "iso3": "IND",
+      "url": "https://www.undp.org/india"
+    },
+    {
+      "iso3": "IDN",
+      "url": "https://www.undp.org/indonesia"
+    },
+    {
+      "iso3": "IRN",
+      "url": "https://www.undp.org/iran"
+    },
+    {
+      "iso3": "IRQ",
+      "url": "https://www.undp.org/iraq"
+    },
+    {
+      "iso3": "JAM",
+      "url": "https://www.undp.org/jamaica"
+    },
+    {
+      "iso3": "JOR",
+      "url": "https://www.undp.org/jordan"
+    },
+    {
+      "iso3": "KAZ",
+      "url": "https://www.undp.org/kazakhstan"
+    },
+    {
+      "iso3": "KEN",
+      "url": "https://www.undp.org/kenya"
+    },
+    {
+      "iso3": "KIR",
+      "url": "https://www.undp.org/pacific"
+    },
+    {
+      "iso3": "XKX",
+      "url": "https://www.undp.org/kosovo"
+    },
+    {
+      "iso3": "KWT",
+      "url": "https://www.undp.org/kuwait"
+    },
+    {
+      "iso3": "KGZ",
+      "url": "https://www.undp.org/kyrgyzstan"
+    },
+    {
+      "iso3": "LAO",
+      "url": "https://www.undp.org/laopdr"
+    },
+    {
+      "iso3": "LBN",
+      "url": "https://www.undp.org/lebanon"
+    },
+    {
+      "iso3": "LSO",
+      "url": "https://www.undp.org/lesotho"
+    },
+    {
+      "iso3": "LBR",
+      "url": "https://www.undp.org/liberia"
+    },
+    {
+      "iso3": "LBY",
+      "url": "https://www.undp.org/libya"
+    },
+    {
+      "iso3": "MDG",
+      "url": "https://www.undp.org/fr/madagascar"
+    },
+    {
+      "iso3": "MWI",
+      "url": "https://www.undp.org/malawi"
+    },
+    {
+      "iso3": "MYS",
+      "url": "https://www.undp.org/malaysia"
+    },
+    {
+      "iso3": "MDV",
+      "url": "https://www.undp.org/maldives"
+    },
+    {
+      "iso3": "MLI",
+      "url": "https://www.undp.org/fr/mali"
+    },
+    {
+      "iso3": "MRT",
+      "url": "https://www.undp.org/fr/mauritania"
+    },
+    {
+      "iso3": "MUS",
+      "url": "https://www.undp.org/mauritius-seychelles"
+    },
+    {
+      "iso3": "MEX",
+      "url": "https://www.undp.org/es/mexico"
+    },
+    {
+      "iso3": "MDA",
+      "url": "https://www.undp.org/moldova"
+    },
+    {
+      "iso3": "MNG",
+      "url": "https://www.undp.org/mongolia"
+    },
+    {
+      "iso3": "MNE",
+      "url": "https://www.undp.org/montenegro"
+    },
+    {
+      "iso3": "MAR",
+      "url": "https://www.undp.org/fr/morocco"
+    },
+    {
+      "iso3": "MOZ",
+      "url": "https://www.undp.org/mozambique"
+    },
+    {
+      "iso3": "MMR",
+      "url": "https://www.undp.org/myanmar"
+    },
+    {
+      "iso3": "NAM",
+      "url": "https://www.undp.org/namibia"
+    },
+    {
+      "iso3": "NRU",
+      "url": "https://www.undp.org/pacific"
+    },
+    {
+      "iso3": "NPL",
+      "url": "https://www.undp.org/nepal"
+    },
+    {
+      "iso3": "NIC",
+      "url": "https://www.undp.org/es/nicaragua"
+    },
+    {
+      "iso3": "NER",
+      "url": "https://www.undp.org/fr/niger"
+    },
+    {
+      "iso3": "NGA",
+      "url": "https://www.undp.org/nigeria"
+    },
+    {
+      "iso3": "NIU",
+      "url": "https://www.undp.org/samoa"
+    },
+    {
+      "iso3": "MKD",
+      "url": "https://www.undp.org/north-macedonia"
+    },
+    {
+      "iso3": "PAK",
+      "url": "https://www.undp.org/pakistan"
+    },
+    {
+      "iso3": "PLW",
+      "url": "https://www.undp.org/pacific"
+    },
+    {
+      "iso3": "PAN",
+      "url": "https://www.undp.org/es/panama"
+    },
+    {
+      "iso3": "PNG",
+      "url": "https://www.undp.org/papua-new-guinea"
+    },
+    {
+      "iso3": "PRY",
+      "url": "https://www.undp.org/es/paraguay"
+    },
+    {
+      "iso3": "PER",
+      "url": "https://www.undp.org/es/peru"
+    },
+    {
+      "iso3": "PHL",
+      "url": "https://www.undp.org/philippines"
+    },
+    {
+      "iso3": "PSE",
+      "url": "https://www.undp.org/papp"
+    },
+    {
+      "iso3": "MHL",
+      "url": "https://www.undp.org/pacific"
+    },
+    {
+      "iso3": "RWA",
+      "url": "https://www.undp.org/rwanda"
+    },
+    {
+      "iso3": "WSM",
+      "url": "https://www.undp.org/samoa"
+    },
+    {
+      "iso3": "SAU",
+      "url": "https://www.undp.org/saudi-arabia"
+    },
+    {
+      "iso3": "SEN",
+      "url": "https://www.undp.org/fr/senegal"
+    },
+    {
+      "iso3": "SRB",
+      "url": "https://www.undp.org/serbia"
+    },
+    {
+      "iso3": "SYC",
+      "url": "https://www.undp.org/mauritius-seychelles"
+    },
+    {
+      "iso3": "SLE",
+      "url": "https://www.undp.org/sierra-leone"
+    },
+    {
+      "iso3": "SXM",
+      "url": "https://www.undp.org/trinidad-and-tobago"
+    },
+    {
+      "iso3": "SLB",
+      "url": "https://www.undp.org/pacific"
+    },
+    {
+      "iso3": "SOM",
+      "url": "https://www.undp.org/somalia"
+    },
+    {
+      "iso3": "ZAF",
+      "url": "https://www.undp.org/south-africa"
+    },
+    {
+      "iso3": "SSD",
+      "url": "https://www.undp.org/south-sudan"
+    },
+    {
+      "iso3": "LKA",
+      "url": "https://www.undp.org/srilanka"
+    },
+    {
+      "iso3": "SDN",
+      "url": "https://www.undp.org/sudan"
+    },
+    {
+      "iso3": "SUR",
+      "url": "https://www.undp.org/suriname"
+    },
+    {
+      "iso3": "SYR",
+      "url": "https://www.undp.org/syria"
+    },
+    {
+      "iso3": "STP",
+      "url": "https://www.undp.org/pt/sao-tome-principe"
+    },
+    {
+      "iso3": "TJK",
+      "url": "https://www.undp.org/tajikistan"
+    },
+    {
+      "iso3": "TZA",
+      "url": "https://www.undp.org/tanzania"
+    },
+    {
+      "iso3": "THA",
+      "url": "https://www.undp.org/thailand"
+    },
+    {
+      "iso3": "TLS",
+      "url": "https://www.undp.org/timor-leste"
+    },
+    {
+      "iso3": "TGO",
+      "url": "https://www.undp.org/fr/togo"
+    },
+    {
+      "iso3": "TKL",
+      "url": "https://www.undp.org/samoa"
+    },
+    {
+      "iso3": "TON",
+      "url": "https://www.undp.org/pacific"
+    },
+    {
+      "iso3": "TTO",
+      "url": "https://www.undp.org/trinidad-and-tobago"
+    },
+    {
+      "iso3": "TUN",
+      "url": "https://www.undp.org/fr/tunisia"
+    },
+    {
+      "iso3": "TUR",
+      "url": "https://www.undp.org/turkiye"
+    },
+    {
+      "iso3": "TKM",
+      "url": "https://www.undp.org/turkmenistan"
+    },
+    {
+      "iso3": "TUV",
+      "url": "https://www.undp.org/pacific"
+    },
+    {
+      "iso3": "UGA",
+      "url": "https://www.undp.org/uganda"
+    },
+    {
+      "iso3": "UKR",
+      "url": "https://www.undp.org/ukraine"
+    },
+    {
+      "iso3": "URY",
+      "url": "https://www.undp.org/es/uruguay"
+    },
+    {
+      "iso3": "UZB",
+      "url": "https://www.undp.org/uzbekistan"
+    },
+    {
+      "iso3": "VUT",
+      "url": "https://www.undp.org/pacific"
+    },
+    {
+      "iso3": "VEN",
+      "url": "https://www.undp.org/es/venezuela"
+    },
+    {
+      "iso3": "VNM",
+      "url": "https://www.undp.org/vietnam"
+    },
+    {
+      "iso3": "YEM",
+      "url": "https://www.undp.org/yemen"
+    },
+    {
+      "iso3": "ZMB",
+      "url": "https://www.undp.org/zambia"
+    },
+    {
+      "iso3": "ZWE",
+      "url": "https://www.undp.org/zimbabwe"
+    }
+  ]

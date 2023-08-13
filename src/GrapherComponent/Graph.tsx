@@ -1,11 +1,12 @@
 import { useContext, useEffect, useRef, useState } from 'react';
 import { Slider } from 'antd';
 import intersection from 'lodash.intersection';
+import { Pause, Play } from 'lucide-react';
 import {
   CountryGroupDataType,
   CountryListType,
   CtxDataType,
-  IndicatorMetaDataWithYear,
+  IndicatorMetaDataType,
 } from '../Types';
 import Context from '../Context/Context';
 import { HorizontalBarChart } from './HorizontalBarChart';
@@ -15,13 +16,15 @@ import { UnivariateMap } from './UnivariateMap';
 import { MultiLineChart } from './MultiLineChart';
 import { BarChart } from './BarChart';
 import { LineChart } from './LineChart';
-import { PauseIcon, PlayIcon } from '../Icons';
 import { DataList } from './DataList';
+import { GetYearsArray } from '../Utils/GetYearsArray';
 
 interface Props {
   data: CountryGroupDataType[];
-  indicators: IndicatorMetaDataWithYear[];
+  indicators: IndicatorMetaDataType[];
   countries: CountryListType[];
+  UNDPRegion?: string;
+  regionData?: CountryGroupDataType;
 }
 
 const getMarks = (arr: number[]) => {
@@ -33,7 +36,7 @@ const getMarks = (arr: number[]) => {
 };
 
 export function Graph(props: Props) {
-  const { data, indicators, countries } = props;
+  const { data, indicators, countries, UNDPRegion, regionData } = props;
   const {
     year,
     graphType,
@@ -50,23 +53,24 @@ export function Graph(props: Props) {
   const [yearForPlay, setYearForPlay] = useState<undefined | number>(undefined);
   // eslint-disable-next-line no-undef
   const timer: { current: NodeJS.Timeout | null } = useRef(null);
-
   useEffect(() => {
     setPlay(false);
     if (graphType !== 'barGraph') {
       if (yAxisIndicator) {
         if (!sizeIndicator) {
           const intersectedYears = intersection(
-            indicators[
-              indicators.findIndex(
-                d => d.IndicatorLabelTable === xAxisIndicator,
-              )
-            ].years,
-            indicators[
-              indicators.findIndex(
-                d => d.IndicatorLabelTable === yAxisIndicator,
-              )
-            ].years,
+            GetYearsArray(
+              data,
+              indicators[
+                indicators.findIndex(d => d.DataKey === xAxisIndicator)
+              ],
+            ),
+            GetYearsArray(
+              data,
+              indicators[
+                indicators.findIndex(d => d.DataKey === yAxisIndicator)
+              ],
+            ),
           );
           setCommonYears(intersectedYears);
           setMarks(getMarks(intersectedYears));
@@ -82,19 +86,24 @@ export function Graph(props: Props) {
           );
         } else {
           const intersectedYears = intersection(
-            indicators[
-              indicators.findIndex(
-                d => d.IndicatorLabelTable === xAxisIndicator,
-              )
-            ].years,
-            indicators[
-              indicators.findIndex(
-                d => d.IndicatorLabelTable === yAxisIndicator,
-              )
-            ].years,
-            indicators[
-              indicators.findIndex(d => d.IndicatorLabelTable === sizeIndicator)
-            ].years,
+            GetYearsArray(
+              data,
+              indicators[
+                indicators.findIndex(d => d.DataKey === xAxisIndicator)
+              ],
+            ),
+            GetYearsArray(
+              data,
+              indicators[
+                indicators.findIndex(d => d.DataKey === yAxisIndicator)
+              ],
+            ),
+            GetYearsArray(
+              data,
+              indicators[
+                indicators.findIndex(d => d.DataKey === sizeIndicator)
+              ],
+            ),
           );
           setCommonYears(intersectedYears);
           setMarks(getMarks(intersectedYears));
@@ -111,49 +120,37 @@ export function Graph(props: Props) {
         }
       } else if (!sizeIndicator) {
         setCommonYears(
-          indicators[
-            indicators.findIndex(d => d.IndicatorLabelTable === xAxisIndicator)
-          ].years,
+          GetYearsArray(
+            data,
+            indicators[indicators.findIndex(d => d.DataKey === xAxisIndicator)],
+          ),
         );
         setMarks(
           getMarks(
-            indicators[
-              indicators.findIndex(
-                d => d.IndicatorLabelTable === xAxisIndicator,
-              )
-            ].years,
+            GetYearsArray(
+              data,
+              indicators[
+                indicators.findIndex(d => d.DataKey === xAxisIndicator)
+              ],
+            ),
           ),
         );
-        updateYear(
-          indicators[
-            indicators.findIndex(d => d.IndicatorLabelTable === xAxisIndicator)
-          ].years[
-            indicators[
-              indicators.findIndex(
-                d => d.IndicatorLabelTable === xAxisIndicator,
-              )
-            ].years.length - 1
-          ],
+        const yearList = GetYearsArray(
+          data,
+          indicators[indicators.findIndex(d => d.DataKey === xAxisIndicator)],
         );
-        setYearForPlay(
-          indicators[
-            indicators.findIndex(d => d.IndicatorLabelTable === xAxisIndicator)
-          ].years[
-            indicators[
-              indicators.findIndex(
-                d => d.IndicatorLabelTable === xAxisIndicator,
-              )
-            ].years.length - 1
-          ],
-        );
+        updateYear(yearList[yearList.length - 1]);
+        setYearForPlay(yearList[yearList.length - 1]);
       } else {
         const intersectedYears = intersection(
-          indicators[
-            indicators.findIndex(d => d.IndicatorLabelTable === xAxisIndicator)
-          ].years,
-          indicators[
-            indicators.findIndex(d => d.IndicatorLabelTable === sizeIndicator)
-          ].years,
+          GetYearsArray(
+            data,
+            indicators[indicators.findIndex(d => d.DataKey === xAxisIndicator)],
+          ),
+          GetYearsArray(
+            data,
+            indicators[indicators.findIndex(d => d.DataKey === sizeIndicator)],
+          ),
         );
         setCommonYears(intersectedYears);
         setMarks(getMarks(intersectedYears));
@@ -170,35 +167,25 @@ export function Graph(props: Props) {
       }
     } else {
       setCommonYears(
-        indicators[
-          indicators.findIndex(d => d.IndicatorLabelTable === xAxisIndicator)
-        ].years,
+        GetYearsArray(
+          data,
+          indicators[indicators.findIndex(d => d.DataKey === xAxisIndicator)],
+        ),
       );
       setMarks(
         getMarks(
-          indicators[
-            indicators.findIndex(d => d.IndicatorLabelTable === xAxisIndicator)
-          ].years,
+          GetYearsArray(
+            data,
+            indicators[indicators.findIndex(d => d.DataKey === xAxisIndicator)],
+          ),
         ),
       );
-      updateYear(
-        indicators[
-          indicators.findIndex(d => d.IndicatorLabelTable === xAxisIndicator)
-        ].years[
-          indicators[
-            indicators.findIndex(d => d.IndicatorLabelTable === xAxisIndicator)
-          ].years.length - 1
-        ],
+      const yearList = GetYearsArray(
+        data,
+        indicators[indicators.findIndex(d => d.DataKey === xAxisIndicator)],
       );
-      setYearForPlay(
-        indicators[
-          indicators.findIndex(d => d.IndicatorLabelTable === xAxisIndicator)
-        ].years[
-          indicators[
-            indicators.findIndex(d => d.IndicatorLabelTable === xAxisIndicator)
-          ].years.length - 1
-        ],
-      );
+      updateYear(yearList[yearList.length - 1]);
+      setYearForPlay(yearList[yearList.length - 1]);
     }
   }, [xAxisIndicator, yAxisIndicator, sizeIndicator, graphType]);
   useEffect(() => {
@@ -243,9 +230,9 @@ export function Graph(props: Props) {
             }}
           >
             {play ? (
-              <PauseIcon size={24} fill='#D12800' />
+              <Pause size={24} stroke='#D12800' />
             ) : (
-              <PlayIcon size={24} fill='#D12800' />
+              <Play size={24} stroke='#D12800' />
             )}
           </button>
           <Slider
@@ -262,7 +249,7 @@ export function Graph(props: Props) {
             className='undp-slider'
             tooltip={{
               open: true,
-              placement: 'top',
+              placement: 'bottom',
               prefixCls: 'undp-slider-tooltip',
               getPopupContainer: triggerNode =>
                 triggerNode.parentNode as HTMLElement,
@@ -282,29 +269,53 @@ export function Graph(props: Props) {
       )}
       {graphType === 'scatterPlot' ? (
         yAxisIndicator ? (
-          <ScatterPlot data={data} indicators={indicators} />
+          <ScatterPlot
+            UNDPRegion={UNDPRegion}
+            data={data}
+            indicators={indicators}
+            regionData={regionData}
+          />
         ) : null
       ) : graphType === 'map' ? (
         yAxisIndicator ? (
-          <BiVariateMap data={data} indicators={indicators} />
+          <BiVariateMap
+            UNDPRegion={UNDPRegion}
+            data={data}
+            indicators={indicators}
+          />
         ) : (
-          <UnivariateMap data={data} indicators={indicators} />
+          <UnivariateMap
+            UNDPRegion={UNDPRegion}
+            data={data}
+            indicators={indicators}
+          />
         )
       ) : graphType === 'barGraph' ? (
         verticalBarLayout ? (
-          <HorizontalBarChart data={data} indicators={indicators} />
+          <HorizontalBarChart
+            UNDPRegion={UNDPRegion}
+            data={data}
+            indicators={indicators}
+            regionData={regionData}
+          />
         ) : (
-          <BarChart data={data} indicators={indicators} />
+          <BarChart
+            UNDPRegion={UNDPRegion}
+            data={data}
+            indicators={indicators}
+            regionData={regionData}
+          />
         )
       ) : graphType === 'trendLine' ? (
         <LineChart data={data} indicators={indicators} countries={countries} />
       ) : graphType === 'dataList' ? (
-        <DataList data={data} indicators={indicators} countries={countries} />
+        <DataList indicators={indicators} countries={countries} />
       ) : (
         <MultiLineChart
           data={data}
           indicators={indicators}
           countries={countries}
+          regionData={regionData}
         />
       )}
     </div>

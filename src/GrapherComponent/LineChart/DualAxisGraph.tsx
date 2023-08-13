@@ -10,15 +10,16 @@ import {
   CtxDataType,
   CountryGroupDataType,
   HoverDataType,
-  IndicatorMetaDataWithYear,
+  IndicatorMetaDataType,
 } from '../../Types';
 import Context from '../../Context/Context';
 import { Tooltip } from '../../Components/Tooltip';
 import { MAX_TEXT_LENGTH } from '../../Constants';
+import { GetYearsArray } from '../../Utils/GetYearsArray';
 
 interface Props {
   data: CountryGroupDataType[];
-  indicators: IndicatorMetaDataWithYear[];
+  indicators: IndicatorMetaDataType[];
   svgWidth: number;
   svgHeight: number;
   country: string;
@@ -74,30 +75,32 @@ export function DualAxisGraph(props: Props) {
 
   const xIndicatorMetaData =
     indicators[
-      indicators.findIndex(
-        indicator => indicator.IndicatorLabelTable === xAxisIndicator,
-      )
+      indicators.findIndex(indicator => indicator.DataKey === xAxisIndicator)
     ];
   const yIndicatorMetaData =
     indicators[
-      indicators.findIndex(
-        indicator => indicator.IndicatorLabelTable === yAxisIndicator,
-      )
+      indicators.findIndex(indicator => indicator.DataKey === yAxisIndicator)
     ];
 
   const countryData =
     data[data.findIndex(d => d['Country or Area'] === country)];
 
+  const xIndicatorYears = GetYearsArray(data, xIndicatorMetaData);
+  const yIndicatorYears = GetYearsArray(data, yIndicatorMetaData);
   const minYear =
-    xIndicatorMetaData.years[0] < yIndicatorMetaData.years[0]
-      ? xIndicatorMetaData.years[0]
-      : yIndicatorMetaData.years[0];
+    yIndicatorYears.length > 0 && xIndicatorYears.length > 0
+      ? xIndicatorYears[0] < yIndicatorYears[0]
+        ? xIndicatorYears[0]
+        : yIndicatorYears[0]
+      : xIndicatorYears[0] || yIndicatorYears[0];
   const maxYear =
-    xIndicatorMetaData.years[xIndicatorMetaData.years.length - 1] >
-    yIndicatorMetaData.years[yIndicatorMetaData.years.length - 1]
-      ? xIndicatorMetaData.years[xIndicatorMetaData.years.length - 1]
-      : yIndicatorMetaData.years[yIndicatorMetaData.years.length - 1];
-
+    yIndicatorYears.length > 0 && xIndicatorYears.length > 0
+      ? xIndicatorYears[xIndicatorYears.length - 1] >
+        yIndicatorYears[yIndicatorYears.length - 1]
+        ? xIndicatorYears[xIndicatorYears.length - 1]
+        : yIndicatorYears[yIndicatorYears.length - 1]
+      : xIndicatorYears[xIndicatorYears.length - 1] ||
+        yIndicatorYears[yIndicatorYears.length - 1];
   const xIndicatorIndex = countryData?.indicators.findIndex(
     el => xIndicatorMetaData.DataKey === el.indicator,
   );

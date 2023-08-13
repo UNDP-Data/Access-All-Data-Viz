@@ -10,6 +10,7 @@ interface Props {
   prefix?: string;
   labelFormat?: string;
   source: string;
+  sourceLink: string;
 }
 
 const StatCardsEl = styled.div`
@@ -32,7 +33,7 @@ const StatCardsEl = styled.div`
 
 const SourceEl = styled.div`
   font-size: 1rem;
-  color: var(--gray-500);
+  color: var(--gray-600);
 `;
 
 const StatEl = styled.h3`
@@ -67,6 +68,7 @@ export function ValueCard(props: Props) {
     prefix,
     labelFormat,
     graphDescription,
+    sourceLink,
   } = props;
 
   return (
@@ -96,7 +98,18 @@ export function ValueCard(props: Props) {
           {suffix || ''} <YearEl>({year})</YearEl>
         </StatEl>
       </div>
-      <SourceEl className='margin-top-05'>Source: {source}</SourceEl>
+      <SourceEl className='margin-top-05'>
+        Source:{' '}
+        <a
+          href={sourceLink}
+          target='_blank'
+          rel='noreferrer'
+          style={{ color: 'var(--gray-600)' }}
+          className='undp-style'
+        >
+          {source}
+        </a>
+      </SourceEl>
     </StatCardsEl>
   );
 }

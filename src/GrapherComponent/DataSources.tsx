@@ -2,13 +2,13 @@ import { useContext } from 'react';
 import {
   CtxDataType,
   CountryGroupDataType,
-  IndicatorMetaDataWithYear,
+  IndicatorMetaDataType,
 } from '../Types';
 import Context from '../Context/Context';
 import { DataSourceListItem } from '../Components/DataSourceListItem';
 
 interface Props {
-  indicators: IndicatorMetaDataWithYear[];
+  indicators: IndicatorMetaDataType[];
   data: CountryGroupDataType[];
 }
 
@@ -23,30 +23,16 @@ export function DataSources(props: Props) {
   } = useContext(Context) as CtxDataType;
 
   const xIndicatorMetaData =
-    indicators[
-      indicators.findIndex(d => d.IndicatorLabelTable === xAxisIndicator)
-    ];
+    indicators[indicators.findIndex(d => d.DataKey === xAxisIndicator)];
 
   const yIndicatorMetaData =
-    indicators[
-      indicators.findIndex(d => d.IndicatorLabelTable === yAxisIndicator)
-    ];
+    indicators[indicators.findIndex(d => d.DataKey === yAxisIndicator)];
 
   const sizeIndicatorMetaData =
-    indicators[
-      indicators.findIndex(d => d.IndicatorLabelTable === sizeIndicator)
-    ];
+    indicators[indicators.findIndex(d => d.DataKey === sizeIndicator)];
 
   const colorIndicatorMetaData =
-    colorIndicator === 'Human Development Index'
-      ? indicators[
-          indicators.findIndex(
-            d => d.IndicatorLabelTable === 'Human development index (HDI)',
-          )
-        ]
-      : indicators[
-          indicators.findIndex(d => d.IndicatorLabelTable === colorIndicator)
-        ];
+    indicators[indicators.findIndex(d => d.DataKey === colorIndicator)];
 
   return (
     <div className='undp-scrollbar'>

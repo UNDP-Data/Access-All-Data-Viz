@@ -6,15 +6,14 @@ import maxBy from 'lodash.maxby';
 import minBy from 'lodash.minby';
 import UNDPColorModule from 'undp-viz-colors';
 import { format } from 'd3-format';
-import { IndicatorMetaDataWithYear } from '../../Types';
+import { IndicatorMetaDataType } from '../../Types';
 
 interface Props {
   data: {
     year: number;
     value?: number;
   }[];
-  indicator: IndicatorMetaDataWithYear;
-  countryName: string;
+  indicator: IndicatorMetaDataType;
 }
 
 interface DataFormattedType {
@@ -58,7 +57,7 @@ const TooltipEl = styled.div<TooltipElProps>`
 `;
 
 export function TrendChartSmall(props: Props) {
-  const { data, indicator, countryName } = props;
+  const { data, indicator } = props;
   const [hoverData, setHoverData] = useState<HoverToolTipDataType | undefined>(
     undefined,
   );
@@ -73,8 +72,8 @@ export function TrendChartSmall(props: Props) {
   const graphWidth = svgWidth - margin.left - margin.right;
   const graphHeight = svgHeight - margin.top - margin.bottom;
 
-  const minYear = indicator.years[0];
-  const maxYear = indicator.years[indicator.years.length - 1];
+  const minYear = minBy(data, d => d.year)?.year || 0;
+  const maxYear = maxBy(data, d => d.year)?.year || 0;
 
   const dataFormatted: DataFormattedType[] = [];
 
@@ -302,12 +301,6 @@ export function TrendChartSmall(props: Props) {
             hoverData.xPosition > window.innerWidth / 2 ? 'left' : 'right'
           }
         >
-          <p
-            className='undp-typography bold margin-bottom-00'
-            style={{ fontSize: '0.875rem' }}
-          >
-            {countryName}
-          </p>
           <div className='margin-top-01'>
             <div
               className='flex-div'

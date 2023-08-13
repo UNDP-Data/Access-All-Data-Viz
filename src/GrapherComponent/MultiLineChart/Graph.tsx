@@ -11,17 +11,19 @@ import {
   CtxDataType,
   CountryGroupDataType,
   HoverDataType,
-  IndicatorMetaDataWithYear,
+  IndicatorMetaDataType,
 } from '../../Types';
 import Context from '../../Context/Context';
 import { MAX_TEXT_LENGTH } from '../../Constants';
 import { TooltipForMultiLineChart } from '../../Components/TooltipForMultiLineChart';
+import { GetYearsArray } from '../../Utils/GetYearsArray';
 
 interface Props {
   data: CountryGroupDataType[];
-  indicators: IndicatorMetaDataWithYear[];
+  indicators: IndicatorMetaDataType[];
   svgWidth: number;
   svgHeight: number;
+  regionData?: CountryGroupDataType;
 }
 
 interface DataFormattedType {
@@ -56,9 +58,13 @@ const LabelText = styled.text`
 `;
 
 export function Graph(props: Props) {
-  const { data, indicators, svgWidth, svgHeight } = props;
-  const { xAxisIndicator, multiCountryTrendChartCountries, showLabel } =
-    useContext(Context) as CtxDataType;
+  const { data, indicators, svgWidth, svgHeight, regionData } = props;
+  const {
+    xAxisIndicator,
+    multiCountryTrendChartCountries,
+    showLabel,
+    showReference,
+  } = useContext(Context) as CtxDataType;
   const [hoverData, setHoverData] = useState<HoverDataType | undefined>(
     undefined,
   );
@@ -73,17 +79,15 @@ export function Graph(props: Props) {
 
   const xIndicatorMetaData =
     indicators[
-      indicators.findIndex(
-        indicator => indicator.IndicatorLabelTable === xAxisIndicator,
-      )
+      indicators.findIndex(indicator => indicator.DataKey === xAxisIndicator)
     ];
 
   const countryData = multiCountryTrendChartCountries.map(
     el => data[data.findIndex(d => d['Country or Area'] === el)],
   );
-
-  const minYear = xIndicatorMetaData.years[0];
-  const maxYear = xIndicatorMetaData.years[xIndicatorMetaData.years.length - 1];
+  const xIndicatorYears = GetYearsArray(data, xIndicatorMetaData);
+  const minYear = xIndicatorYears[0];
+  const maxYear = xIndicatorYears[xIndicatorYears.length - 1];
   const valueArray: number[] = [];
   const yearArray: number[] = [];
   const dataFormatted = countryData.map(d => {
@@ -122,8 +126,49 @@ export function Graph(props: Props) {
       countryName: d['Country or Area'],
       alphaCode3: d['Alpha-3 code'],
       countryFormattedData,
+      isRegion: false,
     };
   });
+
+  if (showReference && regionData) {
+    const countryFormattedData: DataFormattedType[] = [];
+    const xIndicatorIndex = regionData?.indicators.findIndex(
+      el => xIndicatorMetaData.DataKey === el.indicator,
+    );
+    for (let i = minYear; i < maxYear + 1; i += 1) {
+      countryFormattedData.push({
+        year: i,
+        param:
+          regionData.indicators[xIndicatorIndex]?.yearlyData[
+            regionData.indicators[xIndicatorIndex].yearlyData.findIndex(
+              el => el.year === i,
+            )
+          ]?.value,
+      });
+      if (
+        regionData.indicators[xIndicatorIndex]?.yearlyData[
+          regionData.indicators[xIndicatorIndex].yearlyData.findIndex(
+            el => el.year === i,
+          )
+        ]?.value !== undefined
+      ) {
+        yearArray.push(i);
+        valueArray.push(
+          regionData.indicators[xIndicatorIndex]?.yearlyData[
+            regionData.indicators[xIndicatorIndex].yearlyData.findIndex(
+              el => el.year === i,
+            )
+          ]?.value as number,
+        );
+      }
+    }
+    dataFormatted.push({
+      countryName: regionData['Country or Area'],
+      alphaCode3: regionData['Alpha-3 code'],
+      countryFormattedData,
+      isRegion: true,
+    });
+  }
 
   const minParam = min(valueArray)
     ? (min(valueArray) as number) > 0
@@ -255,14 +300,22 @@ export function Graph(props: Props) {
                       ) as string
                     }
                     fill='none'
-                    stroke={UNDPColorModule.categoricalColors.colors[i % 10]}
+                    style={{
+                      stroke: d.isRegion
+                        ? 'var(--gray-600)'
+                        : UNDPColorModule.categoricalColors.colors[i % 10],
+                    }}
                     strokeWidth={2}
                     strokeDasharray='4 8'
                   />
                   <path
                     d={lineShape1(d.countryFormattedData as any) as string}
                     fill='none'
-                    stroke={UNDPColorModule.categoricalColors.colors[i % 10]}
+                    style={{
+                      stroke: d.isRegion
+                        ? 'var(--gray-600)'
+                        : UNDPColorModule.categoricalColors.colors[i % 10],
+                    }}
                     strokeWidth={2}
                   />
                   {d.countryFormattedData
@@ -280,9 +333,13 @@ export function Graph(props: Props) {
                                 ? 3
                                 : 2
                             }
-                            fill={
-                              UNDPColorModule.categoricalColors.colors[i % 10]
-                            }
+                            style={{
+                              fill: d.isRegion
+                                ? 'var(--gray-600)'
+                                : UNDPColorModule.categoricalColors.colors[
+                                    i % 10
+                                  ],
+                            }}
                           />
                           {showLabel ? (
                             <text
@@ -291,9 +348,13 @@ export function Graph(props: Props) {
                               dy={-8}
                               fontSize={12}
                               textAnchor='middle'
-                              fill={
-                                UNDPColorModule.categoricalColors.colors[i % 10]
-                              }
+                              style={{
+                                fill: d.isRegion
+                                  ? 'var(--gray-600)'
+                                  : UNDPColorModule.categoricalColors.colors[
+                                      i % 10
+                                    ],
+                              }}
                               strokeWidth={0.25}
                               stroke='#fff'
                               fontWeight='bold'
@@ -308,7 +369,11 @@ export function Graph(props: Props) {
                     .length > 0 ? (
                     <text
                       fontSize={10}
-                      fill={UNDPColorModule.categoricalColors.colors[i % 10]}
+                      style={{
+                        fill: d.isRegion
+                          ? 'var(--gray-600)'
+                          : UNDPColorModule.categoricalColors.colors[i % 10],
+                      }}
                       x={x(
                         d.countryFormattedData.filter(
                           el => el.param !== undefined,
@@ -363,7 +428,9 @@ export function Graph(props: Props) {
                               ].param
                             : 'NA',
                         type: 'color',
-                        color: UNDPColorModule.categoricalColors.colors[j % 10],
+                        color: el.isRegion
+                          ? 'var(--gray-700)'
+                          : UNDPColorModule.categoricalColors.colors[j % 10],
                         prefix: xIndicatorMetaData?.LabelPrefix,
                         suffix: xIndicatorMetaData?.LabelSuffix,
                       })),
@@ -390,7 +457,9 @@ export function Graph(props: Props) {
                               ].param
                             : 'NA',
                         type: 'color',
-                        color: UNDPColorModule.categoricalColors.colors[j % 10],
+                        color: el.isRegion
+                          ? 'var(--gray-700)'
+                          : UNDPColorModule.categoricalColors.colors[j % 10],
                         prefix: xIndicatorMetaData?.LabelPrefix,
                         suffix: xIndicatorMetaData?.LabelSuffix,
                       })),

@@ -10,15 +10,16 @@ import {
   CtxDataType,
   CountryGroupDataType,
   HoverDataType,
-  IndicatorMetaDataWithYear,
+  IndicatorMetaDataType,
 } from '../../Types';
 import Context from '../../Context/Context';
 import { Tooltip } from '../../Components/Tooltip';
 import { MAX_TEXT_LENGTH } from '../../Constants';
+import { GetYearsArray } from '../../Utils/GetYearsArray';
 
 interface Props {
   data: CountryGroupDataType[];
-  indicators: IndicatorMetaDataWithYear[];
+  indicators: IndicatorMetaDataType[];
   svgWidth: number;
   svgHeight: number;
   country: string;
@@ -72,16 +73,15 @@ export function SingleAxisGraph(props: Props) {
 
   const xIndicatorMetaData =
     indicators[
-      indicators.findIndex(
-        indicator => indicator.IndicatorLabelTable === xAxisIndicator,
-      )
+      indicators.findIndex(indicator => indicator.DataKey === xAxisIndicator)
     ];
 
   const countryData =
     data[data.findIndex(d => d['Country or Area'] === country)];
 
-  const minYear = xIndicatorMetaData.years[0];
-  const maxYear = xIndicatorMetaData.years[xIndicatorMetaData.years.length - 1];
+  const xIndicatorYears = GetYearsArray(data, xIndicatorMetaData);
+  const minYear = xIndicatorYears[0];
+  const maxYear = xIndicatorYears[xIndicatorYears.length - 1];
 
   const xIndicatorIndex = countryData?.indicators.findIndex(
     el => xIndicatorMetaData.DataKey === el.indicator,

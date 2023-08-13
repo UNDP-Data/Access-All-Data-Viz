@@ -13,7 +13,7 @@ import {
   CtxDataType,
   HoverDataType,
   HoverRowDataType,
-  IndicatorMetaDataWithYear,
+  IndicatorMetaDataType,
 } from '../../Types';
 import Context from '../../Context/Context';
 import {
@@ -26,19 +26,21 @@ import {
 
 interface Props {
   data: CountryGroupDataType[];
-  indicators: IndicatorMetaDataWithYear[];
+  indicators: IndicatorMetaDataType[];
   svgWidth: number;
   svgHeight: number;
+  regionData?: CountryGroupDataType;
 }
 
 export function Graph(props: Props) {
-  const { data, indicators, svgHeight, svgWidth } = props;
+  const { data, indicators, svgHeight, svgWidth, regionData } = props;
   const {
     year,
     xAxisIndicator,
     yAxisIndicator,
     showMostRecentData,
     showLabel,
+    showReference,
     sizeIndicator,
     colorIndicator,
     selectedCountries,
@@ -62,27 +64,19 @@ export function Graph(props: Props) {
   const graphHeight = svgHeight - margin.top - margin.bottom;
   const xIndicatorMetaData =
     indicators[
-      indicators.findIndex(
-        indicator => indicator.IndicatorLabelTable === xAxisIndicator,
-      )
+      indicators.findIndex(indicator => indicator.DataKey === xAxisIndicator)
     ];
   const yIndicatorMetaData =
     indicators[
-      indicators.findIndex(
-        indicator => indicator.IndicatorLabelTable === yAxisIndicator,
-      )
+      indicators.findIndex(indicator => indicator.DataKey === yAxisIndicator)
     ];
   const sizeIndicatorMetaData =
     indicators[
-      indicators.findIndex(
-        indicator => indicator.IndicatorLabelTable === sizeIndicator,
-      )
+      indicators.findIndex(indicator => indicator.DataKey === sizeIndicator)
     ];
   const colorIndicatorMetaData =
     indicators[
-      indicators.findIndex(
-        indicator => indicator.IndicatorLabelTable === colorIndicator,
-      )
+      indicators.findIndex(indicator => indicator.DataKey === colorIndicator)
     ];
   const maxRadiusValue = [0];
   if (sizeIndicatorMetaData) {
@@ -252,17 +246,73 @@ export function Graph(props: Props) {
     'desc',
   );
 
+  const refXIndicatorIndex = regionData
+    ? regionData.indicators.findIndex(
+        el => xIndicatorMetaData.DataKey === el.indicator,
+      )
+    : -1;
+
+  const refXVal =
+    refXIndicatorIndex === -1 ||
+    !regionData ||
+    regionData.indicators[refXIndicatorIndex].yearlyData.length === 0
+      ? undefined
+      : year !== -1 && !showMostRecentData
+      ? regionData.indicators[refXIndicatorIndex].yearlyData[
+          regionData.indicators[refXIndicatorIndex].yearlyData.findIndex(
+            el => el.year === year,
+          )
+        ]?.value
+      : regionData.indicators[refXIndicatorIndex].yearlyData[
+          regionData.indicators[refXIndicatorIndex].yearlyData.length - 1
+        ]?.value;
   const xMaxValue = maxBy(dataFormatted, d => d.xVal)
-    ? (maxBy(dataFormatted, d => d.xVal)?.xVal as number)
+    ? refXVal && showReference
+      ? (maxBy(dataFormatted, d => d.xVal)?.xVal as number) > refXVal
+        ? (maxBy(dataFormatted, d => d.xVal)?.xVal as number)
+        : refXVal
+      : (maxBy(dataFormatted, d => d.xVal)?.xVal as number)
     : 0;
   const xMinValue = minBy(dataFormatted, d => d.xVal)
-    ? (minBy(dataFormatted, d => d.xVal)?.xVal as number)
+    ? refXVal && showReference
+      ? (minBy(dataFormatted, d => d.xVal)?.xVal as number) < refXVal
+        ? (minBy(dataFormatted, d => d.xVal)?.xVal as number)
+        : refXVal
+      : (minBy(dataFormatted, d => d.xVal)?.xVal as number)
     : 0;
+  const refYIndicatorIndex = regionData
+    ? regionData.indicators.findIndex(
+        el => yIndicatorMetaData.DataKey === el.indicator,
+      )
+    : -1;
+
+  const refYVal =
+    refYIndicatorIndex === -1 ||
+    !regionData ||
+    regionData.indicators[refYIndicatorIndex].yearlyData.length === 0
+      ? undefined
+      : year !== -1 && !showMostRecentData
+      ? regionData.indicators[refYIndicatorIndex].yearlyData[
+          regionData.indicators[refYIndicatorIndex].yearlyData.findIndex(
+            el => el.year === year,
+          )
+        ]?.value
+      : regionData.indicators[refYIndicatorIndex].yearlyData[
+          regionData.indicators[refYIndicatorIndex].yearlyData.length - 1
+        ]?.value;
   const yMaxValue = maxBy(dataFormatted, d => d.yVal)
-    ? (maxBy(dataFormatted, d => d.yVal)?.yVal as number)
+    ? refYVal && showReference
+      ? (maxBy(dataFormatted, d => d.yVal)?.yVal as number) > refYVal
+        ? (maxBy(dataFormatted, d => d.yVal)?.yVal as number)
+        : refYVal
+      : (maxBy(dataFormatted, d => d.yVal)?.yVal as number)
     : 0;
   const yMinValue = minBy(dataFormatted, d => d.yVal)
-    ? (minBy(dataFormatted, d => d.yVal)?.yVal as number)
+    ? refYVal && showReference
+      ? (minBy(dataFormatted, d => d.yVal)?.yVal as number) < refYVal
+        ? (minBy(dataFormatted, d => d.yVal)?.yVal as number)
+        : refYVal
+      : (minBy(dataFormatted, d => d.yVal)?.yVal as number)
     : 0;
 
   const xScale = scaleLinear()
@@ -589,6 +639,96 @@ export function Graph(props: Props) {
             </text>
           </g>
 
+          {refXVal && showReference ? (
+            <g>
+              <line
+                style={{
+                  stroke: 'var(--gray-700)',
+                  strokeWidth: 1.5,
+                }}
+                strokeDasharray='4,4'
+                x1={xScale(refXVal)}
+                x2={xScale(refXVal)}
+                y1={0}
+                y2={graphHeight + 10}
+              />
+              <text
+                y={graphHeight + 7}
+                x={xScale(refXVal)}
+                style={{
+                  fill: 'var(--gray-700)',
+                }}
+                fontSize={12}
+                dx={5}
+                dy={-11}
+                textAnchor={xScale(refXVal) > svgWidth / 2 ? 'end' : 'start'}
+                fontWeight='bold'
+              >
+                {regionData?.['Alpha-3 code']}
+              </text>
+              <text
+                y={graphHeight + 7}
+                x={xScale(refXVal)}
+                style={{
+                  fill: 'var(--gray-700)',
+                }}
+                fontSize={12}
+                fontWeight='bold'
+                dx={5}
+                dy={6}
+                textAnchor={xScale(refXVal) > svgWidth / 2 ? 'end' : 'start'}
+              >
+                {Math.abs(refXVal) < 1
+                  ? refXVal
+                  : format('~s')(refXVal).replace('G', 'B')}
+              </text>
+            </g>
+          ) : null}
+          {refYVal && showReference ? (
+            <g>
+              <line
+                style={{
+                  stroke: 'var(--gray-700)',
+                  strokeWidth: 1.5,
+                }}
+                strokeDasharray='4,4'
+                y1={yScale(refYVal)}
+                y2={yScale(refYVal)}
+                x1={0}
+                x2={graphWidth}
+              />
+              <text
+                x={graphWidth}
+                y={yScale(refYVal)}
+                style={{
+                  fill: 'var(--gray-700)',
+                }}
+                fontSize={12}
+                dy={-5}
+                dx={0}
+                fontWeight='bold'
+                textAnchor='end'
+              >
+                {regionData?.['Alpha-3 code']}
+              </text>
+              <text
+                x={graphWidth}
+                fontWeight='bold'
+                y={yScale(refYVal)}
+                style={{
+                  fill: 'var(--gray-700)',
+                }}
+                fontSize={12}
+                dy={15}
+                dx={0}
+                textAnchor='end'
+              >
+                {Math.abs(refYVal) < 1
+                  ? refYVal
+                  : format('~s')(refYVal).replace('G', 'B')}
+              </text>
+            </g>
+          ) : null}
           {dataFormatted.map((d, i) => {
             const countryData =
               data[data.findIndex(el => el['Alpha-3 code'] === d.countryCode)];

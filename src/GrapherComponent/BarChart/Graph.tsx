@@ -10,7 +10,7 @@ import {
   CtxDataType,
   HoverDataType,
   HoverRowDataType,
-  IndicatorMetaDataWithYear,
+  IndicatorMetaDataType,
 } from '../../Types';
 import Context from '../../Context/Context';
 import {
@@ -23,13 +23,14 @@ import { Tooltip } from '../../Components/Tooltip';
 
 interface Props {
   data: CountryGroupDataType[];
-  indicators: IndicatorMetaDataWithYear[];
+  indicators: IndicatorMetaDataType[];
   svgWidth: number;
   svgHeight: number;
+  regionData?: CountryGroupDataType;
 }
 
 export function Graph(props: Props) {
-  const { data, indicators, svgWidth, svgHeight } = props;
+  const { data, indicators, svgWidth, svgHeight, regionData } = props;
   const {
     year,
     xAxisIndicator,
@@ -39,6 +40,7 @@ export function Graph(props: Props) {
     selectedRegions,
     selectedIncomeGroups,
     selectedCountryGroup,
+    showReference,
   } = useContext(Context) as CtxDataType;
   const [selectedColor, setSelectedColor] = useState<string | undefined>(
     undefined,
@@ -56,15 +58,11 @@ export function Graph(props: Props) {
   const graphHeight = svgHeight - margin.top - margin.bottom;
   const xIndicatorMetaData =
     indicators[
-      indicators.findIndex(
-        indicator => indicator.IndicatorLabelTable === xAxisIndicator,
-      )
+      indicators.findIndex(indicator => indicator.DataKey === xAxisIndicator)
     ];
   const colorIndicatorMetaData =
     indicators[
-      indicators.findIndex(
-        indicator => indicator.IndicatorLabelTable === colorIndicator,
-      )
+      indicators.findIndex(indicator => indicator.DataKey === colorIndicator)
     ];
 
   const dataFormatted = orderBy(
@@ -171,11 +169,39 @@ export function Graph(props: Props) {
     'asc',
   );
 
+  const refXIndicatorIndex = regionData
+    ? regionData.indicators.findIndex(
+        el => xIndicatorMetaData.DataKey === el.indicator,
+      )
+    : -1;
+
+  const refXVal =
+    refXIndicatorIndex === -1 ||
+    !regionData ||
+    regionData.indicators[refXIndicatorIndex].yearlyData.length === 0
+      ? undefined
+      : year !== -1 && !showMostRecentData
+      ? regionData.indicators[refXIndicatorIndex].yearlyData[
+          regionData.indicators[refXIndicatorIndex].yearlyData.findIndex(
+            el => el.year === year,
+          )
+        ]?.value
+      : regionData.indicators[refXIndicatorIndex].yearlyData[
+          regionData.indicators[refXIndicatorIndex].yearlyData.length - 1
+        ]?.value;
   const xMaxValue = maxBy(dataFormatted, d => d.xVal)
-    ? (maxBy(dataFormatted, d => d.xVal)?.xVal as number)
+    ? refXVal && showReference
+      ? (maxBy(dataFormatted, d => d.xVal)?.xVal as number) > refXVal
+        ? (maxBy(dataFormatted, d => d.xVal)?.xVal as number)
+        : refXVal
+      : (maxBy(dataFormatted, d => d.xVal)?.xVal as number)
     : 0;
   const xMinValue = minBy(dataFormatted, d => d.xVal)
-    ? (minBy(dataFormatted, d => d.xVal)?.xVal as number)
+    ? refXVal && showReference
+      ? (minBy(dataFormatted, d => d.xVal)?.xVal as number) < refXVal
+        ? (minBy(dataFormatted, d => d.xVal)?.xVal as number)
+        : refXVal
+      : (minBy(dataFormatted, d => d.xVal)?.xVal as number)
     : 0;
 
   const heightScale = scaleLinear()
@@ -426,7 +452,6 @@ export function Graph(props: Props) {
                 : xIndicatorMetaData.IndicatorLabelTable}
             </text>
           </g>
-
           {dataFormatted.map((d, i) => {
             const countryData =
               data[data.findIndex(el => el['Alpha-3 code'] === d.countryCode)];
@@ -543,6 +568,49 @@ export function Graph(props: Props) {
               </g>
             );
           })}
+          {refXVal && showReference ? (
+            <g>
+              <line
+                style={{
+                  stroke: 'var(--gray-700)',
+                  strokeWidth: 1.5,
+                }}
+                strokeDasharray='4,4'
+                y1={heightScale(refXVal)}
+                y2={heightScale(refXVal)}
+                x1={0 - 15}
+                x2={graphWidth}
+              />
+              <text
+                x={0}
+                y={heightScale(refXVal)}
+                style={{
+                  fill: 'var(--gray-700)',
+                }}
+                fontSize={12}
+                dy={-5}
+                dx={0 - 15}
+                fontWeight='bold'
+              >
+                {regionData?.['Alpha-3 code']}
+              </text>
+              <text
+                x={0}
+                fontWeight='bold'
+                y={heightScale(refXVal)}
+                style={{
+                  fill: 'var(--gray-700)',
+                }}
+                fontSize={12}
+                dy={15}
+                dx={0 - 15}
+              >
+                {Math.abs(refXVal) < 1
+                  ? refXVal
+                  : format('~s')(refXVal).replace('G', 'B')}
+              </text>
+            </g>
+          ) : null}
         </g>
       </svg>
       {hoverData ? <Tooltip data={hoverData} /> : null}

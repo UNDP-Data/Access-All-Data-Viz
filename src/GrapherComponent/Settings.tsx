@@ -2,20 +2,23 @@ import { useContext, useEffect, useState } from 'react';
 import { Select, Radio, Checkbox } from 'antd';
 import domtoimage from 'dom-to-image';
 import {
-  CountryListType,
-  CtxDataType,
-  IndicatorMetaDataWithYear,
-} from '../Types';
+  ChevronDownCircle,
+  ChevronRightCircle,
+  Database,
+  FileDown,
+} from 'lucide-react';
+import sortBy from 'lodash.sortby';
+import { CountryListType, CtxDataType, IndicatorMetaDataType } from '../Types';
 import Context from '../Context/Context';
 import {
   DEFAULT_VALUES,
   INCOME_GROUPS,
   SIGNATURE_SOLUTIONS_LIST,
 } from '../Constants';
-import { ChevronDown, ChevronLeft } from '../Icons';
+import IndicatorSelector from '../Components/IndicatorSelector';
 
 interface Props {
-  indicators: IndicatorMetaDataWithYear[];
+  indicators: IndicatorMetaDataType[];
   regions?: string[];
   countries: CountryListType[];
 }
@@ -26,6 +29,7 @@ export function Settings(props: Props) {
     graphType,
     xAxisIndicator,
     yAxisIndicator,
+    sizeIndicator,
     showLabel,
     useSameRange,
     showMostRecentData,
@@ -35,6 +39,7 @@ export function Settings(props: Props) {
     selectedRegions,
     reverseOrder,
     selectedCountryOrRegion,
+    showReference,
     dataListCountry,
     signatureSolution,
     signatureSolutionForDataList,
@@ -56,37 +61,41 @@ export function Settings(props: Props) {
     updateBarLayout,
     updateDataListCountry,
     updateSignatureSolutionForDataList,
+    updateShowReference,
   } = useContext(Context) as CtxDataType;
+  const scatterPlotIndicators = indicators.filter(d => d.ScatterPlot);
+  const mapIndicators = indicators.filter(d => d.Map);
+  const barGraphIndicators = indicators.filter(d => d.BarGraph);
+  const allIndicators = indicators;
+  const sizeIndicators = indicators.filter(d => d.Sizing);
   const options =
     graphType === 'scatterPlot'
-      ? indicators.filter(d => d.ScatterPlot).map(d => d.IndicatorLabelTable)
+      ? indicators.filter(d => d.ScatterPlot).map(d => d.DataKey)
       : graphType === 'map'
-      ? indicators.filter(d => d.Map).map(d => d.IndicatorLabelTable)
+      ? indicators.filter(d => d.Map).map(d => d.DataKey)
       : graphType === 'barGraph'
-      ? indicators.filter(d => d.BarGraph).map(d => d.IndicatorLabelTable)
-      : indicators
-          .filter(d => d.years.length > 0)
-          .map(d => d.IndicatorLabelTable);
-  const sizeOptions = indicators
-    .filter(d => d.Sizing)
-    .map(d => d.IndicatorLabelTable);
+      ? indicators.filter(d => d.BarGraph).map(d => d.DataKey)
+      : indicators.map(d => d.DataKey);
   const colorOptions = indicators
     .filter(d => d.IsCategorical)
-    .map(d => d.IndicatorLabelTable);
-  colorOptions.unshift('Human Development Index');
+    .map(d => d.DataKey);
   colorOptions.unshift('Income Groups');
   colorOptions.unshift('Continents');
   const [settingExpanded, setSettingsExpanded] = useState(true);
   const [filterExpanded, setFilterExpanded] = useState(true);
   useEffect(() => {
     if (options.findIndex(d => d === xAxisIndicator) === -1) {
-      updateXAxisIndicator(options[0]);
+      updateXAxisIndicator(
+        indicators[indicators.findIndex(d => d.DataKey === options[0])].DataKey,
+      );
     }
     if (
       options.findIndex(d => d === yAxisIndicator) === -1 &&
       graphType === 'scatterPlot'
     ) {
-      updateYAxisIndicator(options[0]);
+      updateYAxisIndicator(
+        indicators[indicators.findIndex(d => d.DataKey === options[0])].DataKey,
+      );
     }
   }, [graphType, options]);
   return (
@@ -95,30 +104,26 @@ export function Settings(props: Props) {
         <div className='settings-sections-options-container'>
           {graphType !== 'dataList' ? (
             <div className='settings-option-div'>
-              <p className='label'>
-                {graphType === 'scatterPlot'
-                  ? 'X-Axis'
-                  : graphType === 'map'
-                  ? 'Primary Indicator to color region'
-                  : 'Primary Indicator'}
-              </p>
-              <Select
-                showSearch
-                maxTagCount='responsive'
-                className='undp-select'
-                placeholder='Please select'
-                value={xAxisIndicator}
-                onChange={d => {
-                  updateXAxisIndicator(d);
-                }}
-                defaultValue={DEFAULT_VALUES.firstMetric}
-              >
-                {options.map(d => (
-                  <Select.Option className='undp-select-option' key={d}>
-                    {d}
-                  </Select.Option>
-                ))}
-              </Select>
+              <IndicatorSelector
+                title={
+                  graphType === 'scatterPlot'
+                    ? 'X-Axis'
+                    : graphType === 'map'
+                    ? 'Primary Indicator to color region'
+                    : 'Primary Indicator'
+                }
+                indicators={
+                  graphType === 'scatterPlot'
+                    ? scatterPlotIndicators
+                    : graphType === 'map'
+                    ? mapIndicators
+                    : graphType === 'barGraph'
+                    ? barGraphIndicators
+                    : allIndicators
+                }
+                selectedIndicator={xAxisIndicator}
+                updateIndicator={updateXAxisIndicator}
+              />
             </div>
           ) : (
             <>
@@ -175,99 +180,42 @@ export function Settings(props: Props) {
               </div>
             </>
           )}
-          {graphType === 'scatterPlot' ? (
+          {graphType === 'scatterPlot' ||
+          graphType === 'map' ||
+          graphType === 'trendLine' ? (
             <div className='settings-option-div'>
-              <p className='label'>Y-Axis</p>
-              <Select
-                className='undp-select'
-                showSearch
-                maxTagCount='responsive'
-                style={{ width: '100%' }}
-                value={yAxisIndicator}
-                placeholder='Please select'
-                onChange={d => {
-                  updateYAxisIndicator(d);
-                }}
-              >
-                {options.map(d => (
-                  <Select.Option className='undp-select-option' key={d}>
-                    {d}
-                  </Select.Option>
-                ))}
-              </Select>
-            </div>
-          ) : graphType === 'map' ? (
-            <div className='settings-option-div'>
-              <p className='label'>Secondary Indicator (optional)</p>
-              <Select
-                className='undp-select'
-                showSearch
-                allowClear
-                maxTagCount='responsive'
-                clearIcon={<div className='clearIcon' />}
-                style={{ width: '100%' }}
-                value={yAxisIndicator}
-                placeholder='Please select'
-                onChange={d => {
-                  updateYAxisIndicator(d);
-                }}
-              >
-                {options.map(d => (
-                  <Select.Option className='undp-select-option' key={d}>
-                    {d}
-                  </Select.Option>
-                ))}
-              </Select>
-            </div>
-          ) : graphType === 'trendLine' ? (
-            <div className='settings-option-div'>
-              <p className='label'>Secondary Indicator (optional)</p>
-              <Select
-                className='undp-select'
-                showSearch
-                allowClear
-                clearIcon={<div className='clearIcon' />}
-                style={{ width: '100%' }}
-                value={yAxisIndicator}
-                placeholder='Please select'
-                onChange={d => {
-                  updateYAxisIndicator(d);
-                }}
-              >
-                {options.map(d => (
-                  <Select.Option className='undp-select-option' key={d}>
-                    {d}
-                  </Select.Option>
-                ))}
-              </Select>
+              <IndicatorSelector
+                title={
+                  graphType === 'scatterPlot'
+                    ? 'Y-Axis'
+                    : 'Secondary Indicator (optional)'
+                }
+                indicators={
+                  graphType === 'scatterPlot'
+                    ? scatterPlotIndicators
+                    : graphType === 'map'
+                    ? mapIndicators
+                    : allIndicators
+                }
+                selectedIndicator={yAxisIndicator}
+                updateIndicator={updateYAxisIndicator}
+                isOptional={graphType !== 'scatterPlot'}
+              />
             </div>
           ) : null}
           {graphType === 'map' || graphType === 'scatterPlot' ? (
             <div className='settings-option-div'>
-              <p className='label'>
-                {graphType === 'map'
-                  ? 'Choose an indicator to overlay'
-                  : 'Size By'}{' '}
-                (optional)
-              </p>
-              <Select
-                className='undp-select'
-                allowClear
-                maxTagCount='responsive'
-                clearIcon={<div className='clearIcon' />}
-                showSearch
-                style={{ width: '100%' }}
-                placeholder='Size By'
-                onChange={d => {
-                  updateSizeIndicator(d);
-                }}
-              >
-                {sizeOptions.map(d => (
-                  <Select.Option className='undp-select-option' key={d}>
-                    {d}
-                  </Select.Option>
-                ))}
-              </Select>
+              <IndicatorSelector
+                title={
+                  graphType === 'map'
+                    ? 'Choose an indicator to overlay (optional)'
+                    : 'Size by (optional)'
+                }
+                indicators={sizeIndicators}
+                selectedIndicator={sizeIndicator}
+                updateIndicator={updateSizeIndicator}
+                isOptional
+              />
             </div>
           ) : null}
           {graphType === 'barGraph' || graphType === 'scatterPlot' ? (
@@ -281,13 +229,31 @@ export function Settings(props: Props) {
                   style={{ width: '100%' }}
                   placeholder='Color By'
                   onChange={d => {
-                    updateColorIndicator(d);
+                    const indx = indicators.findIndex(
+                      indicator => indicator.DataKey === d,
+                    );
+                    updateColorIndicator(
+                      indx === -1 ? d : indicators[indx].DataKey,
+                    );
                   }}
                   defaultValue={DEFAULT_VALUES.colorMetric}
                 >
                   {colorOptions.map(d => (
-                    <Select.Option className='undp-select-option' key={d}>
-                      {d}
+                    <Select.Option
+                      className='undp-select-option'
+                      key={
+                        indicators.findIndex(el => el.DataKey === d) === -1
+                          ? d
+                          : indicators[
+                              indicators.findIndex(el => el.DataKey === d)
+                            ].IndicatorLabelTable
+                      }
+                    >
+                      {indicators.findIndex(el => el.DataKey === d) === -1
+                        ? d
+                        : indicators[
+                            indicators.findIndex(el => el.DataKey === d)
+                          ].IndicatorLabelTable}
                     </Select.Option>
                   ))}
                 </Select>
@@ -296,19 +262,26 @@ export function Settings(props: Props) {
           ) : null}
         </div>
         {graphType !== 'dataList' ? (
-          <div className='flex-div flex-wrap margin-top-05'>
+          <div className='flex-div flex-wrap margin-top-06 margin-bottom-03 gap-06'>
             <button
-              className='undp-button button-primary'
+              className='undp-button button-tertiary'
               type='button'
+              style={{ color: 'var(--blue-600)', padding: 0 }}
               onClick={() => {
                 updateShowSource(true);
               }}
             >
-              Download Data
+              <Database
+                stroke='var(--blue-600)'
+                style={{ marginRight: '0.25rem' }}
+                strokeWidth={1.5}
+              />
+              Data Sources
             </button>
             <button
-              className='undp-button button-secondary'
+              className='undp-button button-tertiary'
               type='button'
+              style={{ color: 'var(--blue-600)', padding: 0 }}
               onClick={() => {
                 const node = document.getElementById(
                   'graph-node',
@@ -323,6 +296,11 @@ export function Settings(props: Props) {
                   });
               }}
             >
+              <FileDown
+                strokeWidth={1.5}
+                stroke='var(--blue-600)'
+                style={{ marginRight: '0.25rem' }}
+              />
               Download Graph
             </button>
           </div>
@@ -338,13 +316,11 @@ export function Settings(props: Props) {
               setSettingsExpanded(!settingExpanded);
             }}
           >
-            <div>
-              {settingExpanded ? (
-                <ChevronDown fill='#212121' size={18} />
-              ) : (
-                <ChevronLeft fill='#212121' size={18} />
-              )}
-            </div>
+            {settingExpanded ? (
+              <ChevronDownCircle stroke='#212121' size={18} />
+            ) : (
+              <ChevronRightCircle stroke='#212121' size={18} />
+            )}
             <h6 className='undp-typography margin-bottom-00'>
               Settings & Options
             </h6>
@@ -378,6 +354,18 @@ export function Settings(props: Props) {
                 >
                   Show Most Recent Available Data
                 </Checkbox>
+                {graphType === 'scatterPlot' ? (
+                  <Checkbox
+                    style={{ margin: 0 }}
+                    className='undp-checkbox'
+                    checked={showReference}
+                    onChange={e => {
+                      updateShowReference(e.target.checked);
+                    }}
+                  >
+                    Show World/Regional Reference
+                  </Checkbox>
+                ) : null}
                 {graphType === 'barGraph' ? (
                   <>
                     <Checkbox
@@ -400,6 +388,16 @@ export function Settings(props: Props) {
                       }}
                     >
                       Show Largest First
+                    </Checkbox>
+                    <Checkbox
+                      style={{ margin: 0 }}
+                      className='undp-checkbox'
+                      checked={showReference}
+                      onChange={e => {
+                        updateShowReference(e.target.checked);
+                      }}
+                    >
+                      Show World/Regional Reference
                     </Checkbox>
                   </>
                 ) : null}
@@ -431,16 +429,28 @@ export function Settings(props: Props) {
               </>
             ) : null}
             {graphType === 'multiCountryTrendLine' ? (
-              <Checkbox
-                style={{ margin: 0 }}
-                className='undp-checkbox'
-                checked={showLabel}
-                onChange={e => {
-                  updateShowLabel(e.target.checked);
-                }}
-              >
-                Show Label
-              </Checkbox>
+              <>
+                <Checkbox
+                  style={{ margin: 0 }}
+                  className='undp-checkbox'
+                  checked={showLabel}
+                  onChange={e => {
+                    updateShowLabel(e.target.checked);
+                  }}
+                >
+                  Show Label
+                </Checkbox>
+                <Checkbox
+                  style={{ margin: 0 }}
+                  className='undp-checkbox'
+                  checked={showReference}
+                  onChange={e => {
+                    updateShowReference(e.target.checked);
+                  }}
+                >
+                  Show World/Regional Reference
+                </Checkbox>
+              </>
             ) : null}
           </div>
         </div>
@@ -459,13 +469,11 @@ export function Settings(props: Props) {
               setFilterExpanded(!filterExpanded);
             }}
           >
-            <div>
-              {filterExpanded ? (
-                <ChevronDown fill='#212121' size={18} />
-              ) : (
-                <ChevronLeft fill='#212121' size={18} />
-              )}
-            </div>
+            {filterExpanded ? (
+              <ChevronDownCircle stroke='#212121' size={18} />
+            ) : (
+              <ChevronRightCircle stroke='#212121' size={18} />
+            )}
             <h6 className='undp-typography margin-bottom-00'>
               Filter or Highlight By
             </h6>
@@ -476,7 +484,7 @@ export function Settings(props: Props) {
           >
             {regions ? (
               <div className='settings-option-div'>
-                <p className='label'>Region</p>
+                <p className='label'>Filter by regions</p>
                 <Select
                   className='undp-select'
                   mode='multiple'
@@ -484,22 +492,28 @@ export function Settings(props: Props) {
                   allowClear
                   clearIcon={<div className='clearIcon' />}
                   style={{ width: '100%' }}
-                  placeholder='Filter By Regions'
+                  placeholder='All regions'
                   value={selectedRegions}
                   onChange={(d: string[]) => {
                     updateSelectedRegions(d);
                   }}
                 >
-                  {regions.map(d => (
-                    <Select.Option className='undp-select-option' key={d}>
-                      {d}
-                    </Select.Option>
-                  ))}
+                  {regions
+                    .filter(d => d !== '')
+                    .map((d, i) => (
+                      <Select.Option
+                        className='undp-select-option'
+                        value={d}
+                        key={i}
+                      >
+                        {d}
+                      </Select.Option>
+                    ))}
                 </Select>
               </div>
             ) : null}
             <div className='settings-option-div'>
-              <p className='label'>Income Group</p>
+              <p className='label'>Filter by income group</p>
               <Select
                 className='undp-select'
                 mode='multiple'
@@ -507,7 +521,7 @@ export function Settings(props: Props) {
                 allowClear
                 clearIcon={<div className='clearIcon' />}
                 style={{ width: '100%' }}
-                placeholder='Filter By Income Group'
+                placeholder='All Income Groups'
                 value={selectedIncomeGroups}
                 onChange={(d: string[]) => {
                   updateSelectedIncomeGroups(d);
@@ -521,7 +535,7 @@ export function Settings(props: Props) {
               </Select>
             </div>
             <div>
-              <p className='label'>Country Groups</p>
+              <p className='label'>Filter by country group</p>
               <Radio.Group
                 onChange={d => {
                   updateSelectedCountryGroup(d.target.value);
@@ -543,7 +557,7 @@ export function Settings(props: Props) {
               </Radio.Group>
             </div>
             <div className='settings-option-div'>
-              <p className='label'>Countries</p>
+              <p className='label'>Filter by countries</p>
               <Select
                 className='undp-select'
                 mode='multiple'
@@ -552,13 +566,13 @@ export function Settings(props: Props) {
                 clearIcon={<div className='clearIcon' />}
                 style={{ width: '100%' }}
                 value={selectedCountries}
-                placeholder='Filter By Countries'
+                placeholder='All Countries'
                 onChange={(d: string[]) => {
                   updateSelectedCountries(d);
                   updateMultiCountryTrendChartCountries(d);
                 }}
               >
-                {countries
+                {sortBy(countries, d => d.name)
                   .map(d => d.name)
                   .map(d => (
                     <Select.Option className='undp-select-option' key={d}>

@@ -1,21 +1,23 @@
 import { CSVLink } from 'react-csv';
-import { CountryGroupDataType, IndicatorMetaDataWithYear } from '../Types';
+import flattenDeep from 'lodash.flattendeep';
+import { CountryGroupDataType, IndicatorMetaDataType } from '../Types';
 import DownloadExcel from './DownloadExcel';
+import { GetYearsArray } from '../Utils/GetYearsArray';
 
 interface Props {
-  indicatorData: IndicatorMetaDataWithYear;
+  indicatorData: IndicatorMetaDataType;
   data: CountryGroupDataType[];
 }
 
 const dataTable = (
   data: CountryGroupDataType[],
-  indicator: IndicatorMetaDataWithYear,
+  indicator: IndicatorMetaDataType,
 ) => {
   const table: any = [];
   data.forEach(d => {
     const country = d['Country or Area'];
     const countryCode = d['Alpha-3 code'];
-    indicator.years.forEach(year => {
+    GetYearsArray(data, indicator).forEach(year => {
       if (
         d.indicators.findIndex(ind => ind.indicator === indicator.DataKey) !==
         -1
@@ -44,13 +46,25 @@ const dataTable = (
 
 const dataTableForExcel = (
   data: CountryGroupDataType[],
-  indicator: IndicatorMetaDataWithYear,
+  indicator: IndicatorMetaDataType,
 ) => {
   const table: any = [];
+  const yrs: number[][] = [];
+  data.forEach(d => {
+    const indicatorIndx = d.indicators.findIndex(
+      el => el.indicator === indicator.DataKey,
+    );
+    if (indicatorIndx !== -1) {
+      const yrsArray = d.indicators[indicatorIndx].yearlyData.map(
+        el => el.year,
+      );
+      yrs.push(yrsArray);
+    }
+  });
   data.forEach(d => {
     const country = d['Country or Area'];
     const countryCode = d['Alpha-3 code'];
-    indicator.years.forEach(year => {
+    flattenDeep(yrs).forEach(year => {
       if (
         d.indicators.findIndex(ind => ind.indicator === indicator.DataKey) !==
         -1
@@ -108,7 +122,7 @@ export function DataSourceListItem(props: Props) {
           Years Available
         </h6>
         <div className='flex-div flex-wrap'>
-          {indicatorData.years.map((d, i) => (
+          {GetYearsArray(data, indicatorData).map((d, i) => (
             <div className='undp-chip undp-chip-small' key={i}>
               {d}
             </div>

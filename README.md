@@ -17,7 +17,6 @@
 * [Local Deployment](#section-08)
 * [Available Scripts](#section-09)
 * [Tooling Setup](#section-10)
-* [Contact](#section-11)
 
 ## Link for the visualization<a name="section-01"></a>
 [https://zealous-sky-017344110.2.azurestaticapps.net](https://zealous-sky-017344110.2.azurestaticapps.net)
@@ -38,41 +37,37 @@ There are many type of visualization in this page:
 
 This is the parent visualization with all the data for all the countries. This visualization is used in teh __Access All Data__ page in DFP.
 
-![Main Viz Image](readMeImgs/mainViz.png)
-
-Main visualization `Explore All Data` will be rendered within the following div on a static page:
+Main visualization `Access All Data` will be rendered within the following div on a static page:
 ```
 <div data-bucket-embed></div>
 ```
+
+_Key Features_
+* Data Explorer: For visualizing all the data for the world. Allow user to visualize all the countries together or focus on a single country. 
+* Aggregated Data Explorer: For visualizing all the aggregated data at the World level. (Future development: Allowing user to create there own country grouping)
+* Datasets: List all the data used in teh visualization and allow user to download datasets in Excel format
 ___
 
 ### Country Level Visualization<a name="section-02-02"></a>
 
-This is the visualization which are embedded in the country pages. There two subcategories here:
-
-#### With the summary visualization on the top categorized by signature solutions
-
-![Main Viz Image](readMeImgs/countryViz01.png)
+This is the visualization which are embedded in the country pages. 
 
 This visualization will be rendered within the following div on a static page:
 
 ```
 <div class="country~<Use Country Alpha-3 Code Here>" data-bucket-country-embed></div>
 ```
-___
-
-#### Without the summary visualization on the top
-
-![Main Viz Image](readMeImgs/countryViz02.png)
-
-This visualization will be rendered within the following div on a static page:
-```
-<div class="country~<Use Country Alpha-3 Code Here>" data-bucket-country-without-summary-embed></div>
-```
 
 _The difference between country visualization and main visualization are as follow:_
 * Country viz only uses the selected country data
 * Country viz don't have maps, scatter plot, bar charts and multi-line chart
+
+_Key Features_
+* Data Explorer: For visualizing all the data for the country
+* Sub National Data: For visualizing available sub-national data for the country (This tab only appear for the countries that have sub-national data available)
+* SDG Tracker: For visualizing the SDG progress
+* SDG Data Explorer: For exploring SDG related data organized based on SDGs and targets and indicators
+* About: Description of the country and some key links if available
 ___
 
 ### Regional Level Visualization<a name="section-02-03"></a>
@@ -80,8 +75,6 @@ ___
 This is the visualization which are embedded in the regional pages. There four subcategories here:
 
 #### Main regional level visualization
-
-![Main Viz Image](readMeImgs/regionViz01.png)
 
 This visualization will be rendered within the following div on a static page:
 ```
@@ -92,49 +85,21 @@ _The difference between this visualization and main visualization are as follow:
 * Country viz only uses the aggregated region data
 * Country viz don't have maps, scatter plot, bar charts and multi-line chart
 
-_Please note the region AP is treated differently as its split in 2 sub-regions SA and EAP_
-
-#### Country Profile with country selection within the region
-
-![Main Viz Image](readMeImgs/regionViz02.png)
-
-This visualization will be rendered within the following div on a static page:
-```
-<div class="region~<Use Region Code Here>" data-bucket-region-country-embed></div>
-```
-
 _This visualization is very similar to the Country Level visualization with some key difference:_
 * Users have the ability to select a country they want to focus
 * Summary visualization on the top are not categorized by signature solutions, but some key data points are used for this
 
-#### Regional visualization comparing countries within the region
-
-![Main Viz Image](readMeImgs/regionViz03.png)
-
-This visualization will be rendered within the following div on a static page:
-```
-<div class="region~<Use Region Code Here>" data-bucket-region-countries-embed></div>
-```
-
-_This visualization is very similar to the Main visualization with some key difference:_
-* Maps are not available
-* The visualization only focusses on the countries that belong to a region
-
-#### With tabs with each above mentioned visualization
-
-This visualization will be rendered within the following div on a static page:
-```
-<div class="region~<Use Region Code Here>" data-bucket-region-embed-main></div>
-```
-_This visualization is a combination of above mentioned visualization on different tabs. This is the one that is embedded in the region pages_
+_Key Features_
+* Data Explorer: For visualizing all the data for the region. Allow user to visualize all the countries within the region together or focus on a single country. 
+* Aggregated Data Explorer: For visualizing all the aggregated data at the region level. (Future development: Allowing user to create there own country grouping)
+* Datasets: List all the data used in teh visualization and allow user to download datasets in Excel format
+* About: Description of the region and some key links if available
 
 Available values of region code in the class element:
 * AP (for Asia and the Pacific)
 * AS (for Arab States)
-* EAP (for East Asia and Pacific)
 * ECA (for Europe and Central Asia)
 * LAC (for Latin America and the Caribbean)
-* SA (for South Asia)
 * SSA (for Sub Saharan Africa)
 ___
 
@@ -143,40 +108,17 @@ This is the visualization which are embedded in the signature solution pages. Th
 
 #### With the visualization data filtered by signature solutions
 
-![Main Viz Image](readMeImgs/ssViz01.png)
-
 This visualization will be rendered within the following div on a static page:
 ```
 <div class="signatureSolution~<Use Signature Solution Here>" data-bucket-ss-embed></div>
 ```
+
+_Key Features_
+* Data Explorer: For visualizing all the data related to a signature solution. Allow user to visualize all the countries together or focus on a single country. 
+* Datasets: List all the data used in teh visualization and allow user to download datasets in Excel format
+* About: Description of the region and some key links if available
 
 _This visualization is very similar to the Main visualization the only difference are available data sets under the selected signature solution category are shown_
-
-#### Country Profile with country selection
-
-![Main Viz Image](readMeImgs/ssViz02.png)
-
-This visualization will be rendered within the following div on a static page:
-```
-<div class="signatureSolution~<Use Signature Solution Here>" data-bucket-ss-country-embed></div>
-```
-
-![Main Viz Image](readMeImgs/ssViz01.png)
-
-This visualization will be rendered within the following div on a static page:
-```
-<div class="signatureSolution~<Use Signature Solution Here>" data-bucket-ss-embed></div>
-```
-
-_This visualization is very similar to `Country Profile with country selection within the region` of __regional level visualization__ with different set of data set for the summary visualizations at teh top. The indicator depends on the selected signature solution_
-
-#### With tabs with each above mentioned visualization
-
-This visualization will be rendered within the following div on a static page:
-```
-<div class="signatureSolution~<Use Signature Solution Here>" data-bucket-ss-country-embed-main></div>
-```
-_This visualization is a combination of above mentioned visualization on different tabs. This is the one that is embedded in the Signature Solutions pages_
 
 Available values for Signature solutions in the class element (Note: _Replace ` ` with a `+`_):
 * Poverty+and+Inequality
@@ -204,8 +146,8 @@ Apart from the mentioned `div` above the following `script` and `link` needs to 
 * [Signature Solution - Energy](https://data.undp.com/topics/energy)
 * [Signature Solution - Environment](https://data.undp.com/topics/environment)
 * [Signature Solution - Gender Equality](https://data.undp.com/topics/gender-equality)
-* This is also used in the Country pages in DFP. For ex. [here](https://data.undp.acsitefactory.com/countries/AFG)
-* This is also used in the Regional pages in DFP. For ex. [here](https://data.undp.acsitefactory.com/countries/AFG)
+* This is also used in the Country pages in DFP. For ex. [here](https://data.undp.com/countries/AFG)
+* This is also used in the Regional pages in DFP. For ex. [here](https://data.undp.com/countries/AFG)
 
 ## Related Repos<a name="section-04"></a>
 * [__Indicators-MetaData__](https://github.com/UNDP-Data/Indicators-MetaData): This is the metadata sheet for indicators used in the visualization
@@ -225,6 +167,7 @@ __Link for stylesheets__
 * __React__: Used as MVC framework.
 * __styled-components__: Utilizes tagged template literals and the power of CSS, allows to write actual CSS code to style the components in JS/TS.
 * __Various D3 Libraries__: Used for visualizations, adding interaction and reading the csv data file.
+* __MapLibre__: This is package for creating sub-national maps.
 * __AntD__: For UI elements like dropdown, buttons, checkbox, and slider.
 * __dom-to-image__: Used to allow users to download images of various visualization views they create.
 * __lodash__: Used for manipulating and iterating arrays and objects.
@@ -263,5 +206,3 @@ This project uses ESLint integrated with prettier, which verifies and formats yo
 
 This project is build in Visual Studio Code, therefore the project is already set up to work with. Install it from [here](https://code.visualstudio.com/) and then install this [eslint plugin](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) and you should be good to go.
 
-## Contact<a name="section-11"></a>
-[**Mustafa Saifee**](mailto:mustafa.saifee@undp.org)

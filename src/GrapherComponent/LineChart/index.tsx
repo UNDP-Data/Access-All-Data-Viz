@@ -6,14 +6,14 @@ import {
   CountryGroupDataType,
   CountryListType,
   CtxDataType,
-  IndicatorMetaDataWithYear,
+  IndicatorMetaDataType,
 } from '../../Types';
 import { DualAxisGraph } from './DualAxisGraph';
 import { SingleAxisGraph } from './SingleAxisGraph';
 
 interface Props {
   data: CountryGroupDataType[];
-  indicators: IndicatorMetaDataWithYear[];
+  indicators: IndicatorMetaDataType[];
   countries: CountryListType[];
 }
 
@@ -39,7 +39,6 @@ export function LineChart(props: Props) {
     selectedCountryOrRegion,
     yAxisIndicator,
   } = useContext(Context) as CtxDataType;
-
   const [svgWidth, setSvgWidth] = useState(0);
   const [svgHeight, setSvgHeight] = useState(0);
   const graphDiv = useRef<HTMLDivElement>(null);

@@ -1,5 +1,5 @@
 import { useContext, useEffect, useRef, useState } from 'react';
-import { geoEqualEarth } from 'd3-geo';
+import { geoWinkel3 } from 'd3-geo-projection';
 import { zoom } from 'd3-zoom';
 import { format } from 'd3-format';
 import { select } from 'd3-selection';
@@ -12,19 +12,21 @@ import {
   CtxDataType,
   HoverDataType,
   HoverRowDataType,
-  IndicatorMetaDataWithYear,
+  IndicatorMetaDataType,
 } from '../../Types';
 import Context from '../../Context/Context';
 import World from '../../Data/worldMap.json';
 import { Tooltip } from '../../Components/Tooltip';
+import { COUNTRIES_BY_UNDP_REGIONS, MAP_SETTINGS } from '../../Constants';
 
 interface Props {
   data: CountryGroupDataType[];
-  indicators: IndicatorMetaDataWithYear[];
+  indicators: IndicatorMetaDataType[];
+  UNDPRegion?: string;
 }
 
 export function UnivariateMap(props: Props) {
-  const { data, indicators } = props;
+  const { data, indicators, UNDPRegion } = props;
   const {
     year,
     xAxisIndicator,
@@ -35,35 +37,42 @@ export function UnivariateMap(props: Props) {
     selectedIncomeGroups,
     selectedCountryGroup,
   } = useContext(Context) as CtxDataType;
+  const dataFilteredByUNDPRegion =
+    !UNDPRegion || UNDPRegion === 'WLD'
+      ? data
+      : data.filter(
+          el =>
+            COUNTRIES_BY_UNDP_REGIONS[
+              COUNTRIES_BY_UNDP_REGIONS.findIndex(
+                r => r.region === `UNDP_${UNDPRegion}`,
+              )
+            ].Countries.indexOf(el['Alpha-3 code']) !== -1,
+        );
   const [selectedColor, setSelectedColor] = useState<string | undefined>(
     undefined,
   );
   const [hoverData, setHoverData] = useState<HoverDataType | undefined>(
     undefined,
   );
-  const queryParams = new URLSearchParams(window.location.search);
-  const svgWidth =
-    queryParams.get('showSettings') === 'false' && window.innerWidth > 960
-      ? 1280
-      : 960;
+  const svgWidth = 960;
   const svgHeight = 678;
   const mapSvg = useRef<SVGSVGElement>(null);
   const mapG = useRef<SVGGElement>(null);
-  const projection = geoEqualEarth()
+  const projection = geoWinkel3()
     .rotate([0, 0])
-    .scale(180)
-    .translate([470, 315]);
+    .scale(
+      MAP_SETTINGS[MAP_SETTINGS.findIndex(d => d.region === UNDPRegion)].scale,
+    )
+    .translate(
+      MAP_SETTINGS[MAP_SETTINGS.findIndex(d => d.region === UNDPRegion)].center,
+    );
   const xIndicatorMetaData =
     indicators[
-      indicators.findIndex(
-        indicator => indicator.IndicatorLabelTable === xAxisIndicator,
-      )
+      indicators.findIndex(indicator => indicator.DataKey === xAxisIndicator)
     ];
   const sizeIndicatorMetaData =
     indicators[
-      indicators.findIndex(
-        indicator => indicator.IndicatorLabelTable === sizeIndicator,
-      )
+      indicators.findIndex(indicator => indicator.DataKey === sizeIndicator)
     ];
   const valueArray = xIndicatorMetaData.IsCategorical
     ? xIndicatorMetaData.Categories
@@ -98,7 +107,7 @@ export function UnivariateMap(props: Props) {
 
   const maxRadiusValue = [0];
   if (sizeIndicator) {
-    data.forEach(d => {
+    dataFilteredByUNDPRegion.forEach(d => {
       const indicatorIndex = d.indicators.findIndex(
         el => sizeIndicatorMetaData.DataKey === el.indicator,
       );
@@ -144,7 +153,7 @@ export function UnivariateMap(props: Props) {
       >
         <g ref={mapG}>
           {(World as any).features.map((d: any, i: number) => {
-            const index = data.findIndex(
+            const index = dataFilteredByUNDPRegion.findIndex(
               (el: any) => el['Alpha-3 code'] === d.properties.ISO3,
             );
             if (index !== -1 || d.properties.NAME === 'Antarctica') return null;
@@ -200,7 +209,7 @@ export function UnivariateMap(props: Props) {
               </g>
             );
           })}
-          {data.map((d, i: number) => {
+          {dataFilteredByUNDPRegion.map((d, i: number) => {
             const index = (World as any).features.findIndex(
               (el: any) => d['Alpha-3 code'] === el.properties.ISO3,
             );
@@ -387,8 +396,8 @@ export function UnivariateMap(props: Props) {
                 .filter(
                   (d: any) =>
                     d.properties.ISO3 ===
-                    data[
-                      data.findIndex(
+                    dataFilteredByUNDPRegion[
+                      dataFilteredByUNDPRegion.findIndex(
                         el => el['Country or Area'] === hoverData?.country,
                       )
                     ]['Alpha-3 code'],
@@ -455,7 +464,7 @@ export function UnivariateMap(props: Props) {
             : null}
           {sizeIndicatorMetaData ? (
             <>
-              {data.map((d, i) => {
+              {dataFilteredByUNDPRegion.map((d, i) => {
                 const sizeIndicatorIndex = d.indicators.findIndex(
                   el => sizeIndicatorMetaData.DataKey === el.indicator,
                 );

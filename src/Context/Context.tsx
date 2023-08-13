@@ -16,7 +16,7 @@ const Context = createContext<CtxDataType>({
   showLabel: false,
   showSource: false,
   trendChartCountry: undefined,
-  dataListCountry: undefined,
+  dataListCountry: 'Afghanistan',
   useSameRange: false,
   reverseOrder: true,
   verticalBarLayout: true,
@@ -30,6 +30,7 @@ const Context = createContext<CtxDataType>({
   selectedCountryOrRegion: undefined,
   signatureSolution: undefined,
   signatureSolutionForDataList: 'All',
+  showReference: false,
   updateGraphType: (
     _d:
       | 'scatterPlot'
@@ -44,7 +45,7 @@ const Context = createContext<CtxDataType>({
   updateSelectedIncomeGroups: (_d: string[]) => {},
   updateYear: (_d: number) => {},
   updateSelectedCountryGroup: (_d: 'All' | 'SIDS' | 'LLDC' | 'LDC') => {},
-  updateXAxisIndicator: (_d: string) => {},
+  updateXAxisIndicator: (_d?: string) => {},
   updateYAxisIndicator: (_d?: string) => {},
   updateColorIndicator: (_d?: string) => {},
   updateSizeIndicator: (_d?: string) => {},
@@ -57,6 +58,7 @@ const Context = createContext<CtxDataType>({
   updateMultiCountryTrendChartCountries: (_d: string[]) => {},
   updateReverseOrder: (_d: boolean) => {},
   updateBarLayout: (_d: boolean) => {},
+  updateShowReference: (_d: boolean) => {},
   updateSignatureSolutionForDataList: (
     _d:
       | 'All'

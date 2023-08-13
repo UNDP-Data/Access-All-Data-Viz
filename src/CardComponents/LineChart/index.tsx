@@ -16,6 +16,7 @@ interface Props {
   labelFormat?: string;
   source: string;
   graphDescription?: string;
+  sourceLink: string;
 }
 
 const StatCardsEl = styled.div`
@@ -38,7 +39,7 @@ const StatCardsEl = styled.div`
 
 const SourceEl = styled.div`
   font-size: 1rem;
-  color: var(--gray-500);
+  color: var(--gray-600);
 `;
 
 const StatEl = styled.h3`
@@ -74,6 +75,7 @@ export function LineChart(props: Props) {
     prefix,
     labelFormat,
     graphDescription,
+    sourceLink,
   } = props;
   const [mouseOverData, setMouseOverData] = useState<any>(
     data[data.length - 1],
@@ -147,7 +149,18 @@ export function LineChart(props: Props) {
           </StatEl>
         )}
       </div>
-      <SourceEl className='margin-top-05'>Source: {source}</SourceEl>
+      <SourceEl className='margin-top-05'>
+        Source:{' '}
+        <a
+          href={sourceLink}
+          target='_blank'
+          rel='noreferrer'
+          className='undp-style'
+          style={{ color: 'var(--gray-600)' }}
+        >
+          {source}
+        </a>
+      </SourceEl>
     </StatCardsEl>
   );
 }

@@ -5,8 +5,21 @@ export interface IndicatorDataType {
     value: number;
   }[];
 }
+
+export interface IndicatorSimplifiedDataType {
+  indicator: string;
+  countryData: {
+    'Alpha-3 code': string;
+    'Country or Area': string;
+    data: {
+      year: number;
+      value: number;
+    }[];
+  }[];
+}
+
 export interface CountryTaxonomyDataType {
-  'Alpha-3 code-1': string;
+  'Alpha-3 code': string;
   'Country or Area': string;
   'Group 1': string;
   'Group 2': string;
@@ -18,7 +31,11 @@ export interface CountryTaxonomyDataType {
   'Income group': string;
 }
 
-export interface CountryGroupDataType {
+export interface CountryGroupDataType extends CountryTaxonomyDataType {
+  indicators: IndicatorDataType[];
+}
+
+export interface CountryGroupDataFromCountryFileType {
   'Alpha-3 code': string;
   'Country or Area': string;
   'Group 1': string;
@@ -34,7 +51,6 @@ export interface CountryGroupDataType {
 
 export interface DataType extends CountryGroupDataType {
   indicators: IndicatorDataType[];
-  indicatorAvailable: string[];
 }
 
 export interface IndicatorOptionsDataType {
@@ -70,11 +86,11 @@ export interface IndicatorMetaDataType {
   RegionalAggregation: boolean;
   SSTopics: string[];
   SignatureSolution: string[];
+  id: string;
+  SDGs: string[];
+  tags: string[];
 }
 
-export interface IndicatorMetaDataWithYear extends IndicatorMetaDataType {
-  years: number[];
-}
 export interface HoverRowDataType {
   title?: string;
   value?: string | number;
@@ -121,6 +137,7 @@ export interface CtxDataType {
   verticalBarLayout: boolean;
   selectedCountryOrRegion?: string;
   signatureSolution?: string;
+  showReference: boolean;
   signatureSolutionForDataList:
     | 'All'
     | 'Energy'
@@ -143,7 +160,7 @@ export interface CtxDataType {
   updateSelectedIncomeGroups: (_d: string[]) => void;
   updateYear: (_d: number) => void;
   updateSelectedCountryGroup: (_d: 'All' | 'SIDS' | 'LLDC' | 'LDC') => void;
-  updateXAxisIndicator: (_d: string) => void;
+  updateXAxisIndicator: (_d?: string) => void;
   updateYAxisIndicator: (_d?: string) => void;
   updateColorIndicator: (_d?: string) => void;
   updateSizeIndicator: (_d?: string) => void;
@@ -156,6 +173,7 @@ export interface CtxDataType {
   updateDataListCountry: (_d: string) => void;
   updateMultiCountryTrendChartCountries: (_d: string[]) => void;
   updateBarLayout: (_d: boolean) => void;
+  updateShowReference: (_d: boolean) => void;
   updateSignatureSolutionForDataList: (
     _d:
       | 'All'
@@ -176,4 +194,192 @@ export interface CountryListType {
 export interface SubRegionsDataType {
   key: string;
   region: string;
+}
+
+export interface ValuesDataType {
+  year: number;
+  value: number;
+  label?: string;
+}
+
+export type StatusType = 'On Track' | 'Identified Gap' | 'For Review';
+
+export interface GoalStatusType {
+  goal: number;
+  noOfIndicatorsWithData: number;
+  status: StatusType | null;
+}
+
+export interface IndicatorStatusType {
+  goal: string;
+  target: string;
+  indicator: string;
+  status: StatusType | null;
+}
+
+export interface TargetStatusType {
+  goal: string;
+  target: string;
+  status: StatusType | null;
+}
+
+export interface StatusesType {
+  goalStatus: GoalStatusType[];
+  targetStatus: TargetStatusType[];
+  indicatorStatus: IndicatorStatusType[];
+}
+
+export interface TimeSeriesDataType {
+  series: string;
+  goal: string;
+  target: string;
+  indicator: string;
+  seriesDescription: string;
+  values: ValuesDataType[];
+  methodology?: {
+    targetValue?: number;
+    normativeDirection?:
+      | 'increase'
+      | 'decrease'
+      | 'not increase'
+      | 'not decrease';
+    value?: number;
+    CAGRLimit?: number[];
+    trendMethodology:
+      | 'CAGRR'
+      | 'CAGRA'
+      | 'Binary'
+      | 'Likert'
+      | 'AARRR'
+      | 'CAGRR+AARRR'
+      | 'Doubling'
+      | 'Halfing'
+      | 'SpecialGINI';
+    baselineYear: number;
+    baseYear: null | number;
+  };
+  Age?:
+    | 'ALLAGE'
+    | '<1Y'
+    | '<5Y'
+    | '15-49'
+    | '<1M'
+    | '30-70'
+    | '15+'
+    | '10-14'
+    | '15-19'
+    | '16-65'
+    | '10+'
+    | '15-24'
+    | '18-29'
+    | '20-24'
+    | '18-24'
+    | '25-44'
+    | '45-59'
+    | '60+'
+    | '7-17';
+  Location?: 'ALLAREA' | 'URBAN' | 'RURAL';
+  Sex?: 'BOTHSEX' | 'FEMALE' | 'MALE';
+  'Reporting Type'?: string;
+  Quantile?: 'B50' | '_T';
+  'Name of international institution'?:
+    | 'UNGA'
+    | 'WTO'
+    | 'IFC'
+    | 'IMF'
+    | 'ECOSOC'
+    | 'IBRD'
+    | 'UNSC'
+    | 'AFDB'
+    | 'FSB';
+  'Type of product'?: 'CLO' | 'MEO' | 'NFO' | 'ARM' | 'AGR' | 'TEX' | 'ALP';
+  'Food Waste Sector'?: 'HHS';
+  Activity?: 'ISIC4_C' | 'TOTAL' | 'INDUSTRIES' | 'ISIC4_C10T32X19' | 'ISIC4_A';
+  'Level of requirement'?: 'TOTAL';
+  'Frequency of Chlorophyll-a concentration'?: 'High';
+  'Mountain Elevation'?: '5';
+  'Type of speed'?: 'ANYS';
+  'Name of non-communicable disease'?: 'CAR';
+  'Type of occupation'?:
+    | 'DENT'
+    | '_T'
+    | 'isco08-6'
+    | 'isco08-3'
+    | 'isco08-9'
+    | 'isco08-8'
+    | 'isco08-1'
+    | 'isco08-4'
+    | 'isco08-7'
+    | 'isco08-5'
+    | 'isco08-2'
+    | 'isco08-0'
+    | 'isco08-X';
+  'IHR Capacity'?: 'IHR09';
+  'Education level'?: 'LOWSEC' | 'UPPSEC' | 'SECOND' | 'GRAD23' | 'PRIMAR';
+  'Type of skill'?: 'PCPR' | 'LITE' | 'SKILL_READ';
+  'Level/Status'?: '_T';
+  'Deviation Level'?: 'EXTREME' | 'MEDIUM';
+  'Mode of transportation'?: 'AIR' | 'ROA' | 'SEA';
+  'Type of renewable technology'?: 'SOLAR';
+  'Fiscal intervention stage'?: 'POSTFIS_CON_INC';
+  Counterpart?: 'ZM';
+  Cities?: 'JOHANNESBURG';
+  'Sampling Stations'?: 'ALGOA';
+  status?:
+    | 'Target Achieved'
+    | 'On Track'
+    | 'Target Not Achieved'
+    | 'Fair progress but acceleration needed'
+    | 'Limited or No Progress'
+    | 'Insufficient Data'
+    | 'No Data After 2015'
+    | 'Deterioration';
+  'Custodian_Agency(ies)': string;
+  'Partner_Agency(ies)': string;
+  Tier_Classification: string;
+}
+
+export interface TimeSeriesDataTypeWithStatusCode extends TimeSeriesDataType {
+  statusCode: 1 | 2 | 3 | 4 | 5 | 6;
+}
+
+export interface CountryDataType {
+  countryCode: string;
+  goalStatus: GoalStatusType[];
+  targetStatus: TargetStatusType[];
+  indicatorStatus: IndicatorStatusType[];
+  tsData: TimeSeriesDataType[];
+}
+
+export interface CoordinateDataType {
+  lat: number;
+  lon: number;
+}
+
+export interface BoundingBoxDataType {
+  sw: CoordinateDataType;
+  ne: CoordinateDataType;
+}
+
+export interface CountryBoundingBoxDataType {
+  country: string;
+  bbox: BoundingBoxDataType;
+}
+
+export interface MapLayerOptionDataType {
+  mapId: string;
+  option: string;
+  regionID: string;
+  countryID: string;
+  pmTiles: string;
+  mapLayerDetails: {
+    label: string;
+    id: string;
+    hasID: string;
+    sourceLayer: string;
+    binning: number[];
+    colorScale: string[];
+    fillSettings: any;
+    mouseOverInfoFunction: (_d: any) => JSX.Element;
+  };
 }
