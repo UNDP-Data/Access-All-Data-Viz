@@ -1,5 +1,7 @@
-import { COUNTRIES_FULL_NAME_BY_UNDP_REGION } from '../Constants';
-import AboutText from '../Data/AboutText.json';
+import {
+  ABOUT_TEXT_LINKS,
+  COUNTRIES_FULL_NAME_BY_UNDP_REGION,
+} from '../Constants';
 
 interface Props {
   id: string;
@@ -8,7 +10,7 @@ interface Props {
 
 export function AboutPage(props: Props) {
   const { id, region } = props;
-  const data = AboutText[AboutText.findIndex(d => d.id === id)];
+  const data = ABOUT_TEXT_LINKS[ABOUT_TEXT_LINKS.findIndex(d => d.id === id)];
   return (
     <div className='undp-container'>
       <div className='flex-div flex-wrap'>
@@ -41,11 +43,7 @@ export function AboutPage(props: Props) {
             flexGrow: 1,
           }}
         >
-          {data.bodyText.split('\n').map((d, i) => (
-            <p className='undp-typography' key={i}>
-              {d}
-            </p>
-          ))}
+          {data.bodyText}
           <div className='margin-top-09'>
             <h3 className='undp-typography'>Resources</h3>
             {data.resource.map((d, i) => (

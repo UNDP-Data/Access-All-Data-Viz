@@ -1694,3 +1694,420 @@ export const SUB_NATIONAL_DATA_OPTIONS = [
     ],
   },
 ];
+
+export const ABOUT_TEXT_LINKS = [
+  {
+    title: 'Poverty and Inequality',
+    id: 'Poverty and Inequality',
+    bodyText: (
+      <div>
+        <p className='undp-typography'>
+          Global extreme poverty, measured by the absolute International Poverty
+          Line of $2.15 per day (in 2017 international-$), had continuously
+          declined for 30 years. Though it hit a historic low in 2015, there was
+          a 1% surge when the COVID-19 pandemic hit. Even before the COVID-19
+          pandemic, the data shows that 1.2 billion people in 111 developing
+          countries live in severe multidimensional poverty. Despite significant
+          progress in the development of national social protection floors, only
+          a quarter of the vulnerable population - all children, along with
+          people of working age and older people not covered by social insurance
+          - receive social assistance.
+        </p>
+        <p className='undp-typography'>
+          The average world loss in human development achievements - health,
+          education and income making up the HDI - due to inequality is about
+          23%. People in sub-Saharan Africa suffer the largest losses due to
+          inequality in all three dimensions, followed by South Asia and the
+          Arab States. The current global working poverty rate of 8 per cent
+          implies that employment-related incomes are not sufficient to ensure
+          decent living conditions for that proportion of the employed
+          population living in poverty or to lift them out of poverty.
+        </p>
+      </div>
+    ),
+    resource: [
+      {
+        source: 'All UNDP Publications',
+        link: 'https://www.undp.org/publications',
+      },
+      {
+        source: 'All Poverty and Inequality Related Content',
+        link: 'https://www.undp.org/tag/poverty-reduction-and-inequality',
+      },
+    ],
+  },
+  {
+    title: 'Gender Equality',
+    id: 'Gender',
+    bodyText: (
+      <div>
+        <p className='undp-typography'>
+          Gender inequalities persist, and recent shocks, including planetary
+          imbalances, the Covid-19 pandemic, the backlash against gender
+          equality and economic crises, are aggravating the current scenario for
+          women all over the world. The Gender Inequality Index (GII) reveals a
+          lack of global improvement in its dimensions, with the world value
+          stagnating at 0.465 for the past three years. Women&rsquo;s labour
+          force participation is 46%, women face disparities in earnings,
+          savings, and job security, and they are overrepresented in the
+          informal sector. Women spend three times more hours on unpaid care
+          work than men which, translated into labour market terms, would amount
+          to 2.2 billion full-time jobs annually.
+        </p>
+        <p className='undp-typography'>
+          Social norms help us understand imbalances and dynamics of power
+          behind inequalities. Biased gender social norms are widespread
+          worldwide: almost 90% of people have at least one bias. Almost half
+          the world&rsquo;s people think that men make better political leaders
+          than women do. Only 11% of heads of state are women, women hold only
+          22% of ministerial posts and 25% of parliament seats. More than a
+          quarter of the world&rsquo;s people believe that it is justifiable for
+          a man to beat his wife and 26% of women over age 15 have experienced
+          intimate partner violence.
+        </p>
+      </div>
+    ),
+    resource: [
+      {
+        source: 'All UNDP Publications',
+        link: 'https://www.undp.org/publications',
+      },
+    ],
+  },
+  {
+    title: 'Energy',
+    id: 'Energy',
+    bodyText: (
+      <div>
+        <p className='undp-typography'>
+          <span className='bold'>
+            The biggest challenge of our time is to transform the global energy
+            system into a low-carbon and net-zero emissions pathway
+          </span>
+          , fast enough to achieve the goals of the Paris Agreement, while
+          meeting the Sustainable Development Goals (SDGs), and leaving no-one
+          behind.
+        </p>
+        <p className='undp-typography'>
+          <span className='bold'>
+            UNDP&rsquo;s 2022-2025 Strategic Plan has put sustainable energy at
+            the heart of UNDP&rsquo;s mission on sustainable development,
+            aligned with the UN-Energy Plan of Action
+          </span>
+          : to catalyse unprecedented action and partnerships to provide access
+          to sustainable, affordable, and reliable energy to 500 more million
+          people by 2025 and accelerate the transition to renewable energy
+          through systemic changes that lead to inclusive green economies.
+        </p>
+        <p className='undp-typography'>
+          <span className='bold'>
+            Given its scale, the energy transition requires an integrated
+            approach that leverage synergies across SDG 7 and other SDGs
+          </span>
+          . This would make comprehensive links among climate change, the
+          environment, gender, health, governance, the economy, finance, etc.
+          Such a perspective helps to understand and manage complex
+          interactions.
+        </p>
+        <p className='undp-typography'>
+          <span className='bold'>
+            UNDP&rsquo;s Sustainable Energy Hub is designed to respond to these
+            challenges and harness networks, experience, and innovation
+          </span>
+          . It focuses on three pillars of sustainable energy for development:
+          <br />
+          <ul>
+            <li className='undp-list-item'>
+              <span className='bold'>Closing the gap in energy access</span> so
+              that marginalized people and communities gain access to
+              sustainable, clean energy and the dignity and opportunities it
+              brings
+            </li>
+            <li className='undp-list-item'>
+              <span className='bold'>accelerate a just energy transition</span>{' '}
+              through system wide changes that support a green economy by
+              bringing together the best ideas from the worlds of government,
+              business, finance, digital, and most importantly, from people,
+              communities and civil societies
+            </li>
+            <li className='undp-list-item'>
+              <span className='bold'>Scale up energy finance</span> with the
+              public and private sector, across global, regional and local
+              ecosystems for finance, innovation and investment
+            </li>
+          </ul>
+        </p>
+      </div>
+    ),
+    resource: [
+      {
+        source: 'All UNDP Publications',
+        link: 'https://www.undp.org/publications',
+      },
+      {
+        source: 'All Energy Related Content',
+        link: 'https://www.undp.org/tag/energy',
+      },
+    ],
+  },
+  {
+    title: 'Environment',
+    id: 'Environment',
+    bodyText: (
+      <div>
+        <p className='undp-typography'>
+          Sustainable development and environmental conservation are linked and
+          critical to the present and future well-being of humanity. Despite the
+          progress made over the years, there is a still a lot to do to achieve
+          the 2030 goals and targets of SDGs 11, 12, 13, 14, and 15 aimed at
+          conserving and preserving the environment. Global statistics show that
+          atmospheric concentrations continue to increase and average
+          temperatures over land have increased around twice as much as the
+          ocean. UNDP and partners are committed to providing transformative
+          environmental actions towards reducing global emissions and making the
+          environment peaceful and prosperous for people by 2030.
+        </p>
+      </div>
+    ),
+    resource: [
+      {
+        source: 'All UNDP Publications',
+        link: 'https://www.undp.org/publications',
+      },
+      {
+        source: 'All Environment Related Content',
+        link: 'https://www.undp.org/tag/environment',
+      },
+    ],
+  },
+  {
+    title: 'Resilience',
+    id: 'Resilience',
+    bodyText: (
+      <div>
+        <p className='undp-typography'>
+          A region&rsquo;s and or country&rsquo;s ability to react, recover and
+          adapt to changing circumstances is at the core of resilience.
+          Globally, resilience is needed more than ever because the scale,
+          complexity and interconnectedness of risks facing humankind is
+          unprecedented. Data related to disaster risk reduction and recovery
+          for building resilience (DRT); governance and peace-building and human
+          mobility is key in understanding risk better and applying a resilience
+          building approach.
+        </p>
+      </div>
+    ),
+    resource: [
+      {
+        source: 'All UNDP Publications',
+        link: 'https://www.undp.org/publications',
+      },
+      {
+        source: 'All Resilience Related Content',
+        link: 'https://www.undp.org/tag/resilience',
+      },
+    ],
+  },
+  {
+    title: 'Governance',
+    id: 'Governance',
+    bodyText: (
+      <div>
+        <p className='undp-typography'>
+          Sustainable development is built within strong institutions.
+          Governance incorporates the exercise of power and related
+          decision-making processes involving different state and non-state
+          actors in the provision of public goods and services. UNDP emphasises
+          the importance of governance for peaceful, just, and inclusive
+          societies. Topics and indicators related to Governance include the
+          structures and processes that are designed to ensure accountability,
+          transparency, responsiveness, rule of law, stability, equity and
+          inclusiveness, empowerment, and broad-based participation within a
+          country.
+        </p>
+      </div>
+    ),
+    resource: [
+      {
+        source: 'All UNDP Publications',
+        link: 'https://www.undp.org/publications',
+      },
+      {
+        source: 'All Governance Related Content',
+        link: 'https://www.undp.org/tag/governance',
+      },
+    ],
+  },
+  {
+    title: 'Arab States',
+    id: 'AS',
+    bodyText: (
+      <div>
+        <p className='undp-typography'>
+          There has been significant development progress in the Arab States
+          region, with mean schooling doubling in duration in the last 30 years
+          and the share of women in parliament on a significant upward
+          trajectory in the past two decades. Yet, significant challenges
+          remain. Gross National Income for women has increased significantly
+          but remains 4.5 times lower than for men, and on average girls receive
+          one year of education less than boys. The COVID-19 negative shock
+          notwithstanding, economic growth as measured by Gross National Income
+          per capita (2017 PPP$) has been largely stagnant since 2014.
+        </p>
+        <p className='undp-typography'>
+          UNDP&rsquo;s Regional Bureau for Arab States, based in New York,
+          serves as the headquarters for regional programmes in 17 locations- 16
+          countries and in the occupied Palestinian territory. An additional hub
+          in Amman, Jordan brings support and expertise closer to the country
+          offices. Priority areas in the region include tackling the
+          interconnected challenges of poverty, vulnerability, inequality and
+          exclusion, while pursing the expansion of the democratic space,
+          building resilience to the challenges of climate change and
+          transitioning to green economic pathways.
+        </p>
+      </div>
+    ),
+    resource: [
+      {
+        source: 'UNDP Regional Bureau for Arab States (RBAS)',
+        link: 'https://www.undp.org/arab-states',
+      },
+    ],
+  },
+  {
+    title: 'Asia and the Pacific',
+    id: 'AP',
+    bodyText: (
+      <div>
+        <p className='undp-typography'>
+          There has been considerable development progress in the Asia and
+          Pacific region over the last three decades with Gross National Income
+          per capita, mean years of schooling for both female and male students
+          on a significant upward trajectory. Yet, challenges remain. The
+          important economic growth has been met by increasing carbon and
+          material footprints. Furthermore, inequalities continue to take away
+          from some of the important gains in development and the income gained
+          by women is still lagging significantly behind that generated by men.
+        </p>
+        <p className='undp-typography'>
+          Twenty-four UNDP country offices covering work in 36 countries in Asia
+          and the Pacific, and the UNDP Regional Bureau for Asia and the Pacific
+          (RBAP) headquartered in New York City, work with local partners to
+          identify relevant solutions to today&rsquo;s complex and
+          trans-boundary development challenges. UNDP&rsquo;s work in the region
+          supports them in designing and implementing large scale development
+          initiatives that deliver lasting social, economic and environmental
+          improvements in the region.
+        </p>
+      </div>
+    ),
+    resource: [
+      {
+        source: 'UNDP Regional Bureau for Asia and the Pacific (RBAP)',
+        link: 'https://www.undp.org/asia-pacific',
+      },
+    ],
+  },
+  {
+    title: 'Europe and Central Asia',
+    id: 'ECA',
+    bodyText: (
+      <div>
+        <p className='undp-typography'>
+          While extreme poverty in Europe & Central Asia has largely been
+          eradicated, countries in the Western Balkans, South Caucasus and
+          Central Asia continue to face multiple development challenges. Gender
+          Inequality remains a key impediment to development, with the Gross
+          National Income per capita for women just over half than that of men.
+          Outward and transit migration flows are among the highest globally and
+          many countries in the region are experiencing extensive depletion of
+          human capital. In addition, climate change is already exerting
+          pressure on the shared natural resources and is triggering devastating
+          weather events, bringing additional strain to the conflicts and
+          governance issues in the region.
+        </p>
+        <p className='undp-typography'>
+          The goal of UNDP&rsquo;s 19 country offices in the region and the
+          Regional Bureau for Europe and Central Asia, headquartered in New
+          York, is to help eradicate poverty in all its forms, accelerate the
+          transition to sustainable development, and make sure countries and
+          people are able to withstand crises and shocks. We work to make sure
+          the most vulnerable and excluded are not left behind, develop
+          game-changing solutions to accelerate sustainable development, and
+          promote prevention and preparedness.
+        </p>
+      </div>
+    ),
+    resource: [
+      {
+        source: 'UNDP Regional Bureau for Europe and Central Asia (RBEC)',
+        link: 'https://www.undp.org/eurasia',
+      },
+    ],
+  },
+  {
+    title: 'Latin America and the Caribbean',
+    id: 'LAC',
+    bodyText: (
+      <div>
+        <p className='undp-typography'>
+          Despite significant leaps in development, challenges related to
+          inequality and economic opportunity in the region of Latin America and
+          the Caribbean remain. Across the region, the income generated by women
+          is less than 60 percent of the income generated by men. The region has
+          been hard-hit by the COVID-19 pandemic, which has stalled and in some
+          cases reversed some of the hard-earned progress in education, health,
+          and economic opportunity.
+        </p>
+        <p className='undp-typography'>
+          UNDP&rsquo;s 27 country and multi-country offices in the region and
+          the Regional Bureau for Latin America and the Caribbean support
+          countries in helping people out and preventing them from getting back
+          into poverty, boosting democratic governance and inclusive societies
+          marked by gender equality, supporting countries sustainably manage
+          natural resources and promoting climate change resilience.
+        </p>
+      </div>
+    ),
+    resource: [
+      {
+        source:
+          'UNDP Regional Bureau for Latin America and the Caribbean (RBLAC)',
+        link: 'https://www.undp.org/latin-america',
+      },
+    ],
+  },
+  {
+    title: 'Africa',
+    id: 'SSA',
+    bodyText: (
+      <div>
+        <p className='undp-typography'>
+          Overall, countries in Sub-Saharan Africa have achieved considerable
+          development progress in the past two decades. Yet significant
+          challenges remain. Sub-Saharan Africa&rsquo;s Human Development Index
+          (HDI) is 30% lower due to inequality and 5 points higher for men than
+          for women. Progress in education has been stalled as a result of the
+          COVID-19 pandemic with schooling duration significantly lower than in
+          other regions, and economic growth as measured by Gross National
+          Income per capita (2017 PPP$) has been stagnant since 2015.
+        </p>
+        <p className='undp-typography'>
+          UNDP&rsquo;s Sub-Saharan African 46 country offices and the Regional
+          Bureau for Africa (RBA) supports Africa&rsquo;s people, its
+          governments, and institutions as they seek to consolidate and
+          accelerate development gains to overcome the lingering effects of the
+          global pandemic, and effectively address the challenges that remain,
+          including: jobless growth, persistent inequalities, weak governance,
+          climate change, and persistent violent conflict.
+        </p>
+      </div>
+    ),
+    resource: [
+      {
+        source: 'UNDP Regional Bureau for Africa (RBA)',
+        link: 'https://www.undp.org/africa',
+      },
+    ],
+  },
+];
