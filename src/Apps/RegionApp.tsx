@@ -77,12 +77,11 @@ export function RegionApp(props: Props) {
           <div
             style={{
               backgroundColor: 'var(--gray-300)',
-              padding: 'var(--spacing-07)',
-              width: 'calc(100% - 4rem)',
+              width: '100%',
             }}
           >
-            <div>
-              <h2
+            <div style={{ padding: 'var(--spacing-07)' }}>
+              <h1
                 className='undp-typography margin-bottom-00'
                 style={{
                   fontFamily: 'SohneBreit,ProximaNova,sans-serif',
@@ -97,7 +96,7 @@ export function RegionApp(props: Props) {
                     )
                   ].name
                 }
-              </h2>
+              </h1>
             </div>
           </div>
           <Tabs

@@ -97,14 +97,12 @@ export function CountryApp(props: CountryProps) {
           {countryData.findIndex(d => d['Alpha-3 code'] === countryId) ===
           -1 ? (
             <div
-              className='undp-container'
               style={{
                 backgroundColor: 'var(--gray-300)',
-                padding: 'var(--spacing-07)',
-                width: 'calc(100% - 4rem)',
+                width: '100%',
               }}
             >
-              <div>
+              <div style={{ padding: 'var(--spacing-07)' }}>
                 <h4
                   className='undp-typography margin-bottom-00'
                   style={{
@@ -122,15 +120,13 @@ export function CountryApp(props: CountryProps) {
           ) : (
             <>
               <div
-                className='undp-container'
                 style={{
                   backgroundColor: 'var(--gray-300)',
-                  padding: 'var(--spacing-07)',
-                  width: 'calc(100% - 4rem)',
+                  width: '100%',
                 }}
               >
-                <div>
-                  <h2
+                <div style={{ padding: 'var(--spacing-07)' }}>
+                  <h1
                     className='undp-typography margin-bottom-03'
                     style={{
                       fontFamily: 'SohneBreit,ProximaNova,sans-serif',
@@ -145,7 +141,7 @@ export function CountryApp(props: CountryProps) {
                         )
                       ]['Country or Area']
                     }
-                  </h2>
+                  </h1>
                 </div>
               </div>
               <Tabs

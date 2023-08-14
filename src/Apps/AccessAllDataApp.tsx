@@ -26,12 +26,11 @@ export function AccessAllDataApp() {
       <div
         style={{
           backgroundColor: 'var(--gray-300)',
-          padding: 'var(--spacing-07)',
-          width: 'calc(100% - 4rem)',
+          width: '100%',
         }}
       >
-        <div>
-          <h2
+        <div style={{ padding: 'var(--spacing-07)' }}>
+          <h1
             className='undp-typography margin-bottom-06'
             style={{
               fontFamily: 'SohneBreit,ProximaNova,sans-serif',
@@ -40,7 +39,7 @@ export function AccessAllDataApp() {
             }}
           >
             Access All Data
-          </h2>
+          </h1>
           <p className='undp-typography margin-bottom-00'>
             Comprehensive hub for visualizing, exploring, and downloading an
             extensive range of datasets. Dive into a world of insights as you
