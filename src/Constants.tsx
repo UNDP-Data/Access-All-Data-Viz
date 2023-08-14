@@ -772,278 +772,6 @@ export const TargetIndicatorCount = [
 
 export const SUB_NATIONAL_DATA_OPTIONS = [
   {
-    id: 'mpi',
-    title: 'Multidimensional Poverty',
-    countryID: 'ISO',
-    regionID: 'region',
-    pmTilesSource:
-      'pmtiles://../data/PMTiles/adm_Export_jso_FeaturesToJSO.pmtiles',
-    options: [
-      {
-        label: 'Multidimensional Poverty Index',
-        id: 'MPI',
-        binning: [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 1],
-        hasID: 'MPI',
-        sourceLayer: 'adm_Export_jso_FeaturesToJSO',
-        colorScale: UNDPColorModule.sequentialColors.negativeColorsx07,
-        fillSettings: [
-          'interpolate',
-          ['linear'],
-          ['get', 'MPI'],
-          0,
-          UNDPColorModule.sequentialColors.negativeColorsx07[0],
-          0.0999,
-          UNDPColorModule.sequentialColors.negativeColorsx07[0],
-          0.1,
-          UNDPColorModule.sequentialColors.negativeColorsx07[1],
-          0.1999,
-          UNDPColorModule.sequentialColors.negativeColorsx07[1],
-          0.2,
-          UNDPColorModule.sequentialColors.negativeColorsx07[2],
-          0.2999,
-          UNDPColorModule.sequentialColors.negativeColorsx07[2],
-          0.3,
-          UNDPColorModule.sequentialColors.negativeColorsx07[3],
-          0.3999,
-          UNDPColorModule.sequentialColors.negativeColorsx07[3],
-          0.4,
-          UNDPColorModule.sequentialColors.negativeColorsx07[4],
-          0.4999,
-          UNDPColorModule.sequentialColors.negativeColorsx07[4],
-          0.5,
-          UNDPColorModule.sequentialColors.negativeColorsx07[5],
-          0.5999,
-          UNDPColorModule.sequentialColors.negativeColorsx07[5],
-          0.6,
-          UNDPColorModule.sequentialColors.negativeColorsx07[6],
-          1,
-          UNDPColorModule.sequentialColors.negativeColorsx07[6],
-        ],
-        mouseOverInfoFunction: (d: any) => {
-          return (
-            <div
-              style={{
-                fontSize: '0.875rem',
-              }}
-            >
-              <p
-                className='undp-typography margin-bottom-00'
-                style={{
-                  fontSize: '0.875rem',
-                }}
-              >
-                {d.region}{' '}
-                <span style={{ color: 'var(--gray-500)' }}>({d.country})</span>
-              </p>
-              <p
-                className='undp-typography bold margin-bottom-00'
-                style={{
-                  fontSize: '0.875rem',
-                }}
-              >
-                {d.MPI}
-              </p>
-            </div>
-          );
-        },
-      },
-      {
-        label: 'Headcount Ratio (%)',
-        id: 'headcountRatio',
-        hasID: 'Headcount Ratio (H, %)',
-        sourceLayer: 'adm_Export_jso_FeaturesToJSO',
-        binning: [10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
-        colorScale: UNDPColorModule.sequentialColors.negativeColorsx10,
-        fillSettings: [
-          'interpolate',
-          ['linear'],
-          ['get', 'Headcount Ratio (H, %)'],
-          0,
-          UNDPColorModule.sequentialColors.negativeColorsx10[0],
-          9.999,
-          UNDPColorModule.sequentialColors.negativeColorsx10[0],
-          10,
-          UNDPColorModule.sequentialColors.negativeColorsx10[1],
-          19.999,
-          UNDPColorModule.sequentialColors.negativeColorsx10[1],
-          20,
-          UNDPColorModule.sequentialColors.negativeColorsx10[2],
-          29.999,
-          UNDPColorModule.sequentialColors.negativeColorsx10[2],
-          30,
-          UNDPColorModule.sequentialColors.negativeColorsx10[3],
-          39.999,
-          UNDPColorModule.sequentialColors.negativeColorsx10[3],
-          40,
-          UNDPColorModule.sequentialColors.negativeColorsx10[4],
-          49.999,
-          UNDPColorModule.sequentialColors.negativeColorsx10[4],
-          50,
-          UNDPColorModule.sequentialColors.negativeColorsx10[5],
-          59.999,
-          UNDPColorModule.sequentialColors.negativeColorsx10[5],
-          60,
-          UNDPColorModule.sequentialColors.negativeColorsx10[6],
-          69.999,
-          UNDPColorModule.sequentialColors.negativeColorsx10[6],
-          70,
-          UNDPColorModule.sequentialColors.negativeColorsx10[7],
-          79.999,
-          UNDPColorModule.sequentialColors.negativeColorsx10[7],
-          80,
-          UNDPColorModule.sequentialColors.negativeColorsx10[8],
-          89.999,
-          UNDPColorModule.sequentialColors.negativeColorsx10[8],
-          90,
-          UNDPColorModule.sequentialColors.negativeColorsx10[9],
-          100,
-          UNDPColorModule.sequentialColors.negativeColorsx10[9],
-        ],
-        mouseOverInfoFunction: (d: any) => {
-          return (
-            <div
-              style={{
-                fontSize: '0.875rem',
-              }}
-            >
-              <p
-                className='undp-typography margin-bottom-00'
-                style={{
-                  fontSize: '0.875rem',
-                }}
-              >
-                {d.region}{' '}
-                <span style={{ color: 'var(--gray-500)' }}>({d.country})</span>
-              </p>
-              <p
-                className='undp-typography bold margin-bottom-00'
-                style={{
-                  fontSize: '0.875rem',
-                }}
-              >
-                {d['Headcount Ratio (H, %)']}%
-              </p>
-            </div>
-          );
-        },
-      },
-      {
-        label: 'Poverty Intensity (%)',
-        id: 'intensity',
-        hasID: 'Intensity (A, %)',
-        sourceLayer: 'adm_Export_jso_FeaturesToJSO',
-        binning: [10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
-        colorScale: UNDPColorModule.divergentColors.colorsx10,
-        fillSettings: [
-          'interpolate',
-          ['linear'],
-          ['get', 'Intensity (A, %)'],
-          0,
-          UNDPColorModule.sequentialColors.negativeColorsx10[0],
-          9.999,
-          UNDPColorModule.sequentialColors.negativeColorsx10[0],
-          10,
-          UNDPColorModule.sequentialColors.negativeColorsx10[1],
-          19.999,
-          UNDPColorModule.sequentialColors.negativeColorsx10[1],
-          20,
-          UNDPColorModule.sequentialColors.negativeColorsx10[2],
-          29.999,
-          UNDPColorModule.sequentialColors.negativeColorsx10[2],
-          30,
-          UNDPColorModule.sequentialColors.negativeColorsx10[3],
-          39.999,
-          UNDPColorModule.sequentialColors.negativeColorsx10[3],
-          40,
-          UNDPColorModule.sequentialColors.negativeColorsx10[4],
-          49.999,
-          UNDPColorModule.sequentialColors.negativeColorsx10[4],
-          50,
-          UNDPColorModule.sequentialColors.negativeColorsx10[5],
-          59.999,
-          UNDPColorModule.sequentialColors.negativeColorsx10[5],
-          60,
-          UNDPColorModule.sequentialColors.negativeColorsx10[6],
-          69.999,
-          UNDPColorModule.sequentialColors.negativeColorsx10[6],
-          70,
-          UNDPColorModule.sequentialColors.negativeColorsx10[7],
-          79.999,
-          UNDPColorModule.sequentialColors.negativeColorsx10[7],
-          80,
-          UNDPColorModule.sequentialColors.negativeColorsx10[8],
-          89.999,
-          UNDPColorModule.sequentialColors.negativeColorsx10[8],
-          90,
-          UNDPColorModule.sequentialColors.negativeColorsx10[9],
-          100,
-          UNDPColorModule.sequentialColors.negativeColorsx10[9],
-        ],
-        mouseOverInfoFunction: (d: any) => {
-          return (
-            <div
-              style={{
-                fontSize: '0.875rem',
-              }}
-            >
-              <p
-                className='undp-typography margin-bottom-00'
-                style={{
-                  fontSize: '0.875rem',
-                }}
-              >
-                {d.region}{' '}
-                <span style={{ color: 'var(--gray-500)' }}>({d.country})</span>
-              </p>
-              <p
-                className='undp-typography bold margin-bottom-00'
-                style={{
-                  fontSize: '0.875rem',
-                }}
-              >
-                {d['Intensity (A, %)']}%
-              </p>
-            </div>
-          );
-        },
-      },
-    ],
-    countries: [
-      'AFG',
-      'MRT',
-      'WSM',
-      'NGA',
-      'UGA',
-      'IND',
-      'LKA',
-      'MWI',
-      'NPL',
-      'PRY',
-      'NAM',
-      'AGO',
-      'GHA',
-      'PSE',
-      'MDV',
-      'SYC',
-      'THA',
-      'SLE',
-      'NPL',
-      'BTN',
-      'PAK',
-      'GIN',
-      'KEN',
-      'LSO',
-      'LBR',
-      'LBY',
-      'MDG',
-      'MLI',
-      'MAR',
-      'MOZ',
-      'NER',
-      'BTN',
-    ],
-  },
-  {
     id: 'electricityAccess',
     title: 'Electricity Access',
     countryID: 'iso_3',
@@ -1057,7 +785,7 @@ export const SUB_NATIONAL_DATA_OPTIONS = [
         sourceLayer: 'tmpl3ue0da4',
         hasID: 'PopAccess2020',
         binning: [10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
-        colorScale: UNDPColorModule.divergentColors.colorsx10,
+        colorScale: [...UNDPColorModule.divergentColors.colorsx10].reverse(),
         fillSettings: [
           'let',
           'percentAccess',
@@ -1691,6 +1419,278 @@ export const SUB_NATIONAL_DATA_OPTIONS = [
       'GIN',
       'SLE',
       'LBR',
+    ],
+  },
+  {
+    id: 'mpi',
+    title: 'Multidimensional Poverty',
+    countryID: 'ISO',
+    regionID: 'region',
+    pmTilesSource:
+      'pmtiles://../data/PMTiles/adm_Export_jso_FeaturesToJSO.pmtiles',
+    options: [
+      {
+        label: 'Multidimensional Poverty Index',
+        id: 'MPI',
+        binning: [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 1],
+        hasID: 'MPI',
+        sourceLayer: 'adm_Export_jso_FeaturesToJSO',
+        colorScale: UNDPColorModule.sequentialColors.negativeColorsx07,
+        fillSettings: [
+          'interpolate',
+          ['linear'],
+          ['get', 'MPI'],
+          0,
+          UNDPColorModule.sequentialColors.negativeColorsx07[0],
+          0.0999,
+          UNDPColorModule.sequentialColors.negativeColorsx07[0],
+          0.1,
+          UNDPColorModule.sequentialColors.negativeColorsx07[1],
+          0.1999,
+          UNDPColorModule.sequentialColors.negativeColorsx07[1],
+          0.2,
+          UNDPColorModule.sequentialColors.negativeColorsx07[2],
+          0.2999,
+          UNDPColorModule.sequentialColors.negativeColorsx07[2],
+          0.3,
+          UNDPColorModule.sequentialColors.negativeColorsx07[3],
+          0.3999,
+          UNDPColorModule.sequentialColors.negativeColorsx07[3],
+          0.4,
+          UNDPColorModule.sequentialColors.negativeColorsx07[4],
+          0.4999,
+          UNDPColorModule.sequentialColors.negativeColorsx07[4],
+          0.5,
+          UNDPColorModule.sequentialColors.negativeColorsx07[5],
+          0.5999,
+          UNDPColorModule.sequentialColors.negativeColorsx07[5],
+          0.6,
+          UNDPColorModule.sequentialColors.negativeColorsx07[6],
+          1,
+          UNDPColorModule.sequentialColors.negativeColorsx07[6],
+        ],
+        mouseOverInfoFunction: (d: any) => {
+          return (
+            <div
+              style={{
+                fontSize: '0.875rem',
+              }}
+            >
+              <p
+                className='undp-typography margin-bottom-00'
+                style={{
+                  fontSize: '0.875rem',
+                }}
+              >
+                {d.region}{' '}
+                <span style={{ color: 'var(--gray-500)' }}>({d.country})</span>
+              </p>
+              <p
+                className='undp-typography bold margin-bottom-00'
+                style={{
+                  fontSize: '0.875rem',
+                }}
+              >
+                {d.MPI}
+              </p>
+            </div>
+          );
+        },
+      },
+      {
+        label: 'Headcount Ratio (%)',
+        id: 'headcountRatio',
+        hasID: 'Headcount Ratio (H, %)',
+        sourceLayer: 'adm_Export_jso_FeaturesToJSO',
+        binning: [10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
+        colorScale: UNDPColorModule.sequentialColors.negativeColorsx10,
+        fillSettings: [
+          'interpolate',
+          ['linear'],
+          ['get', 'Headcount Ratio (H, %)'],
+          0,
+          UNDPColorModule.sequentialColors.negativeColorsx10[0],
+          9.999,
+          UNDPColorModule.sequentialColors.negativeColorsx10[0],
+          10,
+          UNDPColorModule.sequentialColors.negativeColorsx10[1],
+          19.999,
+          UNDPColorModule.sequentialColors.negativeColorsx10[1],
+          20,
+          UNDPColorModule.sequentialColors.negativeColorsx10[2],
+          29.999,
+          UNDPColorModule.sequentialColors.negativeColorsx10[2],
+          30,
+          UNDPColorModule.sequentialColors.negativeColorsx10[3],
+          39.999,
+          UNDPColorModule.sequentialColors.negativeColorsx10[3],
+          40,
+          UNDPColorModule.sequentialColors.negativeColorsx10[4],
+          49.999,
+          UNDPColorModule.sequentialColors.negativeColorsx10[4],
+          50,
+          UNDPColorModule.sequentialColors.negativeColorsx10[5],
+          59.999,
+          UNDPColorModule.sequentialColors.negativeColorsx10[5],
+          60,
+          UNDPColorModule.sequentialColors.negativeColorsx10[6],
+          69.999,
+          UNDPColorModule.sequentialColors.negativeColorsx10[6],
+          70,
+          UNDPColorModule.sequentialColors.negativeColorsx10[7],
+          79.999,
+          UNDPColorModule.sequentialColors.negativeColorsx10[7],
+          80,
+          UNDPColorModule.sequentialColors.negativeColorsx10[8],
+          89.999,
+          UNDPColorModule.sequentialColors.negativeColorsx10[8],
+          90,
+          UNDPColorModule.sequentialColors.negativeColorsx10[9],
+          100,
+          UNDPColorModule.sequentialColors.negativeColorsx10[9],
+        ],
+        mouseOverInfoFunction: (d: any) => {
+          return (
+            <div
+              style={{
+                fontSize: '0.875rem',
+              }}
+            >
+              <p
+                className='undp-typography margin-bottom-00'
+                style={{
+                  fontSize: '0.875rem',
+                }}
+              >
+                {d.region}{' '}
+                <span style={{ color: 'var(--gray-500)' }}>({d.country})</span>
+              </p>
+              <p
+                className='undp-typography bold margin-bottom-00'
+                style={{
+                  fontSize: '0.875rem',
+                }}
+              >
+                {d['Headcount Ratio (H, %)']}%
+              </p>
+            </div>
+          );
+        },
+      },
+      {
+        label: 'Poverty Intensity (%)',
+        id: 'intensity',
+        hasID: 'Intensity (A, %)',
+        sourceLayer: 'adm_Export_jso_FeaturesToJSO',
+        binning: [10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
+        colorScale: UNDPColorModule.divergentColors.colorsx10,
+        fillSettings: [
+          'interpolate',
+          ['linear'],
+          ['get', 'Intensity (A, %)'],
+          0,
+          UNDPColorModule.sequentialColors.negativeColorsx10[0],
+          9.999,
+          UNDPColorModule.sequentialColors.negativeColorsx10[0],
+          10,
+          UNDPColorModule.sequentialColors.negativeColorsx10[1],
+          19.999,
+          UNDPColorModule.sequentialColors.negativeColorsx10[1],
+          20,
+          UNDPColorModule.sequentialColors.negativeColorsx10[2],
+          29.999,
+          UNDPColorModule.sequentialColors.negativeColorsx10[2],
+          30,
+          UNDPColorModule.sequentialColors.negativeColorsx10[3],
+          39.999,
+          UNDPColorModule.sequentialColors.negativeColorsx10[3],
+          40,
+          UNDPColorModule.sequentialColors.negativeColorsx10[4],
+          49.999,
+          UNDPColorModule.sequentialColors.negativeColorsx10[4],
+          50,
+          UNDPColorModule.sequentialColors.negativeColorsx10[5],
+          59.999,
+          UNDPColorModule.sequentialColors.negativeColorsx10[5],
+          60,
+          UNDPColorModule.sequentialColors.negativeColorsx10[6],
+          69.999,
+          UNDPColorModule.sequentialColors.negativeColorsx10[6],
+          70,
+          UNDPColorModule.sequentialColors.negativeColorsx10[7],
+          79.999,
+          UNDPColorModule.sequentialColors.negativeColorsx10[7],
+          80,
+          UNDPColorModule.sequentialColors.negativeColorsx10[8],
+          89.999,
+          UNDPColorModule.sequentialColors.negativeColorsx10[8],
+          90,
+          UNDPColorModule.sequentialColors.negativeColorsx10[9],
+          100,
+          UNDPColorModule.sequentialColors.negativeColorsx10[9],
+        ],
+        mouseOverInfoFunction: (d: any) => {
+          return (
+            <div
+              style={{
+                fontSize: '0.875rem',
+              }}
+            >
+              <p
+                className='undp-typography margin-bottom-00'
+                style={{
+                  fontSize: '0.875rem',
+                }}
+              >
+                {d.region}{' '}
+                <span style={{ color: 'var(--gray-500)' }}>({d.country})</span>
+              </p>
+              <p
+                className='undp-typography bold margin-bottom-00'
+                style={{
+                  fontSize: '0.875rem',
+                }}
+              >
+                {d['Intensity (A, %)']}%
+              </p>
+            </div>
+          );
+        },
+      },
+    ],
+    countries: [
+      'AFG',
+      'MRT',
+      'WSM',
+      'NGA',
+      'UGA',
+      'IND',
+      'LKA',
+      'MWI',
+      'NPL',
+      'PRY',
+      'NAM',
+      'AGO',
+      'GHA',
+      'PSE',
+      'MDV',
+      'SYC',
+      'THA',
+      'SLE',
+      'NPL',
+      'BTN',
+      'PAK',
+      'GIN',
+      'KEN',
+      'LSO',
+      'LBR',
+      'LBY',
+      'MDG',
+      'MLI',
+      'MAR',
+      'MOZ',
+      'NER',
+      'BTN',
     ],
   },
 ];

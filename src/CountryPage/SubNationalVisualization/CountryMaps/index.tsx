@@ -49,12 +49,14 @@ export function CountryMap(props: Props) {
   const { countryId, mapLayer } = props;
   const mapContainer = useRef<HTMLDivElement>(null);
   const map = useRef<HTMLDivElement>(null);
+  const [loading, setLoading] = useState(true);
   const protocol = new pmtiles.Protocol();
   const [hoverData, setHoverData] = useState<HoverDataProps | null>(null);
   useEffect(() => {
     if (map.current) {
       const mapDiv = select('div.map');
       mapDiv.selectAll('div').remove();
+      setLoading(true);
     }
     maplibreGl.addProtocol('pmtiles', protocol.tile);
     // initiate map and add base layer
@@ -202,18 +204,26 @@ export function CountryMap(props: Props) {
       }
       districtHoveredStateId = null;
     });
+    (map as any).current.on('load', () => {
+      setLoading(false);
+    });
   }, [mapLayer]);
   return (
     <div
       style={{
-        height: 'calc(100vh - 180px)',
+        height: 'calc(100vh - 350px)',
         margin: '0 auto',
       }}
     >
+      {loading ? (
+        <div className='undp-loader-container undp-container'>
+          <div className='undp-loader' />
+        </div>
+      ) : null}
       <div
         ref={mapContainer}
         className='map'
-        style={{ width: '100%', height: '100%' }}
+        style={{ width: '100%', height: '100%', opacity: loading ? 0 : 1 }}
       />
       <div
         style={{ position: 'sticky', bottom: '0px' }}
