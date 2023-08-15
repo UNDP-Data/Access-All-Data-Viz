@@ -48,11 +48,6 @@ const StatCardsEl = styled.div`
   scroll-snap-align: start;
 `;
 
-const SourceEl = styled.div`
-  font-size: 1rem;
-  color: var(--gray-600);
-`;
-
 export function StackedAreaChart(props: Props) {
   const {
     data1,
@@ -172,18 +167,21 @@ export function StackedAreaChart(props: Props) {
           ) : null}
         </div>
       </div>
-      <SourceEl className='margin-top-05'>
+      <p
+        className='margin-top-05 undp-typography'
+        style={{ fontSize: '1rem', color: 'var(--gray-600)' }}
+      >
         Source:{' '}
         <a
           href={sourceLink}
           target='_blank'
           rel='noreferrer'
-          style={{ color: 'var(--gray-600)' }}
+          style={{ fontSize: '1rem', color: 'var(--gray-600)' }}
           className='undp-style'
         >
           {source}
         </a>
-      </SourceEl>
+      </p>
     </StatCardsEl>
   );
 }

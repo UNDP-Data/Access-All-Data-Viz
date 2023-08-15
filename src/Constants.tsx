@@ -851,7 +851,7 @@ export const SUB_NATIONAL_DATA_OPTIONS = [
               >
                 {d.adm2_name}{' '}
                 <span style={{ color: 'var(--gray-500)' }}>
-                  ({d.adm0_name})
+                  ({d.adm1_name})
                 </span>
               </p>
               <p
@@ -922,7 +922,7 @@ export const SUB_NATIONAL_DATA_OPTIONS = [
               >
                 {d.adm2_name}{' '}
                 <span style={{ color: 'var(--gray-500)' }}>
-                  ({d.adm0_name})
+                  ({d.adm1_name})
                 </span>
               </p>
               <p
@@ -1125,7 +1125,7 @@ export const SUB_NATIONAL_DATA_OPTIONS = [
               >
                 {d.adm2_name}{' '}
                 <span style={{ color: 'var(--gray-500)' }}>
-                  ({d.adm0_name})
+                  ({d.adm1_name})
                 </span>
               </p>
               <p
@@ -1212,7 +1212,7 @@ export const SUB_NATIONAL_DATA_OPTIONS = [
               >
                 {d.adm2_name}{' '}
                 <span style={{ color: 'var(--gray-500)' }}>
-                  ({d.adm0_name})
+                  ({d.adm1_name})
                 </span>
               </p>
               <p
@@ -1299,7 +1299,7 @@ export const SUB_NATIONAL_DATA_OPTIONS = [
               >
                 {d.adm2_name}{' '}
                 <span style={{ color: 'var(--gray-500)' }}>
-                  ({d.adm0_name})
+                  ({d.adm1_name})
                 </span>
               </p>
               <p
@@ -1427,7 +1427,7 @@ export const SUB_NATIONAL_DATA_OPTIONS = [
     countryID: 'ISO',
     regionID: 'region',
     pmTilesSource:
-      'pmtiles://../data/PMTiles/adm_Export_jso_FeaturesToJSO.pmtiles',
+      'pmtiles://https://raw.githubusercontent.com/UNDP-Data/Access-All-Data-Viz/production/public/data/PMTiles/adm_Export_jso_FeaturesToJSO.pmtiles',
     options: [
       {
         label: 'Multidimensional Poverty Index',

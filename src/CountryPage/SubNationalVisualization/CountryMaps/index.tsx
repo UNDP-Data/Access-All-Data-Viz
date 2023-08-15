@@ -6,6 +6,7 @@ import * as pmtiles from 'pmtiles';
 import styled from 'styled-components';
 import { select } from 'd3-selection';
 import { format } from 'd3-format';
+import { Modal } from 'antd';
 import CountriesBoundingBoxData from '../../../Data/CountryBoundingBoxData.json';
 import { MapLayerOptionDataType } from '../../../Types';
 
@@ -75,7 +76,7 @@ export function CountryMap(props: Props) {
     const sources: any = {
       admin0: {
         type: 'vector',
-        url: 'pmtiles://../data/PMTiles/geoBADM0.pmtiles',
+        url: 'pmtiles://https://raw.githubusercontent.com/UNDP-Data/Access-All-Data-Viz/production/public/data/PMTiles/geoBADM0.pmtiles',
       },
     };
     sources[mapLayer.mapId as string] = {
@@ -130,6 +131,7 @@ export function CountryMap(props: Props) {
           },
         ],
       },
+      minZoom: 1.5,
       center: [lon, lat],
       bounds: [
         [
@@ -152,8 +154,6 @@ export function CountryMap(props: Props) {
         countryBoundingBox.boundingBox.ne.lat,
       ],
     ]);
-    (map as any).current.addControl(new maplibreGl.NavigationControl());
-    (map as any).current.scrollZoom.disable();
     let districtHoveredStateId: string | null = null;
     (map as any).current.on(
       'mousemove',
@@ -209,88 +209,93 @@ export function CountryMap(props: Props) {
     });
   }, [mapLayer]);
   return (
-    <div
-      style={{
-        height: 'calc(100vh - 350px)',
-        margin: '0 auto',
-      }}
-    >
-      {loading ? (
-        <div className='undp-loader-container undp-container'>
-          <div className='undp-loader' />
-        </div>
-      ) : null}
+    <div>
       <div
-        ref={mapContainer}
-        className='map'
-        style={{ width: '100%', height: '100%', opacity: loading ? 0 : 1 }}
-      />
-      <div
-        style={{ position: 'sticky', bottom: '0px' }}
-        className='bivariate-legend-container'
+        style={{
+          height: 'calc(100vh - 175px)',
+          margin: '0 auto',
+        }}
       >
-        <div className='univariate-legend-el'>
-          <div className='univariate-map-color-legend-element'>
-            <div>
-              <div className='univariate-map-legend-text'>
-                {mapLayer.mapLayerDetails.label}
-              </div>
-              <svg width='100%' viewBox='0 0 320 30'>
-                <g>
-                  {mapLayer.mapLayerDetails.binning.map((d, i) => (
-                    <g key={i}>
-                      <rect
-                        x={
-                          (i * 320) /
-                            mapLayer.mapLayerDetails.colorScale.length +
-                          1
-                        }
-                        y={1}
-                        width={
-                          320 / mapLayer.mapLayerDetails.colorScale.length - 2
-                        }
-                        height={8}
-                        fill={mapLayer.mapLayerDetails.colorScale[i]}
-                      />
-                      {i ===
-                      mapLayer.mapLayerDetails.binning.length - 1 ? null : (
-                        <text
+        <div
+          ref={mapContainer}
+          className='map'
+          style={{ width: '100%', height: '100%' }}
+        />
+        <div
+          style={{ position: 'sticky', bottom: '0px' }}
+          className='bivariate-legend-container'
+        >
+          <div className='univariate-legend-el'>
+            <div className='univariate-map-color-legend-element'>
+              <div>
+                <div className='univariate-map-legend-text'>
+                  {mapLayer.mapLayerDetails.label}
+                </div>
+                <svg width='100%' viewBox='0 0 320 30'>
+                  <g>
+                    {mapLayer.mapLayerDetails.binning.map((d, i) => (
+                      <g key={i}>
+                        <rect
                           x={
-                            ((i + 1) * 320) /
-                            mapLayer.mapLayerDetails.colorScale.length
+                            (i * 320) /
+                              mapLayer.mapLayerDetails.colorScale.length +
+                            1
                           }
-                          y={25}
-                          textAnchor='middle'
-                          fontSize={12}
-                          fill='#212121'
-                        >
-                          {Math.abs(d) < 1
-                            ? d
-                            : format('~s')(d).replace('G', 'B')}
-                        </text>
-                      )}
-                    </g>
-                  ))}
-                </g>
-              </svg>
+                          y={1}
+                          width={
+                            320 / mapLayer.mapLayerDetails.colorScale.length - 2
+                          }
+                          height={8}
+                          fill={mapLayer.mapLayerDetails.colorScale[i]}
+                        />
+                        {i ===
+                        mapLayer.mapLayerDetails.binning.length - 1 ? null : (
+                          <text
+                            x={
+                              ((i + 1) * 320) /
+                              mapLayer.mapLayerDetails.colorScale.length
+                            }
+                            y={25}
+                            textAnchor='middle'
+                            fontSize={12}
+                            fill='#212121'
+                          >
+                            {Math.abs(d) < 1
+                              ? d
+                              : format('~s')(d).replace('G', 'B')}
+                          </text>
+                        )}
+                      </g>
+                    ))}
+                  </g>
+                </svg>
+              </div>
             </div>
           </div>
         </div>
+        {hoverData ? (
+          <TooltipEl
+            x={hoverData.xPosition}
+            y={hoverData.yPosition}
+            verticalAlignment={
+              hoverData.yPosition > window.innerHeight / 2 ? 'top' : 'bottom'
+            }
+            horizontalAlignment={
+              hoverData.xPosition > window.innerWidth / 2 ? 'left' : 'right'
+            }
+          >
+            {hoverData.mouseOverDiv}
+          </TooltipEl>
+        ) : null}
       </div>
-      {hoverData ? (
-        <TooltipEl
-          x={hoverData.xPosition}
-          y={hoverData.yPosition}
-          verticalAlignment={
-            hoverData.yPosition > window.innerHeight / 2 ? 'top' : 'bottom'
-          }
-          horizontalAlignment={
-            hoverData.xPosition > window.innerWidth / 2 ? 'left' : 'right'
-          }
-        >
-          {hoverData.mouseOverDiv}
-        </TooltipEl>
-      ) : null}
+      <Modal className='undp-modal' open={loading} destroyOnClose>
+        <h6 className='undp-typography' style={{ textAlign: 'center' }}>
+          Loading Map...
+        </h6>
+        <div className='undp-loader-container undp-container'>
+          <div className='undp-loader' />
+        </div>
+      </Modal>
     </div>
   );
 }

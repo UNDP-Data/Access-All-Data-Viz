@@ -29,11 +29,6 @@ const StatCardsEl = styled.div`
   scroll-snap-align: start;
 `;
 
-const SourceEl = styled.div`
-  font-size: 1rem;
-  color: var(--gray-600);
-`;
-
 export function DotPlot(props: Props) {
   const {
     value,
@@ -96,18 +91,21 @@ export function DotPlot(props: Props) {
           ))}
         </g>
       </svg>
-      <SourceEl className='margin-top-05'>
+      <p
+        className='margin-top-05 undp-typography'
+        style={{ fontSize: '1rem', color: 'var(--gray-600)' }}
+      >
         Source:{' '}
         <a
           href={sourceLink}
           target='_blank'
           rel='noreferrer'
           className='undp-style'
-          style={{ color: 'var(--gray-600)' }}
+          style={{ fontSize: '1rem', color: 'var(--gray-600)' }}
         >
           {source}
         </a>
-      </SourceEl>
+      </p>
     </StatCardsEl>
   );
 }
