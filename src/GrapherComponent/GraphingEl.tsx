@@ -61,7 +61,15 @@ export function DataExplorerGraphingEl(props: Props) {
                   graphType === 'map' ? 'var(--blue-600)' : 'var(--gray-500)'
                 }
               />
-              <div style={{ width: '100%' }}>Maps</div>
+              <div
+                style={{
+                  width: '100%',
+                  fontFamily: 'var(--fontFamily)',
+                  fontSize: '0.875rem',
+                }}
+              >
+                Maps
+              </div>
             </button>
             <button
               type='button'
@@ -83,7 +91,15 @@ export function DataExplorerGraphingEl(props: Props) {
                     : 'var(--gray-500)'
                 }
               />
-              <div style={{ width: '100%' }}>Correlation</div>
+              <div
+                style={{
+                  width: '100%',
+                  fontFamily: 'var(--fontFamily)',
+                  fontSize: '0.875rem',
+                }}
+              >
+                Correlation
+              </div>
             </button>
             <button
               type='button'
@@ -105,7 +121,15 @@ export function DataExplorerGraphingEl(props: Props) {
                     : 'var(--gray-500)'
                 }
               />
-              <div style={{ width: '100%' }}>Ranks</div>
+              <div
+                style={{
+                  width: '100%',
+                  fontFamily: 'var(--fontFamily)',
+                  fontSize: '0.875rem',
+                }}
+              >
+                Ranks
+              </div>
             </button>
             <button
               type='button'
@@ -127,7 +151,15 @@ export function DataExplorerGraphingEl(props: Props) {
                     : 'var(--gray-500)'
                 }
               />
-              <div style={{ width: '100%' }}>Dual Axes Line Chart</div>
+              <div
+                style={{
+                  width: '100%',
+                  fontFamily: 'var(--fontFamily)',
+                  fontSize: '0.875rem',
+                }}
+              >
+                Dual Axes Line Chart
+              </div>
             </button>
             <button
               type='button'
@@ -149,7 +181,15 @@ export function DataExplorerGraphingEl(props: Props) {
                     : 'var(--gray-500)'
                 }
               />
-              <div style={{ width: '100%' }}>Multi Country Trends</div>
+              <div
+                style={{
+                  width: '100%',
+                  fontFamily: 'var(--fontFamily)',
+                  fontSize: '0.875rem',
+                }}
+              >
+                Multi Country Trends
+              </div>
             </button>
             <button
               type='button'
@@ -171,7 +211,15 @@ export function DataExplorerGraphingEl(props: Props) {
                     : 'var(--gray-500)'
                 }
               />
-              <div style={{ width: '100%' }}>Data List</div>
+              <div
+                style={{
+                  width: '100%',
+                  fontFamily: 'var(--fontFamily)',
+                  fontSize: '0.875rem',
+                }}
+              >
+                Data List
+              </div>
             </button>
           </div>
           <div className='graph-container'>
@@ -256,7 +304,15 @@ export function CountryGraphingEl(props: CountryGraphingElProps) {
                     : 'var(--gray-500)'
                 }
               />
-              <div style={{ width: '100%' }}>Dual Axes Line Chart</div>
+              <div
+                style={{
+                  width: '100%',
+                  fontFamily: 'var(--fontFamily)',
+                  fontSize: '0.875rem',
+                }}
+              >
+                Dual Axes Line Chart
+              </div>
             </button>
             <button
               type='button'
@@ -278,7 +334,15 @@ export function CountryGraphingEl(props: CountryGraphingElProps) {
                     : 'var(--gray-500)'
                 }
               />
-              <div style={{ width: '100%' }}>Data List</div>
+              <div
+                style={{
+                  width: '100%',
+                  fontFamily: 'var(--fontFamily)',
+                  fontSize: '0.875rem',
+                }}
+              >
+                Data List
+              </div>
             </button>
           </div>
           <div className='graph-container'>
@@ -359,7 +423,15 @@ export function AggregatedGraphingEl(props: AggregatedGraphingElProps) {
                     : 'var(--gray-500)'
                 }
               />
-              <div style={{ width: '100%' }}>Dual Axes Line Chart</div>
+              <div
+                style={{
+                  width: '100%',
+                  fontFamily: 'var(--fontFamily)',
+                  fontSize: '0.875rem',
+                }}
+              >
+                Dual Axes Line Chart
+              </div>
             </button>
             <button
               type='button'
@@ -381,7 +453,15 @@ export function AggregatedGraphingEl(props: AggregatedGraphingElProps) {
                     : 'var(--gray-500)'
                 }
               />
-              <div style={{ width: '100%' }}>Data List</div>
+              <div
+                style={{
+                  width: '100%',
+                  fontFamily: 'var(--fontFamily)',
+                  fontSize: '0.875rem',
+                }}
+              >
+                Data List
+              </div>
             </button>
           </div>
           <div className='graph-container'>

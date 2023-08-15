@@ -21,7 +21,7 @@ const DropDownButton = styled.button`
   padding: 0.5rem;
   background-color: transparent;
   text-transform: uppercase;
-  font-size: 0.875rem;
+  font-size: 0.875rem !important;
   font-weight: 600;
   width: calc(100% - 42px);
   display: flex;
@@ -34,6 +34,8 @@ const TruncateDiv = styled.div`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  font-size: 0.875rem !important;
+  font-family: var(--fontFamily);
   text-align: left;
 `;
 
