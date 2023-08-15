@@ -1944,26 +1944,46 @@ export const ABOUT_TEXT_LINKS = [
     bodyText: (
       <div>
         <p className='undp-typography'>
-          There has been significant development progress in the Arab States
-          region, with mean schooling doubling in duration in the last 30 years
-          and the share of women in parliament on a significant upward
-          trajectory in the past two decades. Yet, significant challenges
-          remain. Gross National Income for women has increased significantly
-          but remains 4.5 times lower than for men, and on average girls receive
-          one year of education less than boys. The COVID-19 negative shock
-          notwithstanding, economic growth as measured by Gross National Income
-          per capita (2017 PPP$) has been largely stagnant since 2014.
+          The Arab States region comprises 20 countries with diverse economies-
+          including high-income, middle-income, least-developed, and
+          crisis-affected countries- and varying human development patterns with
+          countries in the very high human development group, including KSA,
+          UAE, Bahrain, and Qatar, and countries in the low human development
+          countries - including Sudan, Djibouti, and Yemen. Despite facing
+          conflicts, political and economic instability, and forced
+          displacement, the region had been, before COVID-19, on a positive
+          human development trajectory with a consistently increasing Human
+          Development Index since 1990. Nonetheless, the pandemic compounded
+          socio-economic vulnerabilities and reversed this progress, with the
+          HDI dropping from 0.715 in 2019 to 0.708 in 2021, below the global HDI
+          of 0.732. The unemployment rate also rose to 12.6% in the Arab States
+          region, more than double the world average of 6.2%. The youth
+          unemployment rate (15-24 years old), at 28.6 percent was the highest
+          in the world, rising steeply from 25.3 percent in 2019.
         </p>
         <p className='undp-typography'>
-          UNDP&rsquo;s Regional Bureau for Arab States, based in New York,
-          serves as the headquarters for regional programmes in 17 locations- 16
-          countries and in the occupied Palestinian territory. An additional hub
-          in Amman, Jordan brings support and expertise closer to the country
-          offices. Priority areas in the region include tackling the
-          interconnected challenges of poverty, vulnerability, inequality and
-          exclusion, while pursing the expansion of the democratic space,
-          building resilience to the challenges of climate change and
-          transitioning to green economic pathways.
+          Furthermore, despite advancements in girls&rsquo; school enrolment and
+          women&rsquo;s educational achievements in the region over the past
+          three decades, the Arab States region still has the second widest
+          gender gap in the world after South Asia as measured by the Gender
+          Development Index (GDI), with women achieving 12.9 % less in human
+          development than men in 2021. Women&rsquo;s political and economic
+          participation is still very limited across the region, with, on
+          average, less than one in five women in parliament and only 19.3%
+          participating in the labor force, 3.6 times lower than men.
+        </p>
+        <p className='undp-typography'>
+          The Regional Bureau for Arab States (RBAS) based in New York serves as
+          the headquarters for UNDP regional programmes and country offices in
+          17 Arab countries, with the 18th located in the occupied Palestinian
+          territory. An additional hub in Amman, Jordan brings support and
+          expertise closer to the country offices. RBAS supports work at the
+          country level, by leveraging regional approaches guided by UNDP
+          regionality principles to address regional and cross-border challenges
+          while responding to diverse sub-regional needs. Priority areas in the
+          region include anti-corruption and integrity, climate action for human
+          security, regional economic integration, and women and youth
+          empowerment.
         </p>
       </div>
     ),
@@ -1980,24 +2000,30 @@ export const ABOUT_TEXT_LINKS = [
     bodyText: (
       <div>
         <p className='undp-typography'>
-          There has been considerable development progress in the Asia and
-          Pacific region over the last three decades with Gross National Income
-          per capita, mean years of schooling for both female and male students
-          on a significant upward trajectory. Yet, challenges remain. The
-          important economic growth has been met by increasing carbon and
-          material footprints. Furthermore, inequalities continue to take away
-          from some of the important gains in development and the income gained
-          by women is still lagging significantly behind that generated by men.
+          The Asia and the Pacific region is home to 4.6 billion people - 60% of
+          the global population. As per IMF projections, the region will
+          contribute around 70 percent of global growth in 2023 as its expansion
+          accelerates to 4.6 percent from 3.8 percent in last year. While there
+          has been considerable development progress in the Asia and Pacific
+          region over the last three decades on many indexes and indicators
+          (viz. Gross National Income per capita), the region marks alarming
+          data on environmental challenges, nutrition supply chain etc. The
+          region is already responsible for over 80% of global plastic waste
+          leakage in oceans; and of the 20 most polluted cities in the world, 18
+          are in South Asia — with massive associated societal & economic
+          impacts. Furthermore, inequalities continue to take away from some of
+          the important gains in development and the income gained by women is
+          still lagging significantly behind that generated by men.
         </p>
         <p className='undp-typography'>
-          Twenty-four UNDP country offices covering work in 36 countries in Asia
-          and the Pacific, and the UNDP Regional Bureau for Asia and the Pacific
-          (RBAP) headquartered in New York City, work with local partners to
-          identify relevant solutions to today&rsquo;s complex and
-          trans-boundary development challenges. UNDP&rsquo;s work in the region
-          supports them in designing and implementing large scale development
-          initiatives that deliver lasting social, economic and environmental
-          improvements in the region.
+          24 UNDP country offices covering work in 36 countries in Asia and the
+          Pacific, and the UNDP Regional Bureau for Asia and the Pacific (RBAP)
+          headquartered in New York City and regionally located in Bangkok,
+          Thailand. We work with local partners to identify relevant solutions
+          to today&rsquo;s complex and trans-boundary development challenges.
+          UNDP&rsquo;s work in the region supports them in designing and
+          implementing large scale development initiatives that deliver lasting
+          social, economic, and environmental improvements in the region.
         </p>
       </div>
     ),
