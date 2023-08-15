@@ -41,7 +41,7 @@ export function SubNationalVisualization(props: Props) {
         </h5>
         <Select
           className='undp-select'
-          placeholder='Select A Country'
+          placeholder='Select an indicator'
           style={{ flexGrow: 0 }}
           showSearch
           value={`${selectedMap.mapId}_${selectedMap.option}`}
