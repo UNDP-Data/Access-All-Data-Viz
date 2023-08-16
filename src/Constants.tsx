@@ -2440,41 +2440,11 @@ export const TOP_CARDS = [
         },
       },
       {
-        vizType: 'lineChart',
-        settings: {
-          dataKey: 'State Legitimacy',
-          strokeWidth: 1,
-          lineColor: '#232E3D',
-          graphTitle: 'State Legitimacy',
-          description: true,
-        },
-      },
-      {
-        vizType: 'lineChart',
-        settings: {
-          dataKey: 'Human Rights',
-          strokeWidth: 1,
-          lineColor: '#232E3D',
-          graphTitle: 'Human Rights',
-          description: true,
-        },
-      },
-      {
         vizType: 'valueCard',
         settings: {
           dataKey: 'Economic Freedom Global Ranking',
           graphTitle: 'Economic Freedom Global Ranking',
           description: true,
-        },
-      },
-      {
-        vizType: 'lineChart',
-        settings: {
-          dataKey: 'Transparency Internationals Corruption Perceptions index',
-          strokeWidth: 1,
-          lineColor: '#232E3D',
-          graphTitle:
-            'Transparency Internationals Corruption Perceptions Index',
         },
       },
     ],
