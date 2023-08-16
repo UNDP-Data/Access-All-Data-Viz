@@ -7,7 +7,7 @@ interface Props {
   graphTitle: string;
   source: string;
   sourceLink: string;
-  dotColors?: string;
+  dotColor?: string;
   graphDescription?: string;
 }
 
@@ -36,7 +36,7 @@ export function DotPlot(props: Props) {
     graphTitle,
     year,
     source,
-    dotColors,
+    dotColor,
     graphDescription,
     sourceLink,
   } = props;
@@ -78,11 +78,11 @@ export function DotPlot(props: Props) {
               style={{
                 fill:
                   d <= Math.round(value)
-                    ? dotColors || 'var(--dark-green)'
+                    ? dotColor || 'var(--dark-green)'
                     : 'var(--white)',
                 stroke:
                   d <= Math.round(value)
-                    ? dotColors || 'var(--dark-green)'
+                    ? dotColor || 'var(--dark-green)'
                     : 'var(--gray-500)',
                 strokeWidth: 1,
               }}
@@ -92,7 +92,7 @@ export function DotPlot(props: Props) {
         </g>
       </svg>
       <p
-        className='margin-top-05 undp-typography'
+        className='margin-top-05 undp-typography margin-bottom-00'
         style={{ fontSize: '1rem', color: 'var(--gray-600)' }}
       >
         Source:{' '}

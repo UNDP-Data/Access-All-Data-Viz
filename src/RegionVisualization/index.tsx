@@ -22,10 +22,11 @@ interface Props {
   signatureSolution?: string;
   UNDPRegion?: string;
   finalData: CountryGroupDataType[];
+  idForOverview: string;
 }
 
 export function RegionVisualization(props: Props) {
-  const { signatureSolution, UNDPRegion, finalData } = props;
+  const { signatureSolution, UNDPRegion, finalData, idForOverview } = props;
   const [taxonomyData, setTaxonomyData] = useState<
     CountryTaxonomyDataType[] | undefined
   >(undefined);
@@ -99,6 +100,7 @@ export function RegionVisualization(props: Props) {
               countryList={countryList}
               signatureSolution={signatureSolution}
               regionData={finalData}
+              idForOverview={idForOverview}
             />
           ) : (
             <p

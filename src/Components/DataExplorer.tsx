@@ -215,6 +215,7 @@ function DataExplorer(props: Props) {
                         countryId={countryId}
                         signatureSolution={signatureSolution}
                         loading={loading}
+                        idForOverview={signatureSolution || countryId}
                       />
                     ) : (
                       <p
@@ -245,6 +246,7 @@ function DataExplorer(props: Props) {
                     signatureSolution={signatureSolution}
                     UNDPRegion={countryId}
                     finalData={finalData}
+                    idForOverview={signatureSolution || countryId}
                   />
                 ) : (
                   <div className='undp-loader-container undp-container'>

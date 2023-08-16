@@ -94,7 +94,7 @@ export function ValueCard(props: Props) {
         </StatEl>
       </div>
       <p
-        className='margin-top-05 undp-typography'
+        className='margin-top-05 undp-typography margin-bottom-00'
         style={{ fontSize: '1rem', color: 'var(--gray-600)' }}
       >
         Source:{' '}

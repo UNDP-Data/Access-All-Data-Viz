@@ -10,13 +10,7 @@ import Reducer from '../Context/Reducer';
 import Context from '../Context/Context';
 import { DEFAULT_VALUES } from '../Constants';
 import { GrapherComponent } from '../GrapherComponent';
-import { OverviewViz } from '../SSOverviewVisualizations/OverviewViz';
-import { EnergyOverviewViz } from '../SSOverviewVisualizations/EnergyOverviewViz';
-import { EnvironmentOverviewViz } from '../SSOverviewVisualizations/EnvironmentOverviewViz';
-import { GenderOverviewViz } from '../SSOverviewVisualizations/GenderOverviewViz';
-import { GovernanceOverviewViz } from '../SSOverviewVisualizations/GovernanceOverviewViz';
-import { PovertyAndInequalityOverviewViz } from '../SSOverviewVisualizations/PovertyAndInequalityOverviewViz';
-import { ResilienceOverviewViz } from '../SSOverviewVisualizations/ResilienceOverviewViz';
+import { OverviewViz } from '../OverviewVisualizations/OverviewViz';
 
 interface Props {
   signatureSolution?: string;
@@ -26,6 +20,7 @@ interface Props {
   countryList: CountryListType[];
   UNDPRegion?: string;
   regionData: CountryGroupDataType[];
+  idForOverview: string;
 }
 
 function VisualizationEl(props: Props) {
@@ -37,6 +32,7 @@ function VisualizationEl(props: Props) {
     countryList,
     UNDPRegion,
     regionData,
+    idForOverview,
   } = props;
   const firstMetric =
     indicatorsList.findIndex(d => d.DataKey === DEFAULT_VALUES.firstMetric) ===
@@ -269,41 +265,11 @@ function VisualizationEl(props: Props) {
     >
       <div>
         {new URLSearchParams(window.location.search).get('topic') ? null : (
-          <div>
-            {signatureSolution === 'Poverty and Inequality' ? (
-              <PovertyAndInequalityOverviewViz
-                indicators={indicatorsList}
-                data={regionData[0]}
-              />
-            ) : signatureSolution === 'Environment' ? (
-              <EnvironmentOverviewViz
-                indicators={indicatorsList}
-                data={regionData[0]}
-              />
-            ) : signatureSolution === 'Gender' ? (
-              <GenderOverviewViz
-                indicators={indicatorsList}
-                data={regionData[0]}
-              />
-            ) : signatureSolution === 'Governance' ? (
-              <GovernanceOverviewViz
-                indicators={indicatorsList}
-                data={regionData[0]}
-              />
-            ) : signatureSolution === 'Resilience' ? (
-              <ResilienceOverviewViz
-                indicators={indicatorsList}
-                data={regionData[0]}
-              />
-            ) : signatureSolution === 'Energy' ? (
-              <EnergyOverviewViz
-                indicators={indicatorsList}
-                data={regionData[0]}
-              />
-            ) : (
-              <OverviewViz indicators={indicatorsList} data={regionData[0]} />
-            )}
-          </div>
+          <OverviewViz
+            indicators={indicatorsList}
+            data={regionData[0]}
+            id={idForOverview}
+          />
         )}
         <GrapherComponent
           indicators={indicatorsList}

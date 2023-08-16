@@ -10,13 +10,7 @@ import { CountryGraphingEl } from '../GrapherComponent/GraphingEl';
 import Reducer from '../Context/Reducer';
 import Context from '../Context/Context';
 import { DEFAULT_VALUES } from '../Constants';
-import { PovertyAndInequalityOverviewViz } from '../SSOverviewVisualizations/PovertyAndInequalityOverviewViz';
-import { EnvironmentOverviewViz } from '../SSOverviewVisualizations/EnvironmentOverviewViz';
-import { GenderOverviewViz } from '../SSOverviewVisualizations/GenderOverviewViz';
-import { GovernanceOverviewViz } from '../SSOverviewVisualizations/GovernanceOverviewViz';
-import { ResilienceOverviewViz } from '../SSOverviewVisualizations/ResilienceOverviewViz';
-import { EnergyOverviewViz } from '../SSOverviewVisualizations/EnergyOverviewViz';
-import { OverviewViz } from '../SSOverviewVisualizations/OverviewViz';
+import { OverviewViz } from '../OverviewVisualizations/OverviewViz';
 
 interface Props {
   indicatorsList: IndicatorMetaDataType[];
@@ -26,6 +20,7 @@ interface Props {
   countryId?: string;
   loading: boolean;
   signatureSolution?: string;
+  idForOverview: string;
 }
 
 function CountryVisualization(props: Props) {
@@ -37,6 +32,7 @@ function CountryVisualization(props: Props) {
     countryId,
     signatureSolution,
     loading,
+    idForOverview,
   } = props;
   const signatureSolutionFromLink = useParams().signatureSolution;
 
@@ -273,41 +269,11 @@ function CountryVisualization(props: Props) {
     >
       <div className='undp-container'>
         {new URLSearchParams(window.location.search).get('topic') ? null : (
-          <div>
-            {signatureSolution === 'Poverty and Inequality' ? (
-              <PovertyAndInequalityOverviewViz
-                indicators={indicatorsList}
-                data={finalData[0]}
-              />
-            ) : signatureSolution === 'Environment' ? (
-              <EnvironmentOverviewViz
-                indicators={indicatorsList}
-                data={finalData[0]}
-              />
-            ) : signatureSolution === 'Gender' ? (
-              <GenderOverviewViz
-                indicators={indicatorsList}
-                data={finalData[0]}
-              />
-            ) : signatureSolution === 'Governance' ? (
-              <GovernanceOverviewViz
-                indicators={indicatorsList}
-                data={finalData[0]}
-              />
-            ) : signatureSolution === 'Resilience' ? (
-              <ResilienceOverviewViz
-                indicators={indicatorsList}
-                data={finalData[0]}
-              />
-            ) : signatureSolution === 'Energy' ? (
-              <EnergyOverviewViz
-                indicators={indicatorsList}
-                data={finalData[0]}
-              />
-            ) : (
-              <OverviewViz indicators={indicatorsList} data={finalData[0]} />
-            )}
-          </div>
+          <OverviewViz
+            indicators={indicatorsList}
+            data={finalData[0]}
+            id={idForOverview}
+          />
         )}
         <CountryGraphingEl
           data={finalData}
