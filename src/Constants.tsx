@@ -2271,7 +2271,7 @@ export const TOP_CARDS = [
         vizType: 'dotPlot',
         settings: {
           dataKey:
-            'Access to clean fuels and technologies for cooking (% of population)',
+            'Access to clean fuels and technologies for cooking  (% of population)',
           graphTitle:
             'People with access to clean fuels and technologies for cooking',
         },
@@ -2574,6 +2574,36 @@ export const TOP_CARDS = [
           suffix: '%',
         },
       },
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey: 'Population, total',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle: 'Population, total',
+        },
+      },
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey:
+            'Poverty headcount ratio at $2.15 a day (2017 PPP) (% of population)',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle:
+            'Poverty headcount ratio at $2.15 a day (2017 PPP) (% of population)',
+          suffix: '%',
+        },
+      },
+      {
+        vizType: 'dotPlot',
+        settings: {
+          dataKey:
+            'Access to clean fuels and technologies for cooking  (% of population)',
+          graphTitle:
+            'People with access to clean fuels and technologies for cooking',
+        },
+      },
     ],
   },
   {
@@ -2674,6 +2704,15 @@ export const TOP_CARDS = [
           strokeWidth: 1,
           lineColor: '#232E3D',
           graphTitle: 'GINI Index',
+        },
+      },
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey: 'Gender Inequality Index-Gender Inequality Index',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle: 'Gender Inequality Index',
         },
       },
     ],
@@ -2812,6 +2851,15 @@ export const TOP_CARDS = [
           graphTitle:
             'Percentage of poor persons covered by social protection systems',
           suffix: '%',
+        },
+      },
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey: 'Gender Inequality Index-Gender Inequality Index',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle: 'Gender Inequality Index',
         },
       },
     ],
