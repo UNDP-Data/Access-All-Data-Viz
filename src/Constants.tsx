@@ -2431,35 +2431,57 @@ export const TOP_CARDS = [
     id: 'Governance',
     cards: [
       {
+        vizType: 'dotPlot',
+        settings: {
+          dataKey: 'Individuals using the Internet (% of population)',
+          graphTitle: 'People with access to internet',
+        },
+      },
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey: 'Inequality in income',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle: 'Inequality in income',
+          suffix: '',
+        },
+      },
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey: 'Inequality in life expectancy',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle: 'Inequality in life expectancy',
+          suffix: '',
+        },
+      },
+      {
         vizType: 'valueCard',
         settings: {
-          dataKey: 'Rule of Law: Estimate',
-          graphTitle: 'Rule of Law: Estimate',
+          dataKey: 'CPIA Public sector management and institutions',
+          graphTitle: 'Public Sector Management and Institutions Index',
           description: true,
         },
       },
       {
         vizType: 'valueCard',
         settings: {
-          dataKey: 'Government Effectiveness: Estimate',
-          graphTitle: 'Government Effectiveness: Estimate',
+          dataKey: 'Strength of legal rights index (0=weak to 12=strong)',
+          graphTitle: 'Strength of legal rights index',
           description: true,
         },
       },
       {
-        vizType: 'valueCard',
+        vizType: 'lineChart',
         settings: {
-          dataKey: 'Voice and Accountability (estimate)',
-          graphTitle: 'Voice and Accountability (estimate)',
-          description: true,
-        },
-      },
-      {
-        vizType: 'valueCard',
-        settings: {
-          dataKey: 'Economic Freedom Global Ranking',
-          graphTitle: 'Economic Freedom Global Ranking',
-          description: true,
+          dataKey:
+            'Unemployment, youth total (% of total labor force ages 15-24) (modeled ILO estimate)',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle: 'Youth Unemployment (% of total labor force ages 15-24)',
+          suffix: '%',
         },
       },
     ],
