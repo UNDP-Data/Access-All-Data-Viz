@@ -1727,6 +1727,10 @@ export const ABOUT_TEXT_LINKS = [
     ),
     resource: [
       {
+        source: "UNDP's Social Protection Offer",
+        link: 'https://www.undp.org/publications/undps-social-protection-offer-20',
+      },
+      {
         source: 'All UNDP Publications',
         link: 'https://www.undp.org/publications',
       },
@@ -1899,6 +1903,10 @@ export const ABOUT_TEXT_LINKS = [
     ),
     resource: [
       {
+        source: 'Resilience Guidance',
+        link: 'https://www.sparkblue.org/resilience-guidance',
+      },
+      {
         source: 'All UNDP Publications',
         link: 'https://www.undp.org/publications',
       },
@@ -1917,13 +1925,20 @@ export const ABOUT_TEXT_LINKS = [
           Sustainable development is built within strong institutions.
           Governance incorporates the exercise of power and related
           decision-making processes involving different state and non-state
-          actors in the provision of public goods and services. UNDP emphasises
-          the importance of governance for peaceful, just, and inclusive
-          societies. Topics and indicators related to Governance include the
-          structures and processes that are designed to ensure accountability,
-          transparency, responsiveness, rule of law, stability, equity and
-          inclusiveness, empowerment, and broad-based participation within a
-          country.
+          actors in the provision of public goods and services. UNDP invests in
+          helping countries address emerging complexities by “future-proofing”
+          governance systems through anticipatory approaches and better
+          management of risk. The workstreams include: Inclusive and
+          future-smart public goods and services; Democratic institutions and
+          processes; Inclusive public sphere; and Integrating governance
+          principles in development. The portal presents some governance
+          indicators, recognizing that further investment is required to produce
+          harmonized, timely and comparable evidence on all dimensions of
+          governance which includes, Nondiscrimination and equality,
+          Participation, openness, access to and quality of justice,
+          responsiveness, absence of corruption, trust, safety and security. We
+          further inform that the the indicators presented do not reflect an
+          institutional endorsement to the indicators and producing entities.
         </p>
       </div>
     ),
@@ -2452,6 +2467,42 @@ export const TOP_CARDS = [
   {
     id: 'Resilience',
     cards: [
+      {
+        vizType: 'valueCard',
+        settings: {
+          dataKey: 'Country Fragility',
+          graphTitle: 'Fragile States Index',
+          description: true,
+        },
+      },
+      {
+        vizType: 'valueCard',
+        settings: {
+          dataKey:
+            'Score of adoption and implementation of national DRR strategies in line with the Sendai Framework',
+          graphTitle:
+            'Score of adoption and implementation of national disaster risk reduction (DRR) strategies in line with the Sendai Framework',
+          description: true,
+        },
+      },
+      {
+        vizType: 'valueCard',
+        settings: {
+          dataKey:
+            'Proportion of local governments that adopt and implement local disaster risk reduction (DRR) strategies in line with national disaster risk reduction strategies (%)',
+          graphTitle:
+            'Proportion of local governments that adopt and implement local disaster risk reduction strategies in line with national disaster risk reduction strategies (%)',
+          description: false,
+        },
+      },
+      {
+        vizType: 'valueCard',
+        settings: {
+          dataKey: 'External Peace',
+          graphTitle: 'External Peace Score',
+          description: false,
+        },
+      },
       {
         vizType: 'valueCard',
         settings: {
