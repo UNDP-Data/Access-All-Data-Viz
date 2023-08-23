@@ -1768,6 +1768,7 @@ export const ABOUT_TEXT_LINKS = [
                 href='https://www.worldbank.org/en/topic/poverty/overview'
                 target='_blank'
                 rel='noreferrer'
+                style={{ fontSize: '0.75rem' }}
               >
                 https://www.worldbank.org/en/topic/poverty/overview
               </a>
@@ -1779,6 +1780,7 @@ export const ABOUT_TEXT_LINKS = [
                 href='https://www.undp.org/sites/g/files/zskgke326/files/2023-07/the-human-cost-of-inaction-poverty-social-protection-and-debt-servicing-2020-2023.pdf'
                 target='_blank'
                 rel='noreferrer'
+                style={{ fontSize: '0.75rem' }}
               >
                 https://www.undp.org/sites/g/files/zskgke326/files/2023-07/the-human-cost-of-inaction-poverty-social-protection-and-debt-servicing-2020-2023.pdf
               </a>
@@ -1788,6 +1790,7 @@ export const ABOUT_TEXT_LINKS = [
                 href='https://unstats.un.org/sdgs/report/2023/Goal-01/'
                 target='_blank'
                 rel='noreferrer'
+                style={{ fontSize: '0.75rem' }}
               >
                 https://unstats.un.org/sdgs/report/2023/Goal-01/
               </a>
@@ -1797,6 +1800,7 @@ export const ABOUT_TEXT_LINKS = [
                 href=' https://hdr.undp.org/content/2023-global-multidimensional-poverty-index-mpi#/indicies/MPI. '
                 target='_blank'
                 rel='noreferrer'
+                style={{ fontSize: '0.75rem' }}
               >
                 https://hdr.undp.org/content/2023-global-multidimensional-poverty-index-mpi#/indicies/MPI.
               </a>
@@ -1807,6 +1811,7 @@ export const ABOUT_TEXT_LINKS = [
                 href='https://hdr.undp.org/system/files/documents/global-report-document/hdr2021-22overviewenpdf.pdf'
                 target='_blank'
                 rel='noreferrer'
+                style={{ fontSize: '0.75rem' }}
               >
                 https://hdr.undp.org/system/files/documents/global-report-document/hdr2021-22overviewenpdf.pdf
               </a>
@@ -1816,6 +1821,7 @@ export const ABOUT_TEXT_LINKS = [
                 href='https://datatopics.worldbank.org/sdgatlas/goal-10-reduced-inequalities/'
                 target='_blank'
                 rel='noreferrer'
+                style={{ fontSize: '0.75rem' }}
               >
                 https://datatopics.worldbank.org/sdgatlas/goal-10-reduced-inequalities/
               </a>
@@ -1826,6 +1832,7 @@ export const ABOUT_TEXT_LINKS = [
                 href='https://wid.world/wp-content/uploads/2023/01/CBV2023-ClimateInequalityReport-2.pdf'
                 target='_blank'
                 rel='noreferrer'
+                style={{ fontSize: '0.75rem' }}
               >
                 https://wid.world/wp-content/uploads/2023/01/CBV2023-ClimateInequalityReport-2.pdf
               </a>
@@ -1837,6 +1844,7 @@ export const ABOUT_TEXT_LINKS = [
                 href='https://www.ilo.org/wcmsp5/groups/public/---ed_protect/---soc_sec/documents/publication/wcms_817572.pdf'
                 target='_blank'
                 rel='noreferrer'
+                style={{ fontSize: '0.75rem' }}
               >
                 https://www.ilo.org/wcmsp5/groups/public/---ed_protect/---soc_sec/documents/publication/wcms_817572.pdf
               </a>
@@ -1846,6 +1854,7 @@ export const ABOUT_TEXT_LINKS = [
                 href='https://unstats.un.org/sdgs/report/2023/Goal-08/'
                 target='_blank'
                 rel='noreferrer'
+                style={{ fontSize: '0.75rem' }}
               >
                 https://unstats.un.org/sdgs/report/2023/Goal-08/
               </a>
@@ -1858,6 +1867,7 @@ export const ABOUT_TEXT_LINKS = [
                 href='https://www.elibrary.imf.org/view/journals/001/2023/079/article-A001-en.xml'
                 target='_blank'
                 rel='noreferrer'
+                style={{ fontSize: '0.75rem' }}
               >
                 https://www.elibrary.imf.org/view/journals/001/2023/079/article-A001-en.xml
               </a>
@@ -1867,6 +1877,7 @@ export const ABOUT_TEXT_LINKS = [
                 href='https://www.undp.org/publications/dfs-human-cost-inaction-poverty-social-protection-and-debt-servicing-2020-2023'
                 target='_blank'
                 rel='noreferrer'
+                style={{ fontSize: '0.75rem' }}
               >
                 https://www.undp.org/publications/dfs-human-cost-inaction-poverty-social-protection-and-debt-servicing-2020-2023
               </a>
