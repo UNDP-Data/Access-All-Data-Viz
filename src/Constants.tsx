@@ -1702,26 +1702,179 @@ export const ABOUT_TEXT_LINKS = [
     bodyText: (
       <div>
         <p className='undp-typography'>
-          Global extreme poverty, measured by the absolute International Poverty
-          Line of $2.15 per day (in 2017 international-$), had continuously
-          declined for 30 years. Though it hit a historic low in 2015, there was
-          a 1% surge when the COVID-19 pandemic hit. Even before the COVID-19
-          pandemic, the data shows that 1.2 billion people in 111 developing
-          countries live in severe multidimensional poverty. Despite significant
-          progress in the development of national social protection floors, only
-          a quarter of the vulnerable population - all children, along with
-          people of working age and older people not covered by social insurance
-          - receive social assistance.
+          Eradicating poverty, reducing inequality within and between countries
+          and ensuring that no one is left behind are central to the 2030 Agenda
+          for Sustainable Development and UNDP&apos;s work.
         </p>
         <p className='undp-typography'>
-          The average world loss in human development achievements - health,
-          education and income making up the HDI - due to inequality is about
-          23%. People in sub-Saharan Africa suffer the largest losses due to
-          inequality in all three dimensions, followed by South Asia and the
-          Arab States. The current global working poverty rate of 8 per cent
-          implies that employment-related incomes are not sufficient to ensure
-          decent living conditions for that proportion of the employed
-          population living in poverty or to lift them out of poverty.
+          Data suggests that the challenge ahead is increasingly daunting. The
+          on-going polycrisis the world finds itself, not least the climate and
+          debt crises, are reversing decades of progress. After thirty years of
+          continuous decline, the global share of people experiencing extreme
+          poverty - living on less than $2.15 a day- surged from 8.4 percent in
+          2019 to 9.3 percent in 2020<sup>1</sup> as a result of COVID-19, while
+          the combined effects of the pandemic, the war in Ukraine and ensuing
+          cost-of-living crisis, might have pushed 75 million more people into
+          extreme poverty between 2020 and the end of 2023.<sup>2</sup>
+        </p>
+        <p className='undp-typography'>
+          If current trends continue, 575 million people will still be living in
+          extreme poverty in 2030<sup>3</sup>. Furthermore, 1.1 billion people
+          in 110 developing countries continue to live in multidimensional
+          poverty.<sup>4</sup> Human development has fallen back to its 2016
+          levels while the average global loss in human development achievements
+          - health, education, and income - due to inequality is 19.4 percent
+          <sup>5</sup>.
+        </p>
+        <p className='undp-typography'>
+          Global income inequality, as measured by the global Gini Index dropped
+          from about 70 in 1990 to 62 in 2019, but rose by 0.7 in 2020, as
+          poorer countries were hit harder than richer countries and less able
+          to provide social protection for the most vulnerable and preserve jobs
+          and livelihoods<sup>6</sup>. Inequalities of opportunity continue to
+          persist due to gender, age and other factors, both within and between
+          countries.
+        </p>
+        <p className='undp-typography'>
+          Climate change worsens both poverty and inequality. The income losses
+          from climate hazards of the bottom 40% are estimated to be 70% larger
+          than the average in low- and middle-income countries.
+          <sup>7</sup>
+        </p>
+        <p className='undp-typography'>
+          Despite increased vulnerabilities, only 28.9 percent of people in need
+          - all children, along with people of working age and older people not
+          covered by social insurance - receive social assistance<sup>8</sup>.
+          Prior to COVID-19, 70 percent of workers in developing and low-income
+          countries were informal workers. In 2022, informal employment in least
+          developed countries (LDCs) stood at 89.7 percent in 2022 - against 58
+          percent globally, with no improvement since 2015<sup>9</sup>. This
+          underscores the urgency of inclusive and shock-responsive social
+          protection systems.
+        </p>
+        <p className='undp-typography'>
+          Poverty and inequality reduction prospects are further undermined by
+          soaring debt levels. About 60% of low-income developing countries are
+          in debt distress or at high risk of debt distress<sup>10</sup>. The
+          average low-income country spends about 2.3 times more on interest
+          payments than on social assistance
+          <sup>11</sup>.
+        </p>
+        <p
+          className='undp-typography'
+          style={{ fontSize: '0.75rem !important' }}
+        >
+          <ol>
+            <li className='undp-list-item'>
+              World Bank, 2023,{' '}
+              <a
+                href='https://www.worldbank.org/en/topic/poverty/overview'
+                target='_blank'
+                rel='noreferrer'
+              >
+                https://www.worldbank.org/en/topic/poverty/overview
+              </a>
+            </li>
+            <li className='undp-list-item'>
+              UNDP Development Futures Series, 2023, The Human Cost of Inaction:
+              Poverty, Social Protection and Debt Servicing, 2020-2023{' '}
+              <a
+                href='https://www.undp.org/sites/g/files/zskgke326/files/2023-07/the-human-cost-of-inaction-poverty-social-protection-and-debt-servicing-2020-2023.pdf'
+                target='_blank'
+                rel='noreferrer'
+              >
+                https://www.undp.org/sites/g/files/zskgke326/files/2023-07/the-human-cost-of-inaction-poverty-social-protection-and-debt-servicing-2020-2023.pdf
+              </a>
+            </li>
+            <li className='undp-list-item'>
+              <a
+                href='https://unstats.un.org/sdgs/report/2023/Goal-01/'
+                target='_blank'
+                rel='noreferrer'
+              >
+                https://unstats.un.org/sdgs/report/2023/Goal-01/
+              </a>
+            </li>
+            <li className='undp-list-item'>
+              <a
+                href=' https://hdr.undp.org/content/2023-global-multidimensional-poverty-index-mpi#/indicies/MPI. '
+                target='_blank'
+                rel='noreferrer'
+              >
+                https://hdr.undp.org/content/2023-global-multidimensional-poverty-index-mpi#/indicies/MPI.
+              </a>
+            </li>
+            <li className='undp-list-item'>
+              UNDP, Human Development Report 2021/2022,{' '}
+              <a
+                href='https://hdr.undp.org/system/files/documents/global-report-document/hdr2021-22overviewenpdf.pdf'
+                target='_blank'
+                rel='noreferrer'
+              >
+                https://hdr.undp.org/system/files/documents/global-report-document/hdr2021-22overviewenpdf.pdf
+              </a>
+            </li>
+            <li className='undp-list-item'>
+              <a
+                href='https://datatopics.worldbank.org/sdgatlas/goal-10-reduced-inequalities/'
+                target='_blank'
+                rel='noreferrer'
+              >
+                https://datatopics.worldbank.org/sdgatlas/goal-10-reduced-inequalities/
+              </a>
+            </li>
+            <li className='undp-list-item'>
+              Climate Inequality Report 2023,{' '}
+              <a
+                href='https://wid.world/wp-content/uploads/2023/01/CBV2023-ClimateInequalityReport-2.pdf'
+                target='_blank'
+                rel='noreferrer'
+              >
+                https://wid.world/wp-content/uploads/2023/01/CBV2023-ClimateInequalityReport-2.pdf
+              </a>
+            </li>
+            <li className='undp-list-item'>
+              ILO - World Social Protection Report 2020-2022: social protection
+              at the crossroads - in pursuit of a better future,{' '}
+              <a
+                href='https://www.ilo.org/wcmsp5/groups/public/---ed_protect/---soc_sec/documents/publication/wcms_817572.pdf'
+                target='_blank'
+                rel='noreferrer'
+              >
+                https://www.ilo.org/wcmsp5/groups/public/---ed_protect/---soc_sec/documents/publication/wcms_817572.pdf
+              </a>
+            </li>
+            <li className='undp-list-item'>
+              <a
+                href='https://unstats.un.org/sdgs/report/2023/Goal-08/'
+                target='_blank'
+                rel='noreferrer'
+              >
+                https://unstats.un.org/sdgs/report/2023/Goal-08/
+              </a>
+            </li>
+            <li className='undp-list-item'>
+              As of December 2022; IMF, 2023, Are We Heading for Another Debt
+              Crisis in Low-Income Countries? Debt Vulnerabilities: Today vs the
+              pre-HIPC Era,{' '}
+              <a
+                href='https://www.elibrary.imf.org/view/journals/001/2023/079/article-A001-en.xml'
+                target='_blank'
+                rel='noreferrer'
+              >
+                https://www.elibrary.imf.org/view/journals/001/2023/079/article-A001-en.xml
+              </a>
+            </li>
+            <li className='undp-list-item'>
+              <a
+                href='https://www.undp.org/publications/dfs-human-cost-inaction-poverty-social-protection-and-debt-servicing-2020-2023'
+                target='_blank'
+                rel='noreferrer'
+              >
+                https://www.undp.org/publications/dfs-human-cost-inaction-poverty-social-protection-and-debt-servicing-2020-2023
+              </a>
+            </li>
+          </ol>
         </p>
       </div>
     ),
