@@ -1760,12 +1760,9 @@ export const ABOUT_TEXT_LINKS = [
           payments than on social assistance
           <sup>11</sup>.
         </p>
-        <p
-          className='undp-typography'
-          style={{ fontSize: '0.75rem !important' }}
-        >
+        <p className='undp-typography'>
           <ol>
-            <li className='undp-list-item'>
+            <li className='undp-list-item' style={{ fontSize: '0.75rem' }}>
               World Bank, 2023,{' '}
               <a
                 href='https://www.worldbank.org/en/topic/poverty/overview'
@@ -1775,7 +1772,7 @@ export const ABOUT_TEXT_LINKS = [
                 https://www.worldbank.org/en/topic/poverty/overview
               </a>
             </li>
-            <li className='undp-list-item'>
+            <li className='undp-list-item' style={{ fontSize: '0.75rem' }}>
               UNDP Development Futures Series, 2023, The Human Cost of Inaction:
               Poverty, Social Protection and Debt Servicing, 2020-2023{' '}
               <a
@@ -1786,7 +1783,7 @@ export const ABOUT_TEXT_LINKS = [
                 https://www.undp.org/sites/g/files/zskgke326/files/2023-07/the-human-cost-of-inaction-poverty-social-protection-and-debt-servicing-2020-2023.pdf
               </a>
             </li>
-            <li className='undp-list-item'>
+            <li className='undp-list-item' style={{ fontSize: '0.75rem' }}>
               <a
                 href='https://unstats.un.org/sdgs/report/2023/Goal-01/'
                 target='_blank'
@@ -1795,7 +1792,7 @@ export const ABOUT_TEXT_LINKS = [
                 https://unstats.un.org/sdgs/report/2023/Goal-01/
               </a>
             </li>
-            <li className='undp-list-item'>
+            <li className='undp-list-item' style={{ fontSize: '0.75rem' }}>
               <a
                 href=' https://hdr.undp.org/content/2023-global-multidimensional-poverty-index-mpi#/indicies/MPI. '
                 target='_blank'
@@ -1804,7 +1801,7 @@ export const ABOUT_TEXT_LINKS = [
                 https://hdr.undp.org/content/2023-global-multidimensional-poverty-index-mpi#/indicies/MPI.
               </a>
             </li>
-            <li className='undp-list-item'>
+            <li className='undp-list-item' style={{ fontSize: '0.75rem' }}>
               UNDP, Human Development Report 2021/2022,{' '}
               <a
                 href='https://hdr.undp.org/system/files/documents/global-report-document/hdr2021-22overviewenpdf.pdf'
@@ -1814,7 +1811,7 @@ export const ABOUT_TEXT_LINKS = [
                 https://hdr.undp.org/system/files/documents/global-report-document/hdr2021-22overviewenpdf.pdf
               </a>
             </li>
-            <li className='undp-list-item'>
+            <li className='undp-list-item' style={{ fontSize: '0.75rem' }}>
               <a
                 href='https://datatopics.worldbank.org/sdgatlas/goal-10-reduced-inequalities/'
                 target='_blank'
@@ -1823,7 +1820,7 @@ export const ABOUT_TEXT_LINKS = [
                 https://datatopics.worldbank.org/sdgatlas/goal-10-reduced-inequalities/
               </a>
             </li>
-            <li className='undp-list-item'>
+            <li className='undp-list-item' style={{ fontSize: '0.75rem' }}>
               Climate Inequality Report 2023,{' '}
               <a
                 href='https://wid.world/wp-content/uploads/2023/01/CBV2023-ClimateInequalityReport-2.pdf'
@@ -1833,7 +1830,7 @@ export const ABOUT_TEXT_LINKS = [
                 https://wid.world/wp-content/uploads/2023/01/CBV2023-ClimateInequalityReport-2.pdf
               </a>
             </li>
-            <li className='undp-list-item'>
+            <li className='undp-list-item' style={{ fontSize: '0.75rem' }}>
               ILO - World Social Protection Report 2020-2022: social protection
               at the crossroads - in pursuit of a better future,{' '}
               <a
@@ -1844,7 +1841,7 @@ export const ABOUT_TEXT_LINKS = [
                 https://www.ilo.org/wcmsp5/groups/public/---ed_protect/---soc_sec/documents/publication/wcms_817572.pdf
               </a>
             </li>
-            <li className='undp-list-item'>
+            <li className='undp-list-item' style={{ fontSize: '0.75rem' }}>
               <a
                 href='https://unstats.un.org/sdgs/report/2023/Goal-08/'
                 target='_blank'
@@ -1853,7 +1850,7 @@ export const ABOUT_TEXT_LINKS = [
                 https://unstats.un.org/sdgs/report/2023/Goal-08/
               </a>
             </li>
-            <li className='undp-list-item'>
+            <li className='undp-list-item' style={{ fontSize: '0.75rem' }}>
               As of December 2022; IMF, 2023, Are We Heading for Another Debt
               Crisis in Low-Income Countries? Debt Vulnerabilities: Today vs the
               pre-HIPC Era,{' '}
@@ -1865,7 +1862,7 @@ export const ABOUT_TEXT_LINKS = [
                 https://www.elibrary.imf.org/view/journals/001/2023/079/article-A001-en.xml
               </a>
             </li>
-            <li className='undp-list-item'>
+            <li className='undp-list-item' style={{ fontSize: '0.75rem' }}>
               <a
                 href='https://www.undp.org/publications/dfs-human-cost-inaction-poverty-social-protection-and-debt-servicing-2020-2023'
                 target='_blank'
