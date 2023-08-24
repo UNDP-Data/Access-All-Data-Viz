@@ -3098,4 +3098,104 @@ export const TOP_CARDS = [
       },
     ],
   },
+  {
+    id: 'PAK',
+    cards: [
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey: 'Gender Inequality Index-Gender Inequality Index',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle: 'Gender Inequality Index',
+        },
+      },
+      {
+        vizType: 'valueCard',
+        settings: {
+          dataKey: 'Rule of Law: Estimate',
+          graphTitle: 'Rule of Law Index',
+          description: true,
+        },
+      },
+      {
+        vizType: 'valueCard',
+        settings: {
+          dataKey: 'CPIA Public sector management and institutions',
+          graphTitle: 'Public Sector Management and Institutions Index',
+          description: true,
+        },
+      },
+      {
+        vizType: 'valueCard',
+        settings: {
+          dataKey: 'CPIA policies for social inclusion/equity cluster average',
+          graphTitle: 'Social Inclusion and Equity Index',
+          description: true,
+        },
+      },
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey:
+            'Labor force with advanced education (% of total working-age population with advanced education)',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle: 'Proportion of Labour Force with Advanced Education',
+        },
+      },
+      {
+        vizType: 'valueCard',
+        settings: {
+          dataKey: 'CPIA structural policies cluster average (1=low to 6=high)',
+          graphTitle: 'Structural Policies Index',
+          description: true,
+        },
+      },
+      {
+        vizType: 'valueCard',
+        settings: {
+          dataKey: 'Government Effectiveness: Estimate',
+          graphTitle: 'Government Effectiveness Index',
+          description: true,
+        },
+      },
+      {
+        vizType: 'valueCard',
+        settings: {
+          dataKey: 'Voice and Accountability (estimate)',
+          graphTitle: 'Voice and Accountability Index',
+          description: true,
+        },
+      },
+      {
+        vizType: 'valueCard',
+        settings: {
+          dataKey: 'Refugees and IDPs Pressure on State',
+          graphTitle: 'Refugees and IDPs Score',
+          description: true,
+        },
+      },
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey: 'Natural Capital, USD per capita',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle: 'Natural capital',
+          prefix: 'US $',
+        },
+      },
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey: 'Government Debt',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle: 'Net debt as percent of GDP',
+          suffix: '%',
+        },
+      },
+    ],
+  },
 ];
