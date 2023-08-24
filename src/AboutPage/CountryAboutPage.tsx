@@ -2,7 +2,7 @@ import { queue } from 'd3-queue';
 import { json } from 'd3-request';
 import { useEffect, useState } from 'react';
 import { format } from 'd3-format';
-import { COUNTRYTAXONOMYLINK } from '../Constants';
+import { ABOUT_TEXT_LINKS, COUNTRYTAXONOMYLINK } from '../Constants';
 import { CountryGroupDataType, CountryTaxonomyDataType } from '../Types';
 import CountryWebsiteList from '../CountryPage/CountryWebLinks.json';
 
@@ -38,6 +38,10 @@ export function CountryAboutPage(props: Props) {
   const [countryData, setCountryData] = useState<
     CountryGroupDataType | undefined
   >(undefined);
+  const aboutData =
+    ABOUT_TEXT_LINKS.findIndex(d => d.id === countryId) !== -1
+      ? ABOUT_TEXT_LINKS[ABOUT_TEXT_LINKS.findIndex(d => d.id === countryId)]
+      : null;
   useEffect(() => {
     queue()
       .defer(
@@ -88,7 +92,7 @@ export function CountryAboutPage(props: Props) {
             <p className='undp-typography'>
               Located in {countryTaxonomy['Group 2']}
               {isDataAvailable(countryData, 'Population, total') ? (
-                <span>
+                <>
                   &nbsp;and with a population of&nbsp;
                   <span className='bold'>
                     {format('.2s')(
@@ -97,7 +101,7 @@ export function CountryAboutPage(props: Props) {
                     ).replace('G', 'B')}
                   </span>
                   &nbsp;inhabitants
-                </span>
+                </>
               ) : null}
               .&nbsp;
               {isDataAvailable(
@@ -231,6 +235,7 @@ export function CountryAboutPage(props: Props) {
                 ''
               )}
             </p>
+            {aboutData?.bodyText}
             {CountryWebsiteList.findIndex(
               d => d.iso3 === countryTaxonomy['Alpha-3 code'],
             ) !== -1 ? (
@@ -252,6 +257,18 @@ export function CountryAboutPage(props: Props) {
                     Country Website
                   </a>
                 </div>
+                {aboutData?.resource.map((d, i) => (
+                  <div className='margin-bottom-05' key={i}>
+                    <a
+                      href={d.link}
+                      target='_blank'
+                      className='undp-style'
+                      rel='noreferrer'
+                    >
+                      {d.source}
+                    </a>
+                  </div>
+                ))}
               </div>
             ) : null}
           </div>

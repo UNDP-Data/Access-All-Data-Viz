@@ -2312,6 +2312,62 @@ export const ABOUT_TEXT_LINKS = [
       },
     ],
   },
+  {
+    title: 'Pakistan',
+    id: 'PAK',
+    bodyText: (
+      <>
+        <p className='undp-typography'>
+          UNDP works with the Government and people of Pakistan to develop local
+          solutions to development challenges. In an evolving development
+          context, we support Pakistan&apos;s efforts to build a more equitable,
+          prosperous, peaceful and resilient society, and to achieve its SDGs
+          and COP26 targets. UNDP promotes transformational change by fostering
+          strategic partnerships with national counterparts in the federal,
+          provincial and regional governments, civil society, the private sector
+          and the local and international community. UNDP supports
+          transformational change by providing technical assistance focusing on
+          developing capacity within national and local authorities, providing
+          solutions with strong monitoring and evaluation tools, and delivering
+          programmes with maximum efficiency, transparency and accountability.
+        </p>
+        <p className='undp-typography'>
+          UNDP&apos;s ultimate goal is to improve the lives of the people of
+          Pakistan through keeping people out of poverty; governance for
+          peaceful, just and inclusive societies; crisis prevention and
+          increased resilience; nature-based solutions for development; clean
+          affordable energy; and women&apos;s empowerment and gender equality.
+        </p>
+      </>
+    ),
+    resource: [],
+  },
+  {
+    title: 'South Africa',
+    id: 'ZAF',
+    bodyText: (
+      <>
+        <p className='undp-typography'>
+          UNDP partners with people at all levels of government and society to
+          help build nations that can withstand crises and sustain the kind of
+          growth that improves the quality of life for everyone. On the ground
+          in 170 countries and territories, we offer global perspectives and
+          local insight to empower lives and help build resilient nations to
+          achieve the Sustainable Development Goals (SDGs).
+        </p>
+        <p className='undp-typography'>
+          UNDP South Africa is working with the Government and people of South
+          Africa, Private Sector, UN Agencies, Academia, Civil Society
+          Organisations (CSOs) and other relevant stakeholders to address the
+          triple development challenges of poverty, income inequality and
+          unemployment. We achieve this through promoting better governance,
+          inclusive and people-centred growth, energy access, climate resilience
+          and sustainable development.
+        </p>
+      </>
+    ),
+    resource: [],
+  },
 ];
 
 export const TOP_CARDS = [
