@@ -116,7 +116,15 @@ export function LineChart(props: Props) {
                 indicators={indicators}
                 svgWidth={svgWidth}
                 svgHeight={svgHeight}
-                country={country}
+                country={
+                  country === 'Asia and the Pacific'
+                    ? 'Asia & Pacific'
+                    : country === 'Africa'
+                    ? 'Sub-Saharan Africa'
+                    : country === 'Europe and Central Asia'
+                    ? 'Europe & Central Asia (currently Europe & Central Asia (excluding high income))'
+                    : country
+                }
               />
             ) : (
               <SingleAxisGraph
@@ -124,7 +132,15 @@ export function LineChart(props: Props) {
                 indicators={indicators}
                 svgWidth={svgWidth}
                 svgHeight={svgHeight}
-                country={country}
+                country={
+                  country === 'Asia and the Pacific'
+                    ? 'Asia & Pacific'
+                    : country === 'Africa'
+                    ? 'Sub-Saharan Africa'
+                    : country === 'Europe and Central Asia'
+                    ? 'Europe & Central Asia (currently Europe & Central Asia (excluding high income))'
+                    : country
+                }
               />
             )
           ) : null}

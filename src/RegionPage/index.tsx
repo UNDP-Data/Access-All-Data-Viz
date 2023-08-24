@@ -2,12 +2,10 @@
 import { useState, useEffect } from 'react';
 import { json } from 'd3-request';
 import { queue } from 'd3-queue';
-import { Tabs } from 'antd';
 import {
   CountryGroupDataType,
   IndicatorMetaDataType,
   CountryListType,
-  SubRegionsDataType,
 } from '../Types';
 import { METADATALINK } from '../Constants';
 import RegionalHomePageContext from './RegionalHomePage';
@@ -92,25 +90,6 @@ function RegionHomePage(props: Props) {
         </div>
       )}
     </div>
-  );
-}
-
-interface TabsProps {
-  subRegions: SubRegionsDataType[];
-}
-
-export function RegionHomePageWithTabs(props: TabsProps) {
-  const { subRegions } = props;
-  return (
-    <Tabs
-      defaultActiveKey={subRegions[0].key}
-      className='undp-tabs'
-      items={subRegions.map(d => ({
-        label: d.region,
-        key: d.key,
-        children: <RegionHomePage region={d.key} />,
-      }))}
-    />
   );
 }
 
