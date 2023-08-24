@@ -2083,23 +2083,29 @@ export const ABOUT_TEXT_LINKS = [
     bodyText: (
       <div>
         <p className='undp-typography'>
-          Sustainable development is built within strong institutions.
-          Governance incorporates the exercise of power and related
-          decision-making processes involving different state and non-state
-          actors in the provision of public goods and services. UNDP invests in
-          helping countries address emerging complexities by “future-proofing”
-          governance systems through anticipatory approaches and better
-          management of risk. The workstreams include: Inclusive and
-          future-smart public goods and services; Democratic institutions and
-          processes; Inclusive public sphere; and Integrating governance
-          principles in development. The portal presents some governance
-          indicators, recognizing that further investment is required to produce
-          harmonized, timely and comparable evidence on all dimensions of
-          governance which includes, Nondiscrimination and equality,
-          Participation, openness, access to and quality of justice,
-          responsiveness, absence of corruption, trust, safety and security. We
-          further inform that the the indicators presented do not reflect an
-          institutional endorsement to the indicators and producing entities.
+          Governance systems and processes regulate how power is exercised and
+          decisions are made that impact the lives and livelihoods. UNDP works
+          to support accountable, effective and inclusive institutions and
+          processes and ensure access to justice for all in order to accelerate
+          the achievement of the 2030 Agenda for Sustainable Development.
+        </p>
+        <p className='undp-typography'>
+          UNDP&apos;s work on governance includes promoting inclusive and
+          future-smart public goods and services, democratic institutions and
+          processes, an inclusive public sphere as well as integrating
+          governance principles into development polices and programmes. Working
+          at global, regional and national levels, UNDP also works to promote
+          the rule of law and human rights and enable more people centered
+          justice and security services.
+        </p>
+        <p className='undp-typography'>
+          This portal features some selected governance indicators. A
+          significant challenge facing the field is the lack of data
+          availability on governance related indicators. More investment is
+          needed in order to produce harmonized, timely and comparable evidence
+          on all dimensions of governance. UNDP works closely with national data
+          producers to strengthen data availability to better monitor progress
+          towards more inclusive, just and peaceful societies.
         </p>
       </div>
     ),
@@ -2216,27 +2222,49 @@ export const ABOUT_TEXT_LINKS = [
     bodyText: (
       <div>
         <p className='undp-typography'>
-          While extreme poverty in Europe & Central Asia has largely been
-          eradicated, countries in the Western Balkans, South Caucasus and
-          Central Asia continue to face multiple development challenges. Gender
-          Inequality remains a key impediment to development, with the Gross
-          National Income per capita for women just over half than that of men.
-          Outward and transit migration flows are among the highest globally and
-          many countries in the region are experiencing extensive depletion of
-          human capital. In addition, climate change is already exerting
-          pressure on the shared natural resources and is triggering devastating
-          weather events, bringing additional strain to the conflicts and
-          governance issues in the region.
+          UNDP&apos;s goal in Europe and Central Asia is to help eradicate
+          poverty in all its forms, accelerate the transition to sustainable
+          development, and make sure countries and people are able to withstand
+          crises and shocks. We work to make sure the most vulnerable and
+          excluded are not left behind, develop game changing solutions to
+          accelerate sustainable development, and promote prevention and
+          preparedness against crises and shocks.
         </p>
         <p className='undp-typography'>
-          The goal of UNDP&rsquo;s 19 country offices in the region and the
-          Regional Bureau for Europe and Central Asia, headquartered in New
-          York, is to help eradicate poverty in all its forms, accelerate the
-          transition to sustainable development, and make sure countries and
-          people are able to withstand crises and shocks. We work to make sure
-          the most vulnerable and excluded are not left behind, develop
-          game-changing solutions to accelerate sustainable development, and
-          promote prevention and preparedness.
+          While extreme poverty has largely been eradicated, the countries in
+          the Western Balkans, South Caucasus and Central Asia continue to face
+          multiple development challenges.
+        </p>
+        <p className='undp-typography'>
+          Exclusion is widespread and inequalities are on the rise. In many
+          countries, decent employment is scarce while social safety nets are
+          outdated. Women&apos;s participation in the workforce and politics
+          remains limited. Youth are particularly at risk of being marginalized
+          at a time of rapid economic change.
+        </p>
+        <p className='undp-typography'>
+          Outward and transit migration flows are among the highest globally,
+          with many countries in the region experiencing extensive depletion of
+          human capital. Impacts from the war in Ukraine have not only been felt
+          in-country, but across the region, especially around energy, migration
+          and supply chains.
+        </p>
+        <p className='undp-typography'>
+          One of the biggest challenges will be to reconcile economic growth
+          with social progress and environmental sustainability. Climate change
+          is already exerting pressure on shared natural resources and
+          triggering devastating weather events. And in some countries,
+          conflicts and governance issues persist, exacerbated by weak social
+          cohesion, ethnic tensions and violent extremism.
+        </p>
+        <p className='undp-typography'>
+          Read more{' '}
+          <a
+            href='More https://www.undp.org/eurasia/about-us/about-region'
+            target='_blank'
+          >
+            here
+          </a>
         </p>
       </div>
     ),
@@ -3072,81 +3100,43 @@ export const TOP_CARDS = [
       {
         vizType: 'lineChart',
         settings: {
-          dataKey: 'Population, total',
+          dataKey:
+            'Poverty headcount ratio at $6.85 a day (2017 PPP) (% of population)',
           strokeWidth: 1,
           lineColor: '#232E3D',
-          graphTitle: 'Population, total',
-        },
-      },
-      {
-        vizType: 'stackedLineChart',
-        settings: {
-          dataKey: ['Rural Population, total', 'Urban Population, total'],
-          strokeWidth: 1,
-          lineColors: [
-            UNDPColorModule.categoricalColors.locationColors.rural,
-            UNDPColorModule.categoricalColors.locationColors.rural,
-          ],
-          graphTitle: 'Urban and Rural Population',
-        },
-      },
-      {
-        vizType: 'lineChart',
-        settings: {
-          dataKey: 'GHG emission',
-          strokeWidth: 1,
-          lineColor: '#232E3D',
-          graphTitle: 'Greenhouse Gas Emission',
-          suffix: 'MtC02e',
+          graphTitle:
+            'Poverty headcount ratio at $6.85 a day (2017 PPP), % of population',
         },
       },
       {
         vizType: 'lineChart',
         settings: {
           dataKey:
-            'Poverty headcount ratio at $2.15 a day (2017 PPP) (% of population)',
+            'Renewable energy consumption (% of total final energy consumption)',
           strokeWidth: 1,
           lineColor: '#232E3D',
           graphTitle:
-            'Poverty headcount ratio at $2.15 a day (2017 PPP) (% of population)',
+            'Renewable energy consumption (% of total final energy consumption)',
           suffix: '%',
         },
       },
       {
         vizType: 'dotPlot',
         settings: {
-          dataKey: 'Access to electricity (% of population)',
-          graphTitle: 'People with access to electricity',
+          dataKey:
+            'Gender Inequality Index-Share of seats in parliament (% held by women)',
+          graphTitle: 'Share of seats in parliament (% held by women)',
         },
       },
       {
         vizType: 'lineChart',
         settings: {
           dataKey:
-            'Primary energy consumption per capita, measured in kilowatt-hours',
+            'Level of water stress: freshwater withdrawal as a proportion of available freshwater resources',
           strokeWidth: 1,
           lineColor: '#232E3D',
           graphTitle:
-            'Primary energy consumption per capita, measured in kilowatt-hours',
-          suffix: 'kWh',
-        },
-      },
-      {
-        vizType: 'lineChart',
-        settings: {
-          dataKey: 'Gender Inequality Index-Gender Inequality Index',
-          strokeWidth: 1,
-          lineColor: '#232E3D',
-          graphTitle: 'Gender Inequality Index',
-        },
-      },
-      {
-        vizType: 'lineChart',
-        settings: {
-          dataKey: 'Human development index (HDI)',
-          strokeWidth: 1,
-          lineColor: '#232E3D',
-          graphTitle: 'Human Development Index',
+            'Freshwater withdrawal, proportion of available freshwater resources',
         },
       },
     ],
