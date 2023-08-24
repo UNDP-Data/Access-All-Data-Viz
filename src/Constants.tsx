@@ -2368,6 +2368,65 @@ export const ABOUT_TEXT_LINKS = [
     ),
     resource: [],
   },
+  {
+    title: 'Bhutan',
+    id: 'BTN',
+    bodyText: (
+      <>
+        <p className='undp-typography'>
+          UNDP has been working with the Royal Government and people of Bhutan
+          since 1973 to accelerate the country&apos;s development results
+          through innovation, digitalization, development financing,
+          partnerships, cutting-edge global knowledge and technical expertise.
+        </p>
+        <p className='undp-typography'>
+          Our mission is to alleviate poverty, reduce inequality and exclusion,
+          and drive climate action and sustainable growth so people are
+          empowered, and communities become more resilient. Tapping into our
+          broad global network of experts and partners in 170 countries, we help
+          the Royal Government and people of Bhutan to build integrated, lasting
+          solutions for people and planet.
+        </p>
+        <p className='undp-typography'>
+          As UN&apos;s development agency, UNDP plays a critical role in helping
+          Bhutan achieve the Sustainable Development Goals and Gross National
+          Happiness. Guided by new UNDP Strategic Plan 2022 -2025, we support
+          Bhutan in its path towards the Sustainable Development Goals (SDGs)
+          through:
+          <ol>
+            <li className='undp-list-item'>
+              Supporting three directions of change: structural transformation,
+              leaving no one behind and building resilience
+            </li>
+            <li className='undp-list-item'>
+              Through six signature solutions: poverty and inequality,
+              governance, resilience, environment, energy, and gender equality
+            </li>
+            <li className='undp-list-item'>
+              Enhanced by three enablers: strategic innovation, digitalization
+              and development financing
+            </li>
+          </ol>
+        </p>
+        <p className='undp-typography'>
+          In partnership with the Royal Government and people of Bhutan, we work
+          in the following areas:
+          <ul>
+            <li className='undp-list-item'>
+              Climate change, environment and livelihoods
+            </li>
+            <li className='undp-list-item'>
+              Governance, inclusion and engagement
+            </li>
+            <li className='undp-list-item'>
+              Innovation and digital transformation
+            </li>
+          </ul>
+        </p>
+      </>
+    ),
+    resource: [],
+  },
 ];
 
 export const TOP_CARDS = [
