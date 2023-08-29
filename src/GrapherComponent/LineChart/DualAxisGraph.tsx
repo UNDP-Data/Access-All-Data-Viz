@@ -65,13 +65,13 @@ export function DualAxisGraph(props: Props) {
     undefined,
   );
   const margin = {
-    top: 40,
+    top: 0,
     bottom: 50,
     left: 90,
     right: 90,
   };
   const graphWidth = svgWidth - margin.left - margin.right;
-  const graphHeight = svgHeight - margin.top - margin.bottom;
+  const graphHeight = svgHeight - margin.top - margin.bottom - 50;
 
   const xIndicatorMetaData =
     indicators[
@@ -203,323 +203,380 @@ export function DualAxisGraph(props: Props) {
   return (
     <>
       {dataFilterd.length > 0 ? (
-        <svg
-          width='100%'
-          height='100%'
-          viewBox={`0 0 ${svgWidth} ${svgHeight}`}
-        >
-          <g transform={`translate(${margin.left},${margin.top})`}>
-            <line
-              y1={graphHeight}
-              y2={graphHeight}
-              x1={-15}
-              x2={graphWidth + 15}
-              stroke='#AAA'
-              strokeWidth={1}
-            />
-            <g>
-              {y1Ticks.map((d, i) => (
-                <g key={i}>
-                  <line
-                    y1={y1(d)}
-                    y2={y1(d)}
-                    x1={-15}
-                    x2={-20}
-                    stroke={UNDPColorModule.categoricalColors.colors[0]}
-                    strokeWidth={1}
-                  />
-                  <text
-                    x={-25}
-                    y={y1(d)}
-                    fill={UNDPColorModule.categoricalColors.colors[0]}
-                    textAnchor='end'
-                    fontSize={12}
-                    dy={3}
-                  >
-                    {Math.abs(d) < 1 ? d : format('~s')(d).replace('G', 'B')}
-                  </text>
-                </g>
-              ))}
-              <line
-                y1={0}
-                y2={graphHeight}
-                x1={-15}
-                x2={-15}
-                stroke={UNDPColorModule.categoricalColors.colors[0]}
-                strokeWidth={1}
+        <>
+          <div
+            className='flex-div gap-07'
+            style={{ padding: '1rem 1rem 0 1rem', justifyContent: 'center' }}
+          >
+            <div className='flex-div gap-02 flex-vert-align-center'>
+              <div
+                style={{
+                  width: '1rem',
+                  height: '0.25rem',
+                  backgroundColor: UNDPColorModule.categoricalColors.colors[0],
+                }}
               />
-              <LabelText
-                transform={`translate(-60, ${graphHeight / 2}) rotate(-90)`}
-                fill={UNDPColorModule.categoricalColors.colors[0]}
-                textAnchor='middle'
-                fontSize={12}
+              <p
+                className='undp-typography margin-bottom-00 small-font'
+                style={{
+                  color: UNDPColorModule.categoricalColors.colors[0],
+                }}
               >
-                {xIndicatorMetaData.IndicatorLabelTable.length > MAX_TEXT_LENGTH
+                {xIndicatorMetaData.IndicatorLabelTable.length > 50
                   ? `${xIndicatorMetaData.IndicatorLabelTable.substring(
                       0,
-                      MAX_TEXT_LENGTH,
+                      50,
                     )}...`
                   : xIndicatorMetaData.IndicatorLabelTable}
-              </LabelText>
-            </g>
-            <g>
-              {y2Ticks.map((d, i) => (
-                <g key={i}>
-                  <line
-                    y1={y2(d)}
-                    y2={y2(d)}
-                    x1={graphWidth + 15}
-                    x2={graphWidth + 20}
-                    stroke={UNDPColorModule.categoricalColors.colors[1]}
-                    strokeWidth={1}
-                  />
-                  <text
-                    x={graphWidth + 25}
-                    y={y2(d)}
-                    fill={UNDPColorModule.categoricalColors.colors[1]}
-                    textAnchor='start'
-                    fontSize={12}
-                    dy={3}
-                    dx={-2}
-                  >
-                    {Math.abs(d) < 1 ? d : format('~s')(d).replace('G', 'B')}
-                  </text>
-                </g>
-              ))}
-              <line
-                y1={0}
-                y2={graphHeight}
-                x1={graphWidth + 15}
-                x2={graphWidth + 15}
-                stroke={UNDPColorModule.categoricalColors.colors[1]}
-                strokeWidth={1}
+              </p>
+            </div>
+            <div className='flex-div gap-02 flex-vert-align-center'>
+              <div
+                style={{
+                  width: '1rem',
+                  height: '0.25rem',
+                  backgroundColor: UNDPColorModule.categoricalColors.colors[3],
+                }}
               />
-              <LabelText
-                transform={`translate(${graphWidth + 50}, ${
-                  graphHeight / 2
-                }) rotate(-90)`}
-                fill={UNDPColorModule.categoricalColors.colors[1]}
-                textAnchor='middle'
-                fontSize={12}
+              <p
+                className='undp-typography margin-bottom-00 small-font'
+                style={{
+                  color: UNDPColorModule.categoricalColors.colors[3],
+                }}
               >
-                {yIndicatorMetaData.IndicatorLabelTable.length > MAX_TEXT_LENGTH
+                {yIndicatorMetaData.IndicatorLabelTable.length > 50
                   ? `${yIndicatorMetaData.IndicatorLabelTable.substring(
                       0,
-                      MAX_TEXT_LENGTH,
+                      50,
                     )}...`
                   : yIndicatorMetaData.IndicatorLabelTable}
-              </LabelText>
-            </g>
-            <g>
-              {xTicks.map((d, i) => (
-                <g key={i}>
-                  <XTickText
-                    y={graphHeight}
-                    x={x(d)}
-                    fill='#AAA'
-                    textAnchor='middle'
-                    fontSize={12}
-                    dy={15}
-                  >
-                    {d}
-                  </XTickText>
-                </g>
-              ))}
+              </p>
+            </div>
+          </div>
+          <svg
+            width='100%'
+            height='100%'
+            viewBox={`0 0 ${svgWidth} ${svgHeight - 50}`}
+          >
+            <g transform={`translate(${margin.left},${margin.top})`}>
               <line
-                y1={0}
+                y1={graphHeight}
                 y2={graphHeight}
-                x1={graphWidth + 15}
+                x1={-15}
                 x2={graphWidth + 15}
-                stroke={UNDPColorModule.categoricalColors.colors[1]}
+                stroke='#AAA'
                 strokeWidth={1}
               />
-            </g>
-            <g>
-              <path
-                d={lineShape1(dataFormatted as any) as string}
-                fill='none'
-                stroke={UNDPColorModule.categoricalColors.colors[0]}
-                strokeWidth={2}
-              />
-              <path
-                d={lineShape2(dataFormatted as any) as string}
-                fill='none'
-                stroke={UNDPColorModule.categoricalColors.colors[1]}
-                strokeWidth={2}
-              />
-              <path
-                d={lineShape1(dataParam1 as any) as string}
-                fill='none'
-                stroke={UNDPColorModule.categoricalColors.colors[0]}
-                strokeWidth={2}
-                strokeDasharray='4 8'
-              />
-              <path
-                d={lineShape2(dataParam2 as any) as string}
-                fill='none'
-                stroke={UNDPColorModule.categoricalColors.colors[1]}
-                strokeWidth={2}
-                strokeDasharray='4 8'
-              />
-              {hoverData ? (
+              <g>
+                {y1Ticks.map((d, i) => (
+                  <g key={i}>
+                    <line
+                      y1={y1(d)}
+                      y2={y1(d)}
+                      x1={-15}
+                      x2={-20}
+                      stroke={UNDPColorModule.categoricalColors.colors[0]}
+                      strokeWidth={1}
+                    />
+                    <text
+                      x={-25}
+                      y={y1(d)}
+                      fill={UNDPColorModule.categoricalColors.colors[0]}
+                      textAnchor='end'
+                      fontSize={12}
+                      dy={3}
+                    >
+                      {Math.abs(d) < 1 ? d : format('~s')(d).replace('G', 'B')}
+                    </text>
+                  </g>
+                ))}
                 <line
                   y1={0}
                   y2={graphHeight}
-                  x1={hoverData.rows[0].year ? x(hoverData.rows[0].year) : 0}
-                  x2={hoverData.rows[0].year ? x(hoverData.rows[0].year) : 0}
-                  stroke='#212121'
-                  strokeDasharray='4 8'
+                  x1={-15}
+                  x2={-15}
+                  stroke={UNDPColorModule.categoricalColors.colors[0]}
                   strokeWidth={1}
                 />
-              ) : null}
-            </g>
-            <g>
-              {dataFormatted.map((d, i) => (
-                <g key={i}>
-                  {d.param1 !== undefined ? (
-                    <g>
-                      <circle
-                        cx={x(d.year)}
-                        cy={y1(d.param1)}
-                        r={
-                          window.innerWidth > 960
-                            ? 4
-                            : window.innerWidth > 600
-                            ? 3
-                            : 2
-                        }
-                        fill={UNDPColorModule.categoricalColors.colors[0]}
-                      />
-                      {showLabel ? (
-                        <text
-                          x={x(d.year)}
-                          y={y1(d.param1)}
-                          dy={
-                            d.param2 !== undefined &&
-                            y1(d.param1) > y2(d.param2)
-                              ? 16
-                              : -8
-                          }
-                          fontSize={12}
-                          textAnchor='middle'
-                          fill={UNDPColorModule.categoricalColors.colors[0]}
-                          strokeWidth={0.25}
-                          stroke='#fff'
-                          fontWeight='bold'
-                        >
-                          {d.param1 < 1 ? d.param1 : format('~s')(d.param1)}
-                        </text>
-                      ) : null}
-                    </g>
-                  ) : null}
-                  {d.param2 !== undefined ? (
-                    <g>
-                      <circle
-                        cx={x(d.year)}
-                        cy={y2(d.param2)}
-                        r={
-                          window.innerWidth > 960
-                            ? 4
-                            : window.innerWidth > 600
-                            ? 3
-                            : 2
-                        }
-                        fill={UNDPColorModule.categoricalColors.colors[1]}
-                      />
-                      {showLabel ? (
-                        <text
-                          x={x(d.year)}
-                          y={y2(d.param2)}
-                          dy={
-                            d.param1 !== undefined &&
-                            y1(d.param1) > y2(d.param2)
-                              ? -8
-                              : 16
-                          }
-                          fontSize={12}
-                          textAnchor='middle'
-                          fill={UNDPColorModule.categoricalColors.colors[1]}
-                          strokeWidth={0.25}
-                          stroke='#fff'
-                          fontWeight='bold'
-                        >
-                          {d.param2 < 1 ? d.param2 : format('~s')(d.param2)}
-                        </text>
-                      ) : null}
-                    </g>
-                  ) : null}
-                  <rect
-                    x={x(d.year) - 3}
-                    y={0}
-                    width={6}
-                    height={graphHeight}
-                    fill='#fff'
-                    opacity={0}
-                    onMouseEnter={event => {
-                      setHoverData({
-                        country: countryData['Country or Area'],
-                        continent: countryData['Group 1'],
-                        rows: [
-                          {
-                            title: xAxisIndicator,
-                            value: d.param1 !== undefined ? d.param1 : 'NA',
-                            type: 'color',
-                            year: d.year,
-                            color: UNDPColorModule.categoricalColors.colors[0],
-                            prefix: xIndicatorMetaData?.LabelPrefix,
-                            suffix: xIndicatorMetaData?.LabelSuffix,
-                          },
-                          {
-                            title: yAxisIndicator,
-                            value: d.param2 !== undefined ? d.param2 : 'NA',
-                            type: 'color',
-                            year: d.year,
-                            color: UNDPColorModule.categoricalColors.colors[1],
-                            prefix: yIndicatorMetaData?.LabelPrefix,
-                            suffix: yIndicatorMetaData?.LabelSuffix,
-                          },
-                        ],
-                        xPosition: event.clientX,
-                        yPosition: event.clientY,
-                      });
-                    }}
-                    onMouseMove={event => {
-                      setHoverData({
-                        country: countryData['Country or Area'],
-                        continent: countryData['Group 1'],
-                        rows: [
-                          {
-                            title: xAxisIndicator,
-                            value: d.param1 !== undefined ? d.param1 : 'NA',
-                            type: 'color',
-                            year: d.year,
-                            color: UNDPColorModule.categoricalColors.colors[0],
-                            prefix: xIndicatorMetaData?.LabelPrefix,
-                            suffix: xIndicatorMetaData?.LabelSuffix,
-                          },
-                          {
-                            title: yAxisIndicator,
-                            value: d.param2 !== undefined ? d.param2 : 'NA',
-                            type: 'color',
-                            year: d.year,
-                            color: UNDPColorModule.categoricalColors.colors[1],
-                            prefix: yIndicatorMetaData?.LabelPrefix,
-                            suffix: yIndicatorMetaData?.LabelSuffix,
-                          },
-                        ],
-                        xPosition: event.clientX,
-                        yPosition: event.clientY,
-                      });
-                    }}
-                    onMouseLeave={() => {
-                      setHoverData(undefined);
-                    }}
+                <LabelText
+                  transform={`translate(-60, ${graphHeight / 2}) rotate(-90)`}
+                  fill={UNDPColorModule.categoricalColors.colors[0]}
+                  textAnchor='middle'
+                  fontSize={12}
+                >
+                  {xIndicatorMetaData.IndicatorLabelTable.length >
+                  MAX_TEXT_LENGTH
+                    ? `${xIndicatorMetaData.IndicatorLabelTable.substring(
+                        0,
+                        MAX_TEXT_LENGTH,
+                      )}...`
+                    : xIndicatorMetaData.IndicatorLabelTable}
+                </LabelText>
+              </g>
+              <g>
+                {y2Ticks.map((d, i) => (
+                  <g key={i}>
+                    <line
+                      y1={y2(d)}
+                      y2={y2(d)}
+                      x1={graphWidth + 15}
+                      x2={graphWidth + 20}
+                      stroke={UNDPColorModule.categoricalColors.colors[3]}
+                      strokeWidth={1}
+                    />
+                    <text
+                      x={graphWidth + 25}
+                      y={y2(d)}
+                      fill={UNDPColorModule.categoricalColors.colors[3]}
+                      textAnchor='start'
+                      fontSize={12}
+                      dy={3}
+                      dx={-2}
+                    >
+                      {Math.abs(d) < 1 ? d : format('~s')(d).replace('G', 'B')}
+                    </text>
+                  </g>
+                ))}
+                <line
+                  y1={0}
+                  y2={graphHeight}
+                  x1={graphWidth + 15}
+                  x2={graphWidth + 15}
+                  stroke={UNDPColorModule.categoricalColors.colors[3]}
+                  strokeWidth={1}
+                />
+                <LabelText
+                  transform={`translate(${graphWidth + 50}, ${
+                    graphHeight / 2
+                  }) rotate(-90)`}
+                  fill={UNDPColorModule.categoricalColors.colors[3]}
+                  textAnchor='middle'
+                  fontSize={12}
+                >
+                  {yIndicatorMetaData.IndicatorLabelTable.length >
+                  MAX_TEXT_LENGTH
+                    ? `${yIndicatorMetaData.IndicatorLabelTable.substring(
+                        0,
+                        MAX_TEXT_LENGTH,
+                      )}...`
+                    : yIndicatorMetaData.IndicatorLabelTable}
+                </LabelText>
+              </g>
+              <g>
+                {xTicks.map((d, i) => (
+                  <g key={i}>
+                    <XTickText
+                      y={graphHeight}
+                      x={x(d)}
+                      fill='#AAA'
+                      textAnchor='middle'
+                      fontSize={12}
+                      dy={15}
+                    >
+                      {d}
+                    </XTickText>
+                  </g>
+                ))}
+                <line
+                  y1={0}
+                  y2={graphHeight}
+                  x1={graphWidth + 15}
+                  x2={graphWidth + 15}
+                  stroke={UNDPColorModule.categoricalColors.colors[3]}
+                  strokeWidth={1}
+                />
+              </g>
+              <g>
+                <path
+                  d={lineShape1(dataFormatted as any) as string}
+                  fill='none'
+                  stroke={UNDPColorModule.categoricalColors.colors[0]}
+                  strokeWidth={2}
+                />
+                <path
+                  d={lineShape2(dataFormatted as any) as string}
+                  fill='none'
+                  stroke={UNDPColorModule.categoricalColors.colors[3]}
+                  strokeWidth={2}
+                />
+                <path
+                  d={lineShape1(dataParam1 as any) as string}
+                  fill='none'
+                  stroke={UNDPColorModule.categoricalColors.colors[0]}
+                  strokeWidth={2}
+                  strokeDasharray='4 8'
+                />
+                <path
+                  d={lineShape2(dataParam2 as any) as string}
+                  fill='none'
+                  stroke={UNDPColorModule.categoricalColors.colors[3]}
+                  strokeWidth={2}
+                  strokeDasharray='4 8'
+                />
+                {hoverData ? (
+                  <line
+                    y1={0}
+                    y2={graphHeight}
+                    x1={hoverData.rows[0].year ? x(hoverData.rows[0].year) : 0}
+                    x2={hoverData.rows[0].year ? x(hoverData.rows[0].year) : 0}
+                    stroke='#212121'
+                    strokeDasharray='4 8'
+                    strokeWidth={1}
                   />
-                </g>
-              ))}
+                ) : null}
+              </g>
+              <g>
+                {dataFormatted.map((d, i) => (
+                  <g key={i}>
+                    {d.param1 !== undefined ? (
+                      <g>
+                        <circle
+                          cx={x(d.year)}
+                          cy={y1(d.param1)}
+                          r={
+                            window.innerWidth > 960
+                              ? 4
+                              : window.innerWidth > 600
+                              ? 3
+                              : 2
+                          }
+                          fill={UNDPColorModule.categoricalColors.colors[0]}
+                        />
+                        {showLabel ? (
+                          <text
+                            x={x(d.year)}
+                            y={y1(d.param1)}
+                            dy={
+                              d.param2 !== undefined &&
+                              y1(d.param1) > y2(d.param2)
+                                ? 16
+                                : -8
+                            }
+                            fontSize={12}
+                            textAnchor='middle'
+                            fill={UNDPColorModule.categoricalColors.colors[0]}
+                            strokeWidth={0.25}
+                            stroke='#fff'
+                            fontWeight='bold'
+                          >
+                            {d.param1 < 1 ? d.param1 : format('~s')(d.param1)}
+                          </text>
+                        ) : null}
+                      </g>
+                    ) : null}
+                    {d.param2 !== undefined ? (
+                      <g>
+                        <circle
+                          cx={x(d.year)}
+                          cy={y2(d.param2)}
+                          r={
+                            window.innerWidth > 960
+                              ? 4
+                              : window.innerWidth > 600
+                              ? 3
+                              : 2
+                          }
+                          fill={UNDPColorModule.categoricalColors.colors[3]}
+                        />
+                        {showLabel ? (
+                          <text
+                            x={x(d.year)}
+                            y={y2(d.param2)}
+                            dy={
+                              d.param1 !== undefined &&
+                              y1(d.param1) > y2(d.param2)
+                                ? -8
+                                : 16
+                            }
+                            fontSize={12}
+                            textAnchor='middle'
+                            fill={UNDPColorModule.categoricalColors.colors[3]}
+                            strokeWidth={0.25}
+                            stroke='#fff'
+                            fontWeight='bold'
+                          >
+                            {d.param2 < 1 ? d.param2 : format('~s')(d.param2)}
+                          </text>
+                        ) : null}
+                      </g>
+                    ) : null}
+                    <rect
+                      x={x(d.year) - 3}
+                      y={0}
+                      width={6}
+                      height={graphHeight}
+                      fill='#fff'
+                      opacity={0}
+                      onMouseEnter={event => {
+                        setHoverData({
+                          country: countryData['Country or Area'],
+                          continent: countryData['Group 1'],
+                          rows: [
+                            {
+                              title: xAxisIndicator,
+                              value: d.param1 !== undefined ? d.param1 : 'NA',
+                              type: 'color',
+                              year: d.year,
+                              color:
+                                UNDPColorModule.categoricalColors.colors[0],
+                              prefix: xIndicatorMetaData?.LabelPrefix,
+                              suffix: xIndicatorMetaData?.LabelSuffix,
+                            },
+                            {
+                              title: yAxisIndicator,
+                              value: d.param2 !== undefined ? d.param2 : 'NA',
+                              type: 'color',
+                              year: d.year,
+                              color:
+                                UNDPColorModule.categoricalColors.colors[3],
+                              prefix: yIndicatorMetaData?.LabelPrefix,
+                              suffix: yIndicatorMetaData?.LabelSuffix,
+                            },
+                          ],
+                          xPosition: event.clientX,
+                          yPosition: event.clientY,
+                        });
+                      }}
+                      onMouseMove={event => {
+                        setHoverData({
+                          country: countryData['Country or Area'],
+                          continent: countryData['Group 1'],
+                          rows: [
+                            {
+                              title: xAxisIndicator,
+                              value: d.param1 !== undefined ? d.param1 : 'NA',
+                              type: 'color',
+                              year: d.year,
+                              color:
+                                UNDPColorModule.categoricalColors.colors[0],
+                              prefix: xIndicatorMetaData?.LabelPrefix,
+                              suffix: xIndicatorMetaData?.LabelSuffix,
+                            },
+                            {
+                              title: yAxisIndicator,
+                              value: d.param2 !== undefined ? d.param2 : 'NA',
+                              type: 'color',
+                              year: d.year,
+                              color:
+                                UNDPColorModule.categoricalColors.colors[3],
+                              prefix: yIndicatorMetaData?.LabelPrefix,
+                              suffix: yIndicatorMetaData?.LabelSuffix,
+                            },
+                          ],
+                          xPosition: event.clientX,
+                          yPosition: event.clientY,
+                        });
+                      }}
+                      onMouseLeave={() => {
+                        setHoverData(undefined);
+                      }}
+                    />
+                  </g>
+                ))}
+              </g>
             </g>
-          </g>
-        </svg>
+          </svg>
+        </>
       ) : (
         <div className='center-area-error-el'>
           No data available for {country}
