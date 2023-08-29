@@ -230,7 +230,7 @@ export function Settings(props: Props) {
                   placeholder='Color By'
                   onChange={d => {
                     const indx = indicators.findIndex(
-                      indicator => indicator.DataKey === d,
+                      indicator => indicator.IndicatorLabelTable === d,
                     );
                     updateColorIndicator(
                       indx === -1 ? d : indicators[indx].DataKey,

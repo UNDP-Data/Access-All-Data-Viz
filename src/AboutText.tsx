@@ -532,38 +532,24 @@ export const ABOUT_TEXT_LINKS = [
     bodyText: (
       <div>
         <p className='undp-typography'>
-          UNDP&apos;s goal in Europe and Central Asia is to help eradicate
-          poverty in all its forms, accelerate the transition to sustainable
-          development, and make sure countries and people are able to withstand
-          crises and shocks. We work to make sure the most vulnerable and
-          excluded are not left behind, develop game changing solutions to
-          accelerate sustainable development, and promote prevention and
-          preparedness against crises and shocks. While extreme poverty has
-          largely been eradicated, the countries in the Western Balkans, South
-          Caucasus and Central Asia continue to face multiple development
-          challenges.
+          The region of Europe and Central Asia is diverse and dynamic, with
+          countries at different stages of transition and development. While
+          extreme poverty has largely been eradicated, many countries still face
+          multiple challenges such as inequality, unemployment, gender
+          discrimination, migration, climate change, conflict and governance.
+          The situation is worsened by the multiple crises in the region, such
+          as the war in Ukraine, the COVID-19 pandemic, and the natural
+          disasters that have affected millions of people.
         </p>
         <p className='undp-typography'>
-          Exclusion is widespread and inequalities are on the rise. In many
-          countries, decent employment is scarce while social safety nets are
-          outdated. Women&apos;s participation in the workforce and politics
-          remains limited. Youth are particularly at risk of being marginalized
-          at a time of rapid economic change.
-        </p>
-        <p className='undp-typography'>
-          Outward and transit migration flows are among the highest globally,
-          with many countries in the region experiencing extensive depletion of
-          human capital. Impacts from the war in Ukraine have not only been felt
-          in-country, but across the region, especially around energy, migration
-          and supply chains.
-        </p>
-        <p className='undp-typography'>
-          One of the biggest challenges will be to reconcile economic growth
-          with social progress and environmental sustainability. Climate change
-          is already exerting pressure on shared natural resources and
-          triggering devastating weather events. And in some countries,
-          conflicts and governance issues persist, exacerbated by weak social
-          cohesion, ethnic tensions and violent extremism.
+          UNDP works with 19 country offices in the region and the Regional
+          Bureau for Europe and Central Asia, headquartered in New York, to help
+          eradicate poverty in all its forms, accelerate the transition to
+          sustainable development, and make sure countries and people are able
+          to withstand crises and shocks. We work to make sure the most
+          vulnerable and excluded are not left behind, develop game-changing
+          solutions to accelerate sustainable development, and promote
+          prevention and preparedness.
         </p>
         <p className='undp-typography'>
           Read more{' '}

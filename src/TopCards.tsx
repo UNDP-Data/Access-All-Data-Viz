@@ -750,10 +750,10 @@ export const TOP_CARDS = [
       {
         vizType: 'lineChart',
         settings: {
-          dataKey: 'Gender Inequality Index-Gender Inequality Index',
+          dataKey: 'Inequality-adjusted HDI',
           strokeWidth: 1,
           lineColor: '#232E3D',
-          graphTitle: 'Gender Inequality Index',
+          graphTitle: 'Inequality-adjusted Human Development Index',
         },
       },
     ],
