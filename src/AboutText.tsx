@@ -987,4 +987,15 @@ export const ABOUT_TEXT_LINKS = [
     ),
     resource: [],
   },
+  {
+    title: 'Myanmar',
+    id: 'MMR',
+    bodyText: <div />,
+    resource: [
+      {
+        source: "UNDP MDO - Observing Myanmar's development trajectory",
+        link: 'https://undp-mdo.org/',
+      },
+    ],
+  },
 ];
