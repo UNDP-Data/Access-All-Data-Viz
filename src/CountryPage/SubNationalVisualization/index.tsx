@@ -1,9 +1,9 @@
 /* eslint-disable jsx-a11y/iframe-has-title */
 import { useState } from 'react';
 import { Select } from 'antd';
-import { SUB_NATIONAL_DATA_OPTIONS } from '../../Constants';
 import { MapLayerOptionDataType } from '../../Types';
 import { CountryMap } from './CountryMaps';
+import { SUB_NATIONAL_DATA_OPTIONS } from '../../SubNationalDataOptions';
 
 interface Props {
   countryId?: string;

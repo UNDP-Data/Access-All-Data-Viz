@@ -1,7 +1,5 @@
-import {
-  ABOUT_TEXT_LINKS,
-  COUNTRIES_FULL_NAME_BY_UNDP_REGION,
-} from '../Constants';
+import { ABOUT_TEXT_LINKS } from '../AboutText';
+import { COUNTRIES_FULL_NAME_BY_UNDP_REGION } from '../Constants';
 
 interface Props {
   id: string;

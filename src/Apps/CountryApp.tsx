@@ -6,10 +6,11 @@ import { json } from 'd3-request';
 import { CountryHomePageForCountryPage } from '../CountryPage';
 import { SDGDataExplorer } from '../CountryPage/SDGDataExplorer';
 import { CountryAboutPage } from '../AboutPage/CountryAboutPage';
-import { COUNTRYTAXONOMYLINK, SUB_NATIONAL_DATA_OPTIONS } from '../Constants';
+import { COUNTRYTAXONOMYLINK } from '../Constants';
 import { SubNationalVisualization } from '../CountryPage/SubNationalVisualization';
 import { SDGTracker } from '../CountryPage/SDGTracker';
 import { CountryTaxonomyDataType } from '../Types';
+import { SUB_NATIONAL_DATA_OPTIONS } from '../SubNationalDataOptions';
 
 interface CountryProps {
   countryId?: string;

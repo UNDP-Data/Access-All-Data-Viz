@@ -2,9 +2,10 @@ import { queue } from 'd3-queue';
 import { json } from 'd3-request';
 import { useEffect, useState } from 'react';
 import { format } from 'd3-format';
-import { ABOUT_TEXT_LINKS, COUNTRYTAXONOMYLINK } from '../Constants';
+import { COUNTRYTAXONOMYLINK } from '../Constants';
 import { CountryGroupDataType, CountryTaxonomyDataType } from '../Types';
 import CountryWebsiteList from '../CountryPage/CountryWebLinks.json';
+import { ABOUT_TEXT_LINKS } from '../AboutText';
 
 interface Props {
   countryId: string;

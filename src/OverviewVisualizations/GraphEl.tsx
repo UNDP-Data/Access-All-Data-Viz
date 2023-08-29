@@ -27,6 +27,11 @@ export function GraphEl(props: Props) {
               ? indicator[0].IndicatorDescription
               : undefined
           }
+          labelFormat={
+            indicator[0].LabelFormat === ''
+              ? undefined
+              : indicator[0].LabelFormat
+          }
           suffix={card.settings.suffix}
           prefix={card.settings.prefix}
         />

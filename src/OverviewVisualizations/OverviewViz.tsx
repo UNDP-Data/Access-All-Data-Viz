@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 import { useRef, useState } from 'react';
 import { CountryGroupDataType, IndicatorMetaDataType } from '../Types';
-import { COUNTRIES_BY_UNDP_REGIONS, TOP_CARDS } from '../Constants';
+import { COUNTRIES_BY_UNDP_REGIONS } from '../Constants';
 import { GraphEl } from './GraphEl';
+import { TOP_CARDS } from '../TopCards';
 
 interface Props {
   data: CountryGroupDataType;
