@@ -48,7 +48,12 @@ export function SignatureSolutionApp(props: Props) {
           width: '100%',
         }}
       >
-        <div style={{ padding: 'var(--spacing-07)' }}>
+        <div
+          style={{
+            padding:
+              'var(--spacing-10) var(--spacing-07) var(--spacing-07) var(--spacing-07)',
+          }}
+        >
           <h1
             className='undp-typography margin-bottom-00'
             style={{

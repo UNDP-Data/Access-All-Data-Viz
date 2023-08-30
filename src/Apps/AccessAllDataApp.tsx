@@ -29,9 +29,14 @@ export function AccessAllDataApp() {
           width: '100%',
         }}
       >
-        <div style={{ padding: 'var(--spacing-07)' }}>
+        <div
+          style={{
+            padding:
+              'var(--spacing-10) var(--spacing-07) var(--spacing-07) var(--spacing-07)',
+          }}
+        >
           <h1
-            className='undp-typography margin-bottom-06'
+            className='undp-typography margin-bottom-00'
             style={{
               fontFamily: 'SohneBreit,ProximaNova,sans-serif',
               fontWeight: 700,
@@ -40,12 +45,6 @@ export function AccessAllDataApp() {
           >
             Access All Data
           </h1>
-          <p className='undp-typography margin-bottom-00'>
-            Comprehensive hub for visualizing, exploring, and downloading an
-            extensive range of datasets. Dive into a world of insights as you
-            navigate through interactive visualizations, empowering yourself to
-            make informed decisions.
-          </p>
         </div>
       </div>
       <Tabs
