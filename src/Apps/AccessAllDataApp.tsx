@@ -49,3 +49,19 @@ export function AccessAllDataApp() {
     </div>
   );
 }
+
+interface TopicProps {
+  topic?: string;
+}
+
+export function DataExplorerApp(props: TopicProps) {
+  const { topic } = props;
+  return (
+    <div className='undp-container'>
+      <DataExplorer
+        region={{ code: 'WLD', name: 'World' }}
+        topicToFilter={topic}
+      />
+    </div>
+  );
+}

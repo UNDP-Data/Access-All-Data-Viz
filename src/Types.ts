@@ -128,7 +128,6 @@ export interface CtxDataType {
   sizeIndicator?: string;
   showMostRecentData: boolean;
   showLabel: boolean;
-  showSource: boolean;
   trendChartCountry: undefined | string;
   dataListCountry: undefined | string;
   multiCountryTrendChartCountries: string[];
@@ -165,7 +164,6 @@ export interface CtxDataType {
   updateColorIndicator: (_d?: string) => void;
   updateSizeIndicator: (_d?: string) => void;
   updateShowMostRecentData: (_d: boolean) => void;
-  updateShowSource: (_d: boolean) => void;
   updateShowLabel: (_d: boolean) => void;
   updateUseSameRange: (_d: boolean) => void;
   updateReverseOrder: (_d: boolean) => void;

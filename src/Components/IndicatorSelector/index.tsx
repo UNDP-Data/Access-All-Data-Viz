@@ -88,6 +88,7 @@ function IndicatorSelector(props: Props) {
             onClick={() => {
               setOpenModal(true);
             }}
+            title={selectedIndicator || 'Select an indicator'}
           >
             <TruncateDiv>
               {selectedIndicator || 'Select an indicator'}

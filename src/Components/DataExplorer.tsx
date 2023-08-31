@@ -24,6 +24,7 @@ import { RegionVisualization } from '../RegionVisualization';
 
 interface Props {
   signatureSolution?: string;
+  topicToFilter?: string;
   region: {
     name: string;
     code: string;
@@ -31,7 +32,7 @@ interface Props {
 }
 
 function DataExplorer(props: Props) {
-  const { signatureSolution, region } = props;
+  const { signatureSolution, region, topicToFilter } = props;
   const [countryId, setCountryId] = useState(region.code);
   const [loading, setLoading] = useState(true);
   const [finalData, setFinalData] = useState<
@@ -111,7 +112,8 @@ function DataExplorer(props: Props) {
         (err: any, data: CountryGroupDataType) => {
           if (err) throw err;
           const queryParams = new URLSearchParams(window.location.search);
-          const topic = queryParams.get('topic')?.replaceAll('_', "'");
+          const topic =
+            queryParams.get('topic')?.replaceAll('_', "'") || topicToFilter;
           const indicatorsFilteredBySS = signatureSolution
             ? indicatorMetaData.filter(
                 d => d.SignatureSolution.indexOf(signatureSolution) !== -1,
@@ -157,49 +159,51 @@ function DataExplorer(props: Props) {
     <div>
       {countryTaxonomy ? (
         <>
-          <div
-            className='flex-div gap-03 flex-vert-align-center'
-            style={{
-              padding: '1.5rem',
-              backgroundColor: 'var(--gray-400)',
-              margin: '-2.5rem -1rem 2rem -1rem',
-            }}
-          >
-            <h5
-              className='undp-typography margin-bottom-00'
-              style={{ flexShrink: 0 }}
-            >
-              Explore all {signatureSolution} Related Data for
-            </h5>
-            <Select
-              className='undp-select'
-              placeholder='Select A Country'
-              style={{ flexGrow: 0 }}
-              showSearch
-              value={
-                countryTaxonomy[
-                  countryTaxonomy.findIndex(el => el.code === countryId)
-                ].name
-              }
-              onChange={d => {
-                setCountryId(
-                  countryTaxonomy[
-                    countryTaxonomy.findIndex(el => el.name === d)
-                  ].code,
-                );
+          {topicToFilter ? null : (
+            <div
+              className='flex-div gap-03 flex-vert-align-center'
+              style={{
+                padding: '1.5rem',
+                backgroundColor: 'var(--gray-400)',
+                margin: '-2.5rem -1rem 2rem -1rem',
               }}
             >
-              {countryTaxonomy.map((d, i) => (
-                <Select.Option
-                  className='undp-select-option'
-                  value={d.name}
-                  key={i}
-                >
-                  {d.name}
-                </Select.Option>
-              ))}
-            </Select>
-          </div>
+              <h5
+                className='undp-typography margin-bottom-00'
+                style={{ flexShrink: 0 }}
+              >
+                Explore all {signatureSolution} Related Data for
+              </h5>
+              <Select
+                className='undp-select'
+                placeholder='Select A Country'
+                style={{ flexGrow: 0 }}
+                showSearch
+                value={
+                  countryTaxonomy[
+                    countryTaxonomy.findIndex(el => el.code === countryId)
+                  ].name
+                }
+                onChange={d => {
+                  setCountryId(
+                    countryTaxonomy[
+                      countryTaxonomy.findIndex(el => el.name === d)
+                    ].code,
+                  );
+                }}
+              >
+                {countryTaxonomy.map((d, i) => (
+                  <Select.Option
+                    className='undp-select-option'
+                    value={d.name}
+                    key={i}
+                  >
+                    {d.name}
+                  </Select.Option>
+                ))}
+              </Select>
+            </div>
+          )}
           <div className='undp-container'>
             {countryId !== 'WLD' &&
             REGION_ACRONYMS.indexOf(countryId) === -1 ? (
@@ -215,7 +219,12 @@ function DataExplorer(props: Props) {
                         countryId={countryId}
                         signatureSolution={signatureSolution}
                         loading={loading}
-                        idForOverview={signatureSolution || countryId}
+                        idForOverview={
+                          topicToFilter || signatureSolution || countryId
+                        }
+                        defaultViewId={
+                          topicToFilter || signatureSolution || countryId
+                        }
                       />
                     ) : (
                       <p
@@ -247,6 +256,7 @@ function DataExplorer(props: Props) {
                     UNDPRegion={countryId}
                     finalData={finalData}
                     idForOverview={signatureSolution || countryId}
+                    topic={topicToFilter}
                   />
                 ) : (
                   <div className='undp-loader-container undp-container'>

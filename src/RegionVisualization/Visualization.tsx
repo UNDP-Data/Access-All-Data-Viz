@@ -8,9 +8,9 @@ import {
 } from '../Types';
 import Reducer from '../Context/Reducer';
 import Context from '../Context/Context';
-import { DEFAULT_VALUES } from '../Constants';
 import { GrapherComponent } from '../GrapherComponent';
 import { OverviewViz } from '../OverviewVisualizations/OverviewViz';
+import { DEFAULT_VIEWS } from '../DefaultViewsForDataExplorer';
 
 interface Props {
   signatureSolution?: string;
@@ -21,6 +21,8 @@ interface Props {
   UNDPRegion?: string;
   regionData: CountryGroupDataType[];
   idForOverview: string;
+  defaultViewId: string;
+  topic?: string;
 }
 
 function VisualizationEl(props: Props) {
@@ -33,24 +35,33 @@ function VisualizationEl(props: Props) {
     UNDPRegion,
     regionData,
     idForOverview,
+    defaultViewId,
+    topic,
   } = props;
+  const defaultViewsIndx = defaultViewId
+    ? DEFAULT_VIEWS.findIndex(d => d.id === defaultViewId) >= 0
+      ? DEFAULT_VIEWS.findIndex(d => d.id === defaultViewId)
+      : 0
+    : 0;
   const firstMetric =
-    indicatorsList.findIndex(d => d.DataKey === DEFAULT_VALUES.firstMetric) ===
-    -1
+    indicatorsList.findIndex(
+      d => d.DataKey === DEFAULT_VIEWS[defaultViewsIndx].firstMetric,
+    ) === -1
       ? indicatorsList[0].DataKey
-      : DEFAULT_VALUES.firstMetric;
+      : DEFAULT_VIEWS[defaultViewsIndx].firstMetric;
   const secondMetric =
-    indicatorsList.findIndex(d => d.DataKey === DEFAULT_VALUES.secondMetric) ===
-    -1
+    indicatorsList.findIndex(
+      d => d.DataKey === DEFAULT_VIEWS[defaultViewsIndx].secondMetric,
+    ) === -1
       ? indicatorsList.length > 1
         ? indicatorsList[1].DataKey
         : undefined
-      : DEFAULT_VALUES.secondMetric;
+      : DEFAULT_VIEWS[defaultViewsIndx].secondMetric;
   const countryListForMultiLineChart = UNDPRegion
     ? countryList.filter((_d, i) => i < 5).map(d => d.name)
     : ['China', 'India', 'United States of America', 'Indonesia', 'Pakistan'];
   const initialState = {
-    graphType: 'map',
+    graphType: DEFAULT_VIEWS[defaultViewsIndx].graphType,
     selectedRegions: [],
     selectedCountries: [],
     selectedIncomeGroups: [],
@@ -58,11 +69,10 @@ function VisualizationEl(props: Props) {
     selectedCountryGroup: 'All',
     xAxisIndicator: firstMetric,
     yAxisIndicator: firstMetric === secondMetric ? undefined : secondMetric,
-    colorIndicator: DEFAULT_VALUES.colorMetric,
+    colorIndicator: DEFAULT_VIEWS[defaultViewsIndx].colorMetric,
     sizeIndicator: undefined,
     showMostRecentData: false,
     showLabel: false,
-    showSource: false,
     trendChartCountry: undefined,
     dataListCountry: undefined,
     multiCountryTrendChartCountries: countryListForMultiLineChart,
@@ -216,13 +226,6 @@ function VisualizationEl(props: Props) {
     });
   };
 
-  const updateShowSource = (showSource: boolean) => {
-    dispatch({
-      type: 'UPDATE_SHOW_SOURCE',
-      payload: showSource,
-    });
-  };
-
   const updateUseSameRange = (useSameRange: boolean) => {
     dispatch({
       type: 'UPDATE_USE_SAME_RANGE',
@@ -252,7 +255,6 @@ function VisualizationEl(props: Props) {
         updateSelectedIncomeGroups,
         updateShowMostRecentData,
         updateShowLabel,
-        updateShowSource,
         updateTrendChartCountry,
         updateDataListCountry,
         updateMultiCountryTrendChartCountries,
@@ -264,7 +266,7 @@ function VisualizationEl(props: Props) {
       }}
     >
       <div>
-        {new URLSearchParams(window.location.search).get('topic') ? null : (
+        {topic ? null : (
           <OverviewViz
             indicators={indicatorsList}
             data={regionData[0]}

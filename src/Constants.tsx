@@ -8,12 +8,6 @@ export const EMBED_LINK_ROOT = 'https://data.undp.org/access-all-data-viz-v2/';
 
 export const PARENT_LINK_ROOT = 'https://data.undp.org/explore-all-data/';
 
-export const DEFAULT_VALUES = {
-  firstMetric: 'GDP per capita, PPP (current international $)',
-  secondMetric: 'Human development index (HDI)',
-  colorMetric: 'Continents',
-};
-
 export const INCOME_GROUPS = [
   'Low income',
   'Lower middle income',

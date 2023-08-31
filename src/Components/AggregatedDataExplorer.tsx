@@ -4,29 +4,39 @@ import { Select } from 'antd';
 import { CountryGroupDataType, IndicatorMetaDataType } from '../Types';
 import Reducer from '../Context/Reducer';
 import Context from '../Context/Context';
-import { COUNTRIES_BY_UNDP_REGIONS, DEFAULT_VALUES } from '../Constants';
+import { COUNTRIES_BY_UNDP_REGIONS } from '../Constants';
 import { AggregatedGraphingEl } from '../GrapherComponent/GraphingEl';
+import { DEFAULT_VIEWS } from '../DefaultViewsForDataExplorer';
 
 interface Props {
   indicatorsList: IndicatorMetaDataType[];
   finalData: CountryGroupDataType[];
   regionId: string;
+  defaultViewId: string;
 }
 
 function AggregatedDataExplorer(props: Props) {
-  const { indicatorsList, finalData, regionId } = props;
+  const { indicatorsList, finalData, regionId, defaultViewId } = props;
+
+  const defaultViewsIndx = defaultViewId
+    ? DEFAULT_VIEWS.findIndex(d => d.id === defaultViewId) >= 0
+      ? DEFAULT_VIEWS.findIndex(d => d.id === defaultViewId)
+      : 0
+    : 0;
   const firstMetric =
-    indicatorsList.findIndex(d => d.DataKey === DEFAULT_VALUES.firstMetric) ===
-    -1
+    indicatorsList.findIndex(
+      d => d.DataKey === DEFAULT_VIEWS[defaultViewsIndx].firstMetric,
+    ) === -1
       ? indicatorsList[0].DataKey
-      : DEFAULT_VALUES.firstMetric;
+      : DEFAULT_VIEWS[defaultViewsIndx].firstMetric;
   const secondMetric =
-    indicatorsList.findIndex(d => d.DataKey === DEFAULT_VALUES.secondMetric) ===
-    -1
+    indicatorsList.findIndex(
+      d => d.DataKey === DEFAULT_VIEWS[defaultViewsIndx].secondMetric,
+    ) === -1
       ? indicatorsList.length > 1
         ? indicatorsList[1].DataKey
         : undefined
-      : DEFAULT_VALUES.secondMetric;
+      : DEFAULT_VIEWS[defaultViewsIndx].secondMetric;
   const initialState = {
     graphType: 'trendLine',
     selectedRegions: [],
@@ -36,11 +46,10 @@ function AggregatedDataExplorer(props: Props) {
     selectedCountryGroup: 'All',
     xAxisIndicator: firstMetric,
     yAxisIndicator: firstMetric === secondMetric ? undefined : secondMetric,
-    colorIndicator: DEFAULT_VALUES.colorMetric,
+    colorIndicator: DEFAULT_VIEWS[defaultViewsIndx].colorMetric,
     sizeIndicator: undefined,
     showMostRecentData: false,
     showLabel: false,
-    showSource: false,
     trendChartCountry: undefined,
     dataListCountry: undefined,
     multiCountryTrendChartCountries: [
@@ -192,13 +201,6 @@ function AggregatedDataExplorer(props: Props) {
     });
   };
 
-  const updateShowSource = (showSource: boolean) => {
-    dispatch({
-      type: 'UPDATE_SHOW_SOURCE',
-      payload: showSource,
-    });
-  };
-
   const updateUseSameRange = (useSameRange: boolean) => {
     dispatch({
       type: 'UPDATE_USE_SAME_RANGE',
@@ -269,7 +271,6 @@ function AggregatedDataExplorer(props: Props) {
           updateSelectedIncomeGroups,
           updateShowMostRecentData,
           updateShowLabel,
-          updateShowSource,
           updateTrendChartCountry,
           updateDataListCountry,
           updateMultiCountryTrendChartCountries,

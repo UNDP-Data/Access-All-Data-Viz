@@ -23,10 +23,12 @@ interface Props {
   UNDPRegion?: string;
   finalData: CountryGroupDataType[];
   idForOverview: string;
+  topic?: string;
 }
 
 export function RegionVisualization(props: Props) {
-  const { signatureSolution, UNDPRegion, finalData, idForOverview } = props;
+  const { signatureSolution, UNDPRegion, finalData, idForOverview, topic } =
+    props;
   const [taxonomyData, setTaxonomyData] = useState<
     CountryTaxonomyDataType[] | undefined
   >(undefined);
@@ -49,8 +51,6 @@ export function RegionVisualization(props: Props) {
           countryTaxonomy: CountryTaxonomyDataType[],
         ) => {
           if (err) throw err;
-          const queryParams = new URLSearchParams(window.location.search);
-          const topic = queryParams.get('topic')?.replaceAll('_', "'");
           setTaxonomyData(countryTaxonomy);
           const countriesFiltered =
             UNDPRegion !== 'WLD' && UNDPRegion
@@ -101,6 +101,8 @@ export function RegionVisualization(props: Props) {
               signatureSolution={signatureSolution}
               regionData={finalData}
               idForOverview={idForOverview}
+              defaultViewId={topic || UNDPRegion || 'Default'}
+              topic={topic}
             />
           ) : (
             <p
@@ -190,6 +192,7 @@ export function AggregatedRegionVisualization(
               finalData={finalData}
               indicatorsList={indicatorsList}
               regionId={UNDPRegion}
+              defaultViewId={UNDPRegion}
             />
           ) : (
             <p

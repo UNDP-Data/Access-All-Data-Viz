@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
-import { Select, Radio, Checkbox } from 'antd';
-import domtoimage from 'dom-to-image';
+import { Select, Radio, Checkbox, Modal } from 'antd';
 import {
   ChevronDownCircle,
   ChevronRightCircle,
@@ -8,23 +7,27 @@ import {
   FileDown,
 } from 'lucide-react';
 import sortBy from 'lodash.sortby';
-import { CountryListType, CtxDataType, IndicatorMetaDataType } from '../Types';
-import Context from '../Context/Context';
 import {
-  DEFAULT_VALUES,
-  INCOME_GROUPS,
-  SIGNATURE_SOLUTIONS_LIST,
-} from '../Constants';
+  CountryGroupDataType,
+  CountryListType,
+  CtxDataType,
+  IndicatorMetaDataType,
+} from '../Types';
+import Context from '../Context/Context';
+import { INCOME_GROUPS, SIGNATURE_SOLUTIONS_LIST } from '../Constants';
 import IndicatorSelector from '../Components/IndicatorSelector';
+import { DataSources } from './DataSources';
+import { DownloadModal } from './DownloadModal';
 
 interface Props {
   indicators: IndicatorMetaDataType[];
   regions?: string[];
   countries: CountryListType[];
+  data: CountryGroupDataType[];
 }
 
 export function Settings(props: Props) {
-  const { indicators, regions, countries } = props;
+  const { indicators, regions, countries, data } = props;
   const {
     graphType,
     xAxisIndicator,
@@ -53,7 +56,6 @@ export function Settings(props: Props) {
     updateSelectedIncomeGroups,
     updateShowLabel,
     updateShowMostRecentData,
-    updateShowSource,
     updateUseSameRange,
     updateMultiCountryTrendChartCountries,
     updateReverseOrder,
@@ -81,8 +83,10 @@ export function Settings(props: Props) {
     .map(d => d.DataKey);
   colorOptions.unshift('Income Groups');
   colorOptions.unshift('Continents');
-  const [settingExpanded, setSettingsExpanded] = useState(true);
+  const [settingsExpanded, setSettingsExpanded] = useState(true);
   const [filterExpanded, setFilterExpanded] = useState(true);
+  const [showSourceModal, setShowSourceModal] = useState(false);
+  const [showDownloadModal, setShowDownloadModal] = useState(false);
   useEffect(() => {
     if (options.findIndex(d => d === xAxisIndicator) === -1) {
       updateXAxisIndicator(
@@ -236,7 +240,7 @@ export function Settings(props: Props) {
                       indx === -1 ? d : indicators[indx].DataKey,
                     );
                   }}
-                  defaultValue={DEFAULT_VALUES.colorMetric}
+                  defaultValue='Continent'
                 >
                   {colorOptions.map(d => (
                     <Select.Option
@@ -268,7 +272,7 @@ export function Settings(props: Props) {
               type='button'
               style={{ color: 'var(--blue-600)', padding: 0 }}
               onClick={() => {
-                updateShowSource(true);
+                setShowSourceModal(true);
               }}
             >
               <Database
@@ -283,17 +287,7 @@ export function Settings(props: Props) {
               type='button'
               style={{ color: 'var(--blue-600)', padding: 0 }}
               onClick={() => {
-                const node = document.getElementById(
-                  'graph-node',
-                ) as HTMLElement;
-                domtoimage
-                  .toPng(node, { height: node.scrollHeight })
-                  .then((dataUrl: any) => {
-                    const link = document.createElement('a');
-                    link.download = 'graph.png';
-                    link.href = dataUrl;
-                    link.click();
-                  });
+                setShowDownloadModal(true);
               }}
             >
               <FileDown
@@ -301,7 +295,7 @@ export function Settings(props: Props) {
                 stroke='var(--blue-600)'
                 style={{ marginRight: '0.25rem' }}
               />
-              Download Graph
+              Download
             </button>
           </div>
         ) : null}
@@ -313,10 +307,10 @@ export function Settings(props: Props) {
             aria-label='Expand or collapse settings'
             className='settings-sections-container-title'
             onClick={() => {
-              setSettingsExpanded(!settingExpanded);
+              setSettingsExpanded(!settingsExpanded);
             }}
           >
-            {settingExpanded ? (
+            {settingsExpanded ? (
               <ChevronDownCircle stroke='#212121' size={18} />
             ) : (
               <ChevronRightCircle stroke='#212121' size={18} />
@@ -327,7 +321,7 @@ export function Settings(props: Props) {
           </button>
           <div
             className='settings-sections-options-container'
-            style={{ display: settingExpanded ? 'flex' : 'none' }}
+            style={{ display: settingsExpanded ? 'flex' : 'none' }}
           >
             {graphType !== 'trendLine' &&
             graphType !== 'multiCountryTrendLine' ? (
@@ -584,6 +578,36 @@ export function Settings(props: Props) {
           </div>
         </div>
       ) : null}
+      <Modal
+        open={showSourceModal}
+        className='undp-modal'
+        title='Data Sources'
+        onOk={() => {
+          setShowSourceModal(false);
+        }}
+        onCancel={() => {
+          setShowSourceModal(false);
+        }}
+        width='75%'
+        destroyOnClose
+      >
+        <DataSources indicators={indicators} data={data} />
+      </Modal>
+      <Modal
+        open={showDownloadModal}
+        className='undp-modal'
+        title='Download'
+        onOk={() => {
+          setShowDownloadModal(false);
+        }}
+        onCancel={() => {
+          setShowDownloadModal(false);
+        }}
+        width='75%'
+        destroyOnClose
+      >
+        <DownloadModal indicators={indicators} data={data} />
+      </Modal>
     </div>
   );
 }

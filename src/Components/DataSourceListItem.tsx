@@ -1,5 +1,8 @@
 import { CSVLink } from 'react-csv';
 import flattenDeep from 'lodash.flattendeep';
+import styled from 'styled-components';
+import uniqBy from 'lodash.uniqby';
+import orderBy from 'lodash.orderby';
 import { CountryGroupDataType, IndicatorMetaDataType } from '../Types';
 import DownloadExcel from './DownloadExcel';
 import { GetYearsArray } from '../Utils/GetYearsArray';
@@ -61,10 +64,14 @@ const dataTableForExcel = (
       yrs.push(yrsArray);
     }
   });
+  const yearList = orderBy(
+    uniqBy(flattenDeep(yrs), el => el),
+    el => el,
+  );
   data.forEach(d => {
     const country = d['Country or Area'];
     const countryCode = d['Alpha-3 code'];
-    flattenDeep(yrs).forEach(year => {
+    yearList.forEach(year => {
       if (
         d.indicators.findIndex(ind => ind.indicator === indicator.DataKey) !==
         -1
@@ -93,7 +100,6 @@ const dataTableForExcel = (
 
 export function DataSourceListItem(props: Props) {
   const { indicatorData, data } = props;
-
   return (
     <div className='padding-top-07 padding-bottom-05'>
       <h5 className='bold undp-typography'>
@@ -196,6 +202,66 @@ export function DataSourceListItem(props: Props) {
           <div className='undp-button button-tertiary button-arrow'>
             Download Data as CSV
           </div>
+        </CSVLink>
+      </div>
+    </div>
+  );
+}
+
+const MinifiedButton = styled.div`
+  background-color: var(--gray-300);
+  padding: var(--spacing-05);
+  font-size: 0.875rem;
+  font-weight: bold;
+  color: var(--gray-700);
+  border: 0;
+  text-align: left;
+  display: flex;
+  gap: var(--spacing-05);
+  align-items: center;
+  cursor: pointer;
+  &:hover {
+    background-color: var(--gray-400);
+  }
+`;
+
+export function DataSourceListMinifiedItem(props: Props) {
+  const { indicatorData, data } = props;
+  return (
+    <div
+      className='margin-bottom-05'
+      style={{
+        backgroundColor: 'var(--gray-200)',
+        padding:
+          'var(--spacing-07) var(--spacing-05) var(--spacing-07) var(--spacing-07)',
+      }}
+    >
+      <p className='undp-typography'>{indicatorData.IndicatorLabelTable}</p>
+      <div className='flex-div margin-bottom-00 gap-05'>
+        <DownloadExcel
+          minified
+          data={dataTableForExcel(data, indicatorData)}
+          indicatorTitle={indicatorData.IndicatorLabelTable}
+        />
+        <CSVLink
+          headers={[
+            { label: 'Country or Area', key: 'country' },
+            { label: 'Alpha-3 code', key: 'countryCode' },
+            { label: 'Year', key: 'year' },
+            { label: indicatorData.IndicatorLabelTable, key: 'value' },
+          ]}
+          enclosingCharacter=''
+          separator=';'
+          data={dataTable(data, indicatorData)}
+          filename={`${indicatorData.IndicatorLabelTable.replaceAll(
+            ',',
+            '',
+          ).replaceAll('.', ' ')}.csv`}
+          asyncOnClick
+          target='_blank'
+          style={{ backgroundImage: 'none' }}
+        >
+          <MinifiedButton>Download CSV</MinifiedButton>
         </CSVLink>
       </div>
     </div>

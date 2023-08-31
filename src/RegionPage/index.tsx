@@ -82,6 +82,7 @@ function RegionHomePage(props: Props) {
             indicatorsList={indicatorsList}
             countryList={countryList}
             region={`UNDP_${region}`}
+            defaultViewId={`UNDP_${region}`}
           />
         </div>
       ) : (

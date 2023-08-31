@@ -1,6 +1,6 @@
 import ReactDOM from 'react-dom/client';
 import { CountryApp } from './Apps/CountryApp';
-import { AccessAllDataApp } from './Apps/AccessAllDataApp';
+import { AccessAllDataApp, DataExplorerApp } from './Apps/AccessAllDataApp';
 import { RegionApp } from './Apps/RegionApp';
 import { SignatureSolutionApp } from './Apps/SignatureSolutionApp';
 import reportWebVitals from './reportWebVitals';
@@ -33,6 +33,16 @@ const getRegion = (embedSelector: string) => {
   }
   const elClass: string[] = el.className.split('~');
   if (elClass[0] === 'region') return elClass[1].replaceAll('+', ' ');
+  return undefined;
+};
+
+const getTopic = (embedSelector: string) => {
+  const el = document.querySelector(embedSelector);
+  if (!el) {
+    return undefined;
+  }
+  const elClass: string[] = el.className.split('~');
+  if (elClass[0] === 'topic') return elClass[1].replaceAll('+', ' ');
   return undefined;
 };
 
@@ -98,6 +108,17 @@ if (containerRegionMainEmbed) {
   const rootEmbed = ReactDOM.createRoot(containerRegionMainEmbed);
   rootEmbed.render(
     <RegionApp region={getRegion('[data-bucket-region-embed-main]')} />,
+  );
+}
+
+/*
+! Visualizations for Topic
+*/
+const containerTopicMainEmbed = getEl('[data-bucket-embed-topic]');
+if (containerTopicMainEmbed) {
+  const rootEmbed = ReactDOM.createRoot(containerTopicMainEmbed);
+  rootEmbed.render(
+    <DataExplorerApp topic={getTopic('[data-bucket-embed-topic]')} />,
   );
 }
 

@@ -8,30 +8,39 @@ import {
 import { DataExplorerGraphingEl } from '../GrapherComponent/GraphingEl';
 import Reducer from '../Context/Reducer';
 import Context from '../Context/Context';
-import { DEFAULT_VALUES } from '../Constants';
+import { DEFAULT_VIEWS } from '../DefaultViewsForDataExplorer';
 
 interface Props {
   indicatorsList: IndicatorMetaDataType[];
   finalData: CountryGroupDataType[];
   countryList: CountryListType[];
   region?: string;
+  defaultViewId: string;
 }
 
 function RegionalHomePageContext(props: Props) {
-  const { indicatorsList, finalData, countryList, region } = props;
+  const { indicatorsList, finalData, countryList, region, defaultViewId } =
+    props;
+  const defaultViewsIndx = defaultViewId
+    ? DEFAULT_VIEWS.findIndex(d => d.id === defaultViewId) >= 0
+      ? DEFAULT_VIEWS.findIndex(d => d.id === defaultViewId)
+      : 0
+    : 0;
 
   const firstMetric =
-    indicatorsList.findIndex(d => d.DataKey === DEFAULT_VALUES.firstMetric) ===
-    -1
+    indicatorsList.findIndex(
+      d => d.DataKey === DEFAULT_VIEWS[defaultViewsIndx].firstMetric,
+    ) === -1
       ? indicatorsList[0].DataKey
-      : DEFAULT_VALUES.firstMetric;
+      : DEFAULT_VIEWS[defaultViewsIndx].firstMetric;
   const secondMetric =
-    indicatorsList.findIndex(d => d.DataKey === DEFAULT_VALUES.secondMetric) ===
-    -1
+    indicatorsList.findIndex(
+      d => d.DataKey === DEFAULT_VIEWS[defaultViewsIndx].secondMetric,
+    ) === -1
       ? indicatorsList.length > 1
         ? indicatorsList[1].DataKey
         : undefined
-      : DEFAULT_VALUES.secondMetric;
+      : DEFAULT_VIEWS[defaultViewsIndx].secondMetric;
   const initialState = {
     graphType: 'dataList',
     selectedRegions: [],
@@ -41,11 +50,10 @@ function RegionalHomePageContext(props: Props) {
     selectedCountryGroup: 'All',
     xAxisIndicator: firstMetric,
     yAxisIndicator: firstMetric === secondMetric ? undefined : secondMetric,
-    colorIndicator: DEFAULT_VALUES.colorMetric,
+    colorIndicator: DEFAULT_VIEWS[defaultViewsIndx].colorMetric,
     sizeIndicator: undefined,
     showMostRecentData: false,
     showLabel: false,
-    showSource: false,
     trendChartCountry: undefined,
     dataListCountry: undefined,
     multiCountryTrendChartCountries: [
@@ -198,13 +206,6 @@ function RegionalHomePageContext(props: Props) {
     });
   };
 
-  const updateShowSource = (showSource: boolean) => {
-    dispatch({
-      type: 'UPDATE_SHOW_SOURCE',
-      payload: showSource,
-    });
-  };
-
   const updateUseSameRange = (useSameRange: boolean) => {
     dispatch({
       type: 'UPDATE_USE_SAME_RANGE',
@@ -234,7 +235,6 @@ function RegionalHomePageContext(props: Props) {
         updateSelectedIncomeGroups,
         updateShowMostRecentData,
         updateShowLabel,
-        updateShowSource,
         updateTrendChartCountry,
         updateDataListCountry,
         updateMultiCountryTrendChartCountries,

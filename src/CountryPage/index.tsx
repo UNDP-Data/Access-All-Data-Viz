@@ -139,6 +139,7 @@ export function CountryHomePageForCountryPage(props: PropsWithoutSS) {
             signatureSolution={signatureSolution}
             loading={false}
             idForOverview={signatureSolution || countryId || 'Default'}
+            defaultViewId={signatureSolution || countryId || 'Default'}
           />
         </div>
       ) : (
