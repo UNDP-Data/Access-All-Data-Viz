@@ -31,12 +31,18 @@ export function HomePageBanner() {
         }}
       >
         <div>
-          <h1 className='undp-typography margin-bottom-05'>
+          <h1
+            className='undp-typography margin-bottom-05'
+            style={{ color: 'var(--white) !important' }}
+          >
             Data Futures
             <br />
             Platform
           </h1>
-          <h5 className='undp-typography margin-bottom-08'>
+          <h5
+            className='undp-typography margin-bottom-08'
+            style={{ color: 'var(--white) !important' }}
+          >
             A global resource to empower policy decision-makers with the best of
             data and insights for a transformative impact.
           </h5>
