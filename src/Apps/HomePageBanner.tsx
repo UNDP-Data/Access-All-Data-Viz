@@ -25,12 +25,14 @@ export function HomePageBanner() {
           backgroundColor: '#083676',
           backgroundImage:
             'radial-gradient(at 67% 61%, hsla(210, 76%, 67%, 1) 0, hsla(210, 76%, 67%, 0) 70%),radial-gradient(at 94% 51%, hsla(204, 84%, 38%, 1) 0, hsla(204, 84%, 38%, 0) 70%),radial-gradient(at 48% 56%, hsla(204, 84%, 38%, 1) 0, hsla(204, 84%, 38%, 0) 70%)',
-          width: 'calc(100% - 4rem)',
-          color: 'var(--white)',
-          padding: 'var(--spacing-13) var(--spacing-07)',
+          width: '100%',
         }}
       >
-        <div>
+        <div
+          style={{
+            padding: 'var(--spacing-13) var(--spacing-07)',
+          }}
+        >
           <h1
             className='undp-typography margin-bottom-05'
             style={{ color: 'var(--white) !important' }}
