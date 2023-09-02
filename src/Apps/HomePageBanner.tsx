@@ -9,6 +9,7 @@ const CardEl = styled.a`
   width: calc(33.33% - 6.33rem);
   min-width: 10rem;
   text-decoration: none;
+  background-image: none !important;
   &:hover {
     background-color: rgba(255, 255, 255, 0.95);
   }
