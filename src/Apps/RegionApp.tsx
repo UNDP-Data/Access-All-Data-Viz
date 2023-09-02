@@ -4,6 +4,7 @@ import DataExplorer from '../Components/DataExplorer';
 import { COUNTRIES_BY_UNDP_REGIONS } from '../Constants';
 import { AboutPage } from '../AboutPage';
 import { AggregatedRegionVisualization } from '../RegionVisualization';
+import { INTRO_TEXT } from '../IntroductionText';
 
 interface Props {
   region?: string;
@@ -82,10 +83,10 @@ export function RegionApp(props: Props) {
           >
             <div
               style={{
-                padding: 'var(--spacing-07)',
+                padding: 'var(--spacing-09) var(--spacing-07)',
               }}
             >
-              <h2 className='undp-typography margin-bottom-00'>
+              <h2 className='undp-typography margin-bottom-03 page-title'>
                 {
                   COUNTRIES_BY_UNDP_REGIONS[
                     COUNTRIES_BY_UNDP_REGIONS.findIndex(
@@ -94,6 +95,7 @@ export function RegionApp(props: Props) {
                   ].name
                 }
               </h2>
+              {INTRO_TEXT[INTRO_TEXT.findIndex(d => d.id === region)].bodyText}
             </div>
           </div>
           <Tabs

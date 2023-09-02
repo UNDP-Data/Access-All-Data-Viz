@@ -2,6 +2,7 @@ import { Tabs } from 'antd';
 import DataExplorer from '../Components/DataExplorer';
 import { DataSetList } from '../Components/DataSetList';
 import { AboutPage } from '../AboutPage';
+import { INTRO_TEXT } from '../IntroductionText';
 
 interface Props {
   signatureSolution?: string;
@@ -50,16 +51,20 @@ export function SignatureSolutionApp(props: Props) {
       >
         <div
           style={{
-            padding: 'var(--spacing-07)',
+            padding: 'var(--spacing-09) var(--spacing-07)',
           }}
         >
-          <h2 className='undp-typography margin-bottom-00'>
+          <h2 className='undp-typography margin-bottom-03 page-title'>
             {signatureSolution
               ? signatureSolution === 'Gender'
                 ? 'Gender Equality'
                 : signatureSolution
               : 'Poverty and Inequality'}
           </h2>
+          {
+            INTRO_TEXT[INTRO_TEXT.findIndex(d => d.id === signatureSolution)]
+              .bodyText
+          }
         </div>
       </div>
       <Tabs

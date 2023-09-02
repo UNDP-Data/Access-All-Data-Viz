@@ -31,10 +31,12 @@ export function AccessAllDataApp() {
       >
         <div
           style={{
-            padding: 'var(--spacing-07)',
+            padding: 'var(--spacing-09) var(--spacing-07)',
           }}
         >
-          <h2 className='undp-typography margin-bottom-00'>Access All Data</h2>
+          <h2 className='undp-typography margin-bottom-03 page-title'>
+            Access All Data
+          </h2>
         </div>
       </div>
       <Tabs
