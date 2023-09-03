@@ -10,11 +10,9 @@ const CardEl = styled.a`
   min-width: 10rem;
   text-decoration: none;
   background-image: none !important;
+  cursor: pointer;
   &:hover {
     background-color: rgba(255, 255, 255, 0.4);
-    h2 {
-      color: rgba(255, 255, 255, 1);
-    }
   }
   @media (min-width: 1024px) {
     max-width: 25rem;
@@ -22,8 +20,7 @@ const CardEl = styled.a`
 `;
 
 const CardH2 = styled.h2`
-  -webkit-text-stroke: 1px var(--white);
-  color: rgba(255, 255, 255, 0);
+  color: var(--white);
   line-height: 1.09;
   text-shadow: none;
   letter-spacing: 0.05rem;
