@@ -2,20 +2,34 @@ import styled from 'styled-components';
 
 const CardEl = styled.a`
   flex-grow: 1;
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.2);
   padding: 2rem;
-  color: #232e3d;
+  color: var(--white);
   flex-shrink: 1;
   width: calc(33.33% - 6.33rem);
   min-width: 10rem;
   text-decoration: none;
   background-image: none !important;
   &:hover {
-    background-color: rgba(255, 255, 255, 0.95);
+    background-color: rgba(255, 255, 255, 0.4);
+    h2 {
+      color: rgba(255, 255, 255, 1);
+    }
   }
   @media (min-width: 1024px) {
     max-width: 25rem;
   }
+`;
+
+const CardH2 = styled.h2`
+  -webkit-text-stroke: 1px var(--white);
+  color: rgba(255, 255, 255, 0);
+  line-height: 1.09;
+  text-shadow: none;
+  letter-spacing: 0.05rem;
+  font-size: 4rem !important;
+  margin-top: 0;
+  margin-bottom: 0 !important;
 `;
 
 export function HomePageBanner() {
@@ -23,7 +37,7 @@ export function HomePageBanner() {
     <div className='undp-container'>
       <div
         style={{
-          backgroundColor: '#083676',
+          backgroundColor: '#013B60',
           backgroundImage:
             'radial-gradient(at 67% 61%, hsla(210, 76%, 67%, 1) 0, hsla(210, 76%, 67%, 0) 70%),radial-gradient(at 94% 51%, hsla(204, 84%, 38%, 1) 0, hsla(204, 84%, 38%, 0) 70%),radial-gradient(at 48% 56%, hsla(204, 84%, 38%, 1) 0, hsla(204, 84%, 38%, 0) 70%)',
           width: '100%',
@@ -51,18 +65,18 @@ export function HomePageBanner() {
           </h5>
           <div className='flex-div flex-wrap gap-07'>
             <CardEl href='/access-all-data'>
-              <h2 className='undp-typography page-title'>300+</h2>
-              <h5 className='undp-typography margin-bottom-00'>Indicators</h5>
+              <CardH2 className='undp-typography page-title'>300+</CardH2>
+              <p className='undp-typography margin-bottom-00'>Indicators</p>
             </CardEl>
             <CardEl href='/insights'>
-              <h2 className='undp-typography page-title'>70+</h2>
-              <h5 className='undp-typography margin-bottom-00'>Data Stories</h5>
+              <CardH2 className='undp-typography page-title'>70+</CardH2>
+              <p className='undp-typography margin-bottom-00'>Data Stories</p>
             </CardEl>
             <CardEl href='/countries'>
-              <h2 className='undp-typography page-title'>200+</h2>
-              <h5 className='undp-typography margin-bottom-00'>
+              <CardH2 className='undp-typography page-title'>200+</CardH2>
+              <p className='undp-typography margin-bottom-00'>
                 Countries or Regions
-              </h5>
+              </p>
             </CardEl>
           </div>
         </div>
