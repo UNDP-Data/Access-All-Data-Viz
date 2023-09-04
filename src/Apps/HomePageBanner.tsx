@@ -20,7 +20,7 @@ const CardEl = styled.a`
 `;
 
 const CardH2 = styled.h2`
-  color: var(--white);
+  color: var(--white) !important;
   line-height: 1.09;
   text-shadow: none;
   letter-spacing: 0.05rem;
