@@ -9,7 +9,11 @@
     * [Steps to integrate Country Level Viz](#section-02-02)
     * [Steps to integrate Regional Level Viz](#section-02-03)
     * [Steps to integrate Signature Solution Level Viz](#section-02-04)
-    * [Customizing views for different countries, regions and signature solution](#section-02-05)
+* [Customizing views for different countries, regions and signature solution](#section-11)
+    * [Customizing 'About' section](#section-11-01)
+    * [Customizing 'Key Indicators' in Data Explorer](#section-11-02)
+    * [Customizing Default view of the main Data Explorer visualization](#section-11-03)
+    * [Customizing Header Area](#section-11-04)
 * [Pages on DFP where This Viz is Used](#section-03)
 * [Related Repos](#section-04)
 * [Global CSS Files and Repo](#section-05)
@@ -139,7 +143,7 @@ Apart from the mentioned `div` above the following `script` and `link` needs to 
 <link rel="stylesheet" href="https://undp-data.github.io/stylesheets-for-viz/style/StyleForGraph.css" />
 ```
 
-### Customizing views for different countries, regions and signature solution<a name="section-02_05"></a>
+## Customizing views for different countries, regions and signature solution<a name="section-11"></a>
 
 The code let to easily customizing certain elements based on countries, regions and signature solutions where the visualization is embedded. The section that can easily be customized for different countries, regions and signature solutions are:
 * About Section
@@ -147,7 +151,7 @@ The code let to easily customizing certain elements based on countries, regions 
 * Default view of the main Data Explorer visualization
 * Header Area
 
-#### Customizing 'About' section
+### Customizing 'About' section<a name="section-11-01"></a>
 
 To edit the About section for countries, regions and signature solution one needs to edit [AboutText.tsx](./src/AboutText.tsx) in the `src` folder
 
@@ -162,7 +166,9 @@ resources | `{source: string; link: string}[]` | This defines the links and reso
 
 ![About Description](/readMeImgs/AboutText.jpg)
 
-#### Customizing 'Key Indicators' in Data Explorer
+___
+
+### Customizing 'Key Indicators' in Data Explorer<a name="section-11-02"></a>
 
 To customize the 'Key Indicators' in Data Explorer for countries, regions and signature solution one needs to edit [TopCards.tsx](./src/TopCards.tsx) in the `src` folder
 
@@ -173,9 +179,11 @@ Key | DataType | Description
 id | `string` | This is used as an identifier to determine which object belong to which page. _Available values_: For region - `AP`, `SSA`, `AS`, `ECA`, `LAC`; For Signature Solutions - `Poverty and Inequality`, `Environment`, `Gender`, `Energy`,`Resilience`,`Governance`; For countries - Use the Alpha-3 ISO country codes. Please note: `id: Default` is used to define the card that are shown for all the pages that are not mentioned in this file. Also the card on the country pages default to the Regional Bureau they belong to if the card for the country are not specifically defined.   
 cards | `{vizType: string; settings: Object}[]` | This defines the card are shown. The key value pair `settings` object depends on the `vizType`. Available value for `visType` are: `lineChart`, `stackedLineChart`, `dotPlot`, `valueCard`.
 
-![Key Indicator Area](/readMeImgs/KeyIndicators.jpg)
+![Key Indicator Area](/readMeImgs/KeyIndicators.jpg)\
 
-#### Customizing Default view of the main Data Explorer visualization
+___
+
+### Customizing Default view of the main Data Explorer visualization<a name="section-11-03"></a>
 
 To customize the default view of the main Data Explorer visualization for countries, regions and signature solution one needs to edit [DefaultViewsForDataExplorer.tsx](./src/DefaultViewsForDataExplorer.tsx) in the `src` folder
 
@@ -191,7 +199,9 @@ graphType | `string` | This defines default graph. Available values - `map`, `sc
 
 ![Main Viz](/readMeImgs/MainViz.jpg)
 
-#### Customizing Header Area
+___
+
+### Customizing Header Area<a name="section-11-04"></a>
 
 To customize Header Area for regions and signature solution one needs to edit [IntroductionText.tsx](./src/IntroductionText.tsx) in the `src` folder. Please note: The header of Countries cannot be edited.
 
@@ -204,6 +214,7 @@ id | `string` | This is used as an identifier to determine which object belong t
 bodyText | `HTMLDivElement` | This define what gets rendered in the body section.
 
 ![Header](/readMeImgs/Header.jpg)
+
 
 ## Pages on DFP Where the Visualization is Used<a name="section-03"></a>
 * [Access All Data](https://data.undp.org/explore-all-data/)
