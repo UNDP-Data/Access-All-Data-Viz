@@ -55,11 +55,10 @@ export function SignatureSolutionApp(props: Props) {
           }}
         >
           <h2 className='undp-typography margin-bottom-03 page-title'>
-            {signatureSolution
-              ? signatureSolution === 'Gender'
-                ? 'Gender Equality'
-                : signatureSolution
-              : 'Poverty and Inequality'}
+            {
+              INTRO_TEXT[INTRO_TEXT.findIndex(d => d.id === signatureSolution)]
+                .title
+            }
           </h2>
           {
             INTRO_TEXT[INTRO_TEXT.findIndex(d => d.id === signatureSolution)]

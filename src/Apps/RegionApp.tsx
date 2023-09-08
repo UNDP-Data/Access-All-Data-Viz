@@ -87,13 +87,7 @@ export function RegionApp(props: Props) {
               }}
             >
               <h2 className='undp-typography margin-bottom-03 page-title'>
-                {
-                  COUNTRIES_BY_UNDP_REGIONS[
-                    COUNTRIES_BY_UNDP_REGIONS.findIndex(
-                      d => d.region === `UNDP_${region}`,
-                    )
-                  ].name
-                }
+                {INTRO_TEXT[INTRO_TEXT.findIndex(d => d.id === region)].title}
               </h2>
               {INTRO_TEXT[INTRO_TEXT.findIndex(d => d.id === region)].bodyText}
             </div>
