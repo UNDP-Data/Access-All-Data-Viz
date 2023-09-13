@@ -361,14 +361,16 @@ export const ABOUT_TEXT_LINKS = [
     bodyText: (
       <div>
         <p className='undp-typography'>
-          A region&rsquo;s and or country&rsquo;s ability to react, recover and
-          adapt to changing circumstances is at the core of resilience.
-          Globally, resilience is needed more than ever because the scale,
-          complexity and interconnectedness of risks facing humankind is
-          unprecedented. Data related to disaster risk reduction and recovery
-          for building resilience (DRT); governance and peace-building and human
-          mobility is key in understanding risk better and applying a resilience
-          building approach.
+          Resilience is the ability of individuals, households, communities,
+          cities, institutions, systems and societies to prevent, resist,
+          absorb, adapt, respond and recover positively, efficiently and
+          effectively when faced with a wide range of risks, while maintaining
+          an acceptable level of functioning without compromising long-term
+          prospects for sustainable development, peace and security, human
+          rights and well-being for all.’ Data related to disaster risk
+          reduction and recovery for building resilience (DRT); governance and
+          peace-building and human mobility is key in understanding risk better
+          and applying a resilience building approach.
         </p>
       </div>
     ),
