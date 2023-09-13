@@ -375,11 +375,13 @@ export const TOP_CARDS = [
         },
       },
       {
-        vizType: 'valueCard',
+        vizType: 'lineChart',
         settings: {
           dataKey: 'International migrant stock at mid-year (both sexes)',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
           graphTitle: 'International Migrant Stock at Mid-Year, total',
-          description: true,
+          suffix: '',
         },
       },
       {
