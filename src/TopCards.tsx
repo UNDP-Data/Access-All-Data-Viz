@@ -1192,4 +1192,46 @@ export const TOP_CARDS = [
       },
     ],
   },
+  {
+    id: 'ARG',
+    cards: [
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey: 'Gross domestic product, constant prices, percent change',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle: 'Gross Domestic Product (GDP), percent change',
+          suffix: '%',
+        },
+      },
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey: 'GINI index (World Bank estimate)',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle: 'Gini Index',
+        },
+      },
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey: 'Human development index (HDI)',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle: 'Human Development Index',
+        },
+      },
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey: 'Informal employment by sex (thousands), Total',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle: 'Informal employment by sex (thousands), Total',
+        },
+      },
+    ],
+  },
 ];

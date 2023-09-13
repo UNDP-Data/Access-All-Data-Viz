@@ -990,4 +990,15 @@ export const ABOUT_TEXT_LINKS = [
       },
     ],
   },
+  {
+    title: 'Argentina',
+    id: 'ARG',
+    bodyText: <div />,
+    resource: [
+      {
+        source: 'About Us Page',
+        link: 'https://www.undp.org/es/argentina/sobre-nosotros',
+      },
+    ],
+  },
 ];
