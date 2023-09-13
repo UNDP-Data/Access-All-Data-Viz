@@ -1234,4 +1234,57 @@ export const TOP_CARDS = [
       },
     ],
   },
+  {
+    id: 'SLV',
+    cards: [
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey: 'Gross domestic product, constant prices, percent change',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle: 'Gross Domestic Product (GDP), percent change',
+          suffix: '%',
+        },
+      },
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey:
+            'Poverty headcount ratio at $3.65 a day (2017 PPP) (% of population)',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle:
+            'Poverty headcount ratio at $3.65 a day (2017 PPP), % of population',
+          suffix: '%',
+        },
+      },
+      {
+        vizType: 'valueCard',
+        settings: {
+          dataKey: 'Multidimensional Poverty Index',
+          graphTitle: 'Multidimensional Poverty Index',
+          description: true,
+        },
+      },
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey: 'Gender Inequality Index-Gender Inequality Index',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle: 'Gender Inequality Index',
+        },
+      },
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey: 'Human development index (HDI)',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle: 'Human Development Index',
+        },
+      },
+    ],
+  },
 ];
