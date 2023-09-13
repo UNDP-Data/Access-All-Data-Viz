@@ -393,27 +393,25 @@ export const ABOUT_TEXT_LINKS = [
     bodyText: (
       <div>
         <p className='undp-typography'>
-          Governance systems and processes regulate how power is exercised and
-          decisions are made that impact the lives and livelihoods. UNDP works
-          to support accountable, effective and inclusive institutions and
-          processes and ensure access to justice for all in order to accelerate
-          the achievement of the 2030 Agenda for Sustainable Development.
+          Governance is the system of values, policies and institutions by which
+          a society manages its economic, political and social affairs through
+          interactions within and among the state, civil society and private
+          sector. It is the way a society organizes itself to make and implement
+          decisions and comprises the mechanisms and processes for citizens and
+          groups to articulate their interests, mediate their differences and
+          exercise their legal rights and obligations. UNDP works to support
+          accountable, effective and inclusive institutions and processes and
+          ensure access to justice for all in order to accelerate the
+          achievement of the 2030 Agenda for Sustainable Development.
         </p>
         <p className='undp-typography'>
-          UNDP&apos;s work on governance includes promoting inclusive and
+          UNDP’s work on governance includes promoting inclusive and
           future-smart public goods and services, democratic institutions and
           processes, an inclusive public sphere as well as integrating
           governance principles into development polices and programmes. Working
-          at global, regional and national levels, UNDP also works to promote
-          the rule of law and human rights and enable more people centered
-          justice and security services.
-        </p>
-        <p className='undp-typography'>
-          This portal features some selected governance indicators. A
-          significant challenge facing the field is the lack of data
-          availability on governance related indicators. More investment is
-          needed in order to produce harmonized, timely and comparable evidence
-          on all dimensions of governance. UNDP works closely with national data
+          at global, regional and national levels, UNDP works to promote the
+          rule of law and human rights and enable more people centered justice
+          and security services. UNDP also works closely with national data
           producers to strengthen data availability to better monitor progress
           towards more inclusive, just and peaceful societies.
         </p>
