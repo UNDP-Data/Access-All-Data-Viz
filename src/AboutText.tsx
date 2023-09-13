@@ -530,33 +530,25 @@ export const ABOUT_TEXT_LINKS = [
     bodyText: (
       <div>
         <p className='undp-typography'>
-          The region of Europe and Central Asia is diverse and dynamic, with
-          countries at different stages of transition and development. While
+          Europe and Central Asia is a diverse, dynamic region with countries
+          and territories at various stages of transition and development. While
           extreme poverty has largely been eradicated, many countries still face
-          multiple challenges such as inequality, unemployment, gender
-          discrimination, migration, climate change, conflict and governance.
-          The situation is worsened by the multiple crises in the region, such
-          as the war in Ukraine, the COVID-19 pandemic, and the natural
-          disasters that have affected millions of people.
+          multiple development challenges. The situation is exacerbated by the
+          multiple crises that have affected the region, such as the war in
+          Ukraine, the COVID-19 pandemic, and the natural disasters that have
+          impacted millions of people.
         </p>
         <p className='undp-typography'>
-          UNDP works with 19 country offices in the region and the Regional
-          Bureau for Europe and Central Asia, headquartered in New York, to help
+          UNDP is present in 19 countries and territories in the region to help
           eradicate poverty in all its forms, accelerate the transition to
           sustainable development, and make sure countries and people are able
           to withstand crises and shocks. We work to make sure the most
-          vulnerable and excluded are not left behind, develop game-changing
+          vulnerable and excluded are not left behind, develop game changing
           solutions to accelerate sustainable development, and promote
           prevention and preparedness.
         </p>
         <p className='undp-typography'>
-          Read more{' '}
-          <a
-            href='More https://www.undp.org/eurasia/about-us/about-region'
-            target='_blank'
-          >
-            here
-          </a>
+          Learn more about the region and our work.
         </p>
       </div>
     ),
