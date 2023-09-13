@@ -339,19 +339,66 @@ export const TOP_CARDS = [
       {
         vizType: 'valueCard',
         settings: {
-          dataKey: 'Country Fragility',
-          graphTitle: 'Fragile States Index',
+          dataKey: 'Refugee population by country or territory of asylum',
+          graphTitle: 'Refugee population by country or territory of asylum',
+          description: false,
+        },
+      },
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey: 'Population ages 65 and above (% of total population)',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle: 'Population ages 65 and above (% of total population)',
+          suffix: '%',
+        },
+      },
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey: 'Rural Population, total',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle: 'Rural Population, total',
+          suffix: '',
+        },
+      },
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey: 'Urban Population, total',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle: 'Urban Population, total',
+          suffix: '',
+        },
+      },
+      {
+        vizType: 'valueCard',
+        settings: {
+          dataKey: 'International migrant stock at mid-year (both sexes)',
+          graphTitle: 'International Migrant Stock at Mid-Year, total',
           description: true,
+        },
+      },
+      {
+        vizType: 'dotPlot',
+        settings: {
+          dotColor: 'var(--dark-red)',
+          dataKey: "Women's share of population ages 15+ living with HIV (%)",
+          graphTitle: 'Population Living with HIV, share of women ages 15+',
         },
       },
       {
         vizType: 'valueCard',
         settings: {
           dataKey:
-            'Score of adoption and implementation of national DRR strategies in line with the Sendai Framework',
+            'Prevalence of Mental health disorders: Both (age-standardized percent)',
           graphTitle:
-            'Score of adoption and implementation of national disaster risk reduction (DRR) strategies in line with the Sendai Framework',
-          description: true,
+            'Prevalence of Mental Health Disorders, both sexes age-standardized percent',
+          description: false,
+          suffix: '%',
         },
       },
       {
@@ -370,77 +417,6 @@ export const TOP_CARDS = [
           dataKey: 'External Peace',
           graphTitle: 'External Peace Score',
           description: false,
-        },
-      },
-      {
-        vizType: 'valueCard',
-        settings: {
-          dataKey: 'Global Peace Index Rank',
-          graphTitle: 'Global Peace Index Rank',
-          description: true,
-        },
-      },
-      {
-        vizType: 'lineChart',
-        settings: {
-          dataKey:
-            'Refugees and Internally Displaced People as Percentage of the Population',
-          strokeWidth: 1,
-          lineColor: '#232E3D',
-          graphTitle:
-            'Refugees and Internally Displaced People as Percentage of the Population',
-          suffix: '%',
-        },
-      },
-      {
-        vizType: 'valueCard',
-        settings: {
-          dataKey: 'Refugees and IDPs Pressure on State',
-          graphTitle: 'Refugees and IDPs Pressure on State',
-          description: true,
-        },
-      },
-      {
-        vizType: 'valueCard',
-        settings: {
-          dataKey: 'Country Fragility',
-          graphTitle: 'Country Fragility',
-          description: true,
-        },
-      },
-      {
-        vizType: 'valueCard',
-        settings: {
-          dataKey: 'COVID-19 Government Response Stringency',
-          graphTitle: 'COVID-19 Government Response Stringency',
-          description: true,
-        },
-      },
-      {
-        vizType: 'valueCard',
-        settings: {
-          dataKey: 'Fiscal Response',
-          graphTitle: 'Fiscal Response',
-          description: true,
-        },
-      },
-      {
-        vizType: 'valueCard',
-        settings: {
-          dataKey: 'Monetary Response',
-          graphTitle: 'Monetary Response',
-          description: true,
-          prefix: 'US $',
-        },
-      },
-      {
-        vizType: 'lineChart',
-        settings: {
-          dataKey: 'International migrant stock at mid-year (both sexes)',
-          strokeWidth: 1,
-          lineColor: '#232E3D',
-          graphTitle: 'International migrant stock at mid-year (both sexes)',
-          suffix: '%',
         },
       },
     ],
