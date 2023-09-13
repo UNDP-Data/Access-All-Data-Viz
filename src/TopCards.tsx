@@ -1376,4 +1376,57 @@ export const TOP_CARDS = [
       },
     ],
   },
+  {
+    id: 'SLE',
+    cards: [
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey:
+            'Prevalence of moderate or severe food insecurity in the total population (percent) (3-year average)',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle: 'Prevalence of moderate or severe food insecurity',
+          suffix: '%',
+        },
+      },
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey:
+            'Labor force with advanced education (% of total working-age population with advanced education)',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle: 'Proportion of Labour Force with Advanced Education',
+          suffix: '%',
+        },
+      },
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey:
+            'Unemployment, youth total (% of total labor force ages 15-24) (modeled ILO estimate)',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle: 'Youth Unemployment (% of total labor force ages 15-24)',
+          suffix: '%',
+        },
+      },
+      {
+        vizType: 'valueCard',
+        settings: {
+          dataKey: 'CPIA Public sector management and institutions',
+          graphTitle: 'Public Sector Management and Institutions Index',
+          description: true,
+        },
+      },
+      {
+        vizType: 'dotPlot',
+        settings: {
+          dataKey: 'Individuals using the Internet (% of population)',
+          graphTitle: 'Individuals using the Internet',
+        },
+      },
+    ],
+  },
 ];

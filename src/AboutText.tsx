@@ -1043,4 +1043,22 @@ export const ABOUT_TEXT_LINKS = [
       },
     ],
   },
+  {
+    title: 'Sierra Leone',
+    id: 'SLE',
+    bodyText: (
+      <p className='undp-typography'>
+        UNDP’s mandate is to end poverty, build democratic governance, rule of
+        law, and inclusive institutions. We advocate for change, and connect
+        countries to knowledge, experience and resources to help people build a
+        better life.
+      </p>
+    ),
+    resource: [
+      {
+        source: 'About Us Page',
+        link: 'https://www.undp.org/sierra-leone/about-us',
+      },
+    ],
+  },
 ];
