@@ -1001,4 +1001,46 @@ export const ABOUT_TEXT_LINKS = [
       },
     ],
   },
+  {
+    title: 'Liberia',
+    id: 'LBR',
+    bodyText: (
+      <>
+        <p className='undp-typography'>
+          UNDP is the UN&apos;s global development network, advocating for
+          change and connecting countries to knowledge, experience and resources
+          to help empower people and build resilient nations. UNDP has been
+          working in Liberia since 1977 in peace and in crisis times. UNDP is
+          committed to helping Liberia achieve the Sustainable Development Goals
+          (SDGS) as well as the country’s national development priorities as set
+          out in its newest Pro-Poor Development Agenda. UNDP provides technical
+          assistance within the framework of the UN Development Assistance
+          Framework (UNDAF) which is fully aligned with Liberia’s National
+          development Agenda.
+        </p>
+        <p className='undp-typography'>
+          UNDP supports Liberia&apos;s national development agenda and works
+          closely with national institutions and local communities to promote,
+          advocate and contribute to good governance, peace and security. Our
+          work focuses on engendering national initiatives and strategies that
+          help facilitate long-term development transformation in the lives of
+          the people of Liberia. We offer global perspectives, complementary
+          support and ideas on strategic development projects and capacity
+          building in continued efforts to promote and protect human rights and
+          improve environmental management. The end result of this
+          transformation would be a country that is characterized by peaceful
+          and inclusive politics and diversified economy, stable institutions,
+          enforces the laws fairly, land tenure problems have been resolved,
+          natural resources are efficiently managed and health and education
+          standards have reached those of other middle income countries.
+        </p>
+      </>
+    ),
+    resource: [
+      {
+        source: 'About Us Page',
+        link: 'https://www.undp.org/liberia/about-us',
+      },
+    ],
+  },
 ];

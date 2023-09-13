@@ -1287,4 +1287,40 @@ export const TOP_CARDS = [
       },
     ],
   },
+  {
+    id: 'LBR',
+    cards: [
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey:
+            'Population covered by at least one social protection benefit',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle:
+            'Population covered by at least one social protection benefit, total',
+          suffix: '%',
+        },
+      },
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey:
+            'Unemployment, youth total (% of total labor force ages 15-24) (modeled ILO estimate)',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle: 'Youth Unemployment (% of total labor force ages 15-24)',
+          suffix: '%',
+        },
+      },
+      {
+        vizType: 'valueCard',
+        settings: {
+          dataKey: 'CPIA Public sector management and institutions',
+          graphTitle: 'Public Sector Management and Institutions Index',
+          description: true,
+        },
+      },
+    ],
+  },
 ];
