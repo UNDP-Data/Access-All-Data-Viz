@@ -1493,4 +1493,107 @@ export const TOP_CARDS = [
       },
     ],
   },
+  {
+    id: 'TKM',
+    cards: [
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey: 'Life Expectancy at Birth (years)',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle: 'Life Expectancy at Birth, both sexes',
+          suffix: '',
+        },
+      },
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey: 'Population, total',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle: 'Population, total',
+        },
+      },
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey: 'Gross domestic product, constant prices, percent change',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle: 'Gross Domestic Product (GDP), percent change',
+          suffix: '%',
+        },
+      },
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey: 'Government Debt',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle: 'Net debt as percent of GDP',
+          suffix: '%',
+        },
+      },
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey: 'Unemployment rate, percent of total labor force',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle: 'Unemployment rate',
+          suffix: '%',
+        },
+      },
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey: 'Population living in slums (% of urban population)',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle: 'Population living in slums, % of urban population',
+          suffix: '%',
+        },
+      },
+      {
+        vizType: 'dotPlot',
+        settings: {
+          dataKey: 'Internet users, total (% of population)',
+          graphTitle: 'Internet users, total (% of population)',
+        },
+      },
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey:
+            'Population using at least basic drinking-water services (%)',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle:
+            'Population Using at least Basic Drinking-Water Services, total, percent',
+          suffix: '%',
+        },
+      },
+      {
+        vizType: 'dotPlot',
+        settings: {
+          dataKey:
+            'Population covered by at least one social protection benefit',
+          graphTitle:
+            'Population covered by at least one social protection benefit, total',
+        },
+      },
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey:
+            'Gender Inequality Index-Share of seats in parliament (% held by women)',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle: 'Share of Parliament Seats Held by Women',
+          suffix: '%',
+        },
+      },
+    ],
+  },
 ];
