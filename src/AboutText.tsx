@@ -855,7 +855,7 @@ export const ABOUT_TEXT_LINKS = [
           the realm of healthcare. Concurrently, Montenegro envisions harnessing
           migration to tap into untapped human potential for future development.
           Official estimates from UNHCR suggest that approximately 35,000
-          Ukrainian refugees, constituting 5.4% of Montenegro's population,
+          Ukrainian refugees, constituting 5.4% of Montenegro&apos;s population,
           currently reside in the nation. These collaborative endeavours,
           coupled with economic metamorphosis, seek to fortify resilience,
           foster and propel human development, and rectify societal
