@@ -1,4 +1,5 @@
 import ReactDOM from 'react-dom/client';
+import { ReactNode } from 'react';
 import { CountryApp } from './Apps/CountryApp';
 import { AccessAllDataApp, DataExplorerApp } from './Apps/AccessAllDataApp';
 import { RegionApp } from './Apps/RegionApp';
@@ -64,7 +65,7 @@ const getSS = (embedSelector: string) => {
 const containerEmbed = getEl('[data-bucket-embed]');
 if (containerEmbed) {
   const rootEmbed = ReactDOM.createRoot(containerEmbed);
-  rootEmbed.render(<AccessAllDataApp />);
+  rootEmbed.render((<AccessAllDataApp />) as ReactNode);
 }
 
 /*
@@ -74,9 +75,11 @@ const containerSSEmbedMain = getEl('[data-bucket-ss-embed-main]');
 if (containerSSEmbedMain) {
   const rootEmbed = ReactDOM.createRoot(containerSSEmbedMain);
   rootEmbed.render(
-    <SignatureSolutionApp
-      signatureSolution={getSS('[data-bucket-ss-embed-main]')}
-    />,
+    (
+      <SignatureSolutionApp
+        signatureSolution={getSS('[data-bucket-ss-embed-main]')}
+      />
+    ) as ReactNode,
   );
 }
 
@@ -93,11 +96,13 @@ if (containerCountryEmbed) {
       : currentURL.href.split('?')[0].split('#')[0].slice(-3);
   const rootEmbed = ReactDOM.createRoot(containerCountryEmbed);
   rootEmbed.render(
-    <CountryApp
-      countryId={
-        getCountry('[data-bucket-country-embed]') || countryCode.toUpperCase()
-      }
-    />,
+    (
+      <CountryApp
+        countryId={
+          getCountry('[data-bucket-country-embed]') || countryCode.toUpperCase()
+        }
+      />
+    ) as ReactNode,
   );
 }
 
@@ -108,7 +113,9 @@ const containerRegionMainEmbed = getEl('[data-bucket-region-embed-main]');
 if (containerRegionMainEmbed) {
   const rootEmbed = ReactDOM.createRoot(containerRegionMainEmbed);
   rootEmbed.render(
-    <RegionApp region={getRegion('[data-bucket-region-embed-main]')} />,
+    (
+      <RegionApp region={getRegion('[data-bucket-region-embed-main]')} />
+    ) as ReactNode,
   );
 }
 
@@ -119,7 +126,9 @@ const containerTopicMainEmbed = getEl('[data-bucket-embed-topic]');
 if (containerTopicMainEmbed) {
   const rootEmbed = ReactDOM.createRoot(containerTopicMainEmbed);
   rootEmbed.render(
-    <DataExplorerApp topic={getTopic('[data-bucket-embed-topic]')} />,
+    (
+      <DataExplorerApp topic={getTopic('[data-bucket-embed-topic]')} />
+    ) as ReactNode,
   );
 }
 
@@ -129,7 +138,7 @@ if (containerTopicMainEmbed) {
 const containerHomePageBanner = getEl('[banner-embed]');
 if (containerHomePageBanner) {
   const rootEmbed = ReactDOM.createRoot(containerHomePageBanner);
-  rootEmbed.render(<HomePageBanner />);
+  rootEmbed.render((<HomePageBanner />) as ReactNode);
 }
 
 reportWebVitals();
