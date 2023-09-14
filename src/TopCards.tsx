@@ -1232,6 +1232,15 @@ export const TOP_CARDS = [
           graphTitle: 'Informal employment by sex (thousands), Total',
         },
       },
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey: 'Gender Inequality Index-Gender Inequality Index',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle: 'Gender Inequality Index',
+        },
+      },
     ],
   },
   {
