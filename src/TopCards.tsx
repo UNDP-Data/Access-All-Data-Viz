@@ -339,19 +339,68 @@ export const TOP_CARDS = [
       {
         vizType: 'valueCard',
         settings: {
-          dataKey: 'Country Fragility',
-          graphTitle: 'Fragile States Index',
-          description: true,
+          dataKey: 'Refugee population by country or territory of asylum',
+          graphTitle: 'Refugee population by country or territory of asylum',
+          description: false,
+        },
+      },
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey: 'Population ages 65 and above (% of total population)',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle: 'Population ages 65 and above (% of total population)',
+          suffix: '%',
+        },
+      },
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey: 'Rural Population, total',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle: 'Rural Population, total',
+          suffix: '',
+        },
+      },
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey: 'Urban Population, total',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle: 'Urban Population, total',
+          suffix: '',
+        },
+      },
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey: 'International migrant stock at mid-year (both sexes)',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle: 'International Migrant Stock at Mid-Year, total',
+          suffix: '',
+        },
+      },
+      {
+        vizType: 'dotPlot',
+        settings: {
+          dotColor: 'var(--dark-red)',
+          dataKey: "Women's share of population ages 15+ living with HIV (%)",
+          graphTitle: 'Population Living with HIV, share of women ages 15+',
         },
       },
       {
         vizType: 'valueCard',
         settings: {
           dataKey:
-            'Score of adoption and implementation of national DRR strategies in line with the Sendai Framework',
+            'Prevalence of Mental health disorders: Both (age-standardized percent)',
           graphTitle:
-            'Score of adoption and implementation of national disaster risk reduction (DRR) strategies in line with the Sendai Framework',
-          description: true,
+            'Prevalence of Mental Health Disorders, both sexes age-standardized percent',
+          description: false,
+          suffix: '%',
         },
       },
       {
@@ -370,77 +419,6 @@ export const TOP_CARDS = [
           dataKey: 'External Peace',
           graphTitle: 'External Peace Score',
           description: false,
-        },
-      },
-      {
-        vizType: 'valueCard',
-        settings: {
-          dataKey: 'Global Peace Index Rank',
-          graphTitle: 'Global Peace Index Rank',
-          description: true,
-        },
-      },
-      {
-        vizType: 'lineChart',
-        settings: {
-          dataKey:
-            'Refugees and Internally Displaced People as Percentage of the Population',
-          strokeWidth: 1,
-          lineColor: '#232E3D',
-          graphTitle:
-            'Refugees and Internally Displaced People as Percentage of the Population',
-          suffix: '%',
-        },
-      },
-      {
-        vizType: 'valueCard',
-        settings: {
-          dataKey: 'Refugees and IDPs Pressure on State',
-          graphTitle: 'Refugees and IDPs Pressure on State',
-          description: true,
-        },
-      },
-      {
-        vizType: 'valueCard',
-        settings: {
-          dataKey: 'Country Fragility',
-          graphTitle: 'Country Fragility',
-          description: true,
-        },
-      },
-      {
-        vizType: 'valueCard',
-        settings: {
-          dataKey: 'COVID-19 Government Response Stringency',
-          graphTitle: 'COVID-19 Government Response Stringency',
-          description: true,
-        },
-      },
-      {
-        vizType: 'valueCard',
-        settings: {
-          dataKey: 'Fiscal Response',
-          graphTitle: 'Fiscal Response',
-          description: true,
-        },
-      },
-      {
-        vizType: 'valueCard',
-        settings: {
-          dataKey: 'Monetary Response',
-          graphTitle: 'Monetary Response',
-          description: true,
-          prefix: 'US $',
-        },
-      },
-      {
-        vizType: 'lineChart',
-        settings: {
-          dataKey: 'International migrant stock at mid-year (both sexes)',
-          strokeWidth: 1,
-          lineColor: '#232E3D',
-          graphTitle: 'International migrant stock at mid-year (both sexes)',
-          suffix: '%',
         },
       },
     ],
@@ -1210,6 +1188,419 @@ export const TOP_CARDS = [
           strokeWidth: 1,
           lineColor: '#232E3D',
           graphTitle: 'Gender Development Index (GDI)',
+        },
+      },
+    ],
+  },
+  {
+    id: 'ARG',
+    cards: [
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey: 'Gross domestic product, constant prices, percent change',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle: 'Gross Domestic Product (GDP), percent change',
+          suffix: '%',
+        },
+      },
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey: 'GINI index (World Bank estimate)',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle: 'Gini Index',
+        },
+      },
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey: 'Human development index (HDI)',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle: 'Human Development Index',
+        },
+      },
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey: 'Informal employment by sex (thousands), Total',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle: 'Informal employment by sex (thousands), Total',
+        },
+      },
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey: 'Gender Inequality Index-Gender Inequality Index',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle: 'Gender Inequality Index',
+        },
+      },
+    ],
+  },
+  {
+    id: 'SLV',
+    cards: [
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey: 'Gross domestic product, constant prices, percent change',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle: 'Gross Domestic Product (GDP), percent change',
+          suffix: '%',
+        },
+      },
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey:
+            'Poverty headcount ratio at $3.65 a day (2017 PPP) (% of population)',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle:
+            'Poverty headcount ratio at $3.65 a day (2017 PPP), % of population',
+          suffix: '%',
+        },
+      },
+      {
+        vizType: 'valueCard',
+        settings: {
+          dataKey: 'Multidimensional Poverty Index',
+          graphTitle: 'Multidimensional Poverty Index',
+          description: true,
+        },
+      },
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey: 'Gender Inequality Index-Gender Inequality Index',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle: 'Gender Inequality Index',
+        },
+      },
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey: 'Human development index (HDI)',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle: 'Human Development Index',
+        },
+      },
+    ],
+  },
+  {
+    id: 'LBR',
+    cards: [
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey:
+            'Population covered by at least one social protection benefit',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle:
+            'Population covered by at least one social protection benefit, total',
+          suffix: '%',
+        },
+      },
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey:
+            'Unemployment, youth total (% of total labor force ages 15-24) (modeled ILO estimate)',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle: 'Youth Unemployment (% of total labor force ages 15-24)',
+          suffix: '%',
+        },
+      },
+      {
+        vizType: 'valueCard',
+        settings: {
+          dataKey: 'CPIA Public sector management and institutions',
+          graphTitle: 'Public Sector Management and Institutions Index',
+          description: true,
+        },
+      },
+    ],
+  },
+  {
+    id: 'PER',
+    cards: [
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey: 'Gross domestic product, constant prices, percent change',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle: 'Gross Domestic Product (GDP), percent change',
+          suffix: '%',
+        },
+      },
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey:
+            'Poverty headcount ratio at $3.65 a day (2017 PPP) (% of population)',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle:
+            'Poverty headcount ratio at $3.65 a day (2017 PPP), % of population',
+          suffix: '%',
+        },
+      },
+      {
+        vizType: 'valueCard',
+        settings: {
+          dataKey: 'Multidimensional Poverty Index',
+          graphTitle: 'Multidimensional Poverty Index',
+          description: true,
+        },
+      },
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey: 'Gender Inequality Index-Gender Inequality Index',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle: 'Gender Inequality Index',
+        },
+      },
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey: 'Human development index (HDI)',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle: 'Human Development Index',
+        },
+      },
+    ],
+  },
+  {
+    id: 'SLE',
+    cards: [
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey:
+            'Prevalence of moderate or severe food insecurity in the total population (percent) (3-year average)',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle: 'Prevalence of moderate or severe food insecurity',
+          suffix: '%',
+        },
+      },
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey:
+            'Labor force with advanced education (% of total working-age population with advanced education)',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle: 'Proportion of Labour Force with Advanced Education',
+          suffix: '%',
+        },
+      },
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey:
+            'Unemployment, youth total (% of total labor force ages 15-24) (modeled ILO estimate)',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle: 'Youth Unemployment (% of total labor force ages 15-24)',
+          suffix: '%',
+        },
+      },
+      {
+        vizType: 'valueCard',
+        settings: {
+          dataKey: 'CPIA Public sector management and institutions',
+          graphTitle: 'Public Sector Management and Institutions Index',
+          description: true,
+        },
+      },
+      {
+        vizType: 'dotPlot',
+        settings: {
+          dataKey: 'Individuals using the Internet (% of population)',
+          graphTitle: 'Individuals using the Internet',
+        },
+      },
+    ],
+  },
+  {
+    id: 'UGA',
+    cards: [
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey: 'Gross domestic product, constant prices, percent change',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle: 'Gross Domestic Product (GDP), percent change',
+          suffix: '%',
+        },
+      },
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey:
+            'Poverty headcount ratio at $3.65 a day (2017 PPP) (% of population)',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle:
+            'Poverty headcount ratio at $3.65 a day (2017 PPP), % of population',
+          suffix: '%',
+        },
+      },
+      {
+        vizType: 'valueCard',
+        settings: {
+          dataKey: 'Multidimensional Poverty Index',
+          graphTitle: 'Multidimensional Poverty Index',
+          description: true,
+        },
+      },
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey: 'Gender Inequality Index-Gender Inequality Index',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle: 'Gender Inequality Index',
+        },
+      },
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey:
+            'Primary energy consumption per capita, measured in kilowatt-hours',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle:
+            'Primary energy consumption per capita, measured in kilowatt-hours',
+          suffix: 'kWh',
+        },
+      },
+      {
+        vizType: 'valueCard',
+        settings: {
+          dataKey: 'Climate Risks Index Score',
+          graphTitle: 'Climate Risks Index Score',
+          description: true,
+        },
+      },
+    ],
+  },
+  {
+    id: 'TKM',
+    cards: [
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey: 'Life Expectancy at Birth (years)',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle: 'Life Expectancy at Birth, both sexes',
+          suffix: '',
+        },
+      },
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey: 'Population, total',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle: 'Population, total',
+        },
+      },
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey: 'Gross domestic product, constant prices, percent change',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle: 'Gross Domestic Product (GDP), percent change',
+          suffix: '%',
+        },
+      },
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey: 'Government Debt',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle: 'Net debt as percent of GDP',
+          suffix: '%',
+        },
+      },
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey: 'Unemployment rate, percent of total labor force',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle: 'Unemployment rate',
+          suffix: '%',
+        },
+      },
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey: 'Population living in slums (% of urban population)',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle: 'Population living in slums, % of urban population',
+          suffix: '%',
+        },
+      },
+      {
+        vizType: 'dotPlot',
+        settings: {
+          dataKey: 'Internet users, total (% of population)',
+          graphTitle: 'Internet users, total (% of population)',
+        },
+      },
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey:
+            'Population using at least basic drinking-water services (%)',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle:
+            'Population Using at least Basic Drinking-Water Services, total, percent',
+          suffix: '%',
+        },
+      },
+      {
+        vizType: 'dotPlot',
+        settings: {
+          dataKey:
+            'Population covered by at least one social protection benefit',
+          graphTitle:
+            'Population covered by at least one social protection benefit, total',
+        },
+      },
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey:
+            'Gender Inequality Index-Share of seats in parliament (% held by women)',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle: 'Share of Parliament Seats Held by Women',
+          suffix: '%',
         },
       },
     ],

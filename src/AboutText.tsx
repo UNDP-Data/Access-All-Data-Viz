@@ -361,14 +361,16 @@ export const ABOUT_TEXT_LINKS = [
     bodyText: (
       <div>
         <p className='undp-typography'>
-          A region&rsquo;s and or country&rsquo;s ability to react, recover and
-          adapt to changing circumstances is at the core of resilience.
-          Globally, resilience is needed more than ever because the scale,
-          complexity and interconnectedness of risks facing humankind is
-          unprecedented. Data related to disaster risk reduction and recovery
-          for building resilience (DRT); governance and peace-building and human
-          mobility is key in understanding risk better and applying a resilience
-          building approach.
+          Resilience is the ability of individuals, households, communities,
+          cities, institutions, systems and societies to prevent, resist,
+          absorb, adapt, respond and recover positively, efficiently and
+          effectively when faced with a wide range of risks, while maintaining
+          an acceptable level of functioning without compromising long-term
+          prospects for sustainable development, peace and security, human
+          rights and well-being for all.’ Data related to disaster risk
+          reduction and recovery for building resilience (DRT); governance and
+          peace-building and human mobility is key in understanding risk better
+          and applying a resilience building approach.
         </p>
       </div>
     ),
@@ -393,27 +395,25 @@ export const ABOUT_TEXT_LINKS = [
     bodyText: (
       <div>
         <p className='undp-typography'>
-          Governance systems and processes regulate how power is exercised and
-          decisions are made that impact the lives and livelihoods. UNDP works
-          to support accountable, effective and inclusive institutions and
-          processes and ensure access to justice for all in order to accelerate
-          the achievement of the 2030 Agenda for Sustainable Development.
+          Governance is the system of values, policies and institutions by which
+          a society manages its economic, political and social affairs through
+          interactions within and among the state, civil society and private
+          sector. It is the way a society organizes itself to make and implement
+          decisions and comprises the mechanisms and processes for citizens and
+          groups to articulate their interests, mediate their differences and
+          exercise their legal rights and obligations. UNDP works to support
+          accountable, effective and inclusive institutions and processes and
+          ensure access to justice for all in order to accelerate the
+          achievement of the 2030 Agenda for Sustainable Development.
         </p>
         <p className='undp-typography'>
-          UNDP&apos;s work on governance includes promoting inclusive and
+          UNDP’s work on governance includes promoting inclusive and
           future-smart public goods and services, democratic institutions and
           processes, an inclusive public sphere as well as integrating
           governance principles into development polices and programmes. Working
-          at global, regional and national levels, UNDP also works to promote
-          the rule of law and human rights and enable more people centered
-          justice and security services.
-        </p>
-        <p className='undp-typography'>
-          This portal features some selected governance indicators. A
-          significant challenge facing the field is the lack of data
-          availability on governance related indicators. More investment is
-          needed in order to produce harmonized, timely and comparable evidence
-          on all dimensions of governance. UNDP works closely with national data
+          at global, regional and national levels, UNDP works to promote the
+          rule of law and human rights and enable more people centered justice
+          and security services. UNDP also works closely with national data
           producers to strengthen data availability to better monitor progress
           towards more inclusive, just and peaceful societies.
         </p>
@@ -532,33 +532,25 @@ export const ABOUT_TEXT_LINKS = [
     bodyText: (
       <div>
         <p className='undp-typography'>
-          The region of Europe and Central Asia is diverse and dynamic, with
-          countries at different stages of transition and development. While
+          Europe and Central Asia is a diverse, dynamic region with countries
+          and territories at various stages of transition and development. While
           extreme poverty has largely been eradicated, many countries still face
-          multiple challenges such as inequality, unemployment, gender
-          discrimination, migration, climate change, conflict and governance.
-          The situation is worsened by the multiple crises in the region, such
-          as the war in Ukraine, the COVID-19 pandemic, and the natural
-          disasters that have affected millions of people.
+          multiple development challenges. The situation is exacerbated by the
+          multiple crises that have affected the region, such as the war in
+          Ukraine, the COVID-19 pandemic, and the natural disasters that have
+          impacted millions of people.
         </p>
         <p className='undp-typography'>
-          UNDP works with 19 country offices in the region and the Regional
-          Bureau for Europe and Central Asia, headquartered in New York, to help
+          UNDP is present in 19 countries and territories in the region to help
           eradicate poverty in all its forms, accelerate the transition to
           sustainable development, and make sure countries and people are able
           to withstand crises and shocks. We work to make sure the most
-          vulnerable and excluded are not left behind, develop game-changing
+          vulnerable and excluded are not left behind, develop game changing
           solutions to accelerate sustainable development, and promote
           prevention and preparedness.
         </p>
         <p className='undp-typography'>
-          Read more{' '}
-          <a
-            href='More https://www.undp.org/eurasia/about-us/about-region'
-            target='_blank'
-          >
-            here
-          </a>
+          Learn more about the region and our work.
         </p>
       </div>
     ),
@@ -750,37 +742,6 @@ export const ABOUT_TEXT_LINKS = [
     resource: [],
   },
   {
-    title: 'Georgia',
-    id: 'GEO',
-    bodyText: (
-      <p className='undp-typography'>
-        Georgia is a unitary multiparty republic, governed by the prime minister
-        and the cabinet, elected by the parliament whose members serve four-year
-        terms. The economy surpassed the COVID-19 pre-pandemic level in 2021
-        with double-digit real GDP growth (+10.4%) and continued strong growth
-        in 2022 (10.1%). GDP per capita accounted for USD 6,700 in 2022 (current
-        prices). Georgia has a small open economy and is vulnerable to external
-        shocks. However, the application for EU candidacy initiated in 2022
-        provides further development opportunities for the country and
-        underlines its achievements through the past years to sustainable
-        development. Georgia ranks 63 of 191 countries and territories covered
-        by the Human Development Index (HDI). Georgia&apos;s human development
-        has been advancing between 2000 and 2021. GNI per capita was up by about
-        183.2%, life expectancy at birth increased by 2.1 years, and expected
-        years of schooling gained by 2.4 years. This notable progress
-        consequently translated into the HDI increase from 0.702 in 2000 to
-        0.802 in 2021. The Inequality Adjusted HDI goes down to 0.706, signaling
-        not all social groups equally benefit from the economic gains and other
-        achievements. Unresolved conflicts in Abkhazia and South Ossetia and
-        their consequences, including significant population displacement, deep
-        social and spatial divides, ageing and shrinking population, gaps in
-        policy coherence are among the key challenges to sustainable
-        development.
-      </p>
-    ),
-    resource: [],
-  },
-  {
     title: 'Mozambique',
     id: 'MOZ',
     bodyText: (
@@ -868,34 +829,39 @@ export const ABOUT_TEXT_LINKS = [
     title: 'Montenegro',
     id: 'MNE',
     bodyText: (
-      <p className='undp-typography'>
-        Located in South-Eastern Europe, with aspirations of joining the EU,
-        Montenegro recognizes the significance of its accession journey for both
-        its progress and SDGs achievement. With a population of 620,000 and an
-        impressive Human Development Index of 0.832, driven by investments and
-        tourism, its robust economic growth reduced the poverty rate to 14.5% by
-        2019. Nonetheless, recent challenges like COVID-19 and global price
-        hikes exposed economic vulnerabilities, leading to increased poverty
-        rates. The pandemic has undone six years of strides in human
-        development, disproportionately affecting vulnerable groups reliant on
-        the informal sector. Evident in amplified hate speech and gender-based
-        violence, social exclusion has intensified. Remarkably,
-        Montenegro&apos;s Gender Equality Index stands at 55 (2019), juxtaposed
-        with the EU&apos;s average of 67.4. Youth potential remains untapped due
-        to underemployment and limited civic engagement. Marginalized
-        communities such as the Roma, Egyptian minorities, people with
-        disabilities, and the elderly face education gaps and exclusion from
-        crucial services. Despite economic growth in 2021, Montenegro&apos;s
-        government focuses on boosting competitiveness, regional connectivity,
-        and nurturing a sustainable green economy, all aimed at fostering smart,
-        sustainable, and comprehensive progress. The nation commits to bettering
-        the environment, building resilience, and slashing greenhouse gas
-        emissions by 35% before 2030. With a notable acceptance of Ukrainian
-        refugees relative to its size, Montenegro eyes migration to unlock human
-        capital for future development. These combined efforts, along with
-        economic transformation, aim to bolster resilience, nurture human
-        development, and rectify societal disparities.
-      </p>
+      <>
+        <p className='undp-typography'>
+          Situated in South-Eastern Europe and aspiring to become an EU member,
+          Montenegro places a profound importance on its journey towards
+          accession, recognizing its role in advancing progress and achieving
+          Sustainable Development Goals (SDGs). With population of 620,000,
+          Montenegro boasts an impressive Human Development Index of 0.832, in
+          the economy driven by inflows of foreign direct investments and a
+          thriving tourism sector. This robust economic growth has significantly
+          diminished the poverty rate to a commendable 14.5% as of 2019.
+        </p>
+        <p className='undp-typography'>
+          However, recent challenges such as the outbreak of COVID-19 and global
+          fluctuations in prices have laid bare the economic vulnerabilities,
+          leading to a decline in living standards. According to the National
+          Statistical Office, the at-risk-of-poverty rate reached 21.2% in 2021.
+          Certain demographic groups continue to experience heightened
+          vulnerability and disparity. Data from the same source indicates that
+          Montenegro&apos;s Gender Equality Index for 2023 stands at 59.3,
+          marking a 4.3-point increase from the 2019 index. Yet, when measured
+          against the EU, Montenegro&apos;s index lags by 9.3 points. Notably,
+          the widest gender gap within Montenegro, in contrast to the EU
+          average, emerges in terms of power, while the smallest gap exists in
+          the realm of healthcare. Concurrently, Montenegro envisions harnessing
+          migration to tap into untapped human potential for future development.
+          Official estimates from UNHCR suggest that approximately 35,000
+          Ukrainian refugees, constituting 5.4% of Montenegro&apos;s population,
+          currently reside in the nation. These collaborative endeavours,
+          coupled with economic metamorphosis, seek to fortify resilience,
+          foster and propel human development, and rectify societal
+          inequalities.
+        </p>
+      </>
     ),
     resource: [],
   },
@@ -995,6 +961,161 @@ export const ABOUT_TEXT_LINKS = [
       {
         source: "UNDP MDO - Observing Myanmar's development trajectory",
         link: 'https://undp-mdo.org/',
+      },
+    ],
+  },
+  {
+    title: 'Argentina',
+    id: 'ARG',
+    bodyText: <div />,
+    resource: [
+      {
+        source: 'About Us Page',
+        link: 'https://www.undp.org/es/argentina/sobre-nosotros',
+      },
+    ],
+  },
+  {
+    title: 'Liberia',
+    id: 'LBR',
+    bodyText: (
+      <>
+        <p className='undp-typography'>
+          UNDP is the UN&apos;s global development network, advocating for
+          change and connecting countries to knowledge, experience and resources
+          to help empower people and build resilient nations. UNDP has been
+          working in Liberia since 1977 in peace and in crisis times. UNDP is
+          committed to helping Liberia achieve the Sustainable Development Goals
+          (SDGS) as well as the country’s national development priorities as set
+          out in its newest Pro-Poor Development Agenda. UNDP provides technical
+          assistance within the framework of the UN Development Assistance
+          Framework (UNDAF) which is fully aligned with Liberia’s National
+          development Agenda.
+        </p>
+        <p className='undp-typography'>
+          UNDP supports Liberia&apos;s national development agenda and works
+          closely with national institutions and local communities to promote,
+          advocate and contribute to good governance, peace and security. Our
+          work focuses on engendering national initiatives and strategies that
+          help facilitate long-term development transformation in the lives of
+          the people of Liberia. We offer global perspectives, complementary
+          support and ideas on strategic development projects and capacity
+          building in continued efforts to promote and protect human rights and
+          improve environmental management. The end result of this
+          transformation would be a country that is characterized by peaceful
+          and inclusive politics and diversified economy, stable institutions,
+          enforces the laws fairly, land tenure problems have been resolved,
+          natural resources are efficiently managed and health and education
+          standards have reached those of other middle income countries.
+        </p>
+      </>
+    ),
+    resource: [
+      {
+        source: 'About Us Page',
+        link: 'https://www.undp.org/liberia/about-us',
+      },
+    ],
+  },
+  {
+    title: 'Sierra Leone',
+    id: 'SLE',
+    bodyText: (
+      <p className='undp-typography'>
+        UNDP’s mandate is to end poverty, build democratic governance, rule of
+        law, and inclusive institutions. We advocate for change, and connect
+        countries to knowledge, experience and resources to help people build a
+        better life.
+      </p>
+    ),
+    resource: [
+      {
+        source: 'About Us Page',
+        link: 'https://www.undp.org/sierra-leone/about-us',
+      },
+    ],
+  },
+  {
+    title: 'Uganda',
+    id: 'UGA',
+    bodyText: (
+      <>
+        <p className='undp-typography'>
+          In Uganda, UNDP has over the last 50 years been supporting the
+          Government to achieve sustainable development, create opportunities
+          for empowerment, protect the environment, minimise natural and
+          man-made disasters, build strategic partnerships and improve the
+          quality of life for all citizens.
+        </p>
+        <p className='undp-typography'>
+          Our current programme offer is articulated in the UNDP Uganda Country
+          Programme Document (2021-2025) which outlines our contribution to
+          national development results and serves as the primary unit of
+          accountability to the Executive Board for alignment of results and the
+          resources given to the programme at country level.
+        </p>
+        <p className='undp-typography'>
+          It focuses on the three anchor programmes of Inclusive and Sustainable
+          Growth; Nature, Climate, Energy and Resilience; and Governance and
+          Peace; and two enabling programmes of Digitalization, Innovation and
+          Smart Cities, and SDG Integration and Acceleration with Youth 4
+          Development as a flagship programme.
+        </p>
+      </>
+    ),
+    resource: [
+      {
+        source: 'About Us Page',
+        link: 'https://www.undp.org/uganda/about-us',
+      },
+    ],
+  },
+  {
+    title: 'Georgia',
+    id: 'GEO',
+    bodyText: (
+      <>
+        <p className='undp-typography'>
+          Georgia is a unitary multiparty republic, governed by the prime
+          minister and the cabinet, elected by the parliament whose members
+          serve four-year terms.
+        </p>
+        <p className='undp-typography'>
+          The economy surpassed the COVID-19 pre-pandemic level in 2021 with
+          double-digit real GDP growth (+10.4%) and continued strong growth in
+          2022 (10.1%). GDP per capita accounted for USD 6,700 in 2022 (current
+          prices).
+        </p>
+        <p className='undp-typography'>
+          Georgia has a small open economy and is vulnerable to external shocks.
+          However, the application for EU candidacy initiated in 2022 provides
+          further development opportunities for the country and underlines its
+          achievements through the past years to sustainable development.
+        </p>
+        <p className='undp-typography'>
+          Georgia ranks 63 of 191 countries and territories covered by the Human
+          Development Index (HDI). Georgia’s human development has been
+          advancing between 2000 and 2021. GNI per capita was up by about
+          183.2%, life expectancy at birth increased by 2.1 years, and expected
+          years of schooling gained by 2.4 years. This notable progress
+          consequently translated into the HDI increase from 0.702 in 2000 to
+          0.802 in 2021. The Inequality Adjusted HDI goes down to 0.706,
+          signaling not all social groups equally benefit from the economic
+          gains and other achievements.
+        </p>
+        <p className='undp-typography'>
+          Unresolved conflicts in Abkhazia and South Ossetia and their
+          consequences, including significant population displacement, deep
+          social and spatial divides, ageing and shrinking population, gaps in
+          policy coherence are among the key challenges to sustainable
+          development.
+        </p>
+      </>
+    ),
+    resource: [
+      {
+        source: 'About Us Page',
+        link: 'https://www.undp.org/georgia/about-us',
       },
     ],
   },
