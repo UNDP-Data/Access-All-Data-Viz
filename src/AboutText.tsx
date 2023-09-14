@@ -1061,4 +1061,39 @@ export const ABOUT_TEXT_LINKS = [
       },
     ],
   },
+  {
+    title: 'Uganda',
+    id: 'UGA',
+    bodyText: (
+      <>
+        <p className='undp-typography'>
+          In Uganda, UNDP has over the last 50 years been supporting the
+          Government to achieve sustainable development, create opportunities
+          for empowerment, protect the environment, minimise natural and
+          man-made disasters, build strategic partnerships and improve the
+          quality of life for all citizens.
+        </p>
+        <p className='undp-typography'>
+          Our current programme offer is articulated in the UNDP Uganda Country
+          Programme Document (2021-2025) which outlines our contribution to
+          national development results and serves as the primary unit of
+          accountability to the Executive Board for alignment of results and the
+          resources given to the programme at country level.
+        </p>
+        <p className='undp-typography'>
+          It focuses on the three anchor programmes of Inclusive and Sustainable
+          Growth; Nature, Climate, Energy and Resilience; and Governance and
+          Peace; and two enabling programmes of Digitalization, Innovation and
+          Smart Cities, and SDG Integration and Acceleration with Youth 4
+          Development as a flagship programme.
+        </p>
+      </>
+    ),
+    resource: [
+      {
+        source: 'About Us Page',
+        link: 'https://www.undp.org/uganda/about-us',
+      },
+    ],
+  },
 ];
