@@ -742,37 +742,6 @@ export const ABOUT_TEXT_LINKS = [
     resource: [],
   },
   {
-    title: 'Georgia',
-    id: 'GEO',
-    bodyText: (
-      <p className='undp-typography'>
-        Georgia is a unitary multiparty republic, governed by the prime minister
-        and the cabinet, elected by the parliament whose members serve four-year
-        terms. The economy surpassed the COVID-19 pre-pandemic level in 2021
-        with double-digit real GDP growth (+10.4%) and continued strong growth
-        in 2022 (10.1%). GDP per capita accounted for USD 6,700 in 2022 (current
-        prices). Georgia has a small open economy and is vulnerable to external
-        shocks. However, the application for EU candidacy initiated in 2022
-        provides further development opportunities for the country and
-        underlines its achievements through the past years to sustainable
-        development. Georgia ranks 63 of 191 countries and territories covered
-        by the Human Development Index (HDI). Georgia&apos;s human development
-        has been advancing between 2000 and 2021. GNI per capita was up by about
-        183.2%, life expectancy at birth increased by 2.1 years, and expected
-        years of schooling gained by 2.4 years. This notable progress
-        consequently translated into the HDI increase from 0.702 in 2000 to
-        0.802 in 2021. The Inequality Adjusted HDI goes down to 0.706, signaling
-        not all social groups equally benefit from the economic gains and other
-        achievements. Unresolved conflicts in Abkhazia and South Ossetia and
-        their consequences, including significant population displacement, deep
-        social and spatial divides, ageing and shrinking population, gaps in
-        policy coherence are among the key challenges to sustainable
-        development.
-      </p>
-    ),
-    resource: [],
-  },
-  {
     title: 'Mozambique',
     id: 'MOZ',
     bodyText: (
@@ -860,34 +829,39 @@ export const ABOUT_TEXT_LINKS = [
     title: 'Montenegro',
     id: 'MNE',
     bodyText: (
-      <p className='undp-typography'>
-        Located in South-Eastern Europe, with aspirations of joining the EU,
-        Montenegro recognizes the significance of its accession journey for both
-        its progress and SDGs achievement. With a population of 620,000 and an
-        impressive Human Development Index of 0.832, driven by investments and
-        tourism, its robust economic growth reduced the poverty rate to 14.5% by
-        2019. Nonetheless, recent challenges like COVID-19 and global price
-        hikes exposed economic vulnerabilities, leading to increased poverty
-        rates. The pandemic has undone six years of strides in human
-        development, disproportionately affecting vulnerable groups reliant on
-        the informal sector. Evident in amplified hate speech and gender-based
-        violence, social exclusion has intensified. Remarkably,
-        Montenegro&apos;s Gender Equality Index stands at 55 (2019), juxtaposed
-        with the EU&apos;s average of 67.4. Youth potential remains untapped due
-        to underemployment and limited civic engagement. Marginalized
-        communities such as the Roma, Egyptian minorities, people with
-        disabilities, and the elderly face education gaps and exclusion from
-        crucial services. Despite economic growth in 2021, Montenegro&apos;s
-        government focuses on boosting competitiveness, regional connectivity,
-        and nurturing a sustainable green economy, all aimed at fostering smart,
-        sustainable, and comprehensive progress. The nation commits to bettering
-        the environment, building resilience, and slashing greenhouse gas
-        emissions by 35% before 2030. With a notable acceptance of Ukrainian
-        refugees relative to its size, Montenegro eyes migration to unlock human
-        capital for future development. These combined efforts, along with
-        economic transformation, aim to bolster resilience, nurture human
-        development, and rectify societal disparities.
-      </p>
+      <>
+        <p className='undp-typography'>
+          Situated in South-Eastern Europe and aspiring to become an EU member,
+          Montenegro places a profound importance on its journey towards
+          accession, recognizing its role in advancing progress and achieving
+          Sustainable Development Goals (SDGs). With population of 620,000,
+          Montenegro boasts an impressive Human Development Index of 0.832, in
+          the economy driven by inflows of foreign direct investments and a
+          thriving tourism sector. This robust economic growth has significantly
+          diminished the poverty rate to a commendable 14.5% as of 2019.
+        </p>
+        <p className='undp-typography'>
+          However, recent challenges such as the outbreak of COVID-19 and global
+          fluctuations in prices have laid bare the economic vulnerabilities,
+          leading to a decline in living standards. According to the National
+          Statistical Office, the at-risk-of-poverty rate reached 21.2% in 2021.
+          Certain demographic groups continue to experience heightened
+          vulnerability and disparity. Data from the same source indicates that
+          Montenegro&apos;s Gender Equality Index for 2023 stands at 59.3,
+          marking a 4.3-point increase from the 2019 index. Yet, when measured
+          against the EU, Montenegro&apos;s index lags by 9.3 points. Notably,
+          the widest gender gap within Montenegro, in contrast to the EU
+          average, emerges in terms of power, while the smallest gap exists in
+          the realm of healthcare. Concurrently, Montenegro envisions harnessing
+          migration to tap into untapped human potential for future development.
+          Official estimates from UNHCR suggest that approximately 35,000
+          Ukrainian refugees, constituting 5.4% of Montenegro's population,
+          currently reside in the nation. These collaborative endeavours,
+          coupled with economic metamorphosis, seek to fortify resilience,
+          foster and propel human development, and rectify societal
+          inequalities.
+        </p>
+      </>
     ),
     resource: [],
   },
