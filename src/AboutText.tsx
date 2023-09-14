@@ -1096,4 +1096,53 @@ export const ABOUT_TEXT_LINKS = [
       },
     ],
   },
+  {
+    title: 'Georgia',
+    id: 'GEO',
+    bodyText: (
+      <>
+        <p className='undp-typography'>
+          Georgia is a unitary multiparty republic, governed by the prime
+          minister and the cabinet, elected by the parliament whose members
+          serve four-year terms.
+        </p>
+        <p className='undp-typography'>
+          The economy surpassed the COVID-19 pre-pandemic level in 2021 with
+          double-digit real GDP growth (+10.4%) and continued strong growth in
+          2022 (10.1%). GDP per capita accounted for USD 6,700 in 2022 (current
+          prices).
+        </p>
+        <p className='undp-typography'>
+          Georgia has a small open economy and is vulnerable to external shocks.
+          However, the application for EU candidacy initiated in 2022 provides
+          further development opportunities for the country and underlines its
+          achievements through the past years to sustainable development.
+        </p>
+        <p className='undp-typography'>
+          Georgia ranks 63 of 191 countries and territories covered by the Human
+          Development Index (HDI). Georgia’s human development has been
+          advancing between 2000 and 2021. GNI per capita was up by about
+          183.2%, life expectancy at birth increased by 2.1 years, and expected
+          years of schooling gained by 2.4 years. This notable progress
+          consequently translated into the HDI increase from 0.702 in 2000 to
+          0.802 in 2021. The Inequality Adjusted HDI goes down to 0.706,
+          signaling not all social groups equally benefit from the economic
+          gains and other achievements.
+        </p>
+        <p className='undp-typography'>
+          Unresolved conflicts in Abkhazia and South Ossetia and their
+          consequences, including significant population displacement, deep
+          social and spatial divides, ageing and shrinking population, gaps in
+          policy coherence are among the key challenges to sustainable
+          development.
+        </p>
+      </>
+    ),
+    resource: [
+      {
+        source: 'About Us Page',
+        link: 'https://www.undp.org/georgia/about-us',
+      },
+    ],
+  },
 ];
