@@ -398,7 +398,12 @@ export function DataSetList(props: Props) {
                     className='flex-div flex-vert-align-center'
                     style={{ justifyContent: 'space-between' }}
                   >
-                    <div style={{ fontSize: '1rem', fontWeight: 'bold' }}>
+                    <div
+                      style={{
+                        fontSize: '1rem !important',
+                        fontWeight: 'bold',
+                      }}
+                    >
                       Source:{' '}
                       {d.DataSourceLink !== '' ? (
                         <>
@@ -409,14 +414,25 @@ export function DataSetList(props: Props) {
                               className='undp-style'
                               rel='noreferrer'
                               key={j}
-                              style={{ marginRight: '0.5rem' }}
+                              style={{
+                                marginRight: '0.5rem',
+                                fontSize: '1rem !important',
+                              }}
                             >
                               {el}
                             </a>
                           ))}
                         </>
                       ) : (
-                        d.DataSourceName
+                        <p
+                          style={{
+                            marginRight: '0.5rem',
+                            marginBottom: '0',
+                            fontSize: '1rem !important',
+                          }}
+                        >
+                          {d.DataSourceName}
+                        </p>
                       )}
                     </div>
                     <ArrowDownToLine
