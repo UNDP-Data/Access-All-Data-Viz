@@ -160,7 +160,9 @@ export function DataSetList(props: Props) {
   useEffect(() => {
     if (indicatorsListMain) {
       const indicatorFilterBySource = sourceForFilter
-        ? indicatorsListMain.filter(d => d.DataSourceName === sourceForFilter)
+        ? indicatorsListMain.filter(
+            d => d.DataSourceName.split(';').indexOf(sourceForFilter) !== -1,
+          )
         : indicatorsListMain;
       const indicatorFilterBySS = ssForFilter
         ? indicatorFilterBySource.filter(
