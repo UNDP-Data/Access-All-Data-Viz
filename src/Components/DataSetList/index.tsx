@@ -401,7 +401,7 @@ export function DataSetList(props: Props) {
                     <div
                       style={{
                         fontSize: '1rem',
-                        fontWeight: 'bold',
+                        color: 'var(--gray-600)',
                       }}
                     >
                       Source(s):{' '}
@@ -417,6 +417,7 @@ export function DataSetList(props: Props) {
                               style={{
                                 marginRight: '0.5rem',
                                 fontSize: '1rem',
+                                color: 'var(--gray-600)',
                               }}
                             >
                               {el}
@@ -435,13 +436,20 @@ export function DataSetList(props: Props) {
                         </p>
                       )}
                     </div>
-                    <ArrowDownToLine
-                      size={24}
-                      stroke='var(--blue-600)'
+                    <button
+                      type='button'
+                      style={{
+                        flexShrink: 0,
+                        backgroundColor: 'transparent',
+                        border: '0',
+                        cursor: 'pointer',
+                      }}
                       onClick={() => {
                         DownloadExcel(d);
                       }}
-                    />
+                    >
+                      <ArrowDownToLine size={24} stroke='var(--blue-600)' />
+                    </button>
                   </div>
                 </CardEl>
               ))}
