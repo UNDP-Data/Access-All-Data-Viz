@@ -125,7 +125,11 @@ export function Settings(props: Props) {
                     ? barGraphIndicators
                     : allIndicators
                 }
-                selectedIndicator={xAxisIndicator}
+                selectedIndicator={
+                  indicators[
+                    indicators.findIndex(d => d.DataKey === xAxisIndicator)
+                  ].IndicatorLabelTable
+                }
                 updateIndicator={updateXAxisIndicator}
               />
             </div>
@@ -201,7 +205,13 @@ export function Settings(props: Props) {
                     ? mapIndicators
                     : allIndicators
                 }
-                selectedIndicator={yAxisIndicator}
+                selectedIndicator={
+                  yAxisIndicator
+                    ? indicators[
+                        indicators.findIndex(d => d.DataKey === yAxisIndicator)
+                      ].IndicatorLabelTable
+                    : yAxisIndicator
+                }
                 updateIndicator={updateYAxisIndicator}
                 isOptional={graphType !== 'scatterPlot'}
               />
@@ -216,7 +226,13 @@ export function Settings(props: Props) {
                     : 'Size by (optional)'
                 }
                 indicators={sizeIndicators}
-                selectedIndicator={sizeIndicator}
+                selectedIndicator={
+                  sizeIndicator
+                    ? indicators[
+                        indicators.findIndex(d => d.DataKey === sizeIndicator)
+                      ].IndicatorLabelTable
+                    : sizeIndicator
+                }
                 updateIndicator={updateSizeIndicator}
                 isOptional
               />

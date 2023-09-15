@@ -6,7 +6,7 @@ interface Props {
   title: string;
   indicators: IndicatorMetaDataType[];
   updateIndicator: (_d: string) => void;
-  setOpenModal: (_d: boolean) => void;
+  closeModal: () => void;
 }
 
 const IndicatorCardEl = styled.button`
@@ -34,7 +34,7 @@ const ViewButton = styled.button`
 `;
 
 function IndicatorListComponent(props: Props) {
-  const { title, indicators, updateIndicator, setOpenModal } = props;
+  const { title, indicators, updateIndicator, closeModal } = props;
   const [expandedState, setExpandedState] = useState(true);
   return (
     <div className='margin-top-09'>
@@ -68,7 +68,7 @@ function IndicatorListComponent(props: Props) {
                     )
                   ].DataKey,
                 );
-                setOpenModal(false);
+                closeModal();
               }}
             >
               {el.IndicatorLabelTable}

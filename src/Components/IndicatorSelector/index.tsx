@@ -1,5 +1,5 @@
 import { Input, Modal, Select } from 'antd';
-import { ChevronDown, Search, Trash } from 'lucide-react';
+import { ChevronDown, Info, Search, Trash } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import sortBy from 'lodash.sortby';
@@ -39,6 +39,44 @@ const TruncateDiv = styled.div`
   text-align: left;
 `;
 
+interface IconDivProps {
+  active: boolean;
+}
+
+const IconDiv = styled.div<IconDivProps>`
+  height: 24px;
+  padding: 0.25rem;
+  cursor: ${props => (props.active ? 'pointer' : 'not-allowed')};
+  &:hover {
+    background-color: ${props =>
+      props.active ? 'var(--gray-300)' : 'transparent'};
+  }
+`;
+
+interface TooltipElProps {
+  x: number;
+  y: number;
+}
+
+interface InfoProps extends TooltipElProps {
+  x: number;
+  y: number;
+  info: string;
+}
+const TooltipEl = styled.div<TooltipElProps>`
+  display: block;
+  position: fixed;
+  z-index: 8;
+  background-color: var(--gray-200);
+  border: 1px solid var(--gray-300);
+  word-wrap: break-word;
+  padding: 0.5rem;
+  font-size: 0.875rem;
+  top: ${props => props.y - 20}px;
+  left: ${props => props.x + 20}px;
+  max-width: 15rem;
+`;
+
 function IndicatorSelector(props: Props) {
   const { title, indicators, selectedIndicator, updateIndicator, isOptional } =
     props;
@@ -48,6 +86,9 @@ function IndicatorSelector(props: Props) {
   );
   const [indicatorList, setIndicatorList] =
     useState<IndicatorMetaDataType[]>(indicators);
+  const [indicatoInfo, setIndicatorInfo] = useState<InfoProps | undefined>(
+    undefined,
+  );
   const [sdgForFilter, setSDGForFilter] = useState<string[]>([]);
   const [tagsForFilter, setTagsForFilter] = useState<string[]>([]);
   useEffect(() => {
@@ -61,30 +102,37 @@ function IndicatorSelector(props: Props) {
             d => intersection(d.SDGs, sdgForFilter).length > 0,
           )
         : indicatorFilterByTags;
-    const indicatorsFiltered = sortBy(
-      indicatorFilterBySDGs,
-      d => d.IndicatorLabelTable,
-    ).filter(
-      d =>
-        d.IndicatorLabelTable.toLowerCase().includes(
-          searchPhrase?.toLowerCase() || '',
-        ) ||
-        d.IndicatorDescription.toLowerCase().includes(
-          searchPhrase?.toLowerCase() || '',
-        ),
-    );
-    setIndicatorList(indicatorsFiltered);
-  }, [searchPhrase, sdgForFilter, tagsForFilter]);
+    const indicatorsFiltered = searchPhrase
+      ? sortBy(indicatorFilterBySDGs, d => d.IndicatorLabelTable).filter(
+          d =>
+            d.IndicatorLabelTable.toLowerCase().includes(
+              searchPhrase.toLowerCase(),
+            ) ||
+            d.IndicatorDescription.toLowerCase().includes(
+              searchPhrase.toLowerCase(),
+            ),
+        )
+      : sortBy(indicatorFilterBySDGs, d => d.IndicatorLabelTable);
+    setIndicatorList(openModal ? indicatorsFiltered : indicators);
+  }, [searchPhrase, sdgForFilter, tagsForFilter, openModal]);
+  const closeModal = () => {
+    setTagsForFilter([]);
+    setSDGForFilter([]);
+    setSearchPhrase(undefined);
+    setOpenModal(false);
+  };
   return (
     <>
       <div className='settings-option-div'>
         <p className='label'>{title}</p>
         <div
           className='flex-div flex-vert-align-center'
-          style={{ gap: '0.5rem' }}
+          style={{ gap: '0.25rem' }}
         >
           <DropDownButton
-            style={{ width: isOptional ? 'calc(100% - 32px)' : '100%' }}
+            style={{
+              width: 'calc(100% - 72px)',
+            }}
             onClick={() => {
               setOpenModal(true);
             }}
@@ -95,32 +143,66 @@ function IndicatorSelector(props: Props) {
             </TruncateDiv>
             <ChevronDown size={24} stroke='var(--red)' />
           </DropDownButton>
-          {isOptional ? (
-            <Trash
+          <IconDiv active={!!selectedIndicator}>
+            <Info
               size={24}
-              stroke='var(--red)'
-              onClick={() => {
-                updateIndicator(undefined);
+              stroke={selectedIndicator ? 'var(--red)' : 'var(--gray-400)'}
+              onMouseEnter={event => {
+                if (selectedIndicator)
+                  setIndicatorInfo({
+                    info: selectedIndicator,
+                    x: event.clientX,
+                    y: event.clientY,
+                  });
+              }}
+              onMouseMove={event => {
+                if (selectedIndicator)
+                  setIndicatorInfo({
+                    info: selectedIndicator,
+                    x: event.clientX,
+                    y: event.clientY,
+                  });
+              }}
+              onMouseLeave={() => {
+                if (selectedIndicator) setIndicatorInfo(undefined);
               }}
             />
-          ) : null}
+          </IconDiv>
+          <IconDiv active={!!(isOptional && selectedIndicator)}>
+            <Trash
+              size={24}
+              stroke={
+                isOptional && selectedIndicator
+                  ? 'var(--red)'
+                  : 'var(--gray-400)'
+              }
+              onClick={() => {
+                if (isOptional && selectedIndicator) updateIndicator(undefined);
+              }}
+            />
+          </IconDiv>
         </div>
       </div>
+      {indicatoInfo ? (
+        <TooltipEl x={indicatoInfo.x} y={indicatoInfo.y}>
+          {indicatoInfo.info}
+        </TooltipEl>
+      ) : null}
       <Modal
         open={openModal}
         className='undp-modal'
         title={`All Indicators (${indicators.length})`}
         onOk={() => {
-          setOpenModal(false);
           setTagsForFilter([]);
           setSDGForFilter([]);
-          setSearchPhrase('');
+          setSearchPhrase(undefined);
+          setOpenModal(false);
         }}
         onCancel={() => {
-          setOpenModal(false);
           setTagsForFilter([]);
           setSDGForFilter([]);
-          setSearchPhrase('');
+          setSearchPhrase(undefined);
+          setOpenModal(false);
         }}
         destroyOnClose
         style={{ maxWidth: '90%' }}
@@ -199,7 +281,7 @@ function IndicatorSelector(props: Props) {
         <IndicatorListModal
           indicators={indicatorList}
           updateIndicator={updateIndicator}
-          setOpenModal={setOpenModal}
+          closeModal={closeModal}
         />
       </Modal>
     </>

@@ -9,6 +9,7 @@ import FileSaver from 'file-saver';
 import * as XLSX from 'xlsx';
 import uniqBy from 'lodash.uniqby';
 import intersection from 'lodash.intersection';
+import flatten from 'lodash.flatten';
 import {
   CountryTaxonomyDataType,
   IndicatorMetaDataType,
@@ -143,10 +144,13 @@ export function DataSetList(props: Props) {
               )
             : indicatorsFilteredBySS;
           setIndicatorsListMain(indicatorsFiltered);
+          const dataSourceArray = flatten(
+            indicatorsFiltered.map(d => d.DataSourceName.split(';')),
+          );
           const uniqSource = sortBy(
-            uniqBy(indicatorsFiltered, d => d.DataSourceName),
-            d => d.DataSourceName,
-          ).map(d => d.DataSourceName);
+            uniqBy(dataSourceArray, d => d),
+            d => d,
+          );
           setSourceList(uniqSource);
           setIndicatorsList(indicatorsFiltered);
           setCountries(sortBy(countryTaxonomy, d => d['Country or Area']));
@@ -397,14 +401,20 @@ export function DataSetList(props: Props) {
                     <div style={{ fontSize: '1rem', fontWeight: 'bold' }}>
                       Source:{' '}
                       {d.DataSourceLink !== '' ? (
-                        <a
-                          href={d.DataSourceLink}
-                          target='_blank'
-                          className='undp-style'
-                          rel='noreferrer'
-                        >
-                          {d.DataSourceName}
-                        </a>
+                        <>
+                          {d.DataSourceName.split(';').map((el, j) => (
+                            <a
+                              href={d.DataSourceLink.split(';')[j]}
+                              target='_blank'
+                              className='undp-style'
+                              rel='noreferrer'
+                              key={j}
+                              style={{ marginRight: '0.5rem' }}
+                            >
+                              {el}
+                            </a>
+                          ))}
+                        </>
                       ) : (
                         d.DataSourceName
                       )}

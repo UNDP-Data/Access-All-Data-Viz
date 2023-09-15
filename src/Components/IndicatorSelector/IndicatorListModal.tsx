@@ -4,11 +4,11 @@ import IndicatorListComponent from './IndicatorListComponent';
 interface Props {
   indicators: IndicatorMetaDataType[];
   updateIndicator: (_d: string) => void;
-  setOpenModal: (_d: boolean) => void;
+  closeModal: () => void;
 }
 
 function IndicatorListModal(props: Props) {
-  const { indicators, updateIndicator, setOpenModal } = props;
+  const { indicators, updateIndicator, closeModal } = props;
   const signatureSolutions = [
     'Energy',
     'Environment',
@@ -30,7 +30,7 @@ function IndicatorListModal(props: Props) {
               el => el.SignatureSolution.indexOf(d) !== -1,
             )}
             updateIndicator={updateIndicator}
-            setOpenModal={setOpenModal}
+            closeModal={closeModal}
           />
         </div>
       ))}
