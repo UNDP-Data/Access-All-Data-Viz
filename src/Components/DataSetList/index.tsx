@@ -400,11 +400,11 @@ export function DataSetList(props: Props) {
                   >
                     <div
                       style={{
-                        fontSize: '1rem !important',
+                        fontSize: '1rem',
                         fontWeight: 'bold',
                       }}
                     >
-                      Source:{' '}
+                      Source(s):{' '}
                       {d.DataSourceLink !== '' ? (
                         <>
                           {d.DataSourceName.split(';').map((el, j) => (
@@ -416,7 +416,7 @@ export function DataSetList(props: Props) {
                               key={j}
                               style={{
                                 marginRight: '0.5rem',
-                                fontSize: '1rem !important',
+                                fontSize: '1rem',
                               }}
                             >
                               {el}
@@ -428,7 +428,7 @@ export function DataSetList(props: Props) {
                           style={{
                             marginRight: '0.5rem',
                             marginBottom: '0',
-                            fontSize: '1rem !important',
+                            fontSize: '1rem',
                           }}
                         >
                           {d.DataSourceName}
