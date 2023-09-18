@@ -474,7 +474,7 @@ export const TAGS_LIST = [
   'Labour',
   'Living Conditions',
   'Pollution',
-  'Populaton and Demographic Change',
+  'Population and Demographic Change',
   'Poverty',
   'Science and Technological Change',
   'Violence and War',
