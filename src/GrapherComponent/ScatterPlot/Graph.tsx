@@ -406,8 +406,8 @@ export function Graph(props: Props) {
       <svg width='100%' height='100%' viewBox={`0 0 ${svgWidth} ${svgHeight}`}>
         <g transform='translate(90,20)'>
           <text x={0} y={10} fontSize={14} fill='#212121'>
-            {colorIndicatorMetaData?.IndicatorLabelTable
-              ? colorIndicatorMetaData?.IndicatorLabelTable
+            {colorIndicatorMetaData?.IndicatorLabel
+              ? colorIndicatorMetaData?.IndicatorLabel
               : colorIndicator}
           </text>
           {colorIndicator === 'Human Development Index'
@@ -562,18 +562,18 @@ export function Graph(props: Props) {
               fill='#212121'
               textAnchor='middle'
               fontSize={
-                yIndicatorMetaData.IndicatorLabelTable.length > MAX_TEXT_LENGTH
+                yIndicatorMetaData.IndicatorLabel.length > MAX_TEXT_LENGTH
                   ? 10
                   : 12
               }
             >
-              {yIndicatorMetaData.IndicatorLabelTable.length >
+              {yIndicatorMetaData.IndicatorLabel.length >
               TRUNCATE_MAX_TEXT_LENGTH
-                ? `${yIndicatorMetaData.IndicatorLabelTable.substring(
+                ? `${yIndicatorMetaData.IndicatorLabel.substring(
                     0,
                     TRUNCATE_MAX_TEXT_LENGTH,
                   )}...`
-                : yIndicatorMetaData.IndicatorLabelTable}
+                : yIndicatorMetaData.IndicatorLabel}
             </text>
           </g>
           <g>
@@ -623,19 +623,19 @@ export function Graph(props: Props) {
               fill='#212121'
               textAnchor='middle'
               fontSize={
-                yIndicatorMetaData.IndicatorLabelTable.length > MAX_TEXT_LENGTH
+                yIndicatorMetaData.IndicatorLabel.length > MAX_TEXT_LENGTH
                   ? 10
                   : 12
               }
               dy={30}
             >
-              {xIndicatorMetaData.IndicatorLabelTable.length >
+              {xIndicatorMetaData.IndicatorLabel.length >
               TRUNCATE_MAX_TEXT_LENGTH
-                ? `${xIndicatorMetaData.IndicatorLabelTable.substring(
+                ? `${xIndicatorMetaData.IndicatorLabel.substring(
                     0,
                     TRUNCATE_MAX_TEXT_LENGTH,
                   )}...`
-                : xIndicatorMetaData.IndicatorLabelTable}
+                : xIndicatorMetaData.IndicatorLabel}
             </text>
           </g>
 

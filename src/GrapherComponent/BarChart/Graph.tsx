@@ -287,8 +287,8 @@ export function Graph(props: Props) {
       <svg width='100%' viewBox={`0 0 ${svgWidth} ${svgHeight}`}>
         <g transform='translate(90,20)'>
           <text x={0} y={10} fontSize={14} fill='#212121'>
-            {colorIndicatorMetaData?.IndicatorLabelTable
-              ? colorIndicatorMetaData?.IndicatorLabelTable
+            {colorIndicatorMetaData?.IndicatorLabel
+              ? colorIndicatorMetaData?.IndicatorLabel
               : colorIndicator}
           </text>
           {colorIndicator === 'Human Development Index'
@@ -444,12 +444,12 @@ export function Graph(props: Props) {
               textAnchor='middle'
               fontSize={12}
             >
-              {xIndicatorMetaData.IndicatorLabelTable.length > MAX_TEXT_LENGTH
-                ? `${xIndicatorMetaData.IndicatorLabelTable.substring(
+              {xIndicatorMetaData.IndicatorLabel.length > MAX_TEXT_LENGTH
+                ? `${xIndicatorMetaData.IndicatorLabel.substring(
                     0,
                     MAX_TEXT_LENGTH,
                   )}...`
-                : xIndicatorMetaData.IndicatorLabelTable}
+                : xIndicatorMetaData.IndicatorLabel}
             </text>
           </g>
           {dataFormatted.map((d, i) => {

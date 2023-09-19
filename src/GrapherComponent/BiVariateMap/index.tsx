@@ -817,18 +817,18 @@ export function BiVariateMap(props: Props) {
                   </g>
                 </svg>
                 <div className='bivariant-map-primary-legend-text'>
-                  {xIndicatorMetaData.IndicatorLabelTable}
+                  {xIndicatorMetaData.IndicatorLabel}
                 </div>
               </div>
               <div className='bivariate-map-secondary-legend-text'>
-                {yIndicatorMetaData.IndicatorLabelTable}
+                {yIndicatorMetaData.IndicatorLabel}
               </div>
             </div>
           </div>
           {sizeIndicator ? (
             <div className='bivariate-map-size-legend-element'>
               <div className='bivariate-map-size-legend-text'>
-                {sizeIndicatorMetaData.IndicatorLabelTable}
+                {sizeIndicatorMetaData.IndicatorLabel}
               </div>
               <svg
                 width='135'

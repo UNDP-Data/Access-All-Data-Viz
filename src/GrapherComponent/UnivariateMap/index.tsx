@@ -619,7 +619,7 @@ export function UnivariateMap(props: Props) {
           <div className='univariate-map-color-legend-element'>
             <div>
               <div className='univariate-map-legend-text'>
-                {xIndicatorMetaData.IndicatorLabelTable}
+                {xIndicatorMetaData.IndicatorLabel}
               </div>
               <svg width='100%' viewBox='0 0 320 30'>
                 <g>
@@ -706,7 +706,7 @@ export function UnivariateMap(props: Props) {
                 className='bivariate-map-size-legend-text'
                 style={{ maxWidth: '10rem', lineClamp: 3 }}
               >
-                {sizeIndicatorMetaData.IndicatorLabelTable}
+                {sizeIndicatorMetaData.IndicatorLabel}
               </div>
               <svg
                 width='135'

@@ -64,14 +64,14 @@ function IndicatorListComponent(props: Props) {
                 updateIndicator(
                   indicators[
                     indicators.findIndex(
-                      ind => ind.IndicatorLabelTable === el.IndicatorLabelTable,
+                      ind => ind.IndicatorLabel === el.IndicatorLabel,
                     )
                   ].DataKey,
                 );
                 closeModal();
               }}
             >
-              {el.IndicatorLabelTable}
+              {el.IndicatorLabel}
             </IndicatorCardEl>
           ))}
       </div>

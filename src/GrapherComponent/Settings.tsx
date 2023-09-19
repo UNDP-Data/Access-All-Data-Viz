@@ -65,18 +65,18 @@ export function Settings(props: Props) {
     updateSignatureSolutionForDataList,
     updateShowReference,
   } = useContext(Context) as CtxDataType;
-  const scatterPlotIndicators = indicators.filter(d => d.ScatterPlot);
-  const mapIndicators = indicators.filter(d => d.Map);
-  const barGraphIndicators = indicators.filter(d => d.BarGraph);
+  const scatterPlotIndicators = indicators.filter(d => !d.IsCategorical);
+  const mapIndicators = [...indicators];
+  const barGraphIndicators = indicators.filter(d => !d.IsCategorical);
   const allIndicators = indicators;
   const sizeIndicators = indicators.filter(d => d.Sizing);
   const options =
     graphType === 'scatterPlot'
-      ? indicators.filter(d => d.ScatterPlot).map(d => d.DataKey)
+      ? scatterPlotIndicators.map(d => d.DataKey)
       : graphType === 'map'
-      ? indicators.filter(d => d.Map).map(d => d.DataKey)
+      ? mapIndicators.map(d => d.DataKey)
       : graphType === 'barGraph'
-      ? indicators.filter(d => d.BarGraph).map(d => d.DataKey)
+      ? barGraphIndicators.map(d => d.DataKey)
       : indicators.map(d => d.DataKey);
   const colorOptions = indicators
     .filter(d => d.IsCategorical)
@@ -128,7 +128,7 @@ export function Settings(props: Props) {
                 selectedIndicator={
                   indicators[
                     indicators.findIndex(d => d.DataKey === xAxisIndicator)
-                  ].IndicatorLabelTable
+                  ].IndicatorLabel
                 }
                 updateIndicator={updateXAxisIndicator}
               />
@@ -209,7 +209,7 @@ export function Settings(props: Props) {
                   yAxisIndicator
                     ? indicators[
                         indicators.findIndex(d => d.DataKey === yAxisIndicator)
-                      ].IndicatorLabelTable
+                      ].IndicatorLabel
                     : yAxisIndicator
                 }
                 updateIndicator={updateYAxisIndicator}
@@ -230,7 +230,7 @@ export function Settings(props: Props) {
                   sizeIndicator
                     ? indicators[
                         indicators.findIndex(d => d.DataKey === sizeIndicator)
-                      ].IndicatorLabelTable
+                      ].IndicatorLabel
                     : sizeIndicator
                 }
                 updateIndicator={updateSizeIndicator}
@@ -250,7 +250,7 @@ export function Settings(props: Props) {
                   placeholder='Color By'
                   onChange={d => {
                     const indx = indicators.findIndex(
-                      indicator => indicator.IndicatorLabelTable === d,
+                      indicator => indicator.IndicatorLabel === d,
                     );
                     updateColorIndicator(
                       indx === -1 ? d : indicators[indx].DataKey,
@@ -266,14 +266,14 @@ export function Settings(props: Props) {
                           ? d
                           : indicators[
                               indicators.findIndex(el => el.DataKey === d)
-                            ].IndicatorLabelTable
+                            ].IndicatorLabel
                       }
                     >
                       {indicators.findIndex(el => el.DataKey === d) === -1
                         ? d
                         : indicators[
                             indicators.findIndex(el => el.DataKey === d)
-                          ].IndicatorLabelTable}
+                          ].IndicatorLabel}
                     </Select.Option>
                   ))}
                 </Select>

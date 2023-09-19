@@ -222,12 +222,9 @@ export function DualAxisGraph(props: Props) {
                   color: UNDPColorModule.categoricalColors.colors[0],
                 }}
               >
-                {xIndicatorMetaData.IndicatorLabelTable.length > 50
-                  ? `${xIndicatorMetaData.IndicatorLabelTable.substring(
-                      0,
-                      50,
-                    )}...`
-                  : xIndicatorMetaData.IndicatorLabelTable}
+                {xIndicatorMetaData.IndicatorLabel.length > 50
+                  ? `${xIndicatorMetaData.IndicatorLabel.substring(0, 50)}...`
+                  : xIndicatorMetaData.IndicatorLabel}
               </p>
             </div>
             <div className='flex-div gap-02 flex-vert-align-center'>
@@ -244,12 +241,9 @@ export function DualAxisGraph(props: Props) {
                   color: UNDPColorModule.categoricalColors.colors[3],
                 }}
               >
-                {yIndicatorMetaData.IndicatorLabelTable.length > 50
-                  ? `${yIndicatorMetaData.IndicatorLabelTable.substring(
-                      0,
-                      50,
-                    )}...`
-                  : yIndicatorMetaData.IndicatorLabelTable}
+                {yIndicatorMetaData.IndicatorLabel.length > 50
+                  ? `${yIndicatorMetaData.IndicatorLabel.substring(0, 50)}...`
+                  : yIndicatorMetaData.IndicatorLabel}
               </p>
             </div>
           </div>
@@ -304,13 +298,12 @@ export function DualAxisGraph(props: Props) {
                   textAnchor='middle'
                   fontSize={12}
                 >
-                  {xIndicatorMetaData.IndicatorLabelTable.length >
-                  MAX_TEXT_LENGTH
-                    ? `${xIndicatorMetaData.IndicatorLabelTable.substring(
+                  {xIndicatorMetaData.IndicatorLabel.length > MAX_TEXT_LENGTH
+                    ? `${xIndicatorMetaData.IndicatorLabel.substring(
                         0,
                         MAX_TEXT_LENGTH,
                       )}...`
-                    : xIndicatorMetaData.IndicatorLabelTable}
+                    : xIndicatorMetaData.IndicatorLabel}
                 </LabelText>
               </g>
               <g>
@@ -353,13 +346,12 @@ export function DualAxisGraph(props: Props) {
                   textAnchor='middle'
                   fontSize={12}
                 >
-                  {yIndicatorMetaData.IndicatorLabelTable.length >
-                  MAX_TEXT_LENGTH
-                    ? `${yIndicatorMetaData.IndicatorLabelTable.substring(
+                  {yIndicatorMetaData.IndicatorLabel.length > MAX_TEXT_LENGTH
+                    ? `${yIndicatorMetaData.IndicatorLabel.substring(
                         0,
                         MAX_TEXT_LENGTH,
                       )}...`
-                    : yIndicatorMetaData.IndicatorLabelTable}
+                    : yIndicatorMetaData.IndicatorLabel}
                 </LabelText>
               </g>
               <g>

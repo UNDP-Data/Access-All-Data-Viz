@@ -74,10 +74,10 @@ export function RegionVisualization(props: Props) {
             uniqBy(countriesFiltered, d => d['Group 2']).map(d => d['Group 2']),
           );
           const indicatorsFilteredBySS = signatureSolution
-            ? sortBy(indicatorMetaData, d => d.IndicatorLabelTable).filter(
+            ? sortBy(indicatorMetaData, d => d.IndicatorLabel).filter(
                 d => d.SignatureSolution.indexOf(signatureSolution) !== -1,
               )
-            : sortBy(indicatorMetaData, d => d.IndicatorLabelTable);
+            : sortBy(indicatorMetaData, d => d.IndicatorLabel);
           const indicatorsFiltered = topic
             ? indicatorsFilteredBySS.filter(
                 d => d.SSTopics.indexOf(topic) !== -1,
@@ -163,7 +163,7 @@ export function AggregatedRegionVisualization(
           const topic = queryParams.get('topic')?.replaceAll('_', "'");
           const indicatorsFiltered = sortBy(
             indicatorMetaData,
-            d => d.IndicatorLabelTable,
+            d => d.IndicatorLabel,
           ).filter(d => d.RegionalAggregation);
           const indicatorsFilteredByTopic = topic
             ? indicatorsFiltered.filter(d => d.SSTopics.indexOf(topic) !== -1)

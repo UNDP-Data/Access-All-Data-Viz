@@ -83,7 +83,7 @@ const DownloadMultipleIndicatorExcel = (
           indicator:
             indicators[
               indicators.findIndex(j => j.DataKey === filteredData.indicator)
-            ].IndicatorLabelTable,
+            ].IndicatorLabel,
         };
         years.forEach(yrs => {
           dataToPush[`Year_${yrs}`] =
@@ -141,7 +141,7 @@ export function DownloadModal(props: Props) {
       const indicatorFilterByTags =
         tagsForFilter.length !== 0 && tagsForFilter
           ? indicatorsListMain.filter(
-              d => intersection(d.tags, tagsForFilter).length > 0,
+              d => intersection(d.Tags, tagsForFilter).length > 0,
             )
           : indicatorsListMain;
       const indicatorFilterBySDGs =
@@ -152,10 +152,10 @@ export function DownloadModal(props: Props) {
           : indicatorFilterByTags;
       const indicators = sortBy(
         indicatorFilterBySDGs,
-        d => d.IndicatorLabelTable,
+        d => d.IndicatorLabel,
       ).filter(
         d =>
-          d.IndicatorLabelTable.toLowerCase().includes(
+          d.IndicatorLabel.toLowerCase().includes(
             indicatorSearch?.toLowerCase() || '',
           ) ||
           d.IndicatorDescription.toLowerCase().includes(
@@ -393,7 +393,7 @@ export function DownloadModal(props: Props) {
                       }
                     }}
                   >
-                    {d.IndicatorLabelTable}
+                    {d.IndicatorLabel}
                   </Checkbox>
                 </div>
               ))}

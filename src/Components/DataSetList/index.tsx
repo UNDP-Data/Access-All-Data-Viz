@@ -56,7 +56,7 @@ const DownloadExcel = (indicator: IndicatorMetaDataType) => {
           country: 'Country or Area',
           countryCode: 'ISO-3 Code',
           year: 'Year',
-          value: indicator.IndicatorLabelTable,
+          value: indicator.IndicatorLabel,
         },
       ];
       const csvData: any = [];
@@ -88,7 +88,7 @@ const DownloadExcel = (indicator: IndicatorMetaDataType) => {
       const dataForExcel = new Blob([excelBuffer], { type: fileType });
       FileSaver.saveAs(
         dataForExcel,
-        `${indicator.IndicatorLabelTable.replaceAll(',', '').replaceAll(
+        `${indicator.IndicatorLabel.replaceAll(',', '').replaceAll(
           '.',
           ' ',
         )}.xlsx`,
@@ -172,7 +172,7 @@ export function DataSetList(props: Props) {
       const indicatorFilterByTags =
         tagsForFilter.length !== 0 && tagsForFilter
           ? indicatorFilterBySS.filter(
-              d => intersection(d.tags, tagsForFilter).length > 0,
+              d => intersection(d.Tags, tagsForFilter).length > 0,
             )
           : indicatorFilterBySS;
       const indicatorFilterBySDGs =
@@ -183,10 +183,10 @@ export function DataSetList(props: Props) {
           : indicatorFilterByTags;
       const indicators = sortBy(
         indicatorFilterBySDGs,
-        d => d.IndicatorLabelTable,
+        d => d.IndicatorLabel,
       ).filter(
         d =>
-          d.IndicatorLabelTable.toLowerCase().includes(
+          d.IndicatorLabel.toLowerCase().includes(
             searchPhrase?.toLowerCase() || '',
           ) ||
           d.IndicatorDescription.toLowerCase().includes(
@@ -382,7 +382,7 @@ export function DataSetList(props: Props) {
               .map((d, i) => (
                 <CardEl key={i}>
                   <div className='margin-bottom-07'>
-                    <h6 className='undp-typography'>{d.IndicatorLabelTable}</h6>
+                    <h6 className='undp-typography'>{d.IndicatorLabel}</h6>
                     <div className='flex-div flex-wrap margin-bottom-05'>
                       {d.SignatureSolution.map((el, j) => (
                         <div

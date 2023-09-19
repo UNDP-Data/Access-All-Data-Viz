@@ -195,12 +195,12 @@ export function SingleAxisGraph(props: Props) {
                 textAnchor='middle'
                 fontSize={12}
               >
-                {xIndicatorMetaData.IndicatorLabelTable.length > MAX_TEXT_LENGTH
-                  ? `${xIndicatorMetaData.IndicatorLabelTable.substring(
+                {xIndicatorMetaData.IndicatorLabel.length > MAX_TEXT_LENGTH
+                  ? `${xIndicatorMetaData.IndicatorLabel.substring(
                       0,
                       MAX_TEXT_LENGTH,
                     )}...`
-                  : xIndicatorMetaData.IndicatorLabelTable}
+                  : xIndicatorMetaData.IndicatorLabel}
               </LabelText>
             </g>
             <g>

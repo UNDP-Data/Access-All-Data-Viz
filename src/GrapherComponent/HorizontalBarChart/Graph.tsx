@@ -281,12 +281,12 @@ export function Graph(props: Props) {
           fontWeight='bold'
           fill='#212121'
         >
-          {xIndicatorMetaData.IndicatorLabelTable}
+          {xIndicatorMetaData.IndicatorLabel}
         </text>
         <g transform={`translate(${margin.left},70)`}>
           <text x={0} y={10} fontSize={14} fill='#212121'>
-            {colorIndicatorMetaData?.IndicatorLabelTable
-              ? colorIndicatorMetaData?.IndicatorLabelTable
+            {colorIndicatorMetaData?.IndicatorLabel
+              ? colorIndicatorMetaData?.IndicatorLabel
               : colorIndicator}
           </text>
           {colorIndicator === 'Human Development Index'

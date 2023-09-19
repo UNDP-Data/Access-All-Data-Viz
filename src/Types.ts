@@ -64,7 +64,7 @@ export interface IndicatorOptionsDataType {
 }
 
 export interface IndicatorMetaDataType {
-  IndicatorLabelTable: string;
+  IndicatorLabel: string;
   IndicatorDescription: string;
   DataKey: string;
   DataSourceName: string;
@@ -75,20 +75,15 @@ export interface IndicatorMetaDataType {
   BinningRange5: number[];
   BinningRangeLarge: number[];
   Categories: number[];
-  CategorizeByRanking?: boolean;
-  IsCategorical?: boolean;
-  IsDivergent?: boolean;
-  ScatterPlot?: boolean;
-  Map?: boolean;
-  BarGraph?: boolean;
-  Sizing?: boolean;
-  Color?: boolean;
+  IsCategorical: boolean;
+  IsDivergent: boolean;
+  Sizing: boolean;
   RegionalAggregation: boolean;
   SSTopics: string[];
   SignatureSolution: string[];
   id: string;
   SDGs: string[];
-  tags: string[];
+  Tags: string[];
 }
 
 export interface HoverRowDataType {

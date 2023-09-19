@@ -22,9 +22,7 @@ export function ListEl(props: Props) {
   const [search, updateSearch] = useState<string | undefined>(undefined);
   const filteredIndicatorsBySearch = search
     ? indicators.filter(d =>
-        d.IndicatorLabelTable.toLowerCase().includes(
-          search.toLowerCase() || '',
-        ),
+        d.IndicatorLabel.toLowerCase().includes(search.toLowerCase() || ''),
       )
     : indicators;
   const filteredIndicators =
@@ -107,14 +105,12 @@ export function ListEl(props: Props) {
             search
               ? indicators[
                   indicators.findIndex(el => el.DataKey === d.indicator)
-                ].IndicatorLabelTable.toLowerCase().includes(
-                  search.toLowerCase(),
-                )
+                ].IndicatorLabel.toLowerCase().includes(search.toLowerCase())
               : d,
           ),
           d =>
             indicators[indicators.findIndex(el => el.DataKey === d.indicator)]
-              .IndicatorLabelTable,
+              .IndicatorLabel,
         ).map((d, i) =>
           indicators.findIndex(el => el.DataKey === d.indicator) !== -1 ? (
             <div
@@ -131,7 +127,7 @@ export function ListEl(props: Props) {
                     {
                       indicators[
                         indicators.findIndex(el => el.DataKey === d.indicator)
-                      ].IndicatorLabelTable
+                      ].IndicatorLabel
                     }
                   </h5>
                 </div>

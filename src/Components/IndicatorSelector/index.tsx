@@ -94,7 +94,7 @@ function IndicatorSelector(props: Props) {
   useEffect(() => {
     const indicatorFilterByTags =
       tagsForFilter.length !== 0 && tagsForFilter
-        ? indicators.filter(d => intersection(d.tags, tagsForFilter).length > 0)
+        ? indicators.filter(d => intersection(d.Tags, tagsForFilter).length > 0)
         : indicators;
     const indicatorFilterBySDGs =
       sdgForFilter.length !== 0 && sdgForFilter
@@ -103,16 +103,16 @@ function IndicatorSelector(props: Props) {
           )
         : indicatorFilterByTags;
     const indicatorsFiltered = searchPhrase
-      ? sortBy(indicatorFilterBySDGs, d => d.IndicatorLabelTable).filter(
+      ? sortBy(indicatorFilterBySDGs, d => d.IndicatorLabel).filter(
           d =>
-            d.IndicatorLabelTable.toLowerCase().includes(
+            d.IndicatorLabel.toLowerCase().includes(
               searchPhrase.toLowerCase(),
             ) ||
             d.IndicatorDescription.toLowerCase().includes(
               searchPhrase.toLowerCase(),
             ),
         )
-      : sortBy(indicatorFilterBySDGs, d => d.IndicatorLabelTable);
+      : sortBy(indicatorFilterBySDGs, d => d.IndicatorLabel);
     setIndicatorList(openModal ? indicatorsFiltered : indicators);
   }, [searchPhrase, sdgForFilter, tagsForFilter, openModal]);
   const closeModal = () => {

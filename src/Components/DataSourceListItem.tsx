@@ -102,9 +102,7 @@ export function DataSourceListItem(props: Props) {
   const { indicatorData, data } = props;
   return (
     <div className='padding-top-07 padding-bottom-05'>
-      <h5 className='bold undp-typography'>
-        {indicatorData.IndicatorLabelTable}
-      </h5>
+      <h5 className='bold undp-typography'>{indicatorData.IndicatorLabel}</h5>
       <div
         className='flex-div margin-bottom-07'
         style={{ alignItems: 'baseline' }}
@@ -179,19 +177,19 @@ export function DataSourceListItem(props: Props) {
       <div className='flex-div margin-bottom-00 gap-07'>
         <DownloadExcel
           data={dataTableForExcel(data, indicatorData)}
-          indicatorTitle={indicatorData.IndicatorLabelTable}
+          indicatorTitle={indicatorData.IndicatorLabel}
         />
         <CSVLink
           headers={[
             { label: 'Country or Area', key: 'country' },
             { label: 'Alpha-3 code', key: 'countryCode' },
             { label: 'Year', key: 'year' },
-            { label: indicatorData.IndicatorLabelTable, key: 'value' },
+            { label: indicatorData.IndicatorLabel, key: 'value' },
           ]}
           enclosingCharacter=''
           separator=';'
           data={dataTable(data, indicatorData)}
-          filename={`${indicatorData.IndicatorLabelTable.replaceAll(
+          filename={`${indicatorData.IndicatorLabel.replaceAll(
             ',',
             '',
           ).replaceAll('.', ' ')}.csv`}
@@ -236,24 +234,24 @@ export function DataSourceListMinifiedItem(props: Props) {
           'var(--spacing-07) var(--spacing-05) var(--spacing-07) var(--spacing-07)',
       }}
     >
-      <p className='undp-typography'>{indicatorData.IndicatorLabelTable}</p>
+      <p className='undp-typography'>{indicatorData.IndicatorLabel}</p>
       <div className='flex-div margin-bottom-00 gap-05'>
         <DownloadExcel
           minified
           data={dataTableForExcel(data, indicatorData)}
-          indicatorTitle={indicatorData.IndicatorLabelTable}
+          indicatorTitle={indicatorData.IndicatorLabel}
         />
         <CSVLink
           headers={[
             { label: 'Country or Area', key: 'country' },
             { label: 'Alpha-3 code', key: 'countryCode' },
             { label: 'Year', key: 'year' },
-            { label: indicatorData.IndicatorLabelTable, key: 'value' },
+            { label: indicatorData.IndicatorLabel, key: 'value' },
           ]}
           enclosingCharacter=''
           separator=';'
           data={dataTable(data, indicatorData)}
-          filename={`${indicatorData.IndicatorLabelTable.replaceAll(
+          filename={`${indicatorData.IndicatorLabel.replaceAll(
             ',',
             '',
           ).replaceAll('.', ' ')}.csv`}
