@@ -34,7 +34,7 @@ const TruncateDiv = styled.div`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: 0.875rem;
+  font-size: 0.875rem !important;
   font-family: var(--fontFamily);
   text-align: left;
 `;
