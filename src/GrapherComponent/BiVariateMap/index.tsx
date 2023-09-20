@@ -7,6 +7,7 @@ import max from 'lodash.max';
 import UNDPColorModule from 'undp-viz-colors';
 import { scaleThreshold, scaleOrdinal, scaleSqrt } from 'd3-scale';
 import { geoWinkel3 } from 'd3-geo-projection';
+import styled from 'styled-components';
 import {
   CtxDataType,
   CountryGroupDataType,
@@ -18,6 +19,14 @@ import Context from '../../Context/Context';
 import World from '../../Data/worldMap.json';
 import { Tooltip } from '../../Components/Tooltip';
 import { COUNTRIES_BY_UNDP_REGIONS, MAP_SETTINGS } from '../../Constants';
+
+const GraphDiv = styled.div`
+  flex-grow: 1;
+  @media (max-width: 960px) {
+    height: 70vw;
+    max-height: 31.25rem;
+  }
+`;
 
 interface Props {
   data: CountryGroupDataType[];
@@ -166,7 +175,7 @@ export function BiVariateMap(props: Props) {
     mapSvgSelect.call(zoomBehaviour as any);
   }, [svgHeight, svgWidth]);
   return (
-    <>
+    <GraphDiv>
       <svg
         viewBox={`0 0 ${svgWidth} ${svgHeight}`}
         style={{ height: '-webkit-fill-available' }}
@@ -299,7 +308,10 @@ export function BiVariateMap(props: Props) {
 
             const rowData: HoverRowDataType[] = [
               {
-                title: xAxisIndicator,
+                title:
+                  indicators[
+                    indicators.findIndex(el => el.DataKey === xAxisIndicator)
+                  ].IndicatorLabel,
                 value: xVal === undefined ? 'NA' : xVal,
                 type: 'color',
                 year:
@@ -315,7 +327,10 @@ export function BiVariateMap(props: Props) {
                 suffix: xIndicatorMetaData?.LabelSuffix,
               },
               {
-                title: yAxisIndicator,
+                title:
+                  indicators[
+                    indicators.findIndex(el => el.DataKey === yAxisIndicator)
+                  ].IndicatorLabel,
                 value: yVal === undefined ? 'NA' : yVal,
                 type: 'color',
                 year:
@@ -348,7 +363,10 @@ export function BiVariateMap(props: Props) {
                       d.indicators[sizeIndicatorIndex].yearlyData.length - 1
                     ]?.value;
               rowData.push({
-                title: sizeIndicator,
+                title:
+                  indicators[
+                    indicators.findIndex(el => el.DataKey === sizeIndicator)
+                  ].IndicatorLabel,
                 value: sizeVal !== undefined ? sizeVal : 'NA',
                 type: 'size',
                 prefix: sizeIndicatorMetaData?.LabelPrefix,
@@ -632,7 +650,12 @@ export function BiVariateMap(props: Props) {
                     : d[selectedCountryGroup];
                 const rowData: HoverRowDataType[] = [
                   {
-                    title: xAxisIndicator,
+                    title:
+                      indicators[
+                        indicators.findIndex(
+                          el => el.DataKey === xAxisIndicator,
+                        )
+                      ].IndicatorLabel,
                     value: xVal === undefined ? 'NA' : xVal,
                     type: 'color',
                     year:
@@ -648,7 +671,12 @@ export function BiVariateMap(props: Props) {
                     suffix: xIndicatorMetaData?.LabelSuffix,
                   },
                   {
-                    title: yAxisIndicator,
+                    title:
+                      indicators[
+                        indicators.findIndex(
+                          el => el.DataKey === yAxisIndicator,
+                        )
+                      ].IndicatorLabel,
                     value: yVal === undefined ? 'NA' : yVal,
                     type: 'color',
                     year:
@@ -666,7 +694,10 @@ export function BiVariateMap(props: Props) {
                 ];
                 if (sizeIndicatorMetaData) {
                   rowData.push({
-                    title: sizeIndicator,
+                    title:
+                      indicators[
+                        indicators.findIndex(el => el.DataKey === sizeIndicator)
+                      ].IndicatorLabel,
                     value: sizeVal !== undefined ? sizeVal : 'NA',
                     type: 'size',
                     prefix: sizeIndicatorMetaData?.LabelPrefix,
@@ -882,6 +913,6 @@ export function BiVariateMap(props: Props) {
         </div>
       </div>
       {hoverData ? <Tooltip data={hoverData} /> : null}
-    </>
+    </GraphDiv>
   );
 }

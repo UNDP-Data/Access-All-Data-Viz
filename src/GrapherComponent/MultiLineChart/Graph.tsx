@@ -411,7 +411,12 @@ export function Graph(props: Props) {
                   opacity={0}
                   onMouseEnter={event => {
                     setHoverData({
-                      country: xAxisIndicator,
+                      country:
+                        indicators[
+                          indicators.findIndex(
+                            el => el.DataKey === xAxisIndicator,
+                          )
+                        ].IndicatorLabel,
                       continent: `${d}`,
                       rows: dataFormatted.map((el, j) => ({
                         title: el.countryName,
@@ -440,7 +445,12 @@ export function Graph(props: Props) {
                   }}
                   onMouseMove={event => {
                     setHoverData({
-                      country: xAxisIndicator,
+                      country:
+                        indicators[
+                          indicators.findIndex(
+                            el => el.DataKey === xAxisIndicator,
+                          )
+                        ].IndicatorLabel,
                       continent: `${d}`,
                       rows: dataFormatted.map((el, j) => ({
                         title: el.countryName,

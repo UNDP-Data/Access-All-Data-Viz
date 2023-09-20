@@ -745,7 +745,10 @@ export function Graph(props: Props) {
                 : !selectedColor;
             const rowData: HoverRowDataType[] = [
               {
-                title: xAxisIndicator,
+                title:
+                  indicators[
+                    indicators.findIndex(el => el.DataKey === xAxisIndicator)
+                  ].IndicatorLabel,
                 value: d.xVal !== undefined ? d.xVal : 'NA',
                 type: 'x-axis',
                 year: d.xYear,
@@ -753,7 +756,10 @@ export function Graph(props: Props) {
                 suffix: xIndicatorMetaData?.LabelSuffix,
               },
               {
-                title: yAxisIndicator,
+                title:
+                  indicators[
+                    indicators.findIndex(el => el.DataKey === yAxisIndicator)
+                  ].IndicatorLabel,
                 value: d.yVal !== undefined ? d.yVal : 'NA',
                 type: 'y-axis',
                 year: d.yYear,
@@ -763,7 +769,10 @@ export function Graph(props: Props) {
             ];
             if (sizeIndicator) {
               rowData.push({
-                title: sizeIndicator,
+                title:
+                  indicators[
+                    indicators.findIndex(el => el.DataKey === sizeIndicator)
+                  ].IndicatorLabel,
                 value: d.radiusValue !== undefined ? d.radiusValue : 'NA',
                 type: 'size',
                 year: d.radiusYear,
@@ -773,7 +782,10 @@ export function Graph(props: Props) {
             }
             if (colorIndicator !== 'Continents') {
               rowData.push({
-                title: colorIndicator,
+                title:
+                  indicators[
+                    indicators.findIndex(el => el.DataKey === colorIndicator)
+                  ].IndicatorLabel,
                 value: d.colorVal !== undefined ? d.colorVal : 'NA',
                 type: 'color',
                 year:

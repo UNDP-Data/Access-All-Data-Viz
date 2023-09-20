@@ -115,7 +115,9 @@ export function Tooltip(props: Props) {
               >
                 {d.year}
               </p>
-              <p className='undp-typography margin-bottom-00'>{d.title}</p>
+              <p className='undp-typography margin-bottom-02 small-font'>
+                {d.title}
+              </p>
               <h6 className='undp-typography margin-bottom-00 bold'>
                 {d.prefix && d.value && d.value !== 'NA' ? `${d.prefix} ` : ''}
                 {typeof d.value === 'number'

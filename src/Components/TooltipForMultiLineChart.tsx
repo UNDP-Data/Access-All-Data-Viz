@@ -29,7 +29,7 @@ const TooltipEl = styled.div<TooltipElProps>`
   display: block;
   position: fixed;
   z-index: 8;
-  max-width: 40rem;
+  max-width: 25rem;
   background-color: var(--gray-200);
   border: 1px solid var(--gray-300);
   word-wrap: break-word;
@@ -64,10 +64,9 @@ export function TooltipForMultiLineChart(props: Props) {
           className='undp-typography bold margin-bottom-00'
           style={{ color: 'var(--blue-600)' }}
         >
-          {data.country.substring(0, 50)}
-          {data.country.substring(0, 50) === data.country ? '' : '...'}
+          {data.country}
           <p
-            className='undp-typography small-font margin-bottom-00'
+            className='undp-typography small-font margin-top-02 margin-bottom-00'
             style={{ color: 'var(--gray-600)', fontWeight: 'normal' }}
           >
             ({data.continent})
