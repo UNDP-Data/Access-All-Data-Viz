@@ -124,7 +124,8 @@ export function GrapherComponent(props: Props) {
       });
       const regionalIndicatorsValue = [...regionData.indicators];
       allData.forEach((all: IndicatorSimplifiedDataType) => {
-        const regionCode = `UNDP_${UNDPRegion}` || 'WLD';
+        const regionCode =
+          UNDPRegion !== 'WLD' && UNDPRegion ? `UNDP_${UNDPRegion}` : 'WLD';
         const indx = all.countryData.findIndex(
           cData => cData['Alpha-3 code'] === regionCode,
         );

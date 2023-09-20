@@ -34,7 +34,7 @@ const TruncateDiv = styled.div`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: 0.875rem !important;
+  font-size: 0.875rem;
   font-family: var(--fontFamily);
   text-align: left;
 `;
@@ -45,7 +45,7 @@ interface IconDivProps {
 
 const IconDiv = styled.div<IconDivProps>`
   height: 24px;
-  padding: 0.25rem;
+  padding: 0;
   cursor: ${props => (props.active ? 'pointer' : 'not-allowed')};
   &:hover {
     background-color: ${props =>
@@ -71,7 +71,7 @@ const TooltipEl = styled.div<TooltipElProps>`
   border: 1px solid var(--gray-300);
   word-wrap: break-word;
   padding: 0.5rem;
-  font-size: 0.875rem;
+  font-size: 0.875rem !important;
   top: ${props => props.y - 20}px;
   left: ${props => props.x + 20}px;
   max-width: 15rem;
@@ -86,7 +86,7 @@ function IndicatorSelector(props: Props) {
   );
   const [indicatorList, setIndicatorList] =
     useState<IndicatorMetaDataType[]>(indicators);
-  const [indicatoInfo, setIndicatorInfo] = useState<InfoProps | undefined>(
+  const [indicatorInfo, setIndicatorInfo] = useState<InfoProps | undefined>(
     undefined,
   );
   const [sdgForFilter, setSDGForFilter] = useState<string[]>([]);
@@ -127,7 +127,7 @@ function IndicatorSelector(props: Props) {
         <p className='label'>{title}</p>
         <div
           className='flex-div flex-vert-align-center'
-          style={{ gap: '0.25rem' }}
+          style={{ gap: '0.5rem' }}
         >
           <DropDownButton
             style={{
@@ -183,9 +183,15 @@ function IndicatorSelector(props: Props) {
           </IconDiv>
         </div>
       </div>
-      {indicatoInfo ? (
-        <TooltipEl x={indicatoInfo.x} y={indicatoInfo.y}>
-          {indicatoInfo.info}
+      {indicatorInfo ? (
+        <TooltipEl
+          className='undp-typography'
+          x={indicatorInfo.x}
+          y={indicatorInfo.y}
+        >
+          <p className='undp-typography small-font margin-bottom-00'>
+            {indicatorInfo.info}
+          </p>
         </TooltipEl>
       ) : null}
       <Modal
