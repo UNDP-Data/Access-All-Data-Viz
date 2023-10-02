@@ -630,15 +630,12 @@ export const TOP_CARDS = [
         },
       },
       {
-        vizType: 'lineChart',
+        vizType: 'dotPlot',
         settings: {
           dataKey:
-            'Renewable energy consumption (% of total final energy consumption)',
-          strokeWidth: 1,
-          lineColor: '#232E3D',
+            'Access to clean fuels and technologies for cooking  (% of population)',
           graphTitle:
-            'Renewable energy consumption (% of total final energy consumption)',
-          suffix: '%',
+            'Access to clean fuels and technologies for cooking (% of population)',
         },
       },
       {
@@ -652,24 +649,21 @@ export const TOP_CARDS = [
       {
         vizType: 'lineChart',
         settings: {
-          dataKey:
-            'Proportion of informal employment in non-agriculture employment (% of total employment in non-agriculture)',
+          dataKey: 'Coefficient of human inequality',
           strokeWidth: 1,
           lineColor: '#232E3D',
-          graphTitle:
-            'Informal Employment in Non-Agriculture Employment, percent',
-          suffix: '%',
+          graphTitle: 'Coefficient of human inequality',
+          suffix: '',
         },
       },
       {
         vizType: 'lineChart',
         settings: {
-          dataKey: 'MSME employment (% total)',
+          dataKey: 'Population ages 65 and above (% of total population)',
           strokeWidth: 1,
           lineColor: '#232E3D',
-          graphTitle:
-            'Persons employed by MSMEs as a percent of total employed',
-          suffix: '%',
+          graphTitle: 'Population ages 65 and above, % of total population',
+          suffix: '',
         },
       },
     ],
