@@ -417,6 +417,17 @@ export const ABOUT_TEXT_LINKS = [
           producers to strengthen data availability to better monitor progress
           towards more inclusive, just and peaceful societies.
         </p>
+        <p className='undp-typography'>
+          This portal provides data for selected governance indicators. The
+          indicator selection took into account data availability, global,
+          regional and national coverage. Data sources are included on each
+          indicator, and further information on methodology, metadata or other
+          technical should be consulted in the data producer/compiler website
+          and respective methodological and technical materials. There are
+          multiple datasets featured in the Data Futures Platform, and UNDP does
+          not endorse or verify the content of datasets owned by other
+          organizations and made available in the platform.{' '}
+        </p>
       </div>
     ),
     resource: [
