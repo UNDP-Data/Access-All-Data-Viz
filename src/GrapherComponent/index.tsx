@@ -11,7 +11,7 @@ import {
 } from '../Types';
 import Context from '../Context/Context';
 import { DataExplorerGraphingEl } from './GraphingEl';
-import { COUNTRIES_BY_UNDP_REGIONS } from '../Constants';
+import { COUNTRIES_BY_UNDP_REGIONS, DATALINK } from '../Constants';
 
 interface Props {
   indicators: IndicatorMetaDataType[];
@@ -60,10 +60,7 @@ export function GrapherComponent(props: Props) {
     ) {
       const indicatorId =
         indicators[indicators.findIndex(d => d.DataKey === xAxisIndicator)].id;
-      q = q.defer(
-        json,
-        `https://raw.githubusercontent.com/UNDP-Data/Access-All-Data-Data-Repo/main/indicatorData/${indicatorId}.json`,
-      );
+      q = q.defer(json, `${DATALINK}/indicatorData/${indicatorId}.json`);
     }
     if (
       yAxisIndicator !== undefined &&
@@ -71,10 +68,7 @@ export function GrapherComponent(props: Props) {
     ) {
       const indicatorId =
         indicators[indicators.findIndex(d => d.DataKey === yAxisIndicator)].id;
-      q = q.defer(
-        json,
-        `https://raw.githubusercontent.com/UNDP-Data/Access-All-Data-Data-Repo/main/indicatorData/${indicatorId}.json`,
-      );
+      q = q.defer(json, `${DATALINK}/indicatorData/${indicatorId}.json`);
     }
     if (
       sizeIndicator !== undefined &&
@@ -82,10 +76,7 @@ export function GrapherComponent(props: Props) {
     ) {
       const indicatorId =
         indicators[indicators.findIndex(d => d.DataKey === sizeIndicator)].id;
-      q = q.defer(
-        json,
-        `https://raw.githubusercontent.com/UNDP-Data/Access-All-Data-Data-Repo/main/indicatorData/${indicatorId}.json`,
-      );
+      q = q.defer(json, `${DATALINK}/indicatorData/${indicatorId}.json`);
     }
     if (
       colorIndicator !== undefined &&
@@ -95,10 +86,7 @@ export function GrapherComponent(props: Props) {
     ) {
       const indicatorId =
         indicators[indicators.findIndex(d => d.DataKey === colorIndicator)].id;
-      q = q.defer(
-        json,
-        `https://raw.githubusercontent.com/UNDP-Data/Access-All-Data-Data-Repo/main/indicatorData/${indicatorId}.json`,
-      );
+      q = q.defer(json, `${DATALINK}/indicatorData/${indicatorId}.json`);
     }
     q.awaitAll((err, allData: any) => {
       if (err) throw err;

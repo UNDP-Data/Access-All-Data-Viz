@@ -13,6 +13,7 @@ import {
 
 import {
   COUNTRYTAXONOMYLINK,
+  DATALINK,
   METADATALINK,
   SIGNATURE_SOLUTIONS_LIST,
 } from '../Constants';
@@ -44,10 +45,7 @@ export function CountryHomePageForCountryPage(props: PropsWithoutSS) {
 
   useEffect(() => {
     queue()
-      .defer(
-        json,
-        `https://raw.githubusercontent.com/UNDP-Data/Access-All-Data-Data-Repo/main/countryData/${countryFromLink}.json`,
-      )
+      .defer(json, `${DATALINK}/countryData/${countryFromLink}.json`)
       .defer(json, METADATALINK)
       .defer(json, COUNTRYTAXONOMYLINK)
       .await(

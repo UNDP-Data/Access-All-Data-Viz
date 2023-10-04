@@ -436,7 +436,10 @@ export function Graph(props: Props) {
                 suffix: xIndicatorMetaData?.LabelSuffix,
               },
             ];
-            if (colorIndicator !== 'Continents') {
+            if (
+              colorIndicator !== 'Continents' &&
+              colorIndicator !== 'Income Groups'
+            ) {
               rowData.push({
                 title:
                   indicators[

@@ -21,6 +21,7 @@ import {
   SDG_GOALS,
   SIGNATURE_SOLUTIONS_LIST,
   TAGS_LIST,
+  DATALINK,
 } from '../../Constants';
 import { DownloadModal } from './DownloadModal';
 
@@ -44,10 +45,7 @@ const DownloadExcel = (indicator: IndicatorMetaDataType) => {
     'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
 
   queue()
-    .defer(
-      json,
-      `https://raw.githubusercontent.com/UNDP-Data/Access-All-Data-Data-Repo/main/indicatorData/${indicator.id}.json`,
-    )
+    .defer(json, `${DATALINK}/indicatorData/${indicator.id}.json`)
     .await((err: any, data: IndicatorSimplifiedDataType) => {
       if (err) throw err;
 

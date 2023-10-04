@@ -13,6 +13,7 @@ import {
 import {
   COUNTRIES_BY_UNDP_REGIONS,
   COUNTRYTAXONOMYLINK,
+  DATALINK,
   METADATALINK,
 } from '../Constants';
 import VisualizationEl from './Visualization';
@@ -148,7 +149,7 @@ export function AggregatedRegionVisualization(
       .defer(json, METADATALINK)
       .defer(
         json,
-        `https://raw.githubusercontent.com/UNDP-Data/Access-All-Data-Data-Repo/main/regionData/${
+        `${DATALINK}/regionData/${
           UNDPRegion === 'WLD' ? 'WLD' : `UNDP_${UNDPRegion}`
         }.json`,
       )

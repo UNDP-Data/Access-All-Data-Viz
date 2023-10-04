@@ -17,6 +17,7 @@ import {
   COUNTRIES_BY_UNDP_REGIONS,
   SDG_GOALS,
   TAGS_LIST,
+  DATALINK,
 } from '../../Constants';
 import { GetYearsArrayFromIndicator } from '../../Utils/GetYearsArray';
 
@@ -32,10 +33,7 @@ const DownloadMultipleIndicatorExcel = (
 ) => {
   const q = queue();
   indicators.forEach(d => {
-    q.defer(
-      json,
-      `https://raw.githubusercontent.com/UNDP-Data/Access-All-Data-Data-Repo/main/indicatorData/${d.id}.json`,
-    );
+    q.defer(json, `${DATALINK}/indicatorData/${d.id}.json`);
   });
   q.awaitAll((err, allData: any) => {
     if (err) throw err;

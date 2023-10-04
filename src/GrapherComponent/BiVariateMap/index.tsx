@@ -178,7 +178,10 @@ export function BiVariateMap(props: Props) {
     <GraphDiv>
       <svg
         viewBox={`0 0 ${svgWidth} ${svgHeight}`}
-        style={{ height: '-webkit-fill-available' }}
+        width='100%'
+        style={{
+          height: 'calc(80vh - 60px)',
+        }}
         ref={mapSvg}
       >
         <g ref={mapG}>

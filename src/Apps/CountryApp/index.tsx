@@ -3,14 +3,15 @@ import flattenDeep from 'lodash.flattendeep';
 import { useEffect, useState } from 'react';
 import { queue } from 'd3-queue';
 import { json } from 'd3-request';
-import { CountryHomePageForCountryPage } from '../CountryPage';
-import { SDGDataExplorer } from '../CountryPage/SDGDataExplorer';
-import { CountryAboutPage } from '../AboutPage/CountryAboutPage';
-import { COUNTRYTAXONOMYLINK } from '../Constants';
-import { SubNationalVisualization } from '../CountryPage/SubNationalVisualization';
-import { SDGTracker } from '../CountryPage/SDGTracker';
-import { CountryTaxonomyDataType } from '../Types';
-import { SUB_NATIONAL_DATA_OPTIONS } from '../SubNationalDataOptions';
+import { CountryHomePageForCountryPage } from '../../CountryPage';
+import { SDGDataExplorer } from '../../CountryPage/SDGDataExplorer';
+import { CountryAboutPage } from '../../AboutPage/CountryAboutPage';
+import { COUNTRYTAXONOMYLINK } from '../../Constants';
+import { SubNationalVisualization } from '../../CountryPage/SubNationalVisualization';
+import { SDGTracker } from '../../CountryPage/SDGTracker';
+import { CountryTaxonomyDataType } from '../../Types';
+import { SUB_NATIONAL_DATA_OPTIONS } from '../../SubNationalDataOptions';
+import { CountryHDIViz } from './CountryHDIViz';
 
 interface CountryProps {
   countryId?: string;
@@ -140,6 +141,15 @@ export function CountryApp(props: CountryProps) {
                       ]['Country or Area']
                     }
                   </h2>
+                  <CountryHDIViz
+                    country={
+                      countryData[
+                        countryData.findIndex(
+                          d => d['Alpha-3 code'] === countryId,
+                        )
+                      ]
+                    }
+                  />
                 </div>
               </div>
               <Tabs

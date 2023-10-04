@@ -3,6 +3,12 @@ import DataExplorer from '../Components/DataExplorer';
 import { DataSetList } from '../Components/DataSetList';
 import { AboutPage } from '../AboutPage';
 import { INTRO_TEXT } from '../IntroductionText';
+import { PovertyAndInequalityKeyInsights } from '../KeyInsights/PovertyAndInequalityKeyInsights';
+import { EnvironmentKeyInsights } from '../KeyInsights/EnvironmentKeyInsights';
+import { EnergyKeyInsights } from '../KeyInsights/EnergyKeyInsights';
+import { GovernanceKeyInsights } from '../KeyInsights/GovernanceKeyInsights';
+import { GenderKeyInsights } from '../KeyInsights/GenderKeyInsights';
+import { ResilienceKeyInsights } from '../KeyInsights/ResilienceKeyInsights';
 
 interface Props {
   signatureSolution?: string;
@@ -51,7 +57,7 @@ export function SignatureSolutionApp(props: Props) {
       >
         <div
           style={{
-            padding: 'var(--spacing-09) var(--spacing-07)',
+            padding: 'var(--spacing-09) var(--spacing-07) 0 var(--spacing-07)',
           }}
         >
           <h2 className='undp-typography margin-bottom-03 page-title'>
@@ -64,6 +70,28 @@ export function SignatureSolutionApp(props: Props) {
             INTRO_TEXT[INTRO_TEXT.findIndex(d => d.id === signatureSolution)]
               .bodyText
           }
+        </div>
+        <div
+          className='padding-top-07 padding-bottom-07'
+          style={{
+            backgroundColor: 'var(--gray-300)',
+          }}
+        >
+          {signatureSolution === 'Poverty and Inequality' ? (
+            <PovertyAndInequalityKeyInsights />
+          ) : signatureSolution === 'Environment' ? (
+            <EnvironmentKeyInsights />
+          ) : signatureSolution === 'Energy' ? (
+            <EnergyKeyInsights />
+          ) : signatureSolution === 'Governance' ? (
+            <GovernanceKeyInsights />
+          ) : signatureSolution === 'Resilience' ? (
+            <ResilienceKeyInsights />
+          ) : signatureSolution === 'Gender' ? (
+            <GenderKeyInsights />
+          ) : (
+            <PovertyAndInequalityKeyInsights />
+          )}
         </div>
       </div>
       <Tabs

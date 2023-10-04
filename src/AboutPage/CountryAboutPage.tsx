@@ -2,7 +2,7 @@ import { queue } from 'd3-queue';
 import { json } from 'd3-request';
 import { useEffect, useState } from 'react';
 import { format } from 'd3-format';
-import { COUNTRYTAXONOMYLINK } from '../Constants';
+import { COUNTRYTAXONOMYLINK, DATALINK } from '../Constants';
 import { CountryGroupDataType, CountryTaxonomyDataType } from '../Types';
 import CountryWebsiteList from '../CountryPage/CountryWebLinks.json';
 import { ABOUT_TEXT_LINKS } from '../AboutText';
@@ -45,10 +45,7 @@ export function CountryAboutPage(props: Props) {
       : null;
   useEffect(() => {
     queue()
-      .defer(
-        json,
-        `https://raw.githubusercontent.com/UNDP-Data/Access-All-Data-Data-Repo/main/countryData/${countryId}.json`,
-      )
+      .defer(json, `${DATALINK}/countryData/${countryId}.json`)
       .defer(json, COUNTRYTAXONOMYLINK)
       .await(
         (

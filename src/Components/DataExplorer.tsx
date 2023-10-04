@@ -16,6 +16,8 @@ import {
 
 import {
   COUNTRIES_BY_UNDP_REGIONS,
+  COUNTRYTAXONOMYLINK,
+  DATALINK,
   METADATALINK,
   REGION_ACRONYMS,
 } from '../Constants';
@@ -51,10 +53,7 @@ function DataExplorer(props: Props) {
 
   useEffect(() => {
     queue()
-      .defer(
-        json,
-        'https://raw.githubusercontent.com/UNDP-Data/country-taxonomy-from-azure/main/country_territory_groups.json',
-      )
+      .defer(json, COUNTRYTAXONOMYLINK)
       .defer(json, METADATALINK)
       .await(
         (
@@ -108,7 +107,7 @@ function DataExplorer(props: Props) {
           ? `UNDP_${countryId}`
           : countryId;
       json(
-        `https://raw.githubusercontent.com/UNDP-Data/Access-All-Data-Data-Repo/main/${folderName}/${id}.json`,
+        `${DATALINK}/${folderName}/${id}.json`,
         (err: any, data: CountryGroupDataType) => {
           if (err) throw err;
           const queryParams = new URLSearchParams(window.location.search);

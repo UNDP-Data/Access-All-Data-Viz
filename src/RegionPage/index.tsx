@@ -7,7 +7,7 @@ import {
   IndicatorMetaDataType,
   CountryListType,
 } from '../Types';
-import { METADATALINK } from '../Constants';
+import { DATALINK, METADATALINK } from '../Constants';
 import RegionalHomePageContext from './RegionalHomePage';
 
 interface Props {
@@ -29,10 +29,7 @@ function RegionHomePage(props: Props) {
   useEffect(() => {
     queue()
       .defer(json, METADATALINK)
-      .defer(
-        json,
-        `https://raw.githubusercontent.com/UNDP-Data/Access-All-Data-Data-Repo/main/regionData/UNDP_${region}.json`,
-      )
+      .defer(json, `${DATALINK}/regionData/UNDP_${region}.json`)
       .await(
         (
           err: any,

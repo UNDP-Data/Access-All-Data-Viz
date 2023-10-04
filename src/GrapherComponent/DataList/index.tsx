@@ -9,7 +9,7 @@ import {
 } from '../../Types';
 import Context from '../../Context/Context';
 import { ListEl } from './ListEl';
-import { MAP_SETTINGS } from '../../Constants';
+import { DATALINK, MAP_SETTINGS } from '../../Constants';
 
 interface Props {
   indicators: IndicatorMetaDataType[];
@@ -33,7 +33,7 @@ export function DataList(props: Props) {
       queue()
         .defer(
           json,
-          `https://raw.githubusercontent.com/UNDP-Data/Access-All-Data-Data-Repo/main/${
+          `${DATALINK}/${
             MAP_SETTINGS.findIndex(
               d => d.region === selectedCountryOrRegion,
             ) === -1

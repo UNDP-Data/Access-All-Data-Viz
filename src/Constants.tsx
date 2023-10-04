@@ -37,6 +37,10 @@ export const SIGNATURE_SOLUTIONS_LIST: (
 
 export const METADATALINK =
   'https://raw.githubusercontent.com/UNDP-Data/Indicators-MetaData/for-redesign/indicatorMetaData.json';
+
+export const DATALINK =
+  'https://raw.githubusercontent.com/UNDP-Data/Access-All-Data-Data-Repo/main';
+
 export const COUNTRYTAXONOMYLINK =
   'https://raw.githubusercontent.com/UNDP-Data/country-taxonomy-from-azure/main/country_territory_groups.json';
 
@@ -48,7 +52,7 @@ export const REGION_ACRONYMS = ['AP', 'AS', 'ECA', 'LAC', 'SSA'];
 export const MAP_SETTINGS = [
   {
     region: 'WLD',
-    center: [420, 365],
+    center: [420, 395],
     scale: 220,
   },
   {

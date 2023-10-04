@@ -141,7 +141,7 @@ export function UnivariateMap(props: Props) {
     const mapGSelect = select(mapG.current);
     const mapSvgSelect = select(mapSvg.current);
     const zoomBehaviour = zoom()
-      .scaleExtent([1, 6])
+      .scaleExtent([0.75, 6])
       .translateExtent([
         [-20, 0],
         [svgWidth + 20, svgHeight],
@@ -156,7 +156,9 @@ export function UnivariateMap(props: Props) {
     <GraphDiv>
       <svg
         width='100%'
-        height='100%'
+        style={{
+          height: 'calc(80vh - 60px)',
+        }}
         viewBox={`0 0 ${svgWidth} ${svgHeight}`}
         ref={mapSvg}
       >

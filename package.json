@@ -47,6 +47,7 @@
     "d3-brush": "^3.0.0",
     "d3-collection": "^1.0.7",
     "d3-delaunay": "^6.0.2",
+    "d3-force": "^3.0.0",
     "d3-format": "^3.1.0",
     "d3-geo": "^3.0.1",
     "d3-geo-projection": "^4.0.0",
@@ -55,6 +56,7 @@
     "d3-scale": "^4.0.2",
     "d3-selection": "^3.0.0",
     "d3-shape": "^3.1.0",
+    "d3-timer": "^3.0.1",
     "d3-transition": "^3.0.1",
     "d3-zoom": "^3.0.0",
     "dom-to-image": "^2.6.0",
@@ -81,7 +83,7 @@
     "react-router-dom": "^6.4.5",
     "styled-components": "^5.3.1",
     "typescript": "^5.0.3",
-    "undp-viz-colors": "^1.0.5",
+    "undp-viz-colors": "^1.0.6",
     "web-vitals": "^1.1.2",
     "xlsx": "^0.18.5"
   },
@@ -92,6 +94,8 @@
     "lint": "eslint ."
   },
   "devDependencies": {
+    "@types/d3-force": "^3.0.6",
+    "@types/d3-timer": "^3.0.0",
     "@types/lodash.flatten": "^4.4.7",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
