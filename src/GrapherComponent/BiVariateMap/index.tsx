@@ -181,6 +181,7 @@ export function BiVariateMap(props: Props) {
         width='100%'
         style={{
           height: 'calc(80vh - 60px)',
+          minHeight: 'calc(46.25rem - 60px)',
         }}
         ref={mapSvg}
       >

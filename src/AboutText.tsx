@@ -407,7 +407,7 @@ export const ABOUT_TEXT_LINKS = [
           achievement of the 2030 Agenda for Sustainable Development.
         </p>
         <p className='undp-typography'>
-          UNDP’s work on governance includes promoting inclusive and
+          UNDP&apos;s work on governance includes promoting inclusive and
           future-smart public goods and services, democratic institutions and
           processes, an inclusive public sphere as well as integrating
           governance principles into development polices and programmes. Working
@@ -416,6 +416,17 @@ export const ABOUT_TEXT_LINKS = [
           and security services. UNDP also works closely with national data
           producers to strengthen data availability to better monitor progress
           towards more inclusive, just and peaceful societies.
+        </p>
+        <p className='undp-typography'>
+          This portal provides data for selected governance indicators. The
+          indicator selection took into account data availability, global,
+          regional and national coverage. Data sources are included on each
+          indicator, and further information on methodology, metadata or other
+          technical should be consulted in the data producer/compiler website
+          and respective methodological and technical materials. There are
+          multiple datasets featured in the Data Futures Platform, and UNDP does
+          not endorse or verify the content of datasets owned by other
+          organizations and made available in the platform.
         </p>
       </div>
     ),

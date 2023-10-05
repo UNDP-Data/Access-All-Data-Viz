@@ -158,6 +158,7 @@ export function UnivariateMap(props: Props) {
         width='100%'
         style={{
           height: 'calc(80vh - 60px)',
+          minHeight: 'calc(46.25rem - 60px)',
         }}
         viewBox={`0 0 ${svgWidth} ${svgHeight}`}
         ref={mapSvg}
