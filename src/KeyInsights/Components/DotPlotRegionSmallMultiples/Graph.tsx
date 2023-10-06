@@ -11,7 +11,10 @@ export function Graph(props: Props) {
   return (
     <div
       className='flex-div flex-wrap'
-      style={{ justifyContent: 'space-between', flexGrow: 1 }}
+      style={{
+        justifyContent: 'space-between',
+        alignItems: 'center',
+      }}
     >
       {regions.map((d, i) =>
         data.countryData[

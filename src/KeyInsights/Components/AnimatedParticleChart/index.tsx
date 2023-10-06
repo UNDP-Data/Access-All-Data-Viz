@@ -46,11 +46,7 @@ export function ParticleRowChart(props: RowProps) {
   } = props;
   return (
     <>
-      {title ? (
-        <h6 style={{ flexGrow: 1 }} className='undp-typography'>
-          {title}
-        </h6>
-      ) : null}
+      {title ? <h6 className='undp-typography'>{title}</h6> : null}
       {data ? (
         <Graph
           data={data}
@@ -134,37 +130,39 @@ export function ParticleColumnChart(props: ColumnProps) {
     <>
       {title ? <h6 className='undp-typography'>{title}</h6> : null}
       {data.length > 0 && notes.length > 0 ? (
-        <ColumnGraph
-          data={data}
-          width={width}
-          scale={scale}
-          backgroundColor={backgroundColor}
-          color={color}
-          notes={notes}
-          overlayText
-          circleRadius={circleRadius}
-        />
+        <div>
+          <ColumnGraph
+            data={data}
+            width={width}
+            scale={scale}
+            backgroundColor={backgroundColor}
+            color={color}
+            notes={notes}
+            overlayText
+            circleRadius={circleRadius}
+          />
+          {footer ? (
+            <div
+              className='flex-div gap-03 flex-vert-align-center margin-bottom-00'
+              style={{ width: '100%' }}
+            >
+              <p
+                className='undp-typography margin-bottom-00 small-font'
+                style={{
+                  color: 'var(--gray-600)',
+                  marginTop: '-36px',
+                }}
+              >
+                {footer}
+              </p>
+            </div>
+          ) : null}
+        </div>
       ) : (
         <div className='undp-loader-container undp-container'>
           <div className='undp-loader' />
         </div>
       )}
-      {footer ? (
-        <div
-          className='flex-div gap-03 flex-vert-align-center margin-bottom-00'
-          style={{ width: '100%' }}
-        >
-          <p
-            className='undp-typography margin-bottom-00 small-font'
-            style={{
-              color: 'var(--gray-600)',
-              marginTop: '-36px',
-            }}
-          >
-            {footer}
-          </p>
-        </div>
-      ) : null}
     </>
   );
 }

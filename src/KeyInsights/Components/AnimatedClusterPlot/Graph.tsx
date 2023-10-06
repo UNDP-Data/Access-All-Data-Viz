@@ -21,7 +21,7 @@ interface Props {
 
 const ColorKey = styled.div`
   width: auto;
-  @media (max-width: 1500px) {
+  @media (max-width: 960px) {
     width: 100%;
   }
 `;
@@ -66,14 +66,14 @@ export function Graph(props: Props) {
           <div
             style={{
               backgroundColor: 'var(--gray-600)',
-              height: '0.875rem',
-              width: '0.875rem',
+              height: '10px',
+              width: '10px',
               borderRadius: '1rem',
             }}
           />
           <p
             className='undp-typography margin-bottom-00'
-            style={{ color: 'var(--gray-600)' }}
+            style={{ color: 'var(--gray-600)', fontSize: '1rem' }}
           >
             {colorKeys[0]}:{' '}
             <span className='bold'>
@@ -97,14 +97,14 @@ export function Graph(props: Props) {
           <div
             style={{
               backgroundColor: 'var(--blue-600)',
-              height: '0.875rem',
-              width: '0.875rem',
+              height: '10px',
+              width: '10px',
               borderRadius: '1rem',
             }}
           />
           <p
             className='undp-typography margin-bottom-00'
-            style={{ color: 'var(--blue-600)' }}
+            style={{ color: 'var(--blue-600)', fontSize: '1rem' }}
           >
             {colorKeys[1]}:{' '}
             <span className='bold'>

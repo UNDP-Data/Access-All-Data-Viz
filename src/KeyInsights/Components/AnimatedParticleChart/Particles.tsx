@@ -151,20 +151,20 @@ export function Particles(props: Props) {
         />
         {overlayText ? (
           <NoteDiv height={height}>
-            <NoteDivText className='undp-typography small-font bold'>
+            <NoteDivText className='undp-typography small-font bold margin-bottom-00'>
               {note}
             </NoteDivText>
           </NoteDiv>
         ) : null}
+        {notePlacement === 'bottom' && !overlayText ? (
+          <h6
+            className='undp-typography margin-top-03 margin-bottom-00'
+            style={{ color: 'var(--blue-600)' }}
+          >
+            {note}
+          </h6>
+        ) : null}
       </div>
-      {notePlacement === 'bottom' && !overlayText ? (
-        <h6
-          className='undp-typography margin-top-03 margin-bottom-00'
-          style={{ color: 'var(--blue-600)' }}
-        >
-          {note}
-        </h6>
-      ) : null}
     </div>
   );
 }

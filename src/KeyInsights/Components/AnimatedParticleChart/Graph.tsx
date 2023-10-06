@@ -38,15 +38,21 @@ export function Graph(props: RowProps) {
     circleRadius,
   } = props;
   const [svgWidth, setSvgWidth] = useState(0);
+  const [svgHeight, setSvgHeight] = useState(0);
   const graphDiv = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (graphDiv.current) {
       setSvgWidth(graphDiv.current.clientWidth);
+      setSvgHeight(
+        graphDiv.current.clientHeight < (svgWidth * 9) / 16
+          ? (svgWidth * 9) / 16
+          : graphDiv.current.clientHeight,
+      );
     }
   }, [graphDiv?.current?.clientHeight]);
   return (
     <div style={{ flexGrow: 1 }}>
-      <div ref={graphDiv} style={{ height: '450px' }} className='hello'>
+      <div ref={graphDiv} style={{ height: `${svgHeight}px` }}>
         {svgWidth ? (
           <GraphComponent
             data={data}
@@ -59,7 +65,7 @@ export function Graph(props: RowProps) {
             overlayText={overlayText}
             circleRadius={circleRadius}
             svgWidth={svgWidth}
-            svgHeight={400}
+            svgHeight={svgHeight - 30}
           />
         ) : (
           <div className='undp-loader-container undp-container'>
@@ -97,7 +103,7 @@ export function ColumnGraph(props: ColumnProps) {
             <div className='flex-div flex-vert-align-center gap-00' key={i}>
               <Particles
                 width={(width[i] * (svgWidth - data.length * 2)) / 100}
-                height={375}
+                height={(svgWidth * 9) / 16}
                 density={Math.round(d * scale)}
                 backgroundColor={backgroundColor[i]}
                 color={color[i]}

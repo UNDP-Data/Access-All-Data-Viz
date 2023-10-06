@@ -11,7 +11,7 @@ export function DotPlot(props: Props) {
   const radius = (gridSize - 6) / 2;
   return (
     <div>
-      <p className='undp-typography margin-bottom-00 small-font bold'>
+      <p className='undp-typography margin-bottom-01 small-font bold'>
         {region.replace(
           'currently Europe & Central Asia (excluding high income)',
           'excluding high income',
@@ -20,7 +20,7 @@ export function DotPlot(props: Props) {
           ({year})
         </span>
       </p>
-      <p className='undp-typography margin-bottom-00'>
+      <p className='undp-typography margin-bottom-01'>
         {Math.round(value)} people out of 100
       </p>
       <svg width='100%' viewBox={`0 0 ${size} ${(size * 4) / 25}`}>
