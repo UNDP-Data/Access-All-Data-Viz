@@ -38,7 +38,7 @@ export function GenderKeyInsights() {
         >
           <div className='insight-card-text'>
             <div>
-              <p className='category-tag margin-bottom-07'>
+              <p className='category-tag margin-bottom-05'>
                 Key Insight: Education
               </p>
               <p className='undp-typography'>
@@ -95,7 +95,7 @@ export function GenderKeyInsights() {
         >
           <div className='insight-card-text'>
             <div>
-              <p className='category-tag margin-bottom-07'>
+              <p className='category-tag margin-bottom-05'>
                 Key Insight: Share of Informal Economy
               </p>
               <p className='undp-typography'>
@@ -156,7 +156,7 @@ export function GenderKeyInsights() {
         >
           <div className='insight-card-text'>
             <div>
-              <p className='category-tag margin-bottom-07'>
+              <p className='category-tag margin-bottom-05'>
                 Key Insight: National Income
               </p>
               <p className='undp-typography'>

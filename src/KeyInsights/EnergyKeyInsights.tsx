@@ -29,7 +29,7 @@ export function EnergyKeyInsights() {
         <div className='insight-card'>
           <div className='insight-card-text'>
             <div>
-              <p className='category-tag margin-bottom-07'>
+              <p className='category-tag margin-bottom-05'>
                 Key Insight: Electricity Access
               </p>
               <p className='undp-typography'>
@@ -81,7 +81,7 @@ export function EnergyKeyInsights() {
         <div className='insight-card'>
           <div className='insight-card-text'>
             <div>
-              <p className='category-tag margin-bottom-07'>
+              <p className='category-tag margin-bottom-05'>
                 Key Insight: Access to electricity
               </p>
               <p className='undp-typography'>
@@ -133,7 +133,7 @@ export function EnergyKeyInsights() {
         <div className='insight-card'>
           <div className='insight-card-text'>
             <div>
-              <p className='category-tag margin-bottom-07'>
+              <p className='category-tag margin-bottom-05'>
                 Key Insight: Access to clean cooking
               </p>
               <p className='undp-typography'>

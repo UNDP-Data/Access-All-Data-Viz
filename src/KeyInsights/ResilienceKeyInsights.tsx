@@ -36,7 +36,7 @@ export function ResilienceKeyInsights() {
         >
           <div className='insight-card-text'>
             <div>
-              <p className='category-tag margin-bottom-07'>
+              <p className='category-tag margin-bottom-05'>
                 Key Insight: Urban vs Rural Population
               </p>
               <p className='undp-typography'>
@@ -79,7 +79,7 @@ export function ResilienceKeyInsights() {
         >
           <div className='insight-card-text'>
             <div>
-              <p className='category-tag margin-bottom-07'>
+              <p className='category-tag margin-bottom-05'>
                 Key Insight: Population residing in slums
               </p>
               <p className='undp-typography'>

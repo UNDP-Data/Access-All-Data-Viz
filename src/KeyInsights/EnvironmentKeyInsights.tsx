@@ -36,7 +36,7 @@ export function EnvironmentKeyInsights() {
         >
           <div className='insight-card-text'>
             <div>
-              <p className='category-tag margin-bottom-07'>
+              <p className='category-tag margin-bottom-05'>
                 Key Insight: Greenhouse Gas Emissions
               </p>
               <p className='undp-typography'>
@@ -77,7 +77,7 @@ export function EnvironmentKeyInsights() {
         >
           <div className='insight-card-text'>
             <div>
-              <p className='category-tag margin-bottom-07'>
+              <p className='category-tag margin-bottom-05'>
                 Key Insight: Material Footprint
               </p>
               <p className='undp-typography'>

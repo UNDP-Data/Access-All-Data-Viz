@@ -37,7 +37,7 @@ export function GovernanceKeyInsights() {
         >
           <div className='insight-card-text'>
             <div>
-              <p className='category-tag margin-bottom-07'>
+              <p className='category-tag margin-bottom-05'>
                 Key Insight: Governance Effectiveness Index
               </p>
               <p className='undp-typography'>
@@ -86,7 +86,7 @@ export function GovernanceKeyInsights() {
         >
           <div className='insight-card-text'>
             <div>
-              <p className='category-tag margin-bottom-07'>
+              <p className='category-tag margin-bottom-05'>
                 Key Insight: The rule of law
               </p>
               <p className='undp-typography'>

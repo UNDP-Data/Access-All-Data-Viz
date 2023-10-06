@@ -39,7 +39,7 @@ export function PovertyAndInequalityKeyInsights() {
         >
           <div className='insight-card-text'>
             <div>
-              <p className='category-tag margin-bottom-07'>
+              <p className='category-tag margin-bottom-05'>
                 Key Insight: Poverty headcount at $2.15 a day
               </p>
               <p className='undp-typography'>
@@ -97,7 +97,7 @@ export function PovertyAndInequalityKeyInsights() {
         >
           <div className='insight-card-text'>
             <div>
-              <p className='category-tag margin-bottom-07'>
+              <p className='category-tag margin-bottom-05'>
                 Key Insight: Social Protection
               </p>
               <p className='undp-typography'>
@@ -155,7 +155,7 @@ export function PovertyAndInequalityKeyInsights() {
         >
           <div className='insight-card-text'>
             <div>
-              <p className='category-tag margin-bottom-07'>
+              <p className='category-tag margin-bottom-05'>
                 Key Insight: Income Inequality
               </p>
               <p className='undp-typography'>
