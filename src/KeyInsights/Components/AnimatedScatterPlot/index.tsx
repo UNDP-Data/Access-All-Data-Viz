@@ -100,7 +100,7 @@ export function ScatterGraph(props: Props) {
   }, []);
   return (
     <>
-      {title ? <h5 className='undp-typography'>{title}</h5> : null}
+      {title ? <h6 className='undp-typography'>{title}</h6> : null}
       {data && finalYear ? (
         <Graph
           data={data}
@@ -119,7 +119,7 @@ export function ScatterGraph(props: Props) {
       {footer ? (
         <div>
           <p
-            className='undp-typography margin-bottom-00 italics small-font'
+            className='undp-typography margin-bottom-00 small-font'
             style={{ color: 'var(--gray-600)' }}
           >
             {footer}

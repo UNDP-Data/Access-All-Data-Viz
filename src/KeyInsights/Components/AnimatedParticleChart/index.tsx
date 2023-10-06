@@ -47,9 +47,9 @@ export function ParticleRowChart(props: RowProps) {
   return (
     <>
       {title ? (
-        <h5 style={{ flexGrow: 1 }} className='undp-typography'>
+        <h6 style={{ flexGrow: 1 }} className='undp-typography'>
           {title}
-        </h5>
+        </h6>
       ) : null}
       {data ? (
         <Graph
@@ -132,7 +132,7 @@ export function ParticleColumnChart(props: ColumnProps) {
   }, []);
   return (
     <>
-      {title ? <h5 className='undp-typography'>{title}</h5> : null}
+      {title ? <h6 className='undp-typography'>{title}</h6> : null}
       {data.length > 0 && notes.length > 0 ? (
         <ColumnGraph
           data={data}
@@ -155,7 +155,7 @@ export function ParticleColumnChart(props: ColumnProps) {
           style={{ width: '100%' }}
         >
           <p
-            className='undp-typography margin-bottom-00 italics small-font'
+            className='undp-typography margin-bottom-00 small-font'
             style={{
               color: 'var(--gray-600)',
               marginTop: '-36px',

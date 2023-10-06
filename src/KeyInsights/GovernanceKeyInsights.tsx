@@ -6,26 +6,6 @@ import UNDPColorModule from 'undp-viz-colors';
 import { WorldMap } from './Components/WorldMap';
 import { WorldMapChangeOverTime } from './Components/WorldMapChangeOverTime';
 
-const ColumnEl = styled.div`
-  width: calc(50% - 1rem);
-  @media (max-width: 960px) {
-    width: 100%;
-  }
-`;
-
-const GraphColumnEl = styled.div`
-  width: calc(50% - 3rem);
-  display: flex;
-  flex-direction: column;
-  padding: var(--spacing-05);
-  justify-content: space-between;
-  gap: var(--spacing-05);
-  background-color: var(--white);
-  @media (max-width: 960px) {
-    width: 100%;
-  }
-`;
-
 const WrapperEl = styled.div`
   scroll-snap-type: x mandatory;
   scroll-padding: 0;
@@ -55,12 +35,12 @@ export function GovernanceKeyInsights() {
             scrollSnapAlign: 'start',
           }}
         >
-          <ColumnEl>
+          <div className='insight-card-text'>
             <div>
-              <h6 className='undp-typography'>
+              <p className='category-tag margin-bottom-07'>
                 Key Insight: Governance Effectiveness Index
-              </h6>
-              <h5 className='undp-typography'>
+              </p>
+              <p className='undp-typography'>
                 The government&apos;s effectiveness in formulating and
                 implementing sound policies and regulations, enforcing laws, and
                 providing basic public services varies significantly across
@@ -68,7 +48,7 @@ export function GovernanceKeyInsights() {
                 including governance practices, economic conditions, corruption
                 levels, political stability, institutional robustness, and
                 cultural influences.
-              </h5>
+              </p>
             </div>
             <div className='flex-div flex-vert-align-center margin-top-07'>
               <img
@@ -86,15 +66,15 @@ export function GovernanceKeyInsights() {
                 }}
               />
             </div>
-          </ColumnEl>
-          <GraphColumnEl>
+          </div>
+          <div className='insight-card-graph'>
             <WorldMap
               dataId='governmenteffectivenessestimate_wbge'
               title='Government Effectiveness Index'
               valueArray={[-2, -1.5, -1, -0.5, 0, 0.5, 1, 1.5, 2]}
               colorArray={UNDPColorModule.divergentColors.colorsx10}
             />
-          </GraphColumnEl>
+          </div>
         </div>
         <div
           className='flex-div flex-wrap gap-07 padding-bottom-07'
@@ -104,15 +84,17 @@ export function GovernanceKeyInsights() {
             scrollSnapAlign: 'start',
           }}
         >
-          <ColumnEl>
+          <div className='insight-card-text'>
             <div>
-              <h6 className='undp-typography'>Key Insight: The rule of law</h6>
-              <h5 className='undp-typography'>
+              <p className='category-tag margin-bottom-07'>
+                Key Insight: The rule of law
+              </p>
+              <p className='undp-typography'>
                 The rule of law is the foundation for human rights. Recent
                 trends suggest that more countries are experiencing a decline in
                 respect for the rule of law, and this persistent trend is now
                 evident even in established democracies.
-              </h5>
+              </p>
             </div>
             <div className='flex-div flex-vert-align-center margin-top-07'>
               <img
@@ -130,15 +112,15 @@ export function GovernanceKeyInsights() {
                 style={{ opacity: '0.3' }}
               />
             </div>
-          </ColumnEl>
-          <GraphColumnEl>
+          </div>
+          <div className='insight-card-graph'>
             <WorldMapChangeOverTime
               dataId='ruleoflawestimatevallatest_wbankinfo'
               title='Change in Rule of Law Index from 2015'
               valueArray={[-0.5, -0.25, 0, 0.25, 0.5]}
               colorArray={UNDPColorModule.divergentColors.colorsx06}
             />
-          </GraphColumnEl>
+          </div>
         </div>
       </WrapperEl>
     </div>

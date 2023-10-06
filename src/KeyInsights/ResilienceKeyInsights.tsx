@@ -5,26 +5,6 @@ import { useRef } from 'react';
 import { ScatterGraph } from './Components/AnimatedScatterPlot';
 import { StackedBarGraph } from './Components/StackedBarGraph';
 
-const ColumnEl = styled.div`
-  width: calc(50% - 1rem);
-  @media (max-width: 960px) {
-    width: 100%;
-  }
-`;
-
-const GraphColumnEl = styled.div`
-  width: calc(50% - 3rem);
-  display: flex;
-  flex-direction: column;
-  padding: var(--spacing-05);
-  justify-content: space-between;
-  gap: var(--spacing-05);
-  background-color: var(--white);
-  @media (max-width: 960px) {
-    width: 100%;
-  }
-`;
-
 const WrapperEl = styled.div`
   scroll-snap-type: x mandatory;
   scroll-padding: 0;
@@ -54,17 +34,17 @@ export function ResilienceKeyInsights() {
             scrollSnapAlign: 'start',
           }}
         >
-          <ColumnEl>
+          <div className='insight-card-text'>
             <div>
-              <h6 className='undp-typography'>
+              <p className='category-tag margin-bottom-07'>
                 Key Insight: Urban vs Rural Population
-              </h6>
-              <h5 className='undp-typography'>
+              </p>
+              <p className='undp-typography'>
                 There has been a mass migration of populations from rural to
                 urban areas in recent decades which is expected to continue to
                 increase with rising incomes and shifts away from employment in
                 agriculture, especially in developing countries.
-              </h5>
+              </p>
             </div>
             <div className='flex-div flex-vert-align-center margin-top-07'>
               <img
@@ -82,12 +62,12 @@ export function ResilienceKeyInsights() {
                 }}
               />
             </div>
-          </ColumnEl>
-          <GraphColumnEl>
+          </div>
+          <div className='insight-card-graph'>
             <StackedBarGraph
               dataId={['Rural Population, total', 'Urban Population, total']}
             />
-          </GraphColumnEl>
+          </div>
         </div>
         <div
           className='flex-div flex-wrap gap-07 padding-bottom-07'
@@ -97,19 +77,19 @@ export function ResilienceKeyInsights() {
             scrollSnapAlign: 'start',
           }}
         >
-          <ColumnEl>
+          <div className='insight-card-text'>
             <div>
-              <h6 className='undp-typography'>
+              <p className='category-tag margin-bottom-07'>
                 Key Insight: Population residing in slums
-              </h6>
-              <h5 className='undp-typography'>
+              </p>
+              <p className='undp-typography'>
                 While the proportion of the population residing in slums has
                 been declining over time, those who continue to inhabit these
                 areas confront higher levels of poverty, a lack of access to
                 clean water, poor housing conditions among others, thus placing
                 them at risk of infectious diseases, higher rates of
                 malnutrition, childhood stunting, and premature mortality.
-              </h5>
+              </p>
             </div>
             <div className='flex-div flex-vert-align-center margin-top-07'>
               <img
@@ -127,8 +107,8 @@ export function ResilienceKeyInsights() {
                 style={{ opacity: '0.3' }}
               />
             </div>
-          </ColumnEl>
-          <GraphColumnEl>
+          </div>
+          <div className='insight-card-graph'>
             <ScatterGraph
               dataId={[
                 'populationlivinginslums_cpiaplis',
@@ -144,7 +124,7 @@ export function ResilienceKeyInsights() {
               baseYear={2006}
               yearIncrement={2}
             />
-          </GraphColumnEl>
+          </div>
         </div>
       </WrapperEl>
     </div>

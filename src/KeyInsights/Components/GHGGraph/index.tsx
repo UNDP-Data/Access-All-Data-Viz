@@ -39,7 +39,7 @@ export function GHGEmissionGraph() {
   }, []);
   return (
     <>
-      <h5 className='undp-typography'>Global Greenhouse Gas (GHG) emissions</h5>
+      <h6 className='undp-typography'>Global Greenhouse Gas (GHG) emissions</h6>
       <div ref={graphDiv} style={{ flexGrow: 1 }}>
         {data && svgWidth && svgHeight ? (
           <Graph data={data} svgWidth={svgWidth} svgHeight={svgHeight} />
@@ -54,7 +54,7 @@ export function GHGEmissionGraph() {
         style={{ width: '100%' }}
       >
         <p
-          className='undp-typography margin-bottom-00 italics small-font'
+          className='undp-typography margin-bottom-00 small-font'
           style={{ color: 'var(--gray-600)' }}
         >
           *The conversion is based on calculation from EPA

@@ -5,26 +5,6 @@ import { useRef } from 'react';
 import { ParticleColumnChart } from './Components/AnimatedParticleChart';
 import { GHGEmissionGraph } from './Components/GHGGraph';
 
-const ColumnEl = styled.div`
-  width: calc(50% - 1rem);
-  @media (max-width: 960px) {
-    width: 100%;
-  }
-`;
-
-const GraphColumnEl = styled.div`
-  width: calc(50% - 3rem);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: var(--spacing-05);
-  padding: var(--spacing-05);
-  background-color: var(--white);
-  @media (max-width: 960px) {
-    width: 100%;
-  }
-`;
-
 const WrapperEl = styled.div`
   scroll-snap-type: x mandatory;
   scroll-padding: 0;
@@ -54,17 +34,17 @@ export function EnvironmentKeyInsights() {
             scrollSnapAlign: 'start',
           }}
         >
-          <ColumnEl>
+          <div className='insight-card-text'>
             <div>
-              <h6 className='undp-typography'>
+              <p className='category-tag margin-bottom-07'>
                 Key Insight: Greenhouse Gas Emissions
-              </h6>
-              <h5 className='undp-typography'>
+              </p>
+              <p className='undp-typography'>
                 As greenhouse gas concentrations continue to rise, we can
                 anticipate an increase in the frequency and intensity of extreme
                 weather events. This phenomenon also jeopardizes food security
                 and poses health risks.
-              </h5>
+              </p>
             </div>
             <div className='flex-div flex-vert-align-center margin-top-07'>
               <img
@@ -82,10 +62,10 @@ export function EnvironmentKeyInsights() {
                 }}
               />
             </div>
-          </ColumnEl>
-          <GraphColumnEl>
+          </div>
+          <div className='insight-card-graph'>
             <GHGEmissionGraph />
-          </GraphColumnEl>
+          </div>
         </div>
         <div
           className='flex-div flex-wrap gap-07 padding-bottom-07'
@@ -95,19 +75,21 @@ export function EnvironmentKeyInsights() {
             scrollSnapAlign: 'start',
           }}
         >
-          <ColumnEl>
+          <div className='insight-card-text'>
             <div>
-              <h6 className='undp-typography'>
+              <p className='category-tag margin-bottom-07'>
                 Key Insight: Material Footprint
-              </h6>
-              <h5 className='undp-typography'>
+              </p>
+              <p className='undp-typography'>
                 To support economic growth and to satisfy the material needs of
                 people, the amount of raw materials extracted has been on the
                 rise. The material footprint per capita has increased at an
                 alarming rate.
-              </h5>
-              <p className='undp-typography'>
-                In 1990, about <span className='bold'>8.1 metric tons</span>{' '}
+                <br />
+                <br />
+                In 1990, about <span className='bold'>
+                  8.1 metric tons
+                </span>{' '}
                 about of natural resources were used to satisfy an
                 individual&apos;s needs. In 2021, that rose to{' '}
                 <span className='bold'>
@@ -131,8 +113,8 @@ export function EnvironmentKeyInsights() {
                 style={{ opacity: '0.3' }}
               />
             </div>
-          </ColumnEl>
-          <GraphColumnEl>
+          </div>
+          <div className='insight-card-graph'>
             <ParticleColumnChart
               width={[50, 50]}
               dataId='Material footprint per capita (tonnes)'
@@ -146,7 +128,7 @@ export function EnvironmentKeyInsights() {
               multiplyByPopulation
               footer='*1 Dot = 100 Megaton'
             />
-          </GraphColumnEl>
+          </div>
         </div>
       </WrapperEl>
     </div>

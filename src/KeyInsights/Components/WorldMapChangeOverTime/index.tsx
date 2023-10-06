@@ -45,7 +45,7 @@ export function WorldMapChangeOverTime(props: Props) {
   }, []);
   return (
     <>
-      <h5 className='undp-typography margin-bottom-00'>{title}</h5>
+      <h6 className='undp-typography margin-bottom-00'>{title}</h6>
       {data ? (
         <Graph
           data={data}
@@ -59,7 +59,10 @@ export function WorldMapChangeOverTime(props: Props) {
         </div>
       )}
       {footer ? (
-        <p className='undp-typography small-font italics margin-bottom-00'>
+        <p
+          className='undp-typography small-font margin-bottom-00'
+          style={{ color: 'var(--gray-600)' }}
+        >
           {footer}
         </p>
       ) : null}

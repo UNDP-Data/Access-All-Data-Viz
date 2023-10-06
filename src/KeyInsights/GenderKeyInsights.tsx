@@ -6,26 +6,6 @@ import UNDPColorModule from 'undp-viz-colors';
 import { DifferenceLineChart } from './Components/DifferenceLineChart';
 import { ScatterGraph } from './Components/AnimatedScatterPlot';
 
-const ColumnEl = styled.div`
-  width: calc(50% - 1rem);
-  @media (max-width: 960px) {
-    width: 100%;
-  }
-`;
-
-const GraphColumnEl = styled.div`
-  width: calc(50% - 3rem);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: var(--spacing-05);
-  padding: var(--spacing-05);
-  background-color: var(--white);
-  @media (max-width: 960px) {
-    width: 100%;
-  }
-`;
-
 const WrapperEl = styled.div`
   scroll-snap-type: x mandatory;
   scroll-padding: 0;
@@ -56,17 +36,19 @@ export function GenderKeyInsights() {
             justifyContent: 'space-between',
           }}
         >
-          <ColumnEl>
+          <div className='insight-card-text'>
             <div>
-              <h6 className='undp-typography'>Key Insight: Education</h6>
-              <h5 className='undp-typography'>
+              <p className='category-tag margin-bottom-07'>
+                Key Insight: Education
+              </p>
+              <p className='undp-typography'>
                 Over the past two centuries, there has been significant global
                 progress in the field of education. This transformation has been
                 driven by a growing recognition of the advantages of education
                 for both individuals and society, coupled with increased
                 government support. Consequently, gender disparities in
                 education have gradually diminished.
-              </h5>
+              </p>
             </div>
             <div className='flex-div flex-vert-align-center margin-top-07'>
               <img
@@ -84,8 +66,8 @@ export function GenderKeyInsights() {
                 }}
               />
             </div>
-          </ColumnEl>
-          <GraphColumnEl>
+          </div>
+          <div className='insight-card-graph'>
             <DifferenceLineChart
               dataId={[
                 'Mean Years of Schooling, male (years)',
@@ -101,7 +83,7 @@ export function GenderKeyInsights() {
               lineTags={['Males', 'Females']}
               idSuffix='schooling'
             />
-          </GraphColumnEl>
+          </div>
         </div>
         <div
           className='flex-div flex-wrap gap-07 padding-bottom-07'
@@ -111,12 +93,12 @@ export function GenderKeyInsights() {
             scrollSnapAlign: 'start',
           }}
         >
-          <ColumnEl>
+          <div className='insight-card-text'>
             <div>
-              <h6 className='undp-typography'>
+              <p className='category-tag margin-bottom-07'>
                 Key Insight: Share of Informal Economy
-              </h6>
-              <h5 className='undp-typography'>
+              </p>
+              <p className='undp-typography'>
                 Education and training play pivotal roles in facilitating the
                 shift from informal to formal employment. A person&apos;s
                 likelihood of engaging in informal employment decreases with
@@ -124,7 +106,7 @@ export function GenderKeyInsights() {
                 vulnerable obtain social security and decent working conditions,
                 making them less susceptible to poverty due to more stable and
                 higher income.
-              </h5>
+              </p>
             </div>
             <div className='flex-div flex-vert-align-center margin-top-07'>
               <img
@@ -145,8 +127,8 @@ export function GenderKeyInsights() {
                 }}
               />
             </div>
-          </ColumnEl>
-          <GraphColumnEl>
+          </div>
+          <div className='insight-card-graph'>
             <ScatterGraph
               dataId={[
                 'mean_years_of_schooling_female_years_hdr',
@@ -162,7 +144,7 @@ export function GenderKeyInsights() {
               baseYear={2010}
               yearIncrement={2}
             />
-          </GraphColumnEl>
+          </div>
         </div>
         <div
           className='flex-div flex-wrap gap-07 padding-bottom-07'
@@ -172,17 +154,19 @@ export function GenderKeyInsights() {
             scrollSnapAlign: 'start',
           }}
         >
-          <ColumnEl>
+          <div className='insight-card-text'>
             <div>
-              <h6 className='undp-typography'>Key Insight: National Income</h6>
-              <h5 className='undp-typography'>
+              <p className='category-tag margin-bottom-07'>
+                Key Insight: National Income
+              </p>
+              <p className='undp-typography'>
                 Despite increasing labour force participation and educational
                 attainment, income inequalities between men and women are still
                 present, although they have been narrowing across the world. To
                 attain equal opportunities, it&apos;s essential to transform the
                 societal norms and stereotypes that restrict the range of
                 options accessible to individuals, regardless of their gender.
-              </h5>
+              </p>
             </div>
             <div className='flex-div flex-vert-align-center margin-top-07'>
               <img
@@ -200,8 +184,8 @@ export function GenderKeyInsights() {
                 style={{ opacity: '0.3' }}
               />
             </div>
-          </ColumnEl>
-          <GraphColumnEl>
+          </div>
+          <div className='insight-card-graph'>
             <DifferenceLineChart
               dataId={[
                 'Gross National Income Per Capita, male (2017 PPP$)',
@@ -216,7 +200,7 @@ export function GenderKeyInsights() {
               lineTags={['Males', 'Females']}
               idSuffix='income'
             />
-          </GraphColumnEl>
+          </div>
         </div>
       </WrapperEl>
     </div>

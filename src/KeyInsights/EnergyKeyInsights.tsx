@@ -5,26 +5,6 @@ import { useRef } from 'react';
 import { DotPlotSmallMultiples } from './Components/DotPlotRegionSmallMultiples';
 import { AnimatedClusterPlot } from './Components/AnimatedClusterPlot';
 
-const ColumnEl = styled.div`
-  width: calc(50% - 1rem);
-  @media (max-width: 960px) {
-    width: 100%;
-  }
-`;
-
-const GraphColumnEl = styled.div`
-  width: calc(50% - 3rem);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: var(--spacing-05);
-  padding: var(--spacing-05);
-  background-color: var(--white);
-  @media (max-width: 960px) {
-    width: 100%;
-  }
-`;
-
 const WrapperEl = styled.div`
   scroll-snap-type: x mandatory;
   scroll-padding: 0;
@@ -46,20 +26,13 @@ export function EnergyKeyInsights() {
         className='flex-div stat-container undp-scrollbar'
         ref={WrapperRef}
       >
-        <div
-          className='flex-div flex-wrap gap-07 padding-bottom-07'
-          style={{
-            padding: 'var(--spacing-07) 0',
-            minWidth: '100%',
-            scrollSnapAlign: 'start',
-          }}
-        >
-          <ColumnEl>
+        <div className='insight-card'>
+          <div className='insight-card-text'>
             <div>
-              <h6 className='undp-typography'>
+              <p className='category-tag margin-bottom-07'>
                 Key Insight: Electricity Access
-              </h6>
-              <h5 className='undp-typography'>
+              </p>
+              <p className='undp-typography'>
                 Globally, access to electricity grew at an annual average rate
                 of 0.7 percentage points between 2010 and 2021. The number of
                 people without electricity almost halved during this period,
@@ -70,7 +43,7 @@ export function EnergyKeyInsights() {
                 . However, achieving full electrification by 2030 requires an
                 annual rate of growth in access of 1 percentage point per year
                 from 2021 onward—almost twice the current pace.
-              </h5>
+              </p>
             </div>
             <div className='flex-div flex-vert-align-center margin-top-07'>
               <img
@@ -88,8 +61,8 @@ export function EnergyKeyInsights() {
                 }}
               />
             </div>
-          </ColumnEl>
-          <GraphColumnEl>
+          </div>
+          <div className='insight-card-graph'>
             <AnimatedClusterPlot
               dataId='Access to electricity (% of population)'
               isDataPercent
@@ -103,22 +76,15 @@ export function EnergyKeyInsights() {
               timer={1000}
               scale={0.000001}
             />
-          </GraphColumnEl>
+          </div>
         </div>
-        <div
-          className='flex-div flex-wrap gap-07 padding-bottom-07'
-          style={{
-            padding: 'var(--spacing-07) 0',
-            minWidth: '100%',
-            scrollSnapAlign: 'start',
-          }}
-        >
-          <ColumnEl>
+        <div className='insight-card'>
+          <div className='insight-card-text'>
             <div>
-              <h6 className='undp-typography'>
+              <p className='category-tag margin-bottom-07'>
                 Key Insight: Access to electricity
-              </h6>
-              <h5 className='undp-typography'>
+              </p>
+              <p className='undp-typography'>
                 Despite notable progress made in recent decades, significant
                 disparities in electricity access persist. In particular, the
                 remote and rural populations in developing regions, such as
@@ -126,7 +92,7 @@ export function EnergyKeyInsights() {
                 in accessing reliable and affordable electrification. Without
                 escalated efforts, the world may still fall short of achieving
                 universal electrification by 2030.
-              </h5>
+              </p>
             </div>
             <div className='flex-div flex-vert-align-center margin-top-07'>
               <img
@@ -147,8 +113,8 @@ export function EnergyKeyInsights() {
                 }}
               />
             </div>
-          </ColumnEl>
-          <GraphColumnEl>
+          </div>
+          <div className='insight-card-graph'>
             <DotPlotSmallMultiples
               dataId='access_elec_wb'
               title='Access to electricity'
@@ -162,22 +128,15 @@ export function EnergyKeyInsights() {
               ]}
               footer='*Regions as defined by UNDP Bureaus'
             />
-          </GraphColumnEl>
+          </div>
         </div>
-        <div
-          className='flex-div flex-wrap gap-07 padding-bottom-07'
-          style={{
-            padding: 'var(--spacing-07) 0',
-            minWidth: '100%',
-            scrollSnapAlign: 'start',
-          }}
-        >
-          <ColumnEl>
+        <div className='insight-card'>
+          <div className='insight-card-text'>
             <div>
-              <h6 className='undp-typography'>
+              <p className='category-tag margin-bottom-07'>
                 Key Insight: Access to clean cooking
-              </h6>
-              <h5 className='undp-typography'>
+              </p>
+              <p className='undp-typography'>
                 While a significant portion of the world&apos;s population
                 (71.3%) has access to clean cooking technologies, approximately
                 2.3 billion people still rely on polluting fuels and inefficient
@@ -185,7 +144,7 @@ export function EnergyKeyInsights() {
                 will continue to claim millions of lives each year while
                 perpetuating gender inequity, deforestation, and negative
                 climate impacts unless efforts are rapidly scaled up.
-              </h5>
+              </p>
             </div>
             <div className='flex-div flex-vert-align-center margin-top-07'>
               <img
@@ -203,8 +162,8 @@ export function EnergyKeyInsights() {
                 style={{ opacity: '0.3' }}
               />
             </div>
-          </ColumnEl>
-          <GraphColumnEl>
+          </div>
+          <div className='insight-card-graph'>
             <DotPlotSmallMultiples
               dataId='access_fuel_tech_wb'
               title='Access to clean cooking'
@@ -216,9 +175,9 @@ export function EnergyKeyInsights() {
                 'UNDP_ECA',
                 'UNDP_LAC',
               ]}
-              footer='*Regions as defined by UNDP Bureaus'
+              footer='Regions as defined by UNDP Bureaus'
             />
-          </GraphColumnEl>
+          </div>
         </div>
       </WrapperEl>
     </div>
