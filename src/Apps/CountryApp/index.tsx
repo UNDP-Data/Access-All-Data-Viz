@@ -104,7 +104,10 @@ export function CountryApp(props: CountryProps) {
                 width: '100%',
               }}
             >
-              <div style={{ padding: 'var(--spacing-07)' }}>
+              <div
+                style={{ padding: 'var(--spacing-07)' }}
+                className='max-width-1980'
+              >
                 <h4
                   className='undp-typography margin-bottom-00'
                   style={{
@@ -128,6 +131,7 @@ export function CountryApp(props: CountryProps) {
                 }}
               >
                 <div
+                  className='max-width-1980'
                   style={{
                     padding: 'var(--spacing-09) var(--spacing-07)',
                   }}

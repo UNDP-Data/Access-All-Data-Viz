@@ -59,7 +59,7 @@ export function RegionApp(props: Props) {
             width: 'calc(100% - 4rem)',
           }}
         >
-          <div>
+          <div className='max-width-1980'>
             <h4
               className='undp-typography margin-bottom-03'
               style={{
@@ -67,7 +67,7 @@ export function RegionApp(props: Props) {
                 width: 'calc(100% - 4rem)',
               }}
             >
-              We regret to inform you that the country you are inquiring about
+              We regret to inform you that the region you are inquiring about
               cannot be ascertained within our current digital framework. Our
               team is actively engaged in addressing this matter.
             </h4>
@@ -82,6 +82,7 @@ export function RegionApp(props: Props) {
             }}
           >
             <div
+              className='max-width-1980'
               style={{
                 padding: 'var(--spacing-09) var(--spacing-07)',
               }}

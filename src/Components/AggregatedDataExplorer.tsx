@@ -216,44 +216,45 @@ function AggregatedDataExplorer(props: Props) {
   return (
     <div>
       <div
-        className='flex-div gap-03 flex-vert-align-center'
         style={{
           padding: '1.5rem',
           backgroundColor: 'var(--gray-400)',
           margin: '-2.5rem -1rem 2rem -1rem',
         }}
       >
-        <h5
-          className='undp-typography margin-bottom-00'
-          style={{ flexShrink: 0 }}
-        >
-          Explore Aggregated Data for
-        </h5>
-        <Select
-          className='undp-select'
-          placeholder='Select A Country'
-          style={{ flexGrow: 0 }}
-          showSearch
-          value={
-            regionId === 'WLD'
-              ? 'World'
-              : COUNTRIES_BY_UNDP_REGIONS[
-                  COUNTRIES_BY_UNDP_REGIONS.findIndex(
-                    d => d.region === `UNDP_${regionId}`,
-                  )
-                ].name
-          }
-        >
-          <Select.Option className='undp-select-option' value={regionId}>
-            {regionId === 'WLD'
-              ? 'World'
-              : COUNTRIES_BY_UNDP_REGIONS[
-                  COUNTRIES_BY_UNDP_REGIONS.findIndex(
-                    d => d.region === `UNDP_${regionId}`,
-                  )
-                ].name}
-          </Select.Option>
-        </Select>
+        <div className='flex-div gap-03 flex-vert-align-center max-width-1980'>
+          <h5
+            className='undp-typography margin-bottom-00'
+            style={{ flexShrink: 0 }}
+          >
+            Explore Aggregated Data for
+          </h5>
+          <Select
+            className='undp-select'
+            placeholder='Select A Country'
+            style={{ flexGrow: 0 }}
+            showSearch
+            value={
+              regionId === 'WLD'
+                ? 'World'
+                : COUNTRIES_BY_UNDP_REGIONS[
+                    COUNTRIES_BY_UNDP_REGIONS.findIndex(
+                      d => d.region === `UNDP_${regionId}`,
+                    )
+                  ].name
+            }
+          >
+            <Select.Option className='undp-select-option' value={regionId}>
+              {regionId === 'WLD'
+                ? 'World'
+                : COUNTRIES_BY_UNDP_REGIONS[
+                    COUNTRIES_BY_UNDP_REGIONS.findIndex(
+                      d => d.region === `UNDP_${regionId}`,
+                    )
+                  ].name}
+            </Select.Option>
+          </Select>
+        </div>
       </div>
       <Context.Provider
         // eslint-disable-next-line react/jsx-no-constructed-context-values
@@ -280,7 +281,7 @@ function AggregatedDataExplorer(props: Props) {
           updateSignatureSolutionForDataList,
         }}
       >
-        <div className='undp-container'>
+        <div className='undp-container max-width-1980'>
           <AggregatedGraphingEl
             data={finalData}
             indicators={indicatorsList}

@@ -82,7 +82,7 @@ export function SDGTrackerViz(props: Props) {
     };
   });
   return (
-    <div style={{ minWidth: '22.5rem' }}>
+    <div style={{ minWidth: '22.5rem' }} className='max-width-1980'>
       <div style={{ backgroundColor: 'var(--white)', padding: '2rem' }}>
         <div>
           <div

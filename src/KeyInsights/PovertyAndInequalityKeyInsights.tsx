@@ -19,11 +19,7 @@ const WrapperEl = styled.div`
 export function PovertyAndInequalityKeyInsights() {
   const WrapperRef = useRef<HTMLDivElement>(null);
   return (
-    <div
-      style={{
-        padding: '0 var(--spacing-07)',
-      }}
-    >
+    <div>
       <WrapperEl
         className='flex-div stat-container undp-scrollbar'
         ref={WrapperRef}

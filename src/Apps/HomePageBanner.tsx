@@ -44,6 +44,7 @@ export function HomePageBanner() {
           style={{
             padding: 'var(--spacing-13) var(--spacing-07)',
           }}
+          className='max-width-1980'
         >
           <h1
             className='undp-typography margin-bottom-05'

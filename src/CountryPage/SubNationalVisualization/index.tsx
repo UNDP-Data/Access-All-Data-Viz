@@ -26,59 +26,60 @@ export function SubNationalVisualization(props: Props) {
   return (
     <div>
       <div
-        className='flex-div gap-03 flex-vert-align-center'
         style={{
           padding: '1.5rem',
           backgroundColor: 'var(--gray-400)',
-          margin: '-2.5rem -1rem 0.25rem -1rem',
+          margin: '-2.5rem -1rem 2rem -1rem',
         }}
       >
-        <h5
-          className='undp-typography margin-bottom-00'
-          style={{ flexShrink: 0 }}
-        >
-          Explore Sub National Data for
-        </h5>
-        <Select
-          className='undp-select'
-          placeholder='Select an indicator'
-          style={{ flexGrow: 0 }}
-          showSearch
-          value={`${selectedMap.mapId}_${selectedMap.option}`}
-          onChange={d => {
-            const subNationalLayerIndx = subNationalOptions.findIndex(
-              el => el.id === d.split('_')[0],
-            );
-            const subNationalOptionIndx = subNationalOptions[
-              subNationalLayerIndx
-            ].options.findIndex(el => el.label === d.split('_')[1]);
-            setSelectedMap({
-              mapId: d.split('_')[0],
-              option: d.split('_')[1],
-              pmTiles: subNationalOptions[subNationalLayerIndx].pmTilesSource,
-              regionID: subNationalOptions[subNationalLayerIndx].regionID,
-              countryID: subNationalOptions[subNationalLayerIndx].countryID,
-              mapLayerDetails:
-                subNationalOptions[subNationalLayerIndx].options[
-                  subNationalOptionIndx
-                ],
-            });
-          }}
-        >
-          {subNationalOptions.map((d, i) => (
-            <Select.OptGroup key={i} label={d.title}>
-              {d.options.map(el => (
-                <Select.Option
-                  className='undp-select-option'
-                  value={`${d.id}_${el.label}`}
-                  key={`${d.id}_${el.label}`}
-                >
-                  {el.label}
-                </Select.Option>
-              ))}
-            </Select.OptGroup>
-          ))}
-        </Select>
+        <div className='flex-div gap-03 flex-vert-align-center max-width-1980'>
+          <h5
+            className='undp-typography margin-bottom-00'
+            style={{ flexShrink: 0 }}
+          >
+            Explore Sub National Data for
+          </h5>
+          <Select
+            className='undp-select'
+            placeholder='Select an indicator'
+            style={{ flexGrow: 0 }}
+            showSearch
+            value={`${selectedMap.mapId}_${selectedMap.option}`}
+            onChange={d => {
+              const subNationalLayerIndx = subNationalOptions.findIndex(
+                el => el.id === d.split('_')[0],
+              );
+              const subNationalOptionIndx = subNationalOptions[
+                subNationalLayerIndx
+              ].options.findIndex(el => el.label === d.split('_')[1]);
+              setSelectedMap({
+                mapId: d.split('_')[0],
+                option: d.split('_')[1],
+                pmTiles: subNationalOptions[subNationalLayerIndx].pmTilesSource,
+                regionID: subNationalOptions[subNationalLayerIndx].regionID,
+                countryID: subNationalOptions[subNationalLayerIndx].countryID,
+                mapLayerDetails:
+                  subNationalOptions[subNationalLayerIndx].options[
+                    subNationalOptionIndx
+                  ],
+              });
+            }}
+          >
+            {subNationalOptions.map((d, i) => (
+              <Select.OptGroup key={i} label={d.title}>
+                {d.options.map(el => (
+                  <Select.Option
+                    className='undp-select-option'
+                    value={`${d.id}_${el.label}`}
+                    key={`${d.id}_${el.label}`}
+                  >
+                    {el.label}
+                  </Select.Option>
+                ))}
+              </Select.OptGroup>
+            ))}
+          </Select>
+        </div>
       </div>
       <CountryMap countryId={countryFromLink} mapLayer={selectedMap} />
     </div>

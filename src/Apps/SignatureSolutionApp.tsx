@@ -56,6 +56,7 @@ export function SignatureSolutionApp(props: Props) {
         }}
       >
         <div
+          className='max-width-1980'
           style={{
             padding: 'var(--spacing-09) var(--spacing-07) 0 var(--spacing-07)',
           }}
@@ -77,21 +78,28 @@ export function SignatureSolutionApp(props: Props) {
             backgroundColor: 'var(--gray-300)',
           }}
         >
-          {signatureSolution === 'Poverty and Inequality' ? (
-            <PovertyAndInequalityKeyInsights />
-          ) : signatureSolution === 'Environment' ? (
-            <EnvironmentKeyInsights />
-          ) : signatureSolution === 'Energy' ? (
-            <EnergyKeyInsights />
-          ) : signatureSolution === 'Governance' ? (
-            <GovernanceKeyInsights />
-          ) : signatureSolution === 'Resilience' ? (
-            <ResilienceKeyInsights />
-          ) : signatureSolution === 'Gender' ? (
-            <GenderKeyInsights />
-          ) : (
-            <PovertyAndInequalityKeyInsights />
-          )}
+          <div
+            className='max-width-1980'
+            style={{
+              padding: '0 var(--spacing-07)',
+            }}
+          >
+            {signatureSolution === 'Poverty and Inequality' ? (
+              <PovertyAndInequalityKeyInsights />
+            ) : signatureSolution === 'Environment' ? (
+              <EnvironmentKeyInsights />
+            ) : signatureSolution === 'Energy' ? (
+              <EnergyKeyInsights />
+            ) : signatureSolution === 'Governance' ? (
+              <GovernanceKeyInsights />
+            ) : signatureSolution === 'Resilience' ? (
+              <ResilienceKeyInsights />
+            ) : signatureSolution === 'Gender' ? (
+              <GenderKeyInsights />
+            ) : (
+              <PovertyAndInequalityKeyInsights />
+            )}
+          </div>
         </div>
       </div>
       <Tabs

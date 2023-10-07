@@ -83,42 +83,43 @@ export function CountryHomePageForCountryPage(props: PropsWithoutSS) {
   return (
     <div>
       <div
-        className='flex-div gap-03 flex-vert-align-center'
         style={{
           padding: '1.5rem',
           backgroundColor: 'var(--gray-400)',
           margin: '-2.5rem -1rem 2rem -1rem',
         }}
       >
-        <h5
-          className='undp-typography margin-bottom-00'
-          style={{ flexShrink: 0 }}
-        >
-          Explore Data for
-        </h5>
-        <Select
-          className='undp-select'
-          placeholder='Select A Country'
-          style={{ flexGrow: 0 }}
-          showSearch
-          value={signatureSolution || 'All'}
-          onChange={d => {
-            setSignatureSolution(d === 'All' ? undefined : d);
-          }}
-        >
-          {SIGNATURE_SOLUTIONS_LIST.map((d, i) => (
-            <Select.Option className='undp-select-option' value={d} key={i}>
-              {d === 'All' ? 'All Signature Solutions' : d}
-            </Select.Option>
-          ))}
-        </Select>
+        <div className='flex-div gap-03 flex-vert-align-center max-width-1980'>
+          <h5
+            className='undp-typography margin-bottom-00'
+            style={{ flexShrink: 0 }}
+          >
+            Explore Data for
+          </h5>
+          <Select
+            className='undp-select'
+            placeholder='Select A Country'
+            style={{ flexGrow: 0 }}
+            showSearch
+            value={signatureSolution || 'All'}
+            onChange={d => {
+              setSignatureSolution(d === 'All' ? undefined : d);
+            }}
+          >
+            {SIGNATURE_SOLUTIONS_LIST.map((d, i) => (
+              <Select.Option className='undp-select-option' value={d} key={i}>
+                {d === 'All' ? 'All Signature Solutions' : d}
+              </Select.Option>
+            ))}
+          </Select>
+        </div>
       </div>
       {indicatorsList &&
       finalData &&
       regionList &&
       countryList &&
       countryTaxonomy ? (
-        <div className='undp-container'>
+        <div className='undp-container max-width-1980'>
           <CountryVisualization
             finalData={finalData}
             indicatorsList={indicatorsList}

@@ -197,7 +197,7 @@ export function AggregatedRegionVisualization(
             />
           ) : (
             <p
-              className='undp-typography bold'
+              className='undp-typography bold max-width-1980'
               style={{
                 textAlign: 'center',
                 backgroundColor: 'var(--gray-200)',

@@ -160,50 +160,51 @@ function DataExplorer(props: Props) {
         <>
           {topicToFilter ? null : (
             <div
-              className='flex-div gap-03 flex-vert-align-center'
               style={{
                 padding: '1.5rem',
                 backgroundColor: 'var(--gray-400)',
                 margin: '-2.5rem -1rem 2rem -1rem',
               }}
             >
-              <h5
-                className='undp-typography margin-bottom-00'
-                style={{ flexShrink: 0 }}
-              >
-                Explore all {signatureSolution} Related Data for
-              </h5>
-              <Select
-                className='undp-select'
-                placeholder='Select A Country'
-                style={{ flexGrow: 0 }}
-                showSearch
-                value={
-                  countryTaxonomy[
-                    countryTaxonomy.findIndex(el => el.code === countryId)
-                  ].name
-                }
-                onChange={d => {
-                  setCountryId(
+              <div className='flex-div gap-03 flex-vert-align-center max-width-1980'>
+                <h5
+                  className='undp-typography margin-bottom-00'
+                  style={{ flexShrink: 0 }}
+                >
+                  Explore all {signatureSolution} Related Data for
+                </h5>
+                <Select
+                  className='undp-select'
+                  placeholder='Select A Country'
+                  style={{ flexGrow: 0 }}
+                  showSearch
+                  value={
                     countryTaxonomy[
-                      countryTaxonomy.findIndex(el => el.name === d)
-                    ].code,
-                  );
-                }}
-              >
-                {countryTaxonomy.map((d, i) => (
-                  <Select.Option
-                    className='undp-select-option'
-                    value={d.name}
-                    key={i}
-                  >
-                    {d.name}
-                  </Select.Option>
-                ))}
-              </Select>
+                      countryTaxonomy.findIndex(el => el.code === countryId)
+                    ].name
+                  }
+                  onChange={d => {
+                    setCountryId(
+                      countryTaxonomy[
+                        countryTaxonomy.findIndex(el => el.name === d)
+                      ].code,
+                    );
+                  }}
+                >
+                  {countryTaxonomy.map((d, i) => (
+                    <Select.Option
+                      className='undp-select-option'
+                      value={d.name}
+                      key={i}
+                    >
+                      {d.name}
+                    </Select.Option>
+                  ))}
+                </Select>
+              </div>
             </div>
           )}
-          <div className='undp-container'>
+          <div className='undp-container max-width-1980'>
             {countryId !== 'WLD' &&
             REGION_ACRONYMS.indexOf(countryId) === -1 ? (
               <div>

@@ -209,7 +209,7 @@ export function CountryMap(props: Props) {
     });
   }, [mapLayer]);
   return (
-    <div>
+    <div className='max-width-1980'>
       <div
         style={{
           height: 'calc(100vh - 175px)',

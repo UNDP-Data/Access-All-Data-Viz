@@ -11,7 +11,7 @@ export function AboutPage(props: Props) {
   const data = ABOUT_TEXT_LINKS[ABOUT_TEXT_LINKS.findIndex(d => d.id === id)];
   return (
     <div className='undp-container'>
-      <div className='flex-div flex-wrap'>
+      <div className='flex-div flex-wrap max-width-1980'>
         <div
           style={{
             width: 'calc(50% - 0.5rem)',
