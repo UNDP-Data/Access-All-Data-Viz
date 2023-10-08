@@ -75,7 +75,7 @@ export function Graph(props: Props) {
             className='undp-typography margin-bottom-00'
             style={{ color: 'var(--gray-600)', fontSize: '1rem' }}
           >
-            <span className='bold'>
+            <span className='bold' style={{ fontSize: '1rem' }}>
               {format('.3s')(
                 data.yearlyData[
                   data.yearlyData.findIndex(el =>
@@ -106,7 +106,10 @@ export function Graph(props: Props) {
             className='undp-typography margin-bottom-00'
             style={{ color: 'var(--gray-600)', fontSize: '1rem' }}
           >
-            <span className='bold' style={{ color: 'var(--blue-600)' }}>
+            <span
+              className='bold'
+              style={{ color: 'var(--blue-600)', fontSize: '1rem' }}
+            >
               {format('.3s')(
                 data.yearlyData[
                   data.yearlyData.findIndex(el => el.year === baseYear)
