@@ -13,11 +13,7 @@ export function GHGEmissionGraph() {
   const graphDiv = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (graphDiv.current) {
-      setSvgHeight(
-        graphDiv.current.clientHeight < (graphDiv.current.clientWidth * 9) / 16
-          ? (graphDiv.current.clientWidth * 9) / 16
-          : graphDiv.current.clientHeight,
-      );
+      setSvgHeight((graphDiv.current.clientWidth * 9) / 16);
       setSvgWidth(
         graphDiv.current.clientWidth < 600 ? 600 : graphDiv.current.clientWidth,
       );
@@ -40,25 +36,28 @@ export function GHGEmissionGraph() {
   return (
     <>
       <h6 className='undp-typography'>Global Greenhouse Gas (GHG) emissions</h6>
-      <div ref={graphDiv} style={{ flexGrow: 1 }}>
+      <div ref={graphDiv}>
         {data && svgWidth && svgHeight ? (
-          <Graph data={data} svgWidth={svgWidth} svgHeight={svgHeight} />
+          <div>
+            <Graph data={data} svgWidth={svgWidth} svgHeight={svgHeight} />
+            <div
+              className='flex-div gap-03 flex-vert-align-center margin-bottom-00'
+              style={{ width: '100%' }}
+            >
+              <p
+                className='undp-typography margin-bottom-00 small-font'
+                style={{ color: 'var(--gray-600)' }}
+              >
+                *The conversion is based on calculation from U.S. Environmental
+                Protection Agency
+              </p>
+            </div>
+          </div>
         ) : (
           <div className='undp-loader-container undp-container'>
             <div className='undp-loader' />
           </div>
         )}
-      </div>
-      <div
-        className='flex-div gap-03 flex-vert-align-center margin-bottom-00'
-        style={{ width: '100%' }}
-      >
-        <p
-          className='undp-typography margin-bottom-00 small-font'
-          style={{ color: 'var(--gray-600)' }}
-        >
-          *The conversion is based on calculation from EPA
-        </p>
       </div>
     </>
   );

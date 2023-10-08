@@ -69,7 +69,10 @@ export function EnvironmentKeyInsights() {
               />
             </div>
           </div>
-          <div className='insight-card-graph'>
+          <div
+            className='insight-card-graph'
+            style={{ justifyContent: 'space-between' }}
+          >
             <GHGEmissionGraph />
           </div>
         </div>
@@ -129,7 +132,7 @@ export function EnvironmentKeyInsights() {
               color={['#55606E', '#55606E']}
               title='Global material footprint in tonnes'
               circleRadius={5}
-              suffix='T'
+              suffix=' tons'
               multiplyByPopulation
               footer='*1 Dot = 100 Megaton'
             />
