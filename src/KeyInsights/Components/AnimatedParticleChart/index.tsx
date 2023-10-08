@@ -50,7 +50,7 @@ export function ParticleRowChart(props: RowProps) {
       {data ? (
         <Graph
           data={data}
-          height={height > 500 ? 500 : height}
+          height={height}
           scale={scale}
           backgroundColor={backgroundColor}
           color={color}
