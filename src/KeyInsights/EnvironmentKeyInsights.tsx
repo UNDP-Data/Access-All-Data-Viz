@@ -22,14 +22,7 @@ export function EnvironmentKeyInsights() {
         className='flex-div stat-container undp-scrollbar'
         ref={WrapperRef}
       >
-        <div
-          className='flex-div flex-wrap gap-07 padding-bottom-07'
-          style={{
-            padding: 'var(--spacing-07) 0',
-            minWidth: '100%',
-            scrollSnapAlign: 'start',
-          }}
-        >
+        <div className='insight-card'>
           <div className='insight-card-text'>
             <div>
               <p className='category-tag margin-bottom-05'>
@@ -76,14 +69,7 @@ export function EnvironmentKeyInsights() {
             <GHGEmissionGraph />
           </div>
         </div>
-        <div
-          className='flex-div flex-wrap gap-07 padding-bottom-07'
-          style={{
-            padding: 'var(--spacing-07) 0',
-            minWidth: '100%',
-            scrollSnapAlign: 'start',
-          }}
-        >
+        <div className='insight-card'>
           <div className='insight-card-text'>
             <div>
               <p className='category-tag margin-bottom-05'>
