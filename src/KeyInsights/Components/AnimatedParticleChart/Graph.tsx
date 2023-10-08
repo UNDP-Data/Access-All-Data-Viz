@@ -44,28 +44,26 @@ export function Graph(props: RowProps) {
     }
   }, [graphDiv]);
   return (
-    <div style={{ flexGrow: 1 }}>
-      <div ref={graphDiv}>
-        {svgWidth ? (
-          <GraphComponent
-            data={data}
-            height={height}
-            scale={scale}
-            backgroundColor={backgroundColor}
-            color={color}
-            notes={notes}
-            sideNotes={sideNotes}
-            overlayText={overlayText}
-            circleRadius={svgWidth < 460 ? 2 : circleRadius}
-            svgWidth={svgWidth}
-            svgHeight={500}
-          />
-        ) : (
-          <div className='undp-loader-container undp-container'>
-            <div className='undp-loader' />
-          </div>
-        )}
-      </div>
+    <div ref={graphDiv}>
+      {svgWidth ? (
+        <GraphComponent
+          data={data}
+          height={height}
+          scale={scale}
+          backgroundColor={backgroundColor}
+          color={color}
+          notes={notes}
+          sideNotes={sideNotes}
+          overlayText={overlayText}
+          circleRadius={svgWidth < 460 ? 2 : circleRadius}
+          svgWidth={svgWidth}
+          svgHeight={(svgWidth * 9) / 16 > 500 ? 500 : (svgWidth * 9) / 16}
+        />
+      ) : (
+        <div className='undp-loader-container undp-container'>
+          <div className='undp-loader' />
+        </div>
+      )}
     </div>
   );
 }
