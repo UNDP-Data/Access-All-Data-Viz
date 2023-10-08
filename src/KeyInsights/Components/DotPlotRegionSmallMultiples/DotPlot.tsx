@@ -19,7 +19,9 @@ export function DotPlot(props: Props) {
           'currently Europe & Central Asia (excluding high income)',
           'excluding high income',
         )}{' '}
-        <span style={{ color: 'var(--gray-500)' }}>({year})</span>
+        <span style={{ color: 'var(--gray-500)', fontSize: '1rem' }}>
+          ({year})
+        </span>
       </p>
       <p
         className='undp-typography margin-bottom-03 bold'

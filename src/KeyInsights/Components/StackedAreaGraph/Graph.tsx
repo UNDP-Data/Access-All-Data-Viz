@@ -87,7 +87,7 @@ export function Graph(props: Props) {
             style={{ fontSize: '1rem' }}
           >
             Rural:{' '}
-            <span className='bold'>
+            <span className='bold' style={{ fontSize: '1rem' }}>
               {format('.3s')(mouseOverData.param1).replace('G', 'B')}
             </span>{' '}
             ({mouseOverData.year})
@@ -106,7 +106,7 @@ export function Graph(props: Props) {
             style={{ fontSize: '1rem' }}
           >
             Urban:{' '}
-            <span className='bold'>
+            <span className='bold' style={{ fontSize: '1rem' }}>
               {format('.3s')(mouseOverData.param2).replace('G', 'B')}
             </span>{' '}
             ({mouseOverData.year})
