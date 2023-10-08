@@ -62,7 +62,7 @@ export function Graph(props: RowProps) {
             notes={notes}
             sideNotes={sideNotes}
             overlayText={overlayText}
-            circleRadius={circleRadius}
+            circleRadius={svgWidth < 460 ? 2 : circleRadius}
             svgWidth={svgWidth}
             svgHeight={svgHeight - 30}
           />
@@ -101,14 +101,14 @@ export function ColumnGraph(props: ColumnProps) {
             <div className='flex-div flex-vert-align-center gap-00' key={i}>
               <Particles
                 width={(width[i] * (svgWidth - data.length * 2)) / 100}
-                height={(svgWidth * 9) / 16}
+                height={(svgWidth * 9) / 16 < 400 ? 400 : (svgWidth * 9) / 16}
                 density={Math.round(d * scale)}
                 backgroundColor={backgroundColor[i]}
                 color={color[i]}
                 notePlacement={i === 0 ? 'top' : 'bottom'}
                 overlayText={overlayText}
                 stroke={i < data.length - 1}
-                circleRadius={circleRadius}
+                circleRadius={svgWidth < 460 ? 2 : circleRadius}
               />
             </div>
           ))}

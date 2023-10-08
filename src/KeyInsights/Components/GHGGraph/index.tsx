@@ -13,10 +13,12 @@ export function GHGEmissionGraph() {
   const graphDiv = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (graphDiv.current) {
-      setSvgHeight((graphDiv.current.clientWidth * 9) / 16);
-      setSvgWidth(
-        graphDiv.current.clientWidth < 600 ? 600 : graphDiv.current.clientWidth,
+      setSvgHeight(
+        (graphDiv.current.clientWidth * 9) / 16 < 400
+          ? 400
+          : (graphDiv.current.clientWidth * 9) / 16,
       );
+      setSvgWidth(graphDiv.current.clientWidth);
     }
   }, [graphDiv?.current?.clientHeight]);
   useEffect(() => {

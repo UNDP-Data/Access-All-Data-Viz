@@ -106,7 +106,7 @@ export function Graph(props: Props) {
             textAnchor: 'middle',
             fill: 'var(--gray-700)',
             fontFamily: 'var(--fontFamily)',
-            fontSize: '0.875rem',
+            fontSize: svgWidth < 640 ? '0.875rem' : '0.75rem',
             fontWeight: 'bold',
           }}
         >
@@ -114,7 +114,7 @@ export function Graph(props: Props) {
             data.yearlyData[data.yearlyData.findIndex(d => d.year === 1990)]
               .value,
           )}{' '}
-          Million T
+          {svgWidth < 640 ? 'Mil T' : 'Million T'}
         </text>
         <rect
           x={(3 * svgWidth) / 4}
@@ -133,12 +133,12 @@ export function Graph(props: Props) {
             textAnchor: 'middle',
             fill: 'var(--gray-700)',
             fontFamily: 'var(--fontFamily)',
-            fontSize: '0.875rem',
+            fontSize: svgWidth < 640 ? '0.875rem' : '0.75rem',
             fontWeight: 'bold',
           }}
         >
           {format('.2s')(data.yearlyData[data.yearlyData.length - 1].value)}{' '}
-          Million T
+          {svgWidth < 640 ? 'Mil T' : 'Million T'}
         </text>
         <polygon
           fill='url(#ghgGradient)'
@@ -172,7 +172,7 @@ export function Graph(props: Props) {
               textAnchor: 'middle',
               fill: 'var(--red)',
               fontFamily: 'var(--fontFamily)',
-              fontSize: '1.5rem',
+              fontSize: svgWidth < 640 ? '1rem' : '1.5rem',
               fontWeight: 'bold',
             }}
           >
@@ -194,7 +194,7 @@ export function Graph(props: Props) {
               textAnchor: 'middle',
               fill: 'var(--gray-700)',
               fontFamily: 'var(--fontFamily)',
-              fontSize: '1rem',
+              fontSize: svgWidth < 640 ? '0.75rem' : '1rem',
             }}
           >
             increase in GHG emissions
@@ -207,7 +207,7 @@ export function Graph(props: Props) {
               textAnchor: 'middle',
               fill: 'var(--gray-700)',
               fontFamily: 'var(--fontFamily)',
-              fontSize: '1rem',
+              fontSize: svgWidth < 640 ? '0.75rem' : '1rem',
             }}
           >
             which is equivalent to
@@ -219,7 +219,7 @@ export function Graph(props: Props) {
               textAnchor: 'middle',
               fill: 'var(--red)',
               fontFamily: 'var(--fontFamily)',
-              fontSize: '1.5rem',
+              fontSize: svgWidth < 640 ? '1rem' : '1.5rem',
               fontWeight: 'bold',
             }}
           >
@@ -238,7 +238,7 @@ export function Graph(props: Props) {
               textAnchor: 'middle',
               fill: 'var(--gray-700)',
               fontFamily: 'var(--fontFamily)',
-              fontSize: '1rem',
+              fontSize: svgWidth < 640 ? '0.75rem' : '1rem',
             }}
           >
             extra trees seedlings
@@ -251,10 +251,10 @@ export function Graph(props: Props) {
               textAnchor: 'middle',
               fill: 'var(--gray-700)',
               fontFamily: 'var(--fontFamily)',
-              fontSize: '1rem',
+              fontSize: svgWidth < 640 ? '0.75rem' : '1rem',
             }}
           >
-            grown for 10 years
+            grown for 10 years needed
           </text>
           <text
             y={0}
@@ -264,10 +264,10 @@ export function Graph(props: Props) {
               textAnchor: 'middle',
               fill: 'var(--gray-700)',
               fontFamily: 'var(--fontFamily)',
-              fontSize: '1rem',
+              fontSize: svgWidth < 640 ? '0.75rem' : '1rem',
             }}
           >
-            needed to compensate the increase*
+            to compensate the increase*
           </text>
         </g>
       </g>
