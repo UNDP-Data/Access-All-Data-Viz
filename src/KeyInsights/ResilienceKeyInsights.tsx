@@ -3,7 +3,7 @@
 import styled from 'styled-components';
 import { useRef } from 'react';
 import { ScatterGraph } from './Components/AnimatedScatterPlot';
-import { StackedBarGraph } from './Components/StackedBarGraph';
+import { StackedBarGraph } from './Components/StackedAreaGraph';
 
 const WrapperEl = styled.div`
   scroll-snap-type: x mandatory;

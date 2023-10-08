@@ -50,7 +50,7 @@ export function ParticleRowChart(props: RowProps) {
       {data ? (
         <Graph
           data={data}
-          height={height}
+          height={height > 500 ? 500 : height}
           scale={scale}
           backgroundColor={backgroundColor}
           color={color}
@@ -136,7 +136,10 @@ export function ParticleColumnChart(props: ColumnProps) {
               <p
                 className='undp-typography margin-bottom-00'
                 key={i}
-                style={{ width: `${100 / notes.length}%` }}
+                style={{
+                  width: `${100 / notes.length}%`,
+                  marginLeft: i !== 0 ? '4px' : '0',
+                }}
               >
                 {d.split(':')[0]}
                 <br />

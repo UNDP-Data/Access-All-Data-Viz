@@ -33,10 +33,10 @@ export function AnimatedDotsG(props: Props) {
           />
         ))}
         <rect
-          x={-33}
-          y={-15}
-          width={66}
-          height={30}
+          x={-25}
+          y={-10}
+          width={50}
+          height={20}
           style={{ fill: 'var(--white)', opacity: 0.75 }}
         />
         <text
@@ -45,7 +45,7 @@ export function AnimatedDotsG(props: Props) {
           dy={7}
           style={{
             fill: 'var(--gray-700)',
-            fontSize: '1.5rem',
+            fontSize: '1rem',
             fontWeight: 'bold',
             textAnchor: 'middle',
           }}

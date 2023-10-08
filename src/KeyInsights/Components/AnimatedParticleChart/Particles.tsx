@@ -13,7 +13,6 @@ interface Props {
   note?: string;
   notePlacement: 'top' | 'bottom';
   overlayText: boolean;
-  stroke: boolean;
   circleRadius: number;
 }
 
@@ -44,7 +43,6 @@ export function Particles(props: Props) {
     note,
     notePlacement,
     overlayText,
-    stroke,
     circleRadius,
   } = props;
   const graphDiv = useRef<HTMLDivElement>(null);
@@ -128,7 +126,6 @@ export function Particles(props: Props) {
             width: `${width}px`,
             height: `${height}px`,
             backgroundColor,
-            borderRight: `${stroke ? `2px solid var(--black)` : 0}`,
           }}
         />
         {notePlacement === 'bottom' && !overlayText && note ? (

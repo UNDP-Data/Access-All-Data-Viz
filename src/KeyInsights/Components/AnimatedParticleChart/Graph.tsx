@@ -37,21 +37,15 @@ export function Graph(props: RowProps) {
     circleRadius,
   } = props;
   const [svgWidth, setSvgWidth] = useState(0);
-  const [svgHeight, setSvgHeight] = useState(0);
   const graphDiv = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (graphDiv.current) {
       setSvgWidth(graphDiv.current.clientWidth);
-      setSvgHeight(
-        graphDiv.current.clientHeight < (svgWidth * 9) / 16
-          ? (svgWidth * 9) / 16
-          : graphDiv.current.clientHeight,
-      );
     }
-  }, [graphDiv?.current?.clientHeight]);
+  }, [graphDiv]);
   return (
     <div style={{ flexGrow: 1 }}>
-      <div ref={graphDiv} style={{ height: `${svgHeight}px` }}>
+      <div ref={graphDiv}>
         {svgWidth ? (
           <GraphComponent
             data={data}
@@ -64,7 +58,7 @@ export function Graph(props: RowProps) {
             overlayText={overlayText}
             circleRadius={svgWidth < 460 ? 2 : circleRadius}
             svgWidth={svgWidth}
-            svgHeight={svgHeight - 30}
+            svgHeight={500}
           />
         ) : (
           <div className='undp-loader-container undp-container'>
@@ -96,18 +90,22 @@ export function ColumnGraph(props: ColumnProps) {
   return (
     <div ref={graphDiv} style={{ flexGrow: 1 }}>
       {svgWidth ? (
-        <div className='flex-div flex-vert-align-center gap-00'>
+        <div
+          className='flex-div flex-vert-align-center gap-00'
+          style={{
+            justifyContent: 'space-between',
+          }}
+        >
           {data.map((d, i) => (
             <div className='flex-div flex-vert-align-center gap-00' key={i}>
               <Particles
-                width={(width[i] * (svgWidth - data.length * 2)) / 100}
+                width={(width[i] * (svgWidth - data.length * 4)) / 100}
                 height={(svgWidth * 9) / 16 < 400 ? 400 : (svgWidth * 9) / 16}
                 density={Math.round(d * scale)}
                 backgroundColor={backgroundColor[i]}
                 color={color[i]}
                 notePlacement={i === 0 ? 'top' : 'bottom'}
                 overlayText={overlayText}
-                stroke={i < data.length - 1}
                 circleRadius={svgWidth < 460 ? 2 : circleRadius}
               />
             </div>

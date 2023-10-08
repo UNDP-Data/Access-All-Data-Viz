@@ -82,7 +82,10 @@ export function Graph(props: Props) {
               backgroundColor: lineColor1,
             }}
           />
-          <p className='undp-typography margin-bottom-00'>
+          <p
+            className='undp-typography margin-bottom-00'
+            style={{ fontSize: '1rem' }}
+          >
             Rural:{' '}
             <span className='bold'>
               {format('.3s')(mouseOverData.param1).replace('G', 'B')}
@@ -98,7 +101,10 @@ export function Graph(props: Props) {
               backgroundColor: lineColor2,
             }}
           />
-          <p className='undp-typography margin-bottom-00'>
+          <p
+            className='undp-typography margin-bottom-00'
+            style={{ fontSize: '1rem' }}
+          >
             Urban:{' '}
             <span className='bold'>
               {format('.3s')(mouseOverData.param2).replace('G', 'B')}

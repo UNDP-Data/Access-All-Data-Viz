@@ -148,7 +148,7 @@ export function Graph(props: Props) {
               )
             }
             svgWidth={svgWidth}
-            svgHeight={svgHeight}
+            svgHeight={svgHeight > 500 ? 500 : svgHeight}
           />
         ) : (
           <div className='undp-loader-container undp-container'>

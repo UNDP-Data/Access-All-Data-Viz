@@ -43,7 +43,7 @@ export function ScatterPlot(props: Props) {
   const graphDiv = useRef<SVGSVGElement>(null);
   const margin = {
     top: 40,
-    bottom: 30,
+    bottom: 40,
     left: 50,
     right: 20,
   };

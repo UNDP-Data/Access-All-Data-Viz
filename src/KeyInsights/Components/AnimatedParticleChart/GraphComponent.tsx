@@ -51,7 +51,6 @@ export function GraphComponent(props: RowProps) {
             note={notes[i]}
             notePlacement={i === 0 ? 'top' : 'bottom'}
             overlayText={overlayText}
-            stroke={false}
             circleRadius={circleRadius}
           />
           <div

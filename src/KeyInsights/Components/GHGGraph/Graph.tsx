@@ -142,6 +142,7 @@ export function Graph(props: Props) {
         </text>
         <polygon
           fill='url(#ghgGradient)'
+          opacity={0.3}
           points={`${svgWidth / 4},${graphHeight} ${
             (3 * svgWidth) / 4
           },${graphHeight} ${(3 * svgWidth) / 4},${
