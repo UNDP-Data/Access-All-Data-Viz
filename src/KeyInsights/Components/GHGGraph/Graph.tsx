@@ -206,9 +206,9 @@ export function Graph(props: Props) {
             x={0}
             style={{
               textAnchor: 'middle',
-              fill: 'var(--gray-700)',
+              fill: 'var(--gray-600)',
               fontFamily: 'var(--fontFamily)',
-              fontSize: svgWidth < 640 ? '0.75rem' : '1rem',
+              fontSize: svgWidth < 640 ? '0.75rem' : '0.875rem',
             }}
           >
             which is equivalent to
