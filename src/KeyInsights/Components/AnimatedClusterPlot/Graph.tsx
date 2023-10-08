@@ -75,7 +75,6 @@ export function Graph(props: Props) {
             className='undp-typography margin-bottom-00'
             style={{ color: 'var(--gray-600)', fontSize: '1rem' }}
           >
-            {colorKeys[0]}:{' '}
             <span className='bold'>
               {format('.3s')(
                 data.yearlyData[
@@ -87,7 +86,8 @@ export function Graph(props: Props) {
                   )
                 ].value,
               ).replace('G', 'B')}
-            </span>
+            </span>{' '}
+            {colorKeys[0]}
           </p>
         </ColorKey>
         <ColorKey
@@ -104,10 +104,9 @@ export function Graph(props: Props) {
           />
           <p
             className='undp-typography margin-bottom-00'
-            style={{ color: 'var(--blue-600)', fontSize: '1rem' }}
+            style={{ color: 'var(--gray-600)', fontSize: '1rem' }}
           >
-            {colorKeys[1]}:{' '}
-            <span className='bold'>
+            <span className='bold' style={{ color: 'var(--blue-600)' }}>
               {format('.3s')(
                 data.yearlyData[
                   data.yearlyData.findIndex(el => el.year === baseYear)
@@ -121,7 +120,8 @@ export function Graph(props: Props) {
                     )
                   ].value,
               ).replace('G', 'B')}
-            </span>
+            </span>{' '}
+            {colorKeys[1]}
           </p>
         </ColorKey>
       </div>

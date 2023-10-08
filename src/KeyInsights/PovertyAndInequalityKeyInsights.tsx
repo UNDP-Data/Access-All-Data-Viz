@@ -39,16 +39,13 @@ export function PovertyAndInequalityKeyInsights() {
                 Key Insight: Poverty headcount at $2.15 a day
               </p>
               <p className='undp-typography'>
-                In recent decades, extreme poverty has seen a remarkable
-                reduction of over 47 million annually over the last 30 years,
-                representing one of the most significant transformations in our
-                world.
-                <br />
-                <br />
-                However, the extent of global poverty remains substantial and{' '}
+                Extreme poverty has seen a remarkable reduction of over 47
+                million annually over the last 30 years, representing one of the
+                most significant transformations in our world. However, the
+                extent of global poverty remains substantial and{' '}
                 <span className='bold'>roughly 650 million</span> individuals,
-                or approximately 1 in 12 people, are surviving on less than
-                $2.15 a day.
+                or approximately one in twelve people, are surviving on less
+                than $2.15 a day.
               </p>
             </div>
             <div className='flex-div flex-vert-align-center margin-top-07'>
@@ -70,11 +67,12 @@ export function PovertyAndInequalityKeyInsights() {
           </div>
           <div className='insight-card-graph'>
             <AnimatedClusterPlot
+              title='Poverty headcount at $2.15 a day'
               dataId='Poverty headcount ratio at $2.15 a day (2017 PPP) (% of population)'
               isDataPercent
               colorKeys={[
-                'Poverty headcount',
-                'No. of People pull out of poverty',
+                'people living under $2.15 a day',
+                'people pull out of poverty',
               ]}
               baseYear={1991}
               footer='1 Dot = 2 Million people'
@@ -99,10 +97,13 @@ export function PovertyAndInequalityKeyInsights() {
               <p className='undp-typography'>
                 Although social expenditure has been steadily increasing, there
                 is a notable disparity in the allocation of national income to
-                social transfers between &apos;advanced economies&apos; and
-                regions like sub-Saharan Africa where social spending is
-                considerably lower overall, and social protection benefits hold
-                less significance in the social spending landscape.
+                social transfers between &pos;advanced economies&pos; and
+                regions like sub-Saharan Africa.
+                <br />
+                <br />
+                In this region, social spending is considerably lower overall,
+                and social protection benefits hold less significance in the
+                social spending landscape.
               </p>
             </div>
             <div className='flex-div flex-vert-align-center margin-top-07'>

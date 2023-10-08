@@ -36,10 +36,20 @@ export function EnvironmentKeyInsights() {
                 Key Insight: Greenhouse Gas Emissions
               </p>
               <p className='undp-typography'>
-                As greenhouse gas concentrations continue to rise, we can
-                anticipate an increase in the frequency and intensity of extreme
-                weather events. This phenomenon also jeopardizes food security
-                and poses health risks.
+                Global greenhouse gas emissions increased from{' '}
+                <span className='bold'>
+                  33 billion metric tons in 1990 to 48 billion in 2021
+                </span>
+                , a rise of 45.5% - a figure equivalent to 25 Billion trees
+                seedlings grown for 10 years.
+                <br />
+                <br />
+                This directly influences the frequency and intensity of extreme
+                weather events, which also jeopardizes food security and poses
+                health risks. While the expenses linked to addressing and
+                adapting to climate change are substantial, they remain
+                relatively modest when compared to the enormity of the
+                challenge.
               </p>
             </div>
             <div className='flex-div flex-vert-align-center margin-top-07'>
@@ -77,19 +87,18 @@ export function EnvironmentKeyInsights() {
                 Key Insight: Material Footprint
               </p>
               <p className='undp-typography'>
-                To support economic growth and to satisfy the material needs of
-                people, the amount of raw materials extracted has been on the
-                rise. The material footprint per capita has increased at an
-                alarming rate.
+                Material footprint refers to the total amount of raw materials
+                to meet final consumption demands. To support economic growth
+                and to satisfy the material needs of people, the amount of raw
+                materials extracted has been on the rise. The material footprint
+                per capita has increased at an alarming rate.
                 <br />
                 <br />
-                In 1990, about <span className='bold'>
-                  8.1 metric tons
-                </span>{' '}
-                about of natural resources were used to satisfy an
-                individual&apos;s needs. In 2021, that rose to{' '}
+                In 1990, about <span className='bold'>44 billion tons</span> of
+                natural resources were used to satisfy population&apos;s needs.
+                In 2021, that rose to{' '}
                 <span className='bold'>
-                  12.3 metric tons, an increase of 50 per cent.
+                  97 billion tons, an increase of 120%.
                 </span>
               </p>
             </div>
@@ -117,7 +126,7 @@ export function EnvironmentKeyInsights() {
               scale={0.00000001}
               backgroundColor={['var(--gray-200)', 'var(--gray-200)']}
               baseYears={[1990]}
-              color={['#212121', '#212121']}
+              color={['#55606E', '#55606E']}
               title='Global material footprint in tonnes'
               circleRadius={5}
               suffix='T'

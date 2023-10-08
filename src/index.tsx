@@ -4,7 +4,6 @@ import { AccessAllDataApp, DataExplorerApp } from './Apps/AccessAllDataApp';
 import { RegionApp } from './Apps/RegionApp';
 import { SignatureSolutionApp } from './Apps/SignatureSolutionApp';
 import reportWebVitals from './reportWebVitals';
-import { HomePageBanner } from './Apps/HomePageBanner';
 
 const getEl = (embedSelector: string) => {
   if (typeof embedSelector === 'string') {
@@ -121,15 +120,6 @@ if (containerTopicMainEmbed) {
   rootEmbed.render(
     <DataExplorerApp topic={getTopic('[data-bucket-embed-topic]')} />,
   );
-}
-
-/*
-! Homepage Banner
-*/
-const containerHomePageBanner = getEl('[banner-embed]');
-if (containerHomePageBanner) {
-  const rootEmbed = ReactDOM.createRoot(containerHomePageBanner);
-  rootEmbed.render(<HomePageBanner />);
 }
 
 reportWebVitals();

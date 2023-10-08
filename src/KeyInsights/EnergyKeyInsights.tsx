@@ -36,7 +36,10 @@ export function EnergyKeyInsights() {
                 <span className='bold'>
                   1.09 billion in 2012 to 746 million in 2020
                 </span>
-                . However, achieving full electrification by 2030 requires an
+                .
+                <br />
+                <br />
+                However, achieving full electrification by 2030 requires an
                 annual rate of growth in access of 1 percentage point per year
                 from 2021 onward—almost twice the current pace.
               </p>
@@ -60,12 +63,10 @@ export function EnergyKeyInsights() {
           </div>
           <div className='insight-card-graph'>
             <AnimatedClusterPlot
+              title='Global Access to Electricity'
               dataId='Access to electricity (% of population)'
               isDataPercent
-              colorKeys={[
-                'People without electricity',
-                'No. of People gained access to electricity',
-              ]}
+              colorKeys={['people without access', 'people gained access']}
               baseYear={2012}
               footer='1 Dot = 1 Million people'
               isDataAccess
@@ -82,8 +83,10 @@ export function EnergyKeyInsights() {
               </p>
               <p className='undp-typography'>
                 Despite notable progress made in recent decades, significant
-                disparities in electricity access persist. In particular, the
-                remote and rural populations in developing regions, such as
+                disparities in electricity access persist.
+                <br />
+                <br />
+                The remote and rural populations in developing regions, such as
                 Sub-Saharan Africa, continue to encounter substantial challenges
                 in accessing reliable and affordable electrification. Without
                 escalated efforts, the world may still fall short of achieving
@@ -136,10 +139,13 @@ export function EnergyKeyInsights() {
                 While a significant portion of the world&apos;s population
                 (71.3%) has access to clean cooking technologies, approximately
                 2.3 billion people still rely on polluting fuels and inefficient
-                methods for cooking. The use of traditional biomass for cooking
-                will continue to claim millions of lives each year while
-                perpetuating gender inequity, deforestation, and negative
-                climate impacts unless efforts are rapidly scaled up.
+                methods for cooking.
+                <br />
+                <br />
+                The use of traditional biomass for cooking will continue to
+                claim millions of lives each year while perpetuating gender
+                inequity, deforestation, and negative climate impacts unless
+                efforts are rapidly scaled up.
               </p>
             </div>
             <div className='flex-div flex-vert-align-center margin-top-07'>

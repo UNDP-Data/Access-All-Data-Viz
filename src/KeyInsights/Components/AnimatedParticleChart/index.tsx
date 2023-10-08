@@ -131,38 +131,49 @@ export function ParticleColumnChart(props: ColumnProps) {
       {title ? <h6 className='undp-typography'>{title}</h6> : null}
       {data.length > 0 && notes.length > 0 ? (
         <div>
+          <div className='flex-div gap-00'>
+            {notes.map((d, i) => (
+              <p
+                className='undp-typography margin-bottom-00'
+                key={i}
+                style={{ width: `${100 / notes.length}%` }}
+              >
+                {d.split(':')[0]}
+                <br />
+                <span className='bold'>{d.split(':')[1]}</span>
+              </p>
+            ))}
+          </div>
           <ColumnGraph
             data={data}
             width={width}
             scale={scale}
             backgroundColor={backgroundColor}
             color={color}
-            notes={notes}
             overlayText
             circleRadius={circleRadius}
           />
-          {footer ? (
-            <div
-              className='flex-div gap-03 flex-vert-align-center margin-bottom-00'
-              style={{ width: '100%' }}
-            >
-              <p
-                className='undp-typography margin-bottom-00 small-font'
-                style={{
-                  color: 'var(--gray-600)',
-                  marginTop: '-36px',
-                }}
-              >
-                {footer}
-              </p>
-            </div>
-          ) : null}
         </div>
       ) : (
         <div className='undp-loader-container undp-container'>
           <div className='undp-loader' />
         </div>
       )}
+      {footer ? (
+        <div
+          className='flex-div gap-03 flex-vert-align-center margin-bottom-00'
+          style={{ width: '100%' }}
+        >
+          <p
+            className='undp-typography margin-bottom-00 small-font'
+            style={{
+              color: 'var(--gray-600)',
+            }}
+          >
+            {footer}
+          </p>
+        </div>
+      ) : null}
     </>
   );
 }

@@ -33,7 +33,7 @@ export function ResilienceKeyInsights() {
           <div className='insight-card-text'>
             <div>
               <p className='category-tag margin-bottom-05'>
-                Key Insight: Urban vs Rural Population
+                Key Insight: Urbanization
               </p>
               <p className='undp-typography'>
                 There has been a mass migration of populations from rural to
@@ -76,7 +76,7 @@ export function ResilienceKeyInsights() {
           <div className='insight-card-text'>
             <div>
               <p className='category-tag margin-bottom-05'>
-                Key Insight: Population residing in slums
+                Key Insight: Population living in slums
               </p>
               <p className='undp-typography'>
                 While the proportion of the population residing in slums has
@@ -110,7 +110,7 @@ export function ResilienceKeyInsights() {
                 'populationlivinginslums_cpiaplis',
                 'accesstowaterservices_cpiaatws',
               ]}
-              title='Effect of slums on access to water'
+              title='Population living in slums and their access to water'
               maxXValue={100}
               maxYValue={100}
               axisText={[

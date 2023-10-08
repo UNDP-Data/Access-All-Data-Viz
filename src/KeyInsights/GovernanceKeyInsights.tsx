@@ -40,10 +40,12 @@ export function GovernanceKeyInsights() {
                 The government&apos;s effectiveness in formulating and
                 implementing sound policies and regulations, enforcing laws, and
                 providing basic public services varies significantly across
-                countries and regions. This reflects multifaceted factors,
-                including governance practices, economic conditions, corruption
-                levels, political stability, institutional robustness, and
-                cultural influences.
+                countries and regions.
+                <br />
+                <br />
+                This reflects multifaceted factors, including governance
+                practices, economic conditions, corruption levels, political
+                stability, institutional robustness, and cultural influences.
               </p>
             </div>
             <div className='flex-div flex-vert-align-center margin-top-07'>

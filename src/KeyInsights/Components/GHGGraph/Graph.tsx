@@ -34,7 +34,7 @@ export function Graph(props: Props) {
       <defs>
         <linearGradient id='ghgGradient'>
           <stop stopColor='#EDEFF0' stopOpacity={0.1} offset='5%' />
-          <stop stopColor='#D12800' stopOpacity={0.6} offset='95%' />
+          <stop stopColor='#EE402D' stopOpacity={0.6} offset='95%' />
         </linearGradient>
       </defs>
       <text
@@ -122,7 +122,7 @@ export function Graph(props: Props) {
           height={y(data.yearlyData[data.yearlyData.length - 1].value)}
           width={svgWidth / 4}
           style={{
-            fill: 'var(--dark-red)',
+            fill: 'var(--red)',
           }}
         />
         <text
@@ -170,7 +170,7 @@ export function Graph(props: Props) {
             dy={0}
             style={{
               textAnchor: 'middle',
-              fill: 'var(--dark-red)',
+              fill: 'var(--red)',
               fontFamily: 'var(--fontFamily)',
               fontSize: '1.5rem',
               fontWeight: 'bold',
@@ -217,7 +217,7 @@ export function Graph(props: Props) {
             y={120}
             style={{
               textAnchor: 'middle',
-              fill: 'var(--dark-red)',
+              fill: 'var(--red)',
               fontFamily: 'var(--fontFamily)',
               fontSize: '1.5rem',
               fontWeight: 'bold',

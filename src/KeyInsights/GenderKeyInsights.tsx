@@ -38,12 +38,15 @@ export function GenderKeyInsights() {
                 Key Insight: Education
               </p>
               <p className='undp-typography'>
-                Over the past two centuries, there has been significant global
-                progress in the field of education. This transformation has been
-                driven by a growing recognition of the advantages of education
-                for both individuals and society, coupled with increased
-                government support. Consequently, gender disparities in
-                education have gradually diminished.
+                The world has witnessed substantial progress in the field of
+                education over the past two centuries. This transformation has
+                been propelled by the increasing recognition of the advantages
+                of education for both individuals and society, coupled with
+                enhanced government support.
+                <br />
+                <br />
+                Despite its reduction, gender disparities in education continue
+                to persist.
               </p>
             </div>
             <div className='flex-div flex-vert-align-center margin-top-07'>
@@ -158,9 +161,11 @@ export function GenderKeyInsights() {
               <p className='undp-typography'>
                 Despite increasing labour force participation and educational
                 attainment, income inequalities between men and women are still
-                present, although they have been narrowing across the world. To
-                attain equal opportunities, it&apos;s essential to transform the
-                societal norms and stereotypes that restrict the range of
+                present, although they have been narrowing across the world.
+                <br />
+                <br />
+                To attain equal opportunities, it&apos;s essential to transform
+                the societal norms and stereotypes that restrict the range of
                 options accessible to individuals, regardless of their gender.
               </p>
             </div>

@@ -3,7 +3,6 @@ import { useEffect, useRef } from 'react';
 import { select } from 'd3-selection';
 import { timer } from 'd3-timer';
 import { range } from 'd3-array';
-import styled from 'styled-components';
 
 interface Props {
   width: number;
@@ -11,29 +10,12 @@ interface Props {
   density: number;
   backgroundColor: string;
   color: string;
-  note: string;
+  note?: string;
   notePlacement: 'top' | 'bottom';
   overlayText: boolean;
   stroke: boolean;
   circleRadius: number;
 }
-
-interface HeightProps {
-  height: number;
-}
-
-const NoteDiv = styled.div<HeightProps>`
-  position: relative;
-  top: ${props => (0 - props.height) / 2}px;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-`;
-
-const NoteDivText = styled.p`
-  background-color: rgba(255, 255, 255, 0.85);
-  padding: 0.5rem;
-`;
 
 const getBounds = (width: number, height: number) => {
   return {
@@ -149,14 +131,7 @@ export function Particles(props: Props) {
             borderRight: `${stroke ? `2px solid var(--black)` : 0}`,
           }}
         />
-        {overlayText ? (
-          <NoteDiv height={height}>
-            <NoteDivText className='undp-typography small-font bold margin-bottom-00'>
-              {note}
-            </NoteDivText>
-          </NoteDiv>
-        ) : null}
-        {notePlacement === 'bottom' && !overlayText ? (
+        {notePlacement === 'bottom' && !overlayText && note ? (
           <h6
             className='undp-typography margin-top-03 margin-bottom-00'
             style={{ color: 'var(--blue-600)' }}

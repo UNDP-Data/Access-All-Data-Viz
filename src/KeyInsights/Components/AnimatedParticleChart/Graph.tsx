@@ -8,7 +8,6 @@ interface ColumnProps {
   backgroundColor: string[];
   scale: number;
   color: string[];
-  notes: string[];
   overlayText: boolean;
   circleRadius: number;
 }
@@ -84,7 +83,6 @@ export function ColumnGraph(props: ColumnProps) {
     scale,
     backgroundColor,
     color,
-    notes,
     overlayText,
     circleRadius,
   } = props;
@@ -107,7 +105,6 @@ export function ColumnGraph(props: ColumnProps) {
                 density={Math.round(d * scale)}
                 backgroundColor={backgroundColor[i]}
                 color={color[i]}
-                note={notes[i]}
                 notePlacement={i === 0 ? 'top' : 'bottom'}
                 overlayText={overlayText}
                 stroke={i < data.length - 1}
