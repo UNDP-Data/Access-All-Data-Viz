@@ -207,7 +207,7 @@ export function DataSetList(props: Props) {
         <div
           className='undp-container max-width-1980'
           style={{
-            padding: '0 var(--spacing-06)',
+            padding: 'var(--spacing-07) var(--spacing-06)',
           }}
         >
           <div

@@ -71,7 +71,7 @@ export function CountryAboutPage(props: Props) {
         <div
           className='flex-div flex-wrap max-width-1980'
           style={{
-            padding: '0 var(--spacing-06)',
+            padding: 'var(--spacing-07) var(--spacing-06)',
           }}
         >
           <div
