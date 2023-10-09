@@ -105,14 +105,14 @@ export function CountryApp(props: CountryProps) {
               }}
             >
               <div
-                style={{ padding: 'var(--spacing-07)' }}
+                style={{ padding: 'var(--spacing-06)' }}
                 className='max-width-1980'
               >
                 <h4
                   className='undp-typography margin-bottom-00'
                   style={{
                     fontFamily: 'SohneBreit,ProximaNova,sans-serif',
-                    width: 'calc(100% - 4rem)',
+                    width: 'calc(100% - 3rem)',
                   }}
                 >
                   We regret to inform you that the country you are inquiring
@@ -133,7 +133,7 @@ export function CountryApp(props: CountryProps) {
                 <div
                   className='max-width-1980'
                   style={{
-                    padding: 'var(--spacing-09) var(--spacing-07)',
+                    padding: 'var(--spacing-09) var(--spacing-06)',
                   }}
                 >
                   <h2 className='undp-typography margin-bottom-00 page-title'>

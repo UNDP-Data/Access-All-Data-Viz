@@ -68,7 +68,12 @@ export function CountryAboutPage(props: Props) {
   return (
     <div className='undp-container'>
       {countryTaxonomy && countryData ? (
-        <div className='flex-div flex-wrap max-width-1980'>
+        <div
+          className='flex-div flex-wrap max-width-1980'
+          style={{
+            padding: '0 var(--spacing-06)',
+          }}
+        >
           <div
             style={{
               width: 'calc(50% - 0.5rem)',

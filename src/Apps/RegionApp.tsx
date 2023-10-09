@@ -55,8 +55,8 @@ export function RegionApp(props: Props) {
           className='undp-container'
           style={{
             backgroundColor: 'var(--gray-300)',
-            padding: 'var(--spacing-07)',
-            width: 'calc(100% - 4rem)',
+            padding: 'var(--spacing-06)',
+            width: 'calc(100% - 3rem)',
           }}
         >
           <div className='max-width-1980'>
@@ -64,7 +64,7 @@ export function RegionApp(props: Props) {
               className='undp-typography margin-bottom-03'
               style={{
                 fontFamily: 'SohneBreit,ProximaNova,sans-serif',
-                width: 'calc(100% - 4rem)',
+                width: 'calc(100% - 3rem)',
               }}
             >
               We regret to inform you that the region you are inquiring about
@@ -84,7 +84,7 @@ export function RegionApp(props: Props) {
             <div
               className='max-width-1980'
               style={{
-                padding: 'var(--spacing-09) var(--spacing-07)',
+                padding: 'var(--spacing-09) var(--spacing-06)',
               }}
             >
               <h2 className='undp-typography margin-bottom-03 page-title'>

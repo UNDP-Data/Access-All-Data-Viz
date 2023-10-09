@@ -204,7 +204,12 @@ export function DataSetList(props: Props) {
   return (
     <div>
       {indicatorsList && sourceList && countries ? (
-        <div className='undp-container max-width-1980'>
+        <div
+          className='undp-container max-width-1980'
+          style={{
+            padding: '0 var(--spacing-06)',
+          }}
+        >
           <div
             className='margin-bottom-07'
             style={{

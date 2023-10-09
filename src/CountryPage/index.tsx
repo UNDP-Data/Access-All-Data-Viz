@@ -83,13 +83,15 @@ export function CountryHomePageForCountryPage(props: PropsWithoutSS) {
   return (
     <div>
       <div
+        className='margin-bottom-07'
         style={{
-          padding: '1.5rem',
           backgroundColor: 'var(--gray-400)',
-          margin: '-2.5rem -1rem 2rem -1rem',
         }}
       >
-        <div className='flex-div gap-03 flex-vert-align-center max-width-1980'>
+        <div
+          className='flex-div gap-03 flex-vert-align-center max-width-1980'
+          style={{ padding: 'var(--spacing-06)' }}
+        >
           <h5
             className='undp-typography margin-bottom-00'
             style={{ flexShrink: 0 }}
@@ -119,7 +121,12 @@ export function CountryHomePageForCountryPage(props: PropsWithoutSS) {
       regionList &&
       countryList &&
       countryTaxonomy ? (
-        <div className='undp-container max-width-1980'>
+        <div
+          className='undp-container max-width-1980'
+          style={{
+            padding: '0 var(--spacing-06)',
+          }}
+        >
           <CountryVisualization
             finalData={finalData}
             indicatorsList={indicatorsList}

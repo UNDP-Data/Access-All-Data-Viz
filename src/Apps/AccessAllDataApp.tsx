@@ -32,7 +32,7 @@ export function AccessAllDataApp() {
         <div
           className='max-width-1980'
           style={{
-            padding: 'var(--spacing-09) var(--spacing-07)',
+            padding: 'var(--spacing-09) var(--spacing-06)',
           }}
         >
           <h2 className='undp-typography margin-bottom-03 page-title'>

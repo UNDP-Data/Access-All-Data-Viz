@@ -99,7 +99,10 @@ export function SDGGapsData(props: Props) {
       }))
     : [];
   return (
-    <div className='flex-div margin-bottom-13 max-width-1980'>
+    <div
+      className='flex-div margin-bottom-13 max-width-1980'
+      style={{ padding: '0 var(--spacing-06)' }}
+    >
       <SideBarNavEl>
         {targets.map((d, i) => (
           <SideBarButtonEl

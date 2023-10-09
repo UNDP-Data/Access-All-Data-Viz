@@ -203,7 +203,7 @@ export function AggregatedRegionVisualization(
                 backgroundColor: 'var(--gray-200)',
                 border: '1px solid var(--red)',
                 borderRadius: '0.25rem',
-                padding: 'var(--spacing-05)',
+                padding: 'var(--spacing-06)',
                 color: 'var(--dark-red)',
               }}
             >
