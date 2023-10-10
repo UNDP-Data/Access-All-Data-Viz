@@ -29,8 +29,7 @@ export function GraphG(props: Props) {
 
   const scale = scaleLinear()
     .domain([minValue, maxValue])
-    .range([5, svgWidth - 5])
-    .nice();
+    .range([5, svgWidth - 5]);
   return (
     <>
       {dataArray.map((d, i) => (
@@ -72,7 +71,7 @@ export function GraphG(props: Props) {
         {countryValue > 1000 ? format('.3s')(countryValue) : countryValue}
       </text>
       <text
-        x={5}
+        x={0}
         y={55}
         style={{
           fill: 'var(--gray-500)',
@@ -84,7 +83,7 @@ export function GraphG(props: Props) {
         {minValue > 1000 ? format('.3s')(minValue) : minValue}
       </text>
       <text
-        x={svgWidth - 5}
+        x={svgWidth}
         y={55}
         style={{
           fill: 'var(--gray-500)',

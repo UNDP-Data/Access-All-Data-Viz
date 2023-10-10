@@ -64,7 +64,7 @@ export function PovertyAndInequalityKeyInsights() {
               isDataPercent
               colorKeys={[
                 'people living under $2.15 a day',
-                'people pull out of poverty',
+                'people pulled out of poverty',
               ]}
               baseYear={1991}
               footer='1 Dot = 2 Million people'
@@ -82,7 +82,7 @@ export function PovertyAndInequalityKeyInsights() {
               <p className='undp-typography'>
                 Although social expenditure has been steadily increasing, there
                 is a notable disparity in the allocation of national income to
-                social transfers between &pos;advanced economies&pos; and
+                social transfers between &apos;advanced economies&apos; and
                 regions like sub-Saharan Africa.
                 <br />
                 <br />

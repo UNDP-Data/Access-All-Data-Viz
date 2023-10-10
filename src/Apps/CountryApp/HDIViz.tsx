@@ -116,7 +116,7 @@ export function HDIViz(props: Props) {
           data={gniData}
           year={year}
           country={country['Alpha-3 code']}
-          title='Gross national income (US $)'
+          title='Gross national income per capita (PPP US $)'
           tabText='Decent standard of living'
           highlightColor='var(--dark-green)'
         />
