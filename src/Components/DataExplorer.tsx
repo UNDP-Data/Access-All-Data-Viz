@@ -263,7 +263,11 @@ function DataExplorer(props: Props) {
                     UNDPRegion={countryId}
                     finalData={finalData}
                     idForOverview={signatureSolution || countryId}
-                    topic={topicToFilter}
+                    topic={
+                      new URLSearchParams(window.location.search)
+                        .get('topic')
+                        ?.replaceAll('_', "'") || topicToFilter
+                    }
                   />
                 ) : (
                   <div className='undp-loader-container undp-container'>
