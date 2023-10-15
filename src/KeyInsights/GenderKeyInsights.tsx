@@ -8,8 +8,12 @@ import { ScatterGraph } from './Components/AnimatedScatterPlot';
 
 const WrapperEl = styled.div`
   scroll-snap-type: x mandatory;
+  -webkit-scroll-snap-type: x mandatory;
   scroll-padding: 0;
+  scroll-snap-align: start;
   scroll-padding-left: 0;
+  -webkit-scroll-padding: 0;
+  -webkit-scroll-padding-left: 0;
   display: flex;
   overflow-x: auto;
   padding-bottom: 1rem;
@@ -53,7 +57,11 @@ export function GenderKeyInsights() {
                 alt='icon'
                 style={{ opacity: '1' }}
                 onClick={() => {
-                  if (WrapperRef) WrapperRef.current?.scrollBy(250, 0);
+                  if (WrapperRef)
+                    WrapperRef.current?.scrollBy(
+                      (3 * window.innerWidth) / 4,
+                      0,
+                    );
                 }}
               />
             </div>
@@ -98,7 +106,11 @@ export function GenderKeyInsights() {
                 alt='icon'
                 style={{ opacity: '1' }}
                 onClick={() => {
-                  if (WrapperRef) WrapperRef.current?.scrollBy(-250, 0);
+                  if (WrapperRef)
+                    WrapperRef.current?.scrollBy(
+                      0 - (3 * window.innerWidth) / 4,
+                      0,
+                    );
                 }}
               />
               <p className='undp-typography margin-bottom-00'>Insight 2 of 3</p>
@@ -153,7 +165,11 @@ export function GenderKeyInsights() {
                 alt='icon'
                 style={{ opacity: '1' }}
                 onClick={() => {
-                  if (WrapperRef) WrapperRef.current?.scrollBy(-250, 0);
+                  if (WrapperRef)
+                    WrapperRef.current?.scrollBy(
+                      0 - (3 * window.innerWidth) / 4,
+                      0,
+                    );
                 }}
               />
               <p className='undp-typography margin-bottom-00'>Insight 3 of 3</p>

@@ -106,6 +106,21 @@ export function UnivariateMap(props: Props) {
             : `${valueArray.length + 1}`) as '04' | '05' | '07' | '09' | '11'
         }`
       ]
+    : xIndicatorMetaData.IsCategorical
+    ? UNDPColorModule.sequentialColors[
+        `neutralColorsx${
+          (valueArray.length < 10
+            ? `0${valueArray.length}`
+            : `${valueArray.length}`) as
+            | '04'
+            | '05'
+            | '06'
+            | '07'
+            | '08'
+            | '09'
+            | '10'
+        }`
+      ]
     : UNDPColorModule.sequentialColors[
         `neutralColorsx${
           (valueArray.length + 1 < 10
