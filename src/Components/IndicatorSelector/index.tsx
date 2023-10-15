@@ -66,7 +66,7 @@ interface InfoProps extends TooltipElProps {
 const TooltipEl = styled.div<TooltipElProps>`
   display: block;
   position: fixed;
-  z-index: 8;
+  z-index: 1000;
   background-color: var(--gray-200);
   border: 1px solid var(--gray-300);
   word-wrap: break-word;

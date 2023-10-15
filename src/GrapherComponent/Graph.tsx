@@ -187,7 +187,7 @@ export function Graph(props: Props) {
       updateYear(yearList[yearList.length - 1]);
       setYearForPlay(yearList[yearList.length - 1]);
     }
-  }, [xAxisIndicator, yAxisIndicator, sizeIndicator, graphType]);
+  }, [xAxisIndicator, yAxisIndicator, sizeIndicator, graphType, data]);
   useEffect(() => {
     if (play && yearForPlay) {
       timer.current = setInterval(() => {
