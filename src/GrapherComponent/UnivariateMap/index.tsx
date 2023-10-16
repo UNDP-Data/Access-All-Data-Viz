@@ -106,6 +106,21 @@ export function UnivariateMap(props: Props) {
             : `${valueArray.length + 1}`) as '04' | '05' | '07' | '09' | '11'
         }`
       ]
+    : xIndicatorMetaData.IsCategorical
+    ? UNDPColorModule.sequentialColors[
+        `neutralColorsx${
+          (valueArray.length < 10
+            ? `0${valueArray.length}`
+            : `${valueArray.length}`) as
+            | '04'
+            | '05'
+            | '06'
+            | '07'
+            | '08'
+            | '09'
+            | '10'
+        }`
+      ]
     : UNDPColorModule.sequentialColors[
         `neutralColorsx${
           (valueArray.length + 1 < 10
@@ -150,7 +165,7 @@ export function UnivariateMap(props: Props) {
   useEffect(() => {
     const mapGSelect = select(mapG.current);
     const mapSvgSelect = select(mapSvg.current);
-    const zoomBehaviour = zoom()
+    const zoomBehavior = zoom()
       .scaleExtent([0.75, 6])
       .translateExtent([
         [-20, 0],
@@ -160,7 +175,7 @@ export function UnivariateMap(props: Props) {
         mapGSelect.attr('transform', transform);
       });
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    mapSvgSelect.call(zoomBehaviour as any);
+    mapSvgSelect.call(zoomBehavior as any);
   }, [svgHeight, svgWidth]);
   return (
     <GraphDiv>
