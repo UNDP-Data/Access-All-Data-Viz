@@ -190,43 +190,19 @@ export const TOP_CARDS = [
       {
         vizType: 'lineChart',
         settings: {
-          dataKey: 'Emission levels associated with GHG target set by (I)NDCs',
+          dataKey: 'Forest area (% of land area)',
           strokeWidth: 1,
           lineColor: '#232E3D',
-          graphTitle:
-            'Emission levels associated with GHG target set by (I)NDCs',
-          description: true,
-        },
-      },
-      {
-        vizType: 'lineChart',
-        settings: {
-          dataKey: 'Reduced Mean Daily CO2 Emissions; percent change',
-          strokeWidth: 1,
-          lineColor: '#232E3D',
-          graphTitle: 'Reduced Mean Daily CO2 Emissions; percent change',
+          graphTitle: 'Forest area, percent of total land area',
           suffix: '%',
         },
       },
       {
-        vizType: 'lineChart',
+        vizType: 'valueCard',
         settings: {
-          dataKey: 'Population, total',
-          strokeWidth: 1,
-          lineColor: '#232E3D',
-          graphTitle: 'Population, total',
-        },
-      },
-      {
-        vizType: 'stackedLineChart',
-        settings: {
-          dataKey: ['Rural Population, total', 'Urban Population, total'],
-          strokeWidth: 1,
-          lineColors: [
-            UNDPColorModule.categoricalColors.locationColors.rural,
-            UNDPColorModule.categoricalColors.locationColors.rural,
-          ],
-          graphTitle: 'Urban and Rural Population',
+          dataKey:
+            'Planetary pressures adjusted Human Development Index (value)',
+          graphTitle: 'Planetary pressures adjusted Human Development Index',
         },
       },
     ],

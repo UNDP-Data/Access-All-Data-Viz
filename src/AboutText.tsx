@@ -340,7 +340,10 @@ export const ABOUT_TEXT_LINKS = [
           temperatures over land have increased around twice as much as the
           ocean. UNDP and partners are committed to providing transformative
           environmental actions towards reducing global emissions and making the
-          environment peaceful and prosperous for people by 2030.
+          environment peaceful and prosperous for people by 2030. Access data
+          and insigths to catalyze low carbon energy transition as well as
+          climate and nature-positive policies, finance and investments, as
+          pathway to an inclusive and resilient recovery.
         </p>
       </div>
     ),
@@ -352,6 +355,10 @@ export const ABOUT_TEXT_LINKS = [
       {
         source: 'All Environment Related Content',
         link: 'https://www.undp.org/tag/environment',
+      },
+      {
+        source: 'UNDP Nature Hub',
+        link: 'https://www.undp.org/nature',
       },
     ],
   },
