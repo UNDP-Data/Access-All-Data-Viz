@@ -198,6 +198,18 @@ export const TOP_CARDS = [
         },
       },
       {
+        vizType: 'lineChart',
+        settings: {
+          dataKey:
+            'Renewable internal freshwater resources per capita (cubic meters)',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle:
+            'Renewable Internal Freshwater Resources per Capita, cubic meters',
+          suffix: 'm3',
+        },
+      },
+      {
         vizType: 'valueCard',
         settings: {
           dataKey:
