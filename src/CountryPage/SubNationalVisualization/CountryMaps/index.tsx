@@ -8,11 +8,16 @@ import { select } from 'd3-selection';
 import { format } from 'd3-format';
 import { Modal } from 'antd';
 import CountriesBoundingBoxData from '../../../Data/CountryBoundingBoxData.json';
-import { MapLayerOptionDataType } from '../../../Types';
+import {
+  MapLayerOptionDataType,
+  SubNationalMetaDataType,
+} from '../../../Types';
+import { COUNTRY_LOOKUP_TABLE } from '../../../Constants';
 
 interface Props {
   countryId: string;
   mapLayer: MapLayerOptionDataType;
+  subNationalDataMetaData: SubNationalMetaDataType[];
 }
 
 interface HoverDataProps {
@@ -47,12 +52,55 @@ const TooltipEl = styled.div<TooltipElProps>`
 `;
 
 export function CountryMap(props: Props) {
-  const { countryId, mapLayer } = props;
+  const { countryId, mapLayer, subNationalDataMetaData } = props;
+  const metaData =
+    subNationalDataMetaData[
+      subNationalDataMetaData.findIndex(d => d.indicator_id === mapLayer.id)
+    ];
+  const countryIdToLookUp = metaData.useCountryLookup
+    ? COUNTRY_LOOKUP_TABLE[
+        COUNTRY_LOOKUP_TABLE.findIndex(d => d.isoCode === countryId)
+      ].countryName
+    : countryId;
   const mapContainer = useRef<HTMLDivElement>(null);
   const map = useRef<HTMLDivElement>(null);
   const [loading, setLoading] = useState(true);
   const protocol = new pmtiles.Protocol();
   const [hoverData, setHoverData] = useState<HoverDataProps | null>(null);
+  const defaultMouseOver = (d: any) => (
+    <div
+      style={{
+        fontSize: '0.875rem',
+      }}
+    >
+      <p
+        className='undp-typography margin-bottom-00'
+        style={{
+          fontSize: '0.875rem',
+        }}
+      >
+        {d.AdminName}{' '}
+        <span style={{ color: 'var(--gray-500)' }}>({d.Country})</span>
+      </p>
+      <p
+        className='undp-typography bold margin-bottom-02'
+        style={{
+          fontSize: '0.875rem',
+        }}
+      >
+        {d.Value.toFixed(1)}
+      </p>
+      <p
+        className='undp-typography italics margin-bottom-00'
+        style={{
+          fontSize: '0.875rem',
+          color: 'var(--gray-500)',
+        }}
+      >
+        Survey type and year: {d.SurveyType} ({d.SurveyYear})
+      </p>
+    </div>
+  );
   useEffect(() => {
     if (map.current) {
       const mapDiv = select('div.map');
@@ -79,9 +127,9 @@ export function CountryMap(props: Props) {
         url: 'pmtiles://https://raw.githubusercontent.com/UNDP-Data/Access-All-Data-Viz/production/public/data/PMTiles/geoBADM0.pmtiles',
       },
     };
-    sources[mapLayer.mapId as string] = {
+    sources[mapLayer.id as string] = {
       type: 'vector',
-      url: mapLayer.pmTiles,
+      url: metaData.pmtilesURL,
     };
     (map as any).current = new maplibreGl.Map({
       container: mapContainer.current as any,
@@ -94,7 +142,7 @@ export function CountryMap(props: Props) {
             type: 'fill',
             source: 'admin0',
             'source-layer': 'geoBADM0',
-            filter: ['==', mapLayer.countryID, countryId],
+            filter: ['==', metaData.countryId, countryIdToLookUp],
             paint: {
               'fill-color': '#EDEFF0',
               'fill-outline-color': '#fff',
@@ -105,27 +153,26 @@ export function CountryMap(props: Props) {
           {
             id: 'bg',
             type: 'fill',
-            source: mapLayer.mapId,
-            'source-layer': mapLayer.mapLayerDetails.sourceLayer,
-            filter: ['==', mapLayer.countryID, countryId],
+            source: mapLayer.id,
+            'source-layer': metaData.sourceLayer,
+            filter: ['==', metaData.countryId, countryIdToLookUp],
             paint: {
               'fill-color': '#EDEFF0',
               'fill-outline-color': '#fff',
             },
           },
-          /* mpi layers */
           {
-            id: mapLayer.mapLayerDetails.id,
+            id: `layer_${mapLayer.id}`,
             type: 'fill',
-            source: mapLayer.mapId,
-            'source-layer': mapLayer.mapLayerDetails.sourceLayer,
+            source: mapLayer.id,
+            'source-layer': metaData.sourceLayer,
             filter: [
               'all',
-              ['==', mapLayer.countryID, countryId],
-              ['has', mapLayer.mapLayerDetails.hasID],
+              ['==', metaData.countryId, countryIdToLookUp],
+              ['has', metaData.hasId],
             ],
             paint: {
-              'fill-color': mapLayer.mapLayerDetails.fillSettings,
+              'fill-color': mapLayer.fillSettings,
               'fill-outline-color': '#fff',
             },
           },
@@ -155,49 +202,45 @@ export function CountryMap(props: Props) {
       ],
     ]);
     let districtHoveredStateId: string | null = null;
-    (map as any).current.on(
-      'mousemove',
-      mapLayer.mapLayerDetails.id,
-      (e: any) => {
-        (map as any).current.getCanvas().style.cursor = 'pointer';
-        if (e.features.length > 0) {
-          if (districtHoveredStateId) {
-            (map as any).current.setFeatureState(
-              {
-                source: mapLayer.mapId,
-                id: districtHoveredStateId,
-                sourceLayer: mapLayer.mapLayerDetails.sourceLayer,
-              },
-              { hover: false },
-            );
-          }
-          districtHoveredStateId = e.features[0].id;
-          setHoverData({
-            mouseOverDiv: mapLayer.mapLayerDetails.mouseOverInfoFunction(
-              e.features[0].properties,
-            ),
-            xPosition: e.originalEvent.clientX,
-            yPosition: e.originalEvent.clientY,
-          });
+    (map as any).current.on('mousemove', `layer_${mapLayer.id}`, (e: any) => {
+      (map as any).current.getCanvas().style.cursor = 'pointer';
+      if (e.features.length > 0) {
+        if (districtHoveredStateId) {
           (map as any).current.setFeatureState(
             {
-              source: mapLayer.mapId,
+              source: mapLayer.id,
               id: districtHoveredStateId,
-              sourceLayer: mapLayer.mapLayerDetails.sourceLayer,
+              sourceLayer: metaData.sourceLayer,
             },
-            { hover: true },
+            { hover: false },
           );
         }
-      },
-    );
-    (map as any).current.on('mouseleave', mapLayer.mapLayerDetails.id, () => {
+        districtHoveredStateId = e.features[0].id;
+        setHoverData({
+          mouseOverDiv: mapLayer.mouseOverInfoFunction
+            ? mapLayer.mouseOverInfoFunction(e.features[0].properties)
+            : defaultMouseOver(e.features[0].properties),
+          xPosition: e.originalEvent.clientX,
+          yPosition: e.originalEvent.clientY,
+        });
+        (map as any).current.setFeatureState(
+          {
+            source: mapLayer.id,
+            id: districtHoveredStateId,
+            sourceLayer: metaData.sourceLayer,
+          },
+          { hover: true },
+        );
+      }
+    });
+    (map as any).current.on('mouseleave', `layer_${mapLayer.id}`, () => {
       if (districtHoveredStateId) {
         setHoverData(null);
         (map as any).current.setFeatureState(
           {
-            source: mapLayer.mapId,
+            source: mapLayer.id,
             id: districtHoveredStateId,
-            sourceLayer: mapLayer.mapLayerDetails.sourceLayer,
+            sourceLayer: metaData.sourceLayer,
           },
           { hover: false },
         );
@@ -229,32 +272,22 @@ export function CountryMap(props: Props) {
             <div className='univariate-map-color-legend-element'>
               <div>
                 <div className='univariate-map-legend-text'>
-                  {mapLayer.mapLayerDetails.label}
+                  {metaData.indicator_name}
                 </div>
                 <svg width='100%' viewBox='0 0 320 30'>
                   <g>
-                    {mapLayer.mapLayerDetails.binning.map((d, i) => (
+                    {mapLayer.binning.map((d, i) => (
                       <g key={i}>
                         <rect
-                          x={
-                            (i * 320) /
-                              mapLayer.mapLayerDetails.colorScale.length +
-                            1
-                          }
+                          x={(i * 320) / mapLayer.colorScale.length + 1}
                           y={1}
-                          width={
-                            320 / mapLayer.mapLayerDetails.colorScale.length - 2
-                          }
+                          width={320 / mapLayer.colorScale.length - 2}
                           height={8}
-                          fill={mapLayer.mapLayerDetails.colorScale[i]}
+                          fill={mapLayer.colorScale[i]}
                         />
-                        {i ===
-                        mapLayer.mapLayerDetails.binning.length - 1 ? null : (
+                        {i === mapLayer.binning.length - 1 ? null : (
                           <text
-                            x={
-                              ((i + 1) * 320) /
-                              mapLayer.mapLayerDetails.colorScale.length
-                            }
+                            x={((i + 1) * 320) / mapLayer.colorScale.length}
                             y={25}
                             textAnchor='middle'
                             fontSize={12}

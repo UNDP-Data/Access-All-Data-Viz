@@ -1,28 +1,35 @@
 /* eslint-disable jsx-a11y/iframe-has-title */
 import { useState } from 'react';
 import { Select } from 'antd';
-import { MapLayerOptionDataType } from '../../Types';
+import sortBy from 'lodash.sortby';
+import groupBy from 'lodash.groupby';
+import { MapLayerOptionDataType, SubNationalMetaDataType } from '../../Types';
 import { CountryMap } from './CountryMaps';
 import { SUB_NATIONAL_DATA_OPTIONS } from '../../SubNationalDataOptions';
 
 interface Props {
   countryId?: string;
+  subNationalDataMetaData: SubNationalMetaDataType[];
 }
 
 export function SubNationalVisualization(props: Props) {
-  const { countryId } = props;
+  const { countryId, subNationalDataMetaData } = props;
   const countryFromLink = countryId || 'AFG';
-  const subNationalOptions = SUB_NATIONAL_DATA_OPTIONS.filter(
-    d => d.countries.indexOf(countryFromLink) !== -1,
+  const subNationalDataMetaDataSorted = sortBy(subNationalDataMetaData, [
+    'group',
+    'indicator_name',
+  ]);
+  const subNationalDataMetaDataGrouped = groupBy(
+    subNationalDataMetaDataSorted,
+    d => d.group,
   );
-  const [selectedMap, setSelectedMap] = useState<MapLayerOptionDataType>({
-    mapId: subNationalOptions[0].id,
-    regionID: subNationalOptions[0].regionID,
-    countryID: subNationalOptions[0].countryID,
-    option: subNationalOptions[0].options[0].label,
-    pmTiles: subNationalOptions[0].pmTilesSource,
-    mapLayerDetails: subNationalOptions[0].options[0],
-  });
+  const [selectedMap, setSelectedMap] = useState<MapLayerOptionDataType>(
+    SUB_NATIONAL_DATA_OPTIONS[
+      SUB_NATIONAL_DATA_OPTIONS.findIndex(
+        el => el.id === subNationalDataMetaDataSorted[0].indicator_id,
+      )
+    ],
+  );
   return (
     <div>
       <div
@@ -48,36 +55,23 @@ export function SubNationalVisualization(props: Props) {
             placeholder='Select an indicator'
             style={{ flexGrow: 0 }}
             showSearch
-            value={`${selectedMap.mapId}_${selectedMap.option}`}
+            value={selectedMap.id}
             onChange={d => {
-              const subNationalLayerIndx = subNationalOptions.findIndex(
-                el => el.id === d.split('_')[0],
+              const subNationalLayerIndx = SUB_NATIONAL_DATA_OPTIONS.findIndex(
+                el => el.id === d,
               );
-              const subNationalOptionIndx = subNationalOptions[
-                subNationalLayerIndx
-              ].options.findIndex(el => el.label === d.split('_')[1]);
-              setSelectedMap({
-                mapId: d.split('_')[0],
-                option: d.split('_')[1],
-                pmTiles: subNationalOptions[subNationalLayerIndx].pmTilesSource,
-                regionID: subNationalOptions[subNationalLayerIndx].regionID,
-                countryID: subNationalOptions[subNationalLayerIndx].countryID,
-                mapLayerDetails:
-                  subNationalOptions[subNationalLayerIndx].options[
-                    subNationalOptionIndx
-                  ],
-              });
+              setSelectedMap(SUB_NATIONAL_DATA_OPTIONS[subNationalLayerIndx]);
             }}
           >
-            {subNationalOptions.map((d, i) => (
-              <Select.OptGroup key={i} label={d.title}>
-                {d.options.map(el => (
+            {Object.keys(subNationalDataMetaDataGrouped).map((d, i) => (
+              <Select.OptGroup key={i} label={d}>
+                {subNationalDataMetaDataGrouped[d].map(el => (
                   <Select.Option
                     className='undp-select-option'
-                    value={`${d.id}_${el.label}`}
-                    key={`${d.id}_${el.label}`}
+                    value={el.indicator_id}
+                    key={el.indicator_id}
                   >
-                    {el.label}
+                    {el.indicator_name}
                   </Select.Option>
                 ))}
               </Select.OptGroup>
@@ -85,7 +79,11 @@ export function SubNationalVisualization(props: Props) {
           </Select>
         </div>
       </div>
-      <CountryMap countryId={countryFromLink} mapLayer={selectedMap} />
+      <CountryMap
+        countryId={countryFromLink}
+        mapLayer={selectedMap}
+        subNationalDataMetaData={subNationalDataMetaData}
+      />
     </div>
   );
 }

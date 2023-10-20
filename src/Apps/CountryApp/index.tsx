@@ -1,17 +1,10 @@
-import { Tabs } from 'antd';
-import flattenDeep from 'lodash.flattendeep';
 import { useEffect, useState } from 'react';
 import { queue } from 'd3-queue';
 import { json } from 'd3-request';
-import { CountryHomePageForCountryPage } from '../../CountryPage';
-import { SDGDataExplorer } from '../../CountryPage/SDGDataExplorer';
-import { CountryAboutPage } from '../../AboutPage/CountryAboutPage';
 import { COUNTRYTAXONOMYLINK } from '../../Constants';
-import { SubNationalVisualization } from '../../CountryPage/SubNationalVisualization';
-import { SDGTracker } from '../../CountryPage/SDGTracker';
 import { CountryTaxonomyDataType } from '../../Types';
-import { SUB_NATIONAL_DATA_OPTIONS } from '../../SubNationalDataOptions';
 import { CountryHDIViz } from './CountryHDIViz';
+import { TabSection } from './TabSection';
 
 interface CountryProps {
   countryId?: string;
@@ -19,69 +12,9 @@ interface CountryProps {
 
 export function CountryApp(props: CountryProps) {
   const { countryId } = props;
-  const countryList = flattenDeep(
-    SUB_NATIONAL_DATA_OPTIONS.map(d => d.countries),
-  );
   const [countryData, setCountryData] = useState<
     CountryTaxonomyDataType[] | undefined
   >(undefined);
-  const mainTabs =
-    countryList.indexOf(countryId || 'AFG') !== -1
-      ? [
-          {
-            key: 'dataExplorer',
-            label: 'Data Explorer',
-            children: (
-              <CountryHomePageForCountryPage countryId={countryId || 'AFG'} />
-            ),
-          },
-          {
-            key: 'subNationalVisualization',
-            label: 'Sub National Data',
-            children: (
-              <SubNationalVisualization countryId={countryId || 'AFG'} />
-            ),
-          },
-          {
-            key: 'sdgTracker',
-            label: 'SDG Tracker',
-            children: <SDGTracker countryId={countryId || 'AFG'} />,
-          },
-          {
-            key: 'sdgDataExplorer',
-            label: 'SDG Data Explorer',
-            children: <SDGDataExplorer countryId={countryId || 'AFG'} />,
-          },
-          {
-            key: 'about',
-            label: 'About',
-            children: <CountryAboutPage countryId={countryId || 'AFG'} />,
-          },
-        ]
-      : [
-          {
-            key: 'dataExplorer',
-            label: 'Data Explorer',
-            children: (
-              <CountryHomePageForCountryPage countryId={countryId || 'AFG'} />
-            ),
-          },
-          {
-            key: 'sdgTracker',
-            label: 'SDG Tracker',
-            children: <SDGTracker countryId={countryId || 'AFG'} />,
-          },
-          {
-            key: 'sdgDataExplorer',
-            label: 'SDG Data Explorer',
-            children: <SDGDataExplorer countryId={countryId || 'AFG'} />,
-          },
-          {
-            key: 'about',
-            label: 'About',
-            children: <CountryAboutPage countryId={countryId || 'AFG'} />,
-          },
-        ];
   useEffect(() => {
     queue()
       .defer(json, COUNTRYTAXONOMYLINK)
@@ -156,15 +89,7 @@ export function CountryApp(props: CountryProps) {
                   />
                 </div>
               </div>
-              <Tabs
-                defaultActiveKey='dataExplorer'
-                className='undp-tabs subhead-tabs'
-                items={mainTabs.map(d => ({
-                  label: d.label,
-                  key: d.key,
-                  children: d.children,
-                }))}
-              />
+              <TabSection countryId={countryId || 'AFG'} />
             </>
           )}
         </div>

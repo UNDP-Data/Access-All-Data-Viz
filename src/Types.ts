@@ -86,6 +86,18 @@ export interface IndicatorMetaDataType {
   Tags: string[];
 }
 
+export interface SubNationalMetaDataType {
+  indicator_id: string;
+  indicator_name: string;
+  group: string;
+  sourceLayer: string;
+  pmtilesURL: string;
+  hasId: string;
+  countryId: string;
+  regionId: string;
+  useCountryLookup: boolean;
+}
+
 export interface HoverRowDataType {
   title?: string;
   value?: string | number;
@@ -360,19 +372,9 @@ export interface CountryBoundingBoxDataType {
 }
 
 export interface MapLayerOptionDataType {
-  mapId: string;
-  option: string;
-  regionID: string;
-  countryID: string;
-  pmTiles: string;
-  mapLayerDetails: {
-    label: string;
-    id: string;
-    hasID: string;
-    sourceLayer: string;
-    binning: number[];
-    colorScale: string[];
-    fillSettings: any;
-    mouseOverInfoFunction: (_d: any) => JSX.Element;
-  };
+  id: string;
+  binning: number[];
+  colorScale: string[];
+  fillSettings: any;
+  mouseOverInfoFunction?: (_d: any) => JSX.Element;
 }

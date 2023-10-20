@@ -38,6 +38,9 @@ export const SIGNATURE_SOLUTIONS_LIST: (
 export const METADATALINK =
   'https://raw.githubusercontent.com/UNDP-Data/Indicators-MetaData/for-redesign/indicatorMetaData.json';
 
+export const SUBNATIONALMETADATALINK =
+  'https://raw.githubusercontent.com/UNDP-Data/Indicators-MetaData/for-redesign//subNationDataMetaDataByCountries/';
+
 export const DATALINK =
   'https://raw.githubusercontent.com/UNDP-Data/Access-All-Data-Data-Repo/main';
 
@@ -754,5 +757,372 @@ export const TargetIndicatorCount = [
     sdg: 17,
     noOfTargets: 19,
     noOfIndicators: 24,
+  },
+];
+
+export const COUNTRY_LOOKUP_TABLE = [
+  {
+    countryName: 'Afghanistan',
+    isoCode: 'AFG',
+  },
+  {
+    countryName: 'Albania',
+    isoCode: 'ALB',
+  },
+  {
+    countryName: 'Angola',
+    isoCode: 'AGO',
+  },
+  {
+    countryName: 'Armenia',
+    isoCode: 'ARM',
+  },
+  {
+    countryName: 'Azerbaijan',
+    isoCode: 'AZE',
+  },
+  {
+    countryName: 'Bangladesh',
+    isoCode: 'BGD',
+  },
+  {
+    countryName: 'Benin',
+    isoCode: 'BEN',
+  },
+  {
+    countryName: 'Bolivia',
+    isoCode: 'BOL',
+  },
+  {
+    countryName: 'Botswana',
+    isoCode: 'BWA',
+  },
+  {
+    countryName: 'Brazil',
+    isoCode: 'BRA',
+  },
+  {
+    countryName: 'Burkina Faso',
+    isoCode: 'BFA',
+  },
+  {
+    countryName: 'Burundi',
+    isoCode: 'BDI',
+  },
+  {
+    countryName: 'Cambodia',
+    isoCode: 'KHM',
+  },
+  {
+    countryName: 'Cameroon',
+    isoCode: 'CMR',
+  },
+  {
+    countryName: 'Cape Verde',
+    isoCode: 'CPV',
+  },
+  {
+    countryName: 'Central African Republic',
+    isoCode: 'CAF',
+  },
+  {
+    countryName: 'Chad',
+    isoCode: 'TCD',
+  },
+  {
+    countryName: 'Colombia',
+    isoCode: 'COL',
+  },
+  {
+    countryName: 'Comoros',
+    isoCode: 'COM',
+  },
+  {
+    countryName: 'Congo',
+    isoCode: 'COG',
+  },
+  {
+    countryName: 'Congo Democratic Republic',
+    isoCode: 'COD',
+  },
+  {
+    countryName: "Cote d'Ivoire",
+    isoCode: 'CIV',
+  },
+  {
+    countryName: 'Dominican Republic',
+    isoCode: 'DOM',
+  },
+  {
+    countryName: 'Ecuador',
+    isoCode: 'ECU',
+  },
+  {
+    countryName: 'Egypt',
+    isoCode: 'EGY',
+  },
+  {
+    countryName: 'El Salvador',
+    isoCode: 'SLV',
+  },
+  {
+    countryName: 'Equatorial Guinea',
+    isoCode: 'GNQ',
+  },
+  {
+    countryName: 'Eritrea',
+    isoCode: 'ERI',
+  },
+  {
+    countryName: 'Eswatini',
+    isoCode: 'SWZ',
+  },
+  {
+    countryName: 'Ethiopia',
+    isoCode: 'ETH',
+  },
+  {
+    countryName: 'Gabon',
+    isoCode: 'GAB',
+  },
+  {
+    countryName: 'Gambia',
+    isoCode: 'GMB',
+  },
+  {
+    countryName: 'Ghana',
+    isoCode: 'GHA',
+  },
+  {
+    countryName: 'Guatemala',
+    isoCode: 'GTM',
+  },
+  {
+    countryName: 'Guinea',
+    isoCode: 'GIN',
+  },
+  {
+    countryName: 'Guyana',
+    isoCode: 'GUY',
+  },
+  {
+    countryName: 'Haiti',
+    isoCode: 'HTI',
+  },
+  {
+    countryName: 'Honduras',
+    isoCode: 'HND',
+  },
+  {
+    countryName: 'India',
+    isoCode: 'IND',
+  },
+  {
+    countryName: 'Indonesia',
+    isoCode: 'IDN',
+  },
+  {
+    countryName: 'Jordan',
+    isoCode: 'JOR',
+  },
+  {
+    countryName: 'Kazakhstan',
+    isoCode: 'KAZ',
+  },
+  {
+    countryName: 'Kenya',
+    isoCode: 'KEN',
+  },
+  {
+    countryName: 'Kyrgyz Republic',
+    isoCode: 'KGZ',
+  },
+  {
+    countryName: "Lao People's Democratic Republic",
+    isoCode: 'LAO',
+  },
+  {
+    countryName: 'Lesotho',
+    isoCode: 'LSO',
+  },
+  {
+    countryName: 'Liberia',
+    isoCode: 'LBR',
+  },
+  {
+    countryName: 'Madagascar',
+    isoCode: 'MDG',
+  },
+  {
+    countryName: 'Malawi',
+    isoCode: 'MWI',
+  },
+  {
+    countryName: 'Maldives',
+    isoCode: 'MDV',
+  },
+  {
+    countryName: 'Mali',
+    isoCode: 'MLI',
+  },
+  {
+    countryName: 'Mauritania',
+    isoCode: 'MRT',
+  },
+  {
+    countryName: 'Mexico',
+    isoCode: 'MEX',
+  },
+  {
+    countryName: 'Moldova',
+    isoCode: 'MDA',
+  },
+  {
+    countryName: 'Morocco',
+    isoCode: 'MAR',
+  },
+  {
+    countryName: 'Mozambique',
+    isoCode: 'MOZ',
+  },
+  {
+    countryName: 'Myanmar',
+    isoCode: 'MMR',
+  },
+  {
+    countryName: 'Namibia',
+    isoCode: 'NAM',
+  },
+  {
+    countryName: 'Nepal',
+    isoCode: 'NPL',
+  },
+  {
+    countryName: 'Nicaragua',
+    isoCode: 'NIC',
+  },
+  {
+    countryName: 'Niger',
+    isoCode: 'NER',
+  },
+  {
+    countryName: 'Nigeria',
+    isoCode: 'NGA',
+  },
+  {
+    countryName: 'Pakistan',
+    isoCode: 'PAK',
+  },
+  {
+    countryName: 'Papua New Guinea',
+    isoCode: 'PNG',
+  },
+  {
+    countryName: 'Paraguay',
+    isoCode: 'PRY',
+  },
+  {
+    countryName: 'Peru',
+    isoCode: 'PER',
+  },
+  {
+    countryName: 'Philippines',
+    isoCode: 'PHL',
+  },
+  {
+    countryName: 'Rwanda',
+    isoCode: 'RWA',
+  },
+  {
+    countryName: 'Samoa',
+    isoCode: 'WSM',
+  },
+  {
+    countryName: 'Sao Tome and Principe',
+    isoCode: 'STP',
+  },
+  {
+    countryName: 'Senegal',
+    isoCode: 'SEN',
+  },
+  {
+    countryName: 'Sierra Leone',
+    isoCode: 'SLE',
+  },
+  {
+    countryName: 'South Africa',
+    isoCode: 'ZAF',
+  },
+  {
+    countryName: 'Sri Lanka',
+    isoCode: 'LKA',
+  },
+  {
+    countryName: 'Sudan',
+    isoCode: 'SDN',
+  },
+  {
+    countryName: 'Tajikistan',
+    isoCode: 'TJK',
+  },
+  {
+    countryName: 'Tanzania',
+    isoCode: 'TZA',
+  },
+  {
+    countryName: 'Thailand',
+    isoCode: 'THA',
+  },
+  {
+    countryName: 'Timor-Leste',
+    isoCode: 'TLS',
+  },
+  {
+    countryName: 'Togo',
+    isoCode: 'TGO',
+  },
+  {
+    countryName: 'Trinidad and Tobago',
+    isoCode: 'TTO',
+  },
+  {
+    countryName: 'Tunisia',
+    isoCode: 'TUN',
+  },
+  {
+    countryName: 'Turkey',
+    isoCode: 'TUR',
+  },
+  {
+    countryName: 'Turkmenistan',
+    isoCode: 'TKM',
+  },
+  {
+    countryName: 'Uganda',
+    isoCode: 'UGA',
+  },
+  {
+    countryName: 'Ukraine',
+    isoCode: 'UKR',
+  },
+  {
+    countryName: 'Uzbekistan',
+    isoCode: 'UZB',
+  },
+  {
+    countryName: 'Vietnam',
+    isoCode: 'VNM',
+  },
+  {
+    countryName: 'Yemen',
+    isoCode: 'YEM',
+  },
+  {
+    countryName: 'Zambia',
+    isoCode: 'ZMB',
+  },
+  {
+    countryName: 'Zimbabwe',
+    isoCode: 'ZWE',
   },
 ];
