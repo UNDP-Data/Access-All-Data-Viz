@@ -174,6 +174,7 @@ export const COUNTRIES_BY_UNDP_REGIONS = [
       'TUR',
       'UKR',
       'UZB',
+      'XKX',
     ],
   },
   {
@@ -369,6 +370,7 @@ export const COUNTRIES_FULL_NAME_BY_UNDP_REGION = [
       'Belarus',
       'Georgia',
       'Kazakhstan',
+      'Kosovo (as per UNSCR 1244)',
       'Kyrgyzstan',
       'Moldova (Republic of)',
       'North Macedonia',
