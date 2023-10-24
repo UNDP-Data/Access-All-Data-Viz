@@ -52,7 +52,13 @@ export function PovertyAndInequalityKeyInsights() {
                 alt='icon'
                 style={{ opacity: '1' }}
                 onClick={() => {
-                  if (WrapperRef) WrapperRef.current?.scrollBy(250, 0);
+                  if (WrapperRef)
+                    WrapperRef.current?.scrollBy(
+                      window.innerWidth / 2 > 1000
+                        ? 1000
+                        : window.innerWidth / 2,
+                      0,
+                    );
                 }}
               />
             </div>
@@ -97,7 +103,13 @@ export function PovertyAndInequalityKeyInsights() {
                 alt='icon'
                 style={{ opacity: '1' }}
                 onClick={() => {
-                  if (WrapperRef) WrapperRef.current?.scrollBy(-250, 0);
+                  if (WrapperRef)
+                    WrapperRef.current?.scrollBy(
+                      window.innerWidth / 2 > 1000
+                        ? -1000
+                        : 0 - window.innerWidth / 2,
+                      0,
+                    );
                 }}
               />
               <p className='undp-typography margin-bottom-00'>Insight 2 of 3</p>
@@ -106,7 +118,13 @@ export function PovertyAndInequalityKeyInsights() {
                 alt='icon'
                 style={{ opacity: '1' }}
                 onClick={() => {
-                  if (WrapperRef) WrapperRef.current?.scrollBy(250, 0);
+                  if (WrapperRef)
+                    WrapperRef.current?.scrollBy(
+                      window.innerWidth / 2 > 1000
+                        ? 1000
+                        : window.innerWidth / 2,
+                      0,
+                    );
                 }}
               />
             </div>
@@ -155,7 +173,13 @@ export function PovertyAndInequalityKeyInsights() {
                 alt='icon'
                 style={{ opacity: '1' }}
                 onClick={() => {
-                  if (WrapperRef) WrapperRef.current?.scrollBy(-250, 0);
+                  if (WrapperRef)
+                    WrapperRef.current?.scrollBy(
+                      window.innerWidth / 2 > 1000
+                        ? -1000
+                        : 0 - window.innerWidth / 2,
+                      0,
+                    );
                 }}
               />
               <p className='undp-typography margin-bottom-00'>Insight 3 of 3</p>
