@@ -40,7 +40,7 @@ There are many type of visualization in this page:
 
 ### Main Visualization<a name="section-02-01"></a>
 
-This is the parent visualization with all the data for all the countries. This visualization is used in teh __Access All Data__ page in DFP.
+This is the parent visualization with all the data for all the countries. This visualization is used in the __Access All Data__ page in DFP.
 
 Main visualization `Access All Data` will be rendered within the following div on a static page:
 ```
