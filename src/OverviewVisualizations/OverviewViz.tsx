@@ -12,7 +12,7 @@ interface Props {
 }
 
 const WrapperEl = styled.div`
-  scroll-snap-type: x mandatory;
+  scroll-snap-type: x proximity;
   scroll-padding: 0;
   scroll-padding-left: 0;
   display: flex;
@@ -67,8 +67,8 @@ export function OverviewViz(props: Props) {
           onClick={e => {
             if (WrapperRef.current) {
               if (e.clientX > window.innerWidth / 2)
-                WrapperRef.current.scrollBy(50, 0);
-              else WrapperRef.current.scrollBy(-50, 0);
+                WrapperRef.current.scrollBy(360, 0);
+              else WrapperRef.current.scrollBy(-360, 0);
             }
           }}
           onMouseMove={e => {
