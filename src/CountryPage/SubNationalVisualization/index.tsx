@@ -33,11 +33,24 @@ export function SubNationalVisualization(props: Props) {
   return (
     <div>
       <div
-        className='margin-bottom-07'
+        className='margin-bottom-07 padding-top-07'
         style={{
           backgroundColor: 'var(--gray-400)',
         }}
       >
+        <p className='undp-typography large-font max-width-1980 margin-bottom-07'>
+          To ensure no-one is left behind, detailed hyper-local information on
+          socio-economic characteristics such as education and literacy,
+          employment, multidimensional poverty, Nutrition are crucial to ensure
+          timely decisions are informed by disaggregated information. Explore
+          some of these data here based on surveys such as DHS, and
+          non-traditional data on relative wealth index and population from
+          Meta.
+        </p>
+        <hr
+          className='undp-style max-width-1980'
+          style={{ backgroundColor: 'var(--gray-200)' }}
+        />
         <div
           className='flex-div gap-03 flex-vert-align-center max-width-1980'
           style={{

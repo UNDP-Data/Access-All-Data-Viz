@@ -39,7 +39,7 @@ export const METADATALINK =
   'https://raw.githubusercontent.com/UNDP-Data/Indicators-MetaData/for-redesign/indicatorMetaData.json';
 
 export const SUBNATIONALMETADATALINK =
-  'https://raw.githubusercontent.com/UNDP-Data/Indicators-MetaData/for-redesign//subNationDataMetaDataByCountries/';
+  'https://raw.githubusercontent.com/UNDP-Data/Indicators-MetaData/for-redesign/subNationDataMetaDataByCountries/';
 
 export const DATALINK =
   'https://raw.githubusercontent.com/UNDP-Data/Access-All-Data-Data-Repo/main';

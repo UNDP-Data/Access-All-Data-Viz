@@ -978,6 +978,40 @@ export function BiVariateMap(props: Props) {
           </div>
         </button>
       )}
+      <div
+        className='bivariate-legend-container'
+        style={{
+          justifyContent: 'flex-end',
+          width: '100%',
+          marginRight: 'var(--spacing-05)',
+          marginBottom: 0,
+        }}
+      >
+        <div
+          className='bivariate-legend-el'
+          style={{ alignItems: 'flex-start', marginBottom: 0 }}
+        >
+          <div className='flex-div' style={{ alignItems: 'flex-end' }}>
+            <div
+              style={{
+                display: 'flex',
+                pointerEvents: 'auto',
+                padding: 'var(--spacing-01)',
+                paddingRight: 'var(--spacing-05)',
+                backgroundColor: 'rgba(255,255,255,0.4)',
+              }}
+            >
+              <p
+                className='undp-typography italics margin-bottom-00'
+                style={{ fontSize: '0.5rem' }}
+              >
+                The boundaries and names and the designations used do not imply
+                official endorsement by the UN
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
       {hoverData ? <Tooltip data={hoverData} /> : null}
     </GraphDiv>
   );
