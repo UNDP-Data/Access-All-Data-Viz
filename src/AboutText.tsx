@@ -1137,4 +1137,30 @@ export const ABOUT_TEXT_LINKS = [
       },
     ],
   },
+  {
+    title: 'Iraq',
+    id: 'IRQ',
+    bodyText: (
+      <>
+        <p className='undp-typography'>
+          Iraq was a founding member of the United Nations in 1945. Present in
+          Iraq since 1976, the United Nations Development Programme (UNDP) is
+          committed to supporting the Government and people of Iraq during their
+          transition towards reconciliation, reform and stability.
+        </p>
+        <p className='undp-typography'>
+          UNDP support’s the Government’s vision for a sustainable, peaceful
+          Iraq through an approach that strengthens societal resilience to
+          better deal with social, economic, environmental and political shocks
+          and stresses.
+        </p>
+      </>
+    ),
+    resource: [
+      {
+        source: 'About Us Page',
+        link: 'https://www.undp.org/iraq/about-us',
+      },
+    ],
+  },
 ];
