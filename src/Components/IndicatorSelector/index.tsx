@@ -11,7 +11,7 @@ import { SDG_GOALS, TAGS_LIST } from '../../Constants';
 interface Props {
   title: string;
   indicators: IndicatorMetaDataType[];
-  selectedIndicator?: string;
+  selectedIndicator?: IndicatorMetaDataType;
   updateIndicator: (_d?: string) => void;
   isOptional?: boolean;
 }
@@ -62,6 +62,8 @@ interface InfoProps extends TooltipElProps {
   x: number;
   y: number;
   info: string;
+  description: string;
+  source: string;
 }
 const TooltipEl = styled.div<TooltipElProps>`
   display: block;
@@ -136,10 +138,10 @@ function IndicatorSelector(props: Props) {
             onClick={() => {
               setOpenModal(true);
             }}
-            title={selectedIndicator || 'Select an indicator'}
+            title={selectedIndicator?.IndicatorLabel || 'Select an indicator'}
           >
             <TruncateDiv>
-              {selectedIndicator || 'Select an indicator'}
+              {selectedIndicator?.IndicatorLabel || 'Select an indicator'}
             </TruncateDiv>
             <ChevronDown size={24} stroke='var(--red)' />
           </DropDownButton>
@@ -150,7 +152,9 @@ function IndicatorSelector(props: Props) {
               onMouseEnter={event => {
                 if (selectedIndicator)
                   setIndicatorInfo({
-                    info: selectedIndicator,
+                    info: selectedIndicator.IndicatorLabel,
+                    description: selectedIndicator.IndicatorDescription,
+                    source: selectedIndicator.DataSourceName,
                     x: event.clientX,
                     y: event.clientY,
                   });
@@ -158,7 +162,9 @@ function IndicatorSelector(props: Props) {
               onMouseMove={event => {
                 if (selectedIndicator)
                   setIndicatorInfo({
-                    info: selectedIndicator,
+                    info: selectedIndicator.IndicatorLabel,
+                    description: selectedIndicator.IndicatorDescription,
+                    source: selectedIndicator.DataSourceName,
                     x: event.clientX,
                     y: event.clientY,
                   });
@@ -189,8 +195,14 @@ function IndicatorSelector(props: Props) {
           x={indicatorInfo.x}
           y={indicatorInfo.y}
         >
-          <p className='undp-typography small-font margin-bottom-00'>
+          <p className='undp-typography small-font margin-bottom-00 bold'>
             {indicatorInfo.info}
+          </p>
+          <p className='undp-typography small-font margin-bottom-02'>
+            {indicatorInfo.description}
+          </p>
+          <p className='undp-typography small-font margin-bottom-00'>
+            Source: <span className='bold'>{indicatorInfo.source}</span>
           </p>
         </TooltipEl>
       ) : null}

@@ -128,7 +128,7 @@ export function Settings(props: Props) {
                 selectedIndicator={
                   indicators[
                     indicators.findIndex(d => d.DataKey === xAxisIndicator)
-                  ].IndicatorLabel
+                  ]
                 }
                 updateIndicator={updateXAxisIndicator}
               />
@@ -209,8 +209,8 @@ export function Settings(props: Props) {
                   yAxisIndicator
                     ? indicators[
                         indicators.findIndex(d => d.DataKey === yAxisIndicator)
-                      ].IndicatorLabel
-                    : yAxisIndicator
+                      ]
+                    : (yAxisIndicator as undefined)
                 }
                 updateIndicator={updateYAxisIndicator}
                 isOptional={graphType !== 'scatterPlot'}
@@ -230,8 +230,8 @@ export function Settings(props: Props) {
                   sizeIndicator
                     ? indicators[
                         indicators.findIndex(d => d.DataKey === sizeIndicator)
-                      ].IndicatorLabel
-                    : sizeIndicator
+                      ]
+                    : (sizeIndicator as undefined)
                 }
                 updateIndicator={updateSizeIndicator}
                 isOptional
