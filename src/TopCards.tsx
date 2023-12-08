@@ -1575,4 +1575,51 @@ export const TOP_CARDS = [
       },
     ],
   },
+  {
+    id: 'IRQ',
+    cards: [
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey: 'Climate Change Readiness Ranking',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle: 'Climate Change Readiness Ranking',
+          suffix: '',
+        },
+      },
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey: 'School enrollment, tertiary (% gross)',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle: 'School enrollment, tertiary (% gross)',
+          suffix: '%',
+        },
+      },
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey: 'Current health expenditure (% of GDP)',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle:
+            'Current Health Expenditure, percentage of the national gross domestic product (GDP)',
+          suffix: '%',
+        },
+      },
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey:
+            'People using safely managed drinking water services (% of population)',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle: 'Access to water services, percent of population',
+          suffix: '%',
+        },
+      },
+    ],
+  },
 ];
