@@ -1,3 +1,5 @@
+/* eslint-disable no-lonely-if */
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useRef, useState } from 'react';
 import maplibreGl from 'maplibre-gl';
@@ -202,7 +204,23 @@ export function CountryMap(props: Props) {
       ],
     ]);
     (map as any).current.scrollZoom.disable();
-    (map as any).current.addControl(new maplibreGl.NavigationControl());
+    (map as any).current.on('wheel', (event: any) => {
+      if (event.originalEvent.ctrlKey) {
+        // Check if CTRL key is pressed
+        event.originalEvent.preventDefault(); // Prevent chrome/firefox default behavior
+        if (!(map as any).current.scrollZoom._enabled)
+          (map as any).current.scrollZoom.enable(); // Enable zoom only if it's disabled
+      } else {
+        if ((map as any).current.scrollZoom._enabled)
+          (map as any).current.scrollZoom.disable(); // Disable zoom only if it's enabled
+      }
+    });
+    /*
+    (map as any).current.addControl(
+      new maplibreGl.NavigationControl(),
+      'top-right',
+    );
+    */
     let districtHoveredStateId: string | null = null;
     (map as any).current.on('mousemove', `layer_${mapLayer.id}`, (e: any) => {
       (map as any).current.getCanvas().style.cursor = 'pointer';
@@ -262,8 +280,29 @@ export function CountryMap(props: Props) {
         }}
       >
         <div
+          style={{
+            display: 'flex',
+            paddingTop: '1rem',
+            marginLeft: '1rem',
+            position: 'absolute',
+            zIndex: '10',
+          }}
+        >
+          <div
+            style={{
+              display: 'flex',
+              padding: '1rem',
+              backgroundColor: 'rgba(255,255,255,0.5)',
+            }}
+          >
+            <p className='undp-typography small-font italics margin-bottom-00'>
+              Use ctrl (or cmd for mac) + scroll to zoom the map
+            </p>
+          </div>
+        </div>
+        <div
           ref={mapContainer}
-          className='map maplibre-show-control'
+          className='map'
           style={{ width: '100%', height: '100%' }}
         />
         <div
@@ -324,6 +363,9 @@ export function CountryMap(props: Props) {
         ) : null}
       </div>
       <Modal className='undp-modal' open={loading} destroyOnClose>
+        <h6 className='undp-typography' style={{ textAlign: 'center' }}>
+          Use ctrl (or cmd for mac) + scroll to zoom the map
+        </h6>
         <h6 className='undp-typography' style={{ textAlign: 'center' }}>
           Loading Map...
         </h6>
