@@ -201,6 +201,8 @@ export function CountryMap(props: Props) {
         countryBoundingBox.boundingBox.ne.lat,
       ],
     ]);
+    (map as any).current.scrollZoom.disable();
+    (map as any).current.addControl(new maplibreGl.NavigationControl());
     let districtHoveredStateId: string | null = null;
     (map as any).current.on('mousemove', `layer_${mapLayer.id}`, (e: any) => {
       (map as any).current.getCanvas().style.cursor = 'pointer';
@@ -261,7 +263,7 @@ export function CountryMap(props: Props) {
       >
         <div
           ref={mapContainer}
-          className='map'
+          className='map maplibre-show-control'
           style={{ width: '100%', height: '100%' }}
         />
         <div
