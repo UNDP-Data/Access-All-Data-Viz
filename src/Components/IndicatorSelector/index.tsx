@@ -202,7 +202,10 @@ function IndicatorSelector(props: Props) {
             {indicatorInfo.description}
           </p>
           <p className='undp-typography small-font margin-bottom-00'>
-            Source: <span className='bold'>{indicatorInfo.source}</span>
+            Source:{' '}
+            <span className='bold undp-typography small-font'>
+              {indicatorInfo.source}
+            </span>
           </p>
         </TooltipEl>
       ) : null}
