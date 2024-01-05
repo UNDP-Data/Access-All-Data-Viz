@@ -193,7 +193,7 @@ export function Graph(props: Props) {
     .nice();
   const yearRange = range(minYearFiltered, maxYearFiltered + 1, 1);
   const lineShape1 = line()
-    .defined((d: any) => d.param)
+    .defined((d: any) => d.param !== undefined)
     .x((d: any) => x(d.year))
     .y((d: any) => y(d.param))
     .curve(curveMonotoneX);

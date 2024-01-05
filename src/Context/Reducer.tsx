@@ -40,6 +40,12 @@ export default (state: any, action: any) => {
       return { ...state, signatureSolutionForDataList: action.payload };
     case 'UPDATE_SHOW_REFERENCE':
       return { ...state, showReference: action.payload };
+    case 'UPDATE_DISAGGREGATION_INDICATOR':
+      return { ...state, disaggregationIndicator: action.payload };
+    case 'UPDATE_DISAGGREGATION_GRAPH_TYPE':
+      return { ...state, disaggregationGraphType: action.payload };
+    case 'UPDATE_DISAGGREGATION_ORDER':
+      return { ...state, disaggregationOrder: action.payload };
     default:
       return { ...state };
   }

@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import { json } from 'd3-request';
 import uniqBy from 'lodash.uniqby';
+import intersection from 'lodash.intersection';
 import { queue } from 'd3-queue';
 import { Select } from 'antd';
 import {
@@ -9,11 +10,13 @@ import {
   IndicatorMetaDataType,
   CountryListType,
   CountryTaxonomyDataType,
+  DisaggregationMetaDataType,
 } from '../Types';
 
 import {
   COUNTRYTAXONOMYLINK,
   DATALINK,
+  DISAGGREGATIONMETADATALINK,
   METADATALINK,
   SIGNATURE_SOLUTIONS_LIST,
 } from '../Constants';
@@ -32,6 +35,9 @@ export function CountryHomePageForCountryPage(props: PropsWithoutSS) {
   const [indicatorsList, setIndicatorsList] = useState<
     IndicatorMetaDataType[] | undefined
   >(undefined);
+  const [disaggregationList, setDisaggregationList] = useState<
+    DisaggregationMetaDataType[] | undefined
+  >(undefined);
   const [countryTaxonomy, setCountryTaxonomy] = useState<
     CountryTaxonomyDataType[] | undefined
   >(undefined);
@@ -47,12 +53,14 @@ export function CountryHomePageForCountryPage(props: PropsWithoutSS) {
     queue()
       .defer(json, `${DATALINK}/countryData/${countryFromLink}.json`)
       .defer(json, METADATALINK)
+      .defer(json, DISAGGREGATIONMETADATALINK)
       .defer(json, COUNTRYTAXONOMYLINK)
       .await(
         (
           err: any,
           data: CountryGroupDataType,
           indicatorMetaData: IndicatorMetaDataType[],
+          disaggregationMetaData: DisaggregationMetaDataType[],
           countryTaxonomyDataFromFile: CountryTaxonomyDataType[],
         ) => {
           if (err) throw err;
@@ -76,6 +84,17 @@ export function CountryHomePageForCountryPage(props: PropsWithoutSS) {
                   data.indicators.findIndex(el => el.indicator === d.DataKey)
                 ].yearlyData.length > 0,
             ),
+          );
+          setDisaggregationList(
+            disaggregationMetaData.filter(d => {
+              const indicators = d.DisaggregatedIndicators.map(
+                el => el.DataKey,
+              );
+              const indicatorsFromData = data.indicators.map(
+                el => el.indicator,
+              );
+              return intersection(indicators, indicatorsFromData).length > 0;
+            }),
           );
         },
       );
@@ -120,6 +139,7 @@ export function CountryHomePageForCountryPage(props: PropsWithoutSS) {
       finalData &&
       regionList &&
       countryList &&
+      disaggregationList &&
       countryTaxonomy ? (
         <div
           className='undp-container max-width-1980'
@@ -146,6 +166,7 @@ export function CountryHomePageForCountryPage(props: PropsWithoutSS) {
             loading={false}
             idForOverview={signatureSolution || countryId || 'Default'}
             defaultViewId={signatureSolution || countryId || 'Default'}
+            disaggregationMetaData={disaggregationList}
           />
         </div>
       ) : (

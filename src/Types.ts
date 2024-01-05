@@ -86,6 +86,18 @@ export interface IndicatorMetaDataType {
   Tags: string[];
 }
 
+export interface DisaggregationMetaDataType {
+  Indicator: string;
+  DisaggregationType: string;
+  DisaggregatedIndicators: {
+    key: string;
+    id: string;
+    DataKey: string;
+  }[];
+  SignatureSolution: string[];
+  SSTopics: string[];
+}
+
 export interface SubNationalMetaDataType {
   indicator_id: string;
   indicator_name: string;
@@ -123,7 +135,8 @@ export interface CtxDataType {
     | 'barGraph'
     | 'trendLine'
     | 'multiCountryTrendLine'
-    | 'dataList';
+    | 'dataList'
+    | 'disaggregation';
   selectedRegions: string[];
   selectedCountries: string[];
   selectedIncomeGroups: string[];
@@ -142,6 +155,9 @@ export interface CtxDataType {
   reverseOrder: boolean;
   verticalBarLayout: boolean;
   selectedCountryOrRegion?: string;
+  disaggregationIndicator?: DisaggregationMetaDataType;
+  disaggregationGraphType: 'global' | 'country';
+  disaggregationOrder: 'first' | 'second' | 'diff';
   signatureSolution?: string;
   showReference: boolean;
   signatureSolutionForDataList:
@@ -159,13 +175,17 @@ export interface CtxDataType {
       | 'barGraph'
       | 'trendLine'
       | 'multiCountryTrendLine'
-      | 'dataList',
+      | 'dataList'
+      | 'disaggregation',
   ) => void;
   updateSelectedRegions: (_d: string[]) => void;
   updateSelectedCountries: (_d: string[]) => void;
   updateSelectedIncomeGroups: (_d: string[]) => void;
   updateYear: (_d: number) => void;
   updateSelectedCountryGroup: (_d: 'All' | 'SIDS' | 'LLDC' | 'LDC') => void;
+  updateDisaggregationIndicator: (_d: DisaggregationMetaDataType) => void;
+  updateDisaggregationGraphType: (_d: 'global' | 'country') => void;
+  updateDisaggregationOrder: (_d: 'first' | 'second' | 'diff') => void;
   updateXAxisIndicator: (_d?: string) => void;
   updateYAxisIndicator: (_d?: string) => void;
   updateColorIndicator: (_d?: string) => void;

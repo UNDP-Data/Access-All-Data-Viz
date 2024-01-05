@@ -5,6 +5,7 @@ import {
   CountryGroupDataType,
   IndicatorMetaDataType,
   CountryListType,
+  DisaggregationMetaDataType,
 } from '../Types';
 import { CountryGraphingEl } from '../GrapherComponent/GraphingEl';
 import Reducer from '../Context/Reducer';
@@ -14,6 +15,7 @@ import { DEFAULT_VIEWS } from '../DefaultViewsForDataExplorer';
 
 interface Props {
   indicatorsList: IndicatorMetaDataType[];
+  disaggregationMetaData: DisaggregationMetaDataType[];
   finalData: CountryGroupDataType[];
   regionList: string[];
   countryList: CountryListType[];
@@ -35,6 +37,7 @@ function CountryVisualization(props: Props) {
     loading,
     idForOverview,
     defaultViewId,
+    disaggregationMetaData,
   } = props;
   const signatureSolutionFromLink = useParams().signatureSolution;
   const defaultViewsIndx = defaultViewId
@@ -86,6 +89,10 @@ function CountryVisualization(props: Props) {
     selectedCountryOrRegion: countryId,
     signatureSolution: signatureSolutionFromLink || signatureSolution,
     signatureSolutionForDataList: 'All',
+    disaggregationIndicator:
+      disaggregationMetaData.length > 0 ? disaggregationMetaData[0] : undefined,
+    disaggregationGraphType: 'country',
+    disaggregationOrder: 'first',
   };
 
   const [state, dispatch] = useReducer(Reducer, initialState);
@@ -240,6 +247,30 @@ function CountryVisualization(props: Props) {
       payload: verticalBarLayout,
     });
   };
+  const updateDisaggregationIndicator = (
+    disaggregationIndicator: DisaggregationMetaDataType,
+  ) => {
+    dispatch({
+      type: 'UPDATE_DISAGGREGATION_INDICATOR',
+      payload: disaggregationIndicator,
+    });
+  };
+  const updateDisaggregationGraphType = (
+    disaggregationGraphType: 'global' | 'country',
+  ) => {
+    dispatch({
+      type: 'UPDATE_DISAGGREGATION_GRAPH_TYPE',
+      payload: disaggregationGraphType,
+    });
+  };
+  const updateDisaggregationOrder = (
+    disaggregationOrder: 'first' | 'second' | 'diff',
+  ) => {
+    dispatch({
+      type: 'UPDATE_DISAGGREGATION_ORDER',
+      payload: disaggregationOrder,
+    });
+  };
   return (
     <Context.Provider
       // eslint-disable-next-line react/jsx-no-constructed-context-values
@@ -265,6 +296,9 @@ function CountryVisualization(props: Props) {
         updateBarLayout,
         updateSignatureSolutionForDataList,
         updateShowReference,
+        updateDisaggregationIndicator,
+        updateDisaggregationGraphType,
+        updateDisaggregationOrder,
       }}
     >
       <div className='undp-container'>
@@ -278,6 +312,7 @@ function CountryVisualization(props: Props) {
         <CountryGraphingEl
           data={finalData}
           indicators={indicatorsList}
+          disaggregationMetaData={disaggregationMetaData}
           regions={regionList}
           countries={countryList}
           loading={loading}
