@@ -403,6 +403,7 @@ export function CountryGraphingEl(props: CountryGraphingElProps) {
             countries={countries}
             data={data}
             disaggregationMetaData={disaggregationMetaData}
+            countrySettings
           />
           {loading ? (
             <div className='undp-loader-container undp-container'>

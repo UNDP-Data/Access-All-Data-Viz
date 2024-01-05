@@ -270,7 +270,8 @@ export function Graph(props: Props) {
     >
       {graphType === 'trendLine' ||
       graphType === 'multiCountryTrendLine' ||
-      graphType === 'dataList' ? null : commonYears.length > 1 &&
+      graphType === 'dataList' ? null : graphType === 'disaggregation' &&
+        disaggregationGraphType === 'country' ? null : commonYears.length > 1 &&
         !showMostRecentData ? (
         <div className='slider-background'>
           <button

@@ -22,6 +22,7 @@ interface Props {
   disaggregationMetaData: DisaggregationMetaDataType[];
   countries: CountryListType[];
   regions?: string[];
+  countrySettings?: boolean;
 }
 
 export function DisaggregationSettings(props: Props) {
@@ -31,6 +32,7 @@ export function DisaggregationSettings(props: Props) {
     disaggregationMetaData,
     countries,
     regions,
+    countrySettings,
   } = props;
   const {
     showMostRecentData,
@@ -96,113 +98,116 @@ export function DisaggregationSettings(props: Props) {
           </button>
         </div>
       </div>
-      <div className='settings-sections-container'>
-        <button
-          type='button'
-          aria-label='Expand or collapse settings'
-          className='settings-sections-container-title'
-          onClick={() => {
-            setSettingsExpanded(!settingsExpanded);
-          }}
-        >
-          {settingsExpanded ? (
-            <ChevronDownCircle stroke='#212121' size={18} />
-          ) : (
-            <ChevronRightCircle stroke='#212121' size={18} />
-          )}
-          <h6 className='undp-typography margin-bottom-00'>
-            Settings & Options
-          </h6>
-        </button>
-        <div
-          className='gap-05'
-          style={{
-            display: settingsExpanded ? 'flex' : 'none',
-            flexDirection: 'column',
-          }}
-        >
-          <div>
-            <p className='label'>Visualization Type</p>
-            <Radio.Group
-              onChange={d => {
-                updateDisaggregationGraphType(d.target.value);
-              }}
-              value={disaggregationGraphType}
-            >
-              <Radio className='undp-radio' value='global'>
-                Global/Region
-              </Radio>
-              <Radio className='undp-radio' value='country'>
-                Country Level
-              </Radio>
-            </Radio.Group>
-          </div>
-          {disaggregationGraphType === 'global' ? (
-            <div className='settings-sections-options-container'>
-              {disaggregationIndicator &&
-              (disaggregationIndicator.DisaggregationType === 'Gender' ||
-                disaggregationIndicator.DisaggregationType ===
-                  'Urban/Rural') ? (
-                <div>
-                  <p className='label'>Order by</p>
-                  <Radio.Group
-                    onChange={d => {
-                      updateDisaggregationOrder(d.target.value);
+      {countrySettings ? null : (
+        <div className='settings-sections-container'>
+          <button
+            type='button'
+            aria-label='Expand or collapse settings'
+            className='settings-sections-container-title'
+            onClick={() => {
+              setSettingsExpanded(!settingsExpanded);
+            }}
+          >
+            {settingsExpanded ? (
+              <ChevronDownCircle stroke='#212121' size={18} />
+            ) : (
+              <ChevronRightCircle stroke='#212121' size={18} />
+            )}
+            <h6 className='undp-typography margin-bottom-00'>
+              Settings & Options
+            </h6>
+          </button>
+          <div
+            className='gap-05'
+            style={{
+              display: settingsExpanded ? 'flex' : 'none',
+              flexDirection: 'column',
+            }}
+          >
+            <div>
+              <p className='label'>Visualization Type</p>
+              <Radio.Group
+                onChange={d => {
+                  updateDisaggregationGraphType(d.target.value);
+                }}
+                value={disaggregationGraphType}
+              >
+                <Radio className='undp-radio' value='global'>
+                  Global/Region
+                </Radio>
+                <Radio className='undp-radio' value='country'>
+                  Country Level
+                </Radio>
+              </Radio.Group>
+            </div>
+            {disaggregationGraphType === 'global' ? (
+              <div className='settings-sections-options-container'>
+                {disaggregationIndicator &&
+                (disaggregationIndicator.DisaggregationType === 'Gender' ||
+                  disaggregationIndicator.DisaggregationType ===
+                    'Urban/Rural') ? (
+                  <div>
+                    <p className='label'>Order by</p>
+                    <Radio.Group
+                      onChange={d => {
+                        updateDisaggregationOrder(d.target.value);
+                      }}
+                      value={disaggregationOrder}
+                    >
+                      <Radio className='undp-radio' value='first'>
+                        {disaggregationIndicator.DisaggregationType === 'Gender'
+                          ? 'Female'
+                          : 'Urban'}
+                      </Radio>
+                      <Radio className='undp-radio' value='second'>
+                        {disaggregationIndicator.DisaggregationType === 'Gender'
+                          ? 'Male'
+                          : 'Rural'}
+                      </Radio>
+                      <Radio className='undp-radio' value='diff'>
+                        Diff. (
+                        {disaggregationIndicator.DisaggregationType === 'Gender'
+                          ? 'Female - Male'
+                          : 'Urban - Rural'}
+                        )
+                      </Radio>
+                    </Radio.Group>
+                  </div>
+                ) : null}
+                {disaggregationIndicator &&
+                (disaggregationIndicator.DisaggregationType === 'Gender' ||
+                  disaggregationIndicator.DisaggregationType ===
+                    'Urban/Rural') ? (
+                  <Checkbox
+                    style={{ margin: 0 }}
+                    className='undp-checkbox'
+                    checked={reverseOrder}
+                    onChange={e => {
+                      updateReverseOrder(e.target.checked);
                     }}
-                    value={disaggregationOrder}
                   >
-                    <Radio className='undp-radio' value='first'>
-                      {disaggregationIndicator.DisaggregationType === 'Gender'
-                        ? 'Female'
-                        : 'Urban'}
-                    </Radio>
-                    <Radio className='undp-radio' value='second'>
-                      {disaggregationIndicator.DisaggregationType === 'Gender'
-                        ? 'Male'
-                        : 'Rural'}
-                    </Radio>
-                    <Radio className='undp-radio' value='diff'>
-                      Diff. (
-                      {disaggregationIndicator.DisaggregationType === 'Gender'
-                        ? 'Female - Male'
-                        : 'Urban - Rural'}
-                      )
-                    </Radio>
-                  </Radio.Group>
-                </div>
-              ) : null}
-              {disaggregationIndicator &&
-              (disaggregationIndicator.DisaggregationType === 'Gender' ||
-                disaggregationIndicator.DisaggregationType ===
-                  'Urban/Rural') ? (
+                    Show Largest First
+                  </Checkbox>
+                ) : null}
                 <Checkbox
                   style={{ margin: 0 }}
                   className='undp-checkbox'
-                  checked={reverseOrder}
+                  checked={showMostRecentData}
                   onChange={e => {
-                    updateReverseOrder(e.target.checked);
+                    updateShowMostRecentData(e.target.checked);
                   }}
                 >
-                  Show Largest First
+                  Show Most Recent Available Data
                 </Checkbox>
-              ) : null}
-              <Checkbox
-                style={{ margin: 0 }}
-                className='undp-checkbox'
-                checked={showMostRecentData}
-                onChange={e => {
-                  updateShowMostRecentData(e.target.checked);
-                }}
-              >
-                Show Most Recent Available Data
-              </Checkbox>
-            </div>
-          ) : null}
+              </div>
+            ) : null}
+          </div>
         </div>
-      </div>
+      )}
       {!selectedCountryOrRegion &&
       countries.length > 1 &&
-      disaggregationGraphType === 'global' ? (
+      disaggregationGraphType === 'global' &&
+      !countrySettings ? (
         <Filters regions={regions} countries={countries} />
       ) : null}
     </div>

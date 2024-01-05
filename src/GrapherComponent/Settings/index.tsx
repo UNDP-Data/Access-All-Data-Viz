@@ -24,11 +24,18 @@ interface Props {
   countries: CountryListType[];
   data: CountryGroupDataType[];
   disaggregationMetaData?: DisaggregationMetaDataType[];
+  countrySettings?: boolean;
 }
 
 export function Settings(props: Props) {
-  const { indicators, regions, countries, data, disaggregationMetaData } =
-    props;
+  const {
+    indicators,
+    regions,
+    countries,
+    data,
+    disaggregationMetaData,
+    countrySettings,
+  } = props;
   const { graphType } = useContext(Context) as CtxDataType;
   const [showSourceModal, setShowSourceModal] = useState(false);
   const [showDownloadModal, setShowDownloadModal] = useState(false);
@@ -79,6 +86,7 @@ export function Settings(props: Props) {
           setShowSourceModal={setShowSourceModal}
           regions={regions}
           countries={countries}
+          countrySettings={countrySettings}
         />
       ) : null}
       <Modal
