@@ -37,6 +37,7 @@ export function DownloadModal(props: Props) {
     graphType,
     xAxisIndicator,
     yAxisIndicator,
+    disaggregationIndicator,
     sizeIndicator,
     colorIndicator,
   } = useContext(Context) as CtxDataType;
@@ -84,17 +85,23 @@ export function DownloadModal(props: Props) {
       </Button>
       <hr className='undp-style margin-top-09 margin-bottom-09' />
       <h5 className='undp-typography bold'>Data</h5>
-      <DataSourceListMinifiedItem
-        indicatorData={xIndicatorMetaData}
-        data={data}
-      />
-      {graphType !== 'barGraph' && yIndicatorMetaData ? (
+      {graphType !== 'disaggregation' ? (
+        <DataSourceListMinifiedItem
+          indicatorData={xIndicatorMetaData}
+          data={data}
+        />
+      ) : null}
+      {graphType !== 'barGraph' &&
+      graphType !== 'disaggregation' &&
+      yIndicatorMetaData ? (
         <DataSourceListMinifiedItem
           indicatorData={yIndicatorMetaData}
           data={data}
         />
       ) : null}
-      {graphType !== 'map' && colorIndicatorMetaData ? (
+      {graphType !== 'map' &&
+      graphType !== 'disaggregation' &&
+      colorIndicatorMetaData ? (
         <DataSourceListMinifiedItem
           indicatorData={colorIndicatorMetaData}
           data={data}
@@ -106,6 +113,24 @@ export function DownloadModal(props: Props) {
           indicatorData={sizeIndicatorMetaData}
           data={data}
         />
+      ) : null}
+      {graphType === 'disaggregation' ? (
+        <div>
+          {disaggregationIndicator?.DisaggregatedIndicators.map(
+            (indicator, i) => {
+              const indicatorMetaData =
+                indicators[indicators.findIndex(d => d.id === indicator.id)];
+              return (
+                <div key={i}>
+                  <DataSourceListMinifiedItem
+                    indicatorData={indicatorMetaData}
+                    data={data}
+                  />
+                </div>
+              );
+            },
+          )}
+        </div>
       ) : null}
     </div>
   );
