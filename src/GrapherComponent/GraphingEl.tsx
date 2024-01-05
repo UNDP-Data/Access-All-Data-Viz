@@ -34,7 +34,7 @@ interface Props {
 const TabText = styled.div`
   width: 100%;
   font-family: var(--fontFamily);
-  font-size: 0.875rem;
+  font-size: 0.875rem !important;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
