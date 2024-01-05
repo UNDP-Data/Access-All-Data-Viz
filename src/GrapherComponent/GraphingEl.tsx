@@ -7,6 +7,7 @@ import {
   ScatterChart,
   Ungroup,
 } from 'lucide-react';
+import styled from 'styled-components';
 import {
   CountryGroupDataType,
   CountryListType,
@@ -29,6 +30,15 @@ interface Props {
   regionData?: CountryGroupDataType;
   disaggregationMetaData: DisaggregationMetaDataType[];
 }
+
+const TabText = styled.div`
+  width: 100%;
+  font-family: var(--fontFamily);
+  font-size: 0.875rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
 
 export function DataExplorerGraphingEl(props: Props) {
   const {
@@ -57,22 +67,16 @@ export function DataExplorerGraphingEl(props: Props) {
             style={{
               flexWrap: 'wrap',
             }}
+            title='Maps'
           >
             <Map
-              size={48}
+              size={40}
+              strokeWidth={1.25}
               stroke={
                 graphType === 'map' ? 'var(--blue-600)' : 'var(--gray-500)'
               }
             />
-            <div
-              style={{
-                width: '100%',
-                fontFamily: 'var(--fontFamily)',
-                fontSize: '0.875rem',
-              }}
-            >
-              Maps
-            </div>
+            <TabText>Maps</TabText>
           </button>
           <button
             type='button'
@@ -85,24 +89,18 @@ export function DataExplorerGraphingEl(props: Props) {
             style={{
               flexWrap: 'wrap',
             }}
+            title='Correlation'
           >
             <ScatterChart
-              size={48}
+              size={40}
+              strokeWidth={1.25}
               stroke={
                 graphType === 'scatterPlot'
                   ? 'var(--blue-600)'
                   : 'var(--gray-500)'
               }
             />
-            <div
-              style={{
-                width: '100%',
-                fontFamily: 'var(--fontFamily)',
-                fontSize: '0.875rem',
-              }}
-            >
-              Correlation
-            </div>
+            <TabText>Correlation</TabText>
           </button>
           <button
             type='button'
@@ -115,22 +113,16 @@ export function DataExplorerGraphingEl(props: Props) {
             style={{
               flexWrap: 'wrap',
             }}
+            title='Ranks'
           >
             <BarChart3
-              size={48}
+              size={40}
+              strokeWidth={1.25}
               color={
                 graphType === 'barGraph' ? 'var(--blue-600)' : 'var(--gray-500)'
               }
             />
-            <div
-              style={{
-                width: '100%',
-                fontFamily: 'var(--fontFamily)',
-                fontSize: '0.875rem',
-              }}
-            >
-              Ranks
-            </div>
+            <TabText>Ranks</TabText>
           </button>
           <button
             type='button'
@@ -143,24 +135,18 @@ export function DataExplorerGraphingEl(props: Props) {
             style={{
               flexWrap: 'wrap',
             }}
+            title='Dual Axes Line Chart'
           >
             <LineChart
-              size={48}
+              size={40}
+              strokeWidth={1.25}
               stroke={
                 graphType === 'trendLine'
                   ? 'var(--blue-600)'
                   : 'var(--gray-500)'
               }
             />
-            <div
-              style={{
-                width: '100%',
-                fontFamily: 'var(--fontFamily)',
-                fontSize: '0.875rem',
-              }}
-            >
-              Dual Axes Line Chart
-            </div>
+            <TabText>Dual Axes Line Chart</TabText>
           </button>
           <button
             type='button'
@@ -173,24 +159,18 @@ export function DataExplorerGraphingEl(props: Props) {
             style={{
               flexWrap: 'wrap',
             }}
+            title='Multi Country Trends'
           >
             <LineChart
-              size={48}
+              size={40}
+              strokeWidth={1.25}
               stroke={
                 graphType === 'multiCountryTrendLine'
                   ? 'var(--blue-600)'
                   : 'var(--gray-500)'
               }
             />
-            <div
-              style={{
-                width: '100%',
-                fontFamily: 'var(--fontFamily)',
-                fontSize: '0.875rem',
-              }}
-            >
-              Multi Country Trends
-            </div>
+            <TabText>Multi Country Trends</TabText>
           </button>
           {disaggregationMetaData.length > 0 ? (
             <button
@@ -204,24 +184,18 @@ export function DataExplorerGraphingEl(props: Props) {
               style={{
                 flexWrap: 'wrap',
               }}
+              title='Disaggregation'
             >
               <Ungroup
-                size={48}
+                size={40}
+                strokeWidth={1.25}
                 stroke={
                   graphType === 'disaggregation'
                     ? 'var(--blue-600)'
                     : 'var(--gray-500)'
                 }
               />
-              <div
-                style={{
-                  width: '100%',
-                  fontFamily: 'var(--fontFamily)',
-                  fontSize: '0.875rem',
-                }}
-              >
-                Disaggregation
-              </div>
+              <TabText>Disaggregation</TabText>
             </button>
           ) : null}
           <button
@@ -235,22 +209,16 @@ export function DataExplorerGraphingEl(props: Props) {
             style={{
               flexWrap: 'wrap',
             }}
+            title='Data List'
           >
             <List
-              size={48}
+              size={40}
+              strokeWidth={1.25}
               stroke={
                 graphType === 'dataList' ? 'var(--blue-600)' : 'var(--gray-500)'
               }
             />
-            <div
-              style={{
-                width: '100%',
-                fontFamily: 'var(--fontFamily)',
-                fontSize: '0.875rem',
-              }}
-            >
-              Data List
-            </div>
+            <TabText>Data List</TabText>
           </button>
         </div>
         <div className='graph-container'>
@@ -316,24 +284,18 @@ export function CountryGraphingEl(props: CountryGraphingElProps) {
             style={{
               flexWrap: 'wrap',
             }}
+            title='Dual Axis Line Chart'
           >
             <LineChart
-              size={48}
+              size={40}
+              strokeWidth={1.25}
               stroke={
                 graphType === 'trendLine'
                   ? 'var(--blue-600)'
                   : 'var(--gray-500)'
               }
             />
-            <div
-              style={{
-                width: '100%',
-                fontFamily: 'var(--fontFamily)',
-                fontSize: '0.875rem',
-              }}
-            >
-              Dual Axes Line Chart
-            </div>
+            <TabText>Dual Axes Line Chart</TabText>
           </button>
           {disaggregationMetaData.length > 0 ? (
             <button
@@ -347,24 +309,18 @@ export function CountryGraphingEl(props: CountryGraphingElProps) {
               style={{
                 flexWrap: 'wrap',
               }}
+              title='Disaggregation'
             >
               <Ungroup
-                size={48}
+                size={40}
+                strokeWidth={1.25}
                 stroke={
                   graphType === 'disaggregation'
                     ? 'var(--blue-600)'
                     : 'var(--gray-500)'
                 }
               />
-              <div
-                style={{
-                  width: '100%',
-                  fontFamily: 'var(--fontFamily)',
-                  fontSize: '0.875rem',
-                }}
-              >
-                Disaggregation
-              </div>
+              <TabText>Disaggregation</TabText>
             </button>
           ) : null}
           <button
@@ -378,22 +334,16 @@ export function CountryGraphingEl(props: CountryGraphingElProps) {
             style={{
               flexWrap: 'wrap',
             }}
+            title='Data List'
           >
             <List
-              size={48}
+              size={40}
+              strokeWidth={1.25}
               stroke={
                 graphType === 'dataList' ? 'var(--blue-600)' : 'var(--gray-500)'
               }
             />
-            <div
-              style={{
-                width: '100%',
-                fontFamily: 'var(--fontFamily)',
-                fontSize: '0.875rem',
-              }}
-            >
-              Data List
-            </div>
+            <TabText>Data List</TabText>
           </button>
         </div>
         <div className='graph-container'>
@@ -447,24 +397,18 @@ export function AggregatedGraphingEl(props: AggregatedGraphingElProps) {
             style={{
               flexWrap: 'wrap',
             }}
+            title='Dual Axis Line Chart'
           >
             <LineChart
-              size={48}
+              size={40}
+              strokeWidth={1.25}
               stroke={
                 graphType === 'trendLine'
                   ? 'var(--blue-600)'
                   : 'var(--gray-500)'
               }
             />
-            <div
-              style={{
-                width: '100%',
-                fontFamily: 'var(--fontFamily)',
-                fontSize: '0.875rem',
-              }}
-            >
-              Dual Axes Line Chart
-            </div>
+            <TabText>Dual Axes Line Chart</TabText>
           </button>
           <button
             type='button'
@@ -477,22 +421,16 @@ export function AggregatedGraphingEl(props: AggregatedGraphingElProps) {
             style={{
               flexWrap: 'wrap',
             }}
+            title='Data List'
           >
             <List
-              size={48}
+              size={40}
+              strokeWidth={1.25}
               stroke={
                 graphType === 'dataList' ? 'var(--blue-600)' : 'var(--gray-500)'
               }
             />
-            <div
-              style={{
-                width: '100%',
-                fontFamily: 'var(--fontFamily)',
-                fontSize: '0.875rem',
-              }}
-            >
-              Data List
-            </div>
+            <TabText>Data List</TabText>
           </button>
         </div>
         <div className='graph-container'>
