@@ -9,6 +9,7 @@ import {
   CountryListType,
   CountryTaxonomyDataType,
   CountryGroupDataType,
+  DisaggregationMetaDataType,
 } from '../Types';
 import {
   COUNTRIES_BY_UNDP_REGIONS,
@@ -21,20 +22,42 @@ import AggregatedDataExplorer from '../Components/AggregatedDataExplorer';
 
 interface Props {
   signatureSolution?: string;
+  disaggregationMetaData: DisaggregationMetaDataType[];
+  indicatorsList: IndicatorMetaDataType[];
   UNDPRegion?: string;
   finalData: CountryGroupDataType[];
   idForOverview: string;
   topic?: string;
 }
 
+const getFilteredIndicatorList = (
+  indicatorMetaData: IndicatorMetaDataType[],
+  signatureSolution?: string,
+  topic?: string,
+) => {
+  const indicatorsFilteredBySS = signatureSolution
+    ? sortBy(indicatorMetaData, d => d.IndicatorLabel).filter(
+        d => d.SignatureSolution.indexOf(signatureSolution) !== -1,
+      )
+    : sortBy(indicatorMetaData, d => d.IndicatorLabel);
+  const indicatorsFiltered = topic
+    ? indicatorsFilteredBySS.filter(d => d.SSTopics.indexOf(topic) !== -1)
+    : indicatorsFilteredBySS;
+  return indicatorsFiltered;
+};
+
 export function RegionVisualization(props: Props) {
-  const { signatureSolution, UNDPRegion, finalData, idForOverview, topic } =
-    props;
+  const {
+    signatureSolution,
+    UNDPRegion,
+    finalData,
+    idForOverview,
+    topic,
+    indicatorsList,
+    disaggregationMetaData,
+  } = props;
   const [taxonomyData, setTaxonomyData] = useState<
     CountryTaxonomyDataType[] | undefined
-  >(undefined);
-  const [indicatorsList, setIndicatorsList] = useState<
-    IndicatorMetaDataType[] | undefined
   >(undefined);
   const [regionList, setRegionList] = useState<string[] | undefined>(undefined);
   const [countryList, setCountryList] = useState<CountryListType[] | undefined>(
@@ -43,60 +66,47 @@ export function RegionVisualization(props: Props) {
 
   useEffect(() => {
     queue()
-      .defer(json, METADATALINK)
       .defer(json, COUNTRYTAXONOMYLINK)
-      .await(
-        (
-          err: any,
-          indicatorMetaData: IndicatorMetaDataType[],
-          countryTaxonomy: CountryTaxonomyDataType[],
-        ) => {
-          if (err) throw err;
-          setTaxonomyData(countryTaxonomy);
-          const countriesFiltered =
-            UNDPRegion !== 'WLD' && UNDPRegion
-              ? countryTaxonomy.filter(
-                  d =>
-                    COUNTRIES_BY_UNDP_REGIONS[
-                      COUNTRIES_BY_UNDP_REGIONS.findIndex(
-                        el => el.region === `UNDP_${UNDPRegion}`,
-                      )
-                    ].Countries.indexOf(d['Alpha-3 code']) !== -1,
-                )
-              : countryTaxonomy;
+      .await((err: any, countryTaxonomy: CountryTaxonomyDataType[]) => {
+        if (err) throw err;
+        setTaxonomyData(countryTaxonomy);
+        const countriesFiltered =
+          UNDPRegion !== 'WLD' && UNDPRegion
+            ? countryTaxonomy.filter(
+                d =>
+                  COUNTRIES_BY_UNDP_REGIONS[
+                    COUNTRIES_BY_UNDP_REGIONS.findIndex(
+                      el => el.region === `UNDP_${UNDPRegion}`,
+                    )
+                  ].Countries.indexOf(d['Alpha-3 code']) !== -1,
+              )
+            : countryTaxonomy;
 
-          setCountryList(
-            countriesFiltered.map(d => ({
-              name: d['Country or Area'],
-              code: d['Alpha-3 code'],
-            })),
-          );
-          setRegionList(
-            uniqBy(countriesFiltered, d => d['Group 2']).map(d => d['Group 2']),
-          );
-          const indicatorsFilteredBySS = signatureSolution
-            ? sortBy(indicatorMetaData, d => d.IndicatorLabel).filter(
-                d => d.SignatureSolution.indexOf(signatureSolution) !== -1,
-              )
-            : sortBy(indicatorMetaData, d => d.IndicatorLabel);
-          const indicatorsFiltered = topic
-            ? indicatorsFilteredBySS.filter(
-                d => d.SSTopics.indexOf(topic) !== -1,
-              )
-            : indicatorsFilteredBySS;
-          setIndicatorsList(indicatorsFiltered);
-        },
-      );
+        setCountryList(
+          countriesFiltered.map(d => ({
+            name: d['Country or Area'],
+            code: d['Alpha-3 code'],
+          })),
+        );
+        setRegionList(
+          uniqBy(countriesFiltered, d => d['Group 2']).map(d => d['Group 2']),
+        );
+      });
   }, []);
   return (
     <div>
-      {indicatorsList && taxonomyData && regionList && countryList ? (
+      {taxonomyData && regionList && countryList ? (
         <div>
           {indicatorsList.length > 0 ? (
             <VisualizationEl
               UNDPRegion={UNDPRegion}
               taxonomyData={taxonomyData}
-              indicatorsList={indicatorsList}
+              indicatorsList={getFilteredIndicatorList(
+                indicatorsList,
+                signatureSolution,
+                topic,
+              )}
+              disaggregationMetaData={disaggregationMetaData}
               regionList={regionList}
               countryList={countryList}
               signatureSolution={signatureSolution}

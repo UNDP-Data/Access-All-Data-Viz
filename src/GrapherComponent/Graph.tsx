@@ -18,6 +18,8 @@ import { BarChart } from './BarChart';
 import { LineChart } from './LineChart';
 import { DataList } from './DataList';
 import { GetYearsArray } from '../Utils/GetYearsArray';
+import { DumbbellChart } from './DumbbellChart';
+import { DisaggregationLineChart } from './LineChartDisaggregation';
 
 interface Props {
   data: CountryGroupDataType[];
@@ -43,7 +45,9 @@ export function Graph(props: Props) {
     xAxisIndicator,
     yAxisIndicator,
     sizeIndicator,
+    disaggregationGraphType,
     showMostRecentData,
+    disaggregationIndicator,
     updateYear,
     verticalBarLayout,
   } = useContext(Context) as CtxDataType;
@@ -55,7 +59,43 @@ export function Graph(props: Props) {
   const timer: { current: NodeJS.Timeout | null } = useRef(null);
   useEffect(() => {
     setPlay(false);
-    if (graphType !== 'barGraph') {
+    if (graphType === 'disaggregation' && disaggregationIndicator) {
+      setCommonYears(
+        GetYearsArray(
+          data,
+          indicators[
+            indicators.findIndex(
+              d =>
+                d.id === disaggregationIndicator.DisaggregatedIndicators[0].id,
+            )
+          ],
+        ),
+      );
+      setMarks(
+        getMarks(
+          GetYearsArray(
+            data,
+            indicators[
+              indicators.findIndex(
+                d =>
+                  d.id ===
+                  disaggregationIndicator.DisaggregatedIndicators[0].id,
+              )
+            ],
+          ),
+        ),
+      );
+      const yearList = GetYearsArray(
+        data,
+        indicators[
+          indicators.findIndex(
+            d => d.id === disaggregationIndicator.DisaggregatedIndicators[0].id,
+          )
+        ],
+      );
+      updateYear(yearList[yearList.length - 1]);
+      setYearForPlay(yearList[yearList.length - 1]);
+    } else if (graphType !== 'barGraph') {
       if (yAxisIndicator) {
         if (!sizeIndicator) {
           const intersectedYears = intersection(
@@ -187,7 +227,14 @@ export function Graph(props: Props) {
       updateYear(yearList[yearList.length - 1]);
       setYearForPlay(yearList[yearList.length - 1]);
     }
-  }, [xAxisIndicator, yAxisIndicator, sizeIndicator, graphType, data]);
+  }, [
+    xAxisIndicator,
+    yAxisIndicator,
+    sizeIndicator,
+    graphType,
+    data,
+    disaggregationIndicator,
+  ]);
   useEffect(() => {
     if (play && yearForPlay) {
       timer.current = setInterval(() => {
@@ -211,7 +258,12 @@ export function Graph(props: Props) {
     <div
       id='graph-node'
       className={`undp-scrollbar graph-el${
-        graphType !== 'barGraph' && graphType !== 'dataList'
+        graphType !== 'barGraph' &&
+        graphType !== 'dataList' &&
+        graphType !== 'disaggregation'
+          ? ' no-overflow'
+          : graphType === 'disaggregation' &&
+            disaggregationGraphType === 'country'
           ? ' no-overflow'
           : ''
       }`}
@@ -310,6 +362,20 @@ export function Graph(props: Props) {
         <LineChart data={data} indicators={indicators} countries={countries} />
       ) : graphType === 'dataList' ? (
         <DataList indicators={indicators} countries={countries} />
+      ) : graphType === 'disaggregation' ? (
+        disaggregationGraphType === 'global' ? (
+          <DumbbellChart
+            UNDPRegion={UNDPRegion}
+            data={data}
+            indicators={indicators}
+          />
+        ) : (
+          <DisaggregationLineChart
+            data={data}
+            indicators={indicators}
+            countries={countries}
+          />
+        )
       ) : (
         <MultiLineChart
           data={data}

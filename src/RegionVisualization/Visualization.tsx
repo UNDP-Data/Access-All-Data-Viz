@@ -5,6 +5,7 @@ import {
   CountryListType,
   CountryTaxonomyDataType,
   CountryGroupDataType,
+  DisaggregationMetaDataType,
 } from '../Types';
 import Reducer from '../Context/Reducer';
 import Context from '../Context/Context';
@@ -16,6 +17,7 @@ interface Props {
   signatureSolution?: string;
   taxonomyData: CountryTaxonomyDataType[];
   indicatorsList: IndicatorMetaDataType[];
+  disaggregationMetaData: DisaggregationMetaDataType[];
   regionList: string[];
   countryList: CountryListType[];
   UNDPRegion?: string;
@@ -37,6 +39,7 @@ function VisualizationEl(props: Props) {
     idForOverview,
     defaultViewId,
     topic,
+    disaggregationMetaData,
   } = props;
   const defaultViewsIndx = defaultViewId
     ? DEFAULT_VIEWS.findIndex(d => d.id === defaultViewId) >= 0
@@ -83,6 +86,10 @@ function VisualizationEl(props: Props) {
     signatureSolution,
     signatureSolutionForDataList: 'All',
     showReference: false,
+    disaggregationIndicator:
+      disaggregationMetaData.length > 0 ? disaggregationMetaData[0] : undefined,
+    disaggregationGraphType: 'global',
+    disaggregationOrder: 'first',
   };
 
   const [state, dispatch] = useReducer(Reducer, initialState);
@@ -238,6 +245,30 @@ function VisualizationEl(props: Props) {
       payload: verticalBarLayout,
     });
   };
+  const updateDisaggregationIndicator = (
+    disaggregationIndicator: DisaggregationMetaDataType,
+  ) => {
+    dispatch({
+      type: 'UPDATE_DISAGGREGATION_INDICATOR',
+      payload: disaggregationIndicator,
+    });
+  };
+  const updateDisaggregationGraphType = (
+    disaggregationGraphType: 'global' | 'country',
+  ) => {
+    dispatch({
+      type: 'UPDATE_DISAGGREGATION_GRAPH_TYPE',
+      payload: disaggregationGraphType,
+    });
+  };
+  const updateDisaggregationOrder = (
+    disaggregationOrder: 'first' | 'second' | 'diff',
+  ) => {
+    dispatch({
+      type: 'UPDATE_DISAGGREGATION_ORDER',
+      payload: disaggregationOrder,
+    });
+  };
   return (
     <Context.Provider
       // eslint-disable-next-line react/jsx-no-constructed-context-values
@@ -263,6 +294,9 @@ function VisualizationEl(props: Props) {
         updateBarLayout,
         updateSignatureSolutionForDataList,
         updateShowReference,
+        updateDisaggregationIndicator,
+        updateDisaggregationGraphType,
+        updateDisaggregationOrder,
       }}
     >
       <div>
@@ -275,6 +309,7 @@ function VisualizationEl(props: Props) {
         )}
         <GrapherComponent
           indicators={indicatorsList}
+          disaggregationMetaData={disaggregationMetaData}
           regions={regionList}
           countries={countryList}
           UNDPRegion={UNDPRegion}

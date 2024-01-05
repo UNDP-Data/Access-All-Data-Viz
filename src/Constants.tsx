@@ -38,6 +38,9 @@ export const SIGNATURE_SOLUTIONS_LIST: (
 export const METADATALINK =
   'https://raw.githubusercontent.com/UNDP-Data/Indicators-MetaData/for-redesign/indicatorMetaData.json';
 
+export const DISAGGREGATIONMETADATALINK =
+  'https://raw.githubusercontent.com/UNDP-Data/Indicators-MetaData/for-redesign/disaggregationMetaData.json';
+
 export const SUBNATIONALMETADATALINK =
   'https://raw.githubusercontent.com/UNDP-Data/Indicators-MetaData/for-redesign/subNationDataMetaDataByCountries/';
 

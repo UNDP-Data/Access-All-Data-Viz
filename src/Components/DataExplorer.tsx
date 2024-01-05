@@ -12,12 +12,14 @@ import {
   IndicatorMetaDataType,
   CountryListType,
   CountryTaxonomyDataType,
+  DisaggregationMetaDataType,
 } from '../Types';
 
 import {
   COUNTRIES_BY_UNDP_REGIONS,
   COUNTRYTAXONOMYLINK,
   DATALINK,
+  DISAGGREGATIONMETADATALINK,
   METADATALINK,
   REGION_ACRONYMS,
 } from '../Constants';
@@ -44,22 +46,27 @@ function DataExplorer(props: Props) {
     IndicatorMetaDataType[] | undefined
   >(undefined);
   const [regionList, setRegionList] = useState<string[] | undefined>(undefined);
-  const [countryTaxonomy, setCountryTaxonomyList] = useState<
+  const [countryTaxonomy, setCountryTaxonomy] = useState<
     CountryListType[] | undefined
   >(undefined);
   const [indicatorMetaData, setIndicatorMetaData] = useState<
     IndicatorMetaDataType[] | undefined
+  >(undefined);
+  const [disaggregationMetaData, setDisaggregationMetaData] = useState<
+    DisaggregationMetaDataType[] | undefined
   >(undefined);
 
   useEffect(() => {
     queue()
       .defer(json, COUNTRYTAXONOMYLINK)
       .defer(json, METADATALINK)
+      .defer(json, DISAGGREGATIONMETADATALINK)
       .await(
         (
           err: any,
           data: CountryTaxonomyDataType[],
           indicatorMetaDataFromFile: IndicatorMetaDataType[],
+          disaggregationMetaDataFromFile: DisaggregationMetaDataType[],
         ) => {
           if (err) throw err;
           const filteredCountry =
@@ -81,8 +88,24 @@ function DataExplorer(props: Props) {
             d => d.name,
           );
           filteredCountryList.unshift(region);
-          setCountryTaxonomyList(filteredCountryList);
+          setCountryTaxonomy(filteredCountryList);
           setIndicatorMetaData(indicatorMetaDataFromFile);
+
+          const disaggregationMetaDataBySS = signatureSolution
+            ? disaggregationMetaDataFromFile.filter(
+                d => d.SignatureSolution.indexOf(signatureSolution) !== -1,
+              )
+            : disaggregationMetaDataFromFile;
+          const queryParams = new URLSearchParams(window.location.search);
+          const topic =
+            queryParams.get('topic')?.replaceAll('_', "'") || topicToFilter;
+          const disaggregationMetaDataByTopics = topic
+            ? disaggregationMetaDataBySS.filter(
+                d => d.SSTopics.indexOf(topic) !== -1,
+              )
+            : disaggregationMetaDataBySS;
+
+          setDisaggregationMetaData(disaggregationMetaDataByTopics);
           setRegionList(
             uniqBy(filteredCountry, d => d['Group 2']).map(d => d['Group 2']),
           );
@@ -167,7 +190,7 @@ function DataExplorer(props: Props) {
             >
               <div
                 className='flex-div gap-03 flex-vert-align-center max-width-1980'
-                style={{ padding: 'var(--spacing-06)' }}
+                style={{ padding: 'var(--spacing-06)', flexWrap: 'wrap' }}
               >
                 <h5
                   className='undp-typography margin-bottom-00'
@@ -178,7 +201,11 @@ function DataExplorer(props: Props) {
                 <Select
                   className='undp-select'
                   placeholder='Select A Country'
-                  style={{ flexGrow: 0 }}
+                  style={{
+                    flexShrink: 1,
+                    flexBasis: '15rem',
+                    flexGrow: 1,
+                  }}
                   showSearch
                   value={
                     countryTaxonomy[
@@ -215,11 +242,15 @@ function DataExplorer(props: Props) {
             {countryId !== 'WLD' &&
             REGION_ACRONYMS.indexOf(countryId) === -1 ? (
               <div>
-                {indicatorsList && finalData && regionList ? (
+                {indicatorsList &&
+                finalData &&
+                regionList &&
+                disaggregationMetaData ? (
                   <div>
                     {indicatorsList.length > 0 ? (
                       <CountryVisualization
                         finalData={finalData}
+                        disaggregationMetaData={disaggregationMetaData}
                         indicatorsList={indicatorsList}
                         regionList={regionList}
                         countryList={countryTaxonomy}
@@ -257,9 +288,11 @@ function DataExplorer(props: Props) {
               </div>
             ) : (
               <div>
-                {finalData ? (
+                {finalData && indicatorsList && disaggregationMetaData ? (
                   <RegionVisualization
                     signatureSolution={signatureSolution}
+                    disaggregationMetaData={disaggregationMetaData}
+                    indicatorsList={indicatorsList}
                     UNDPRegion={countryId}
                     finalData={finalData}
                     idForOverview={signatureSolution || countryId}

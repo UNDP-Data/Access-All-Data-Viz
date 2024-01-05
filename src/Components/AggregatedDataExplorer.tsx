@@ -223,7 +223,7 @@ function AggregatedDataExplorer(props: Props) {
       >
         <div
           className='flex-div gap-03 flex-vert-align-center max-width-1980'
-          style={{ padding: 'var(--spacing-06)' }}
+          style={{ padding: 'var(--spacing-06)', flexWrap: 'wrap' }}
         >
           <h5
             className='undp-typography margin-bottom-00'
@@ -234,7 +234,11 @@ function AggregatedDataExplorer(props: Props) {
           <Select
             className='undp-select'
             placeholder='Select A Country'
-            style={{ flexGrow: 0 }}
+            style={{
+              flexShrink: 1,
+              flexBasis: '15rem',
+              flexGrow: 1,
+            }}
             showSearch
             value={
               regionId === 'WLD'

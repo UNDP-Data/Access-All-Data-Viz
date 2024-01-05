@@ -1,9 +1,17 @@
 import { useContext } from 'react';
-import { BarChart3, LineChart, List, Map, ScatterChart } from 'lucide-react';
+import {
+  BarChart3,
+  LineChart,
+  List,
+  Map,
+  ScatterChart,
+  Ungroup,
+} from 'lucide-react';
 import {
   CountryGroupDataType,
   CountryListType,
   CtxDataType,
+  DisaggregationMetaDataType,
   IndicatorMetaDataType,
 } from '../Types';
 import Context from '../Context/Context';
@@ -19,6 +27,7 @@ interface Props {
   UNDPRegion?: string;
   loading: boolean;
   regionData?: CountryGroupDataType;
+  disaggregationMetaData: DisaggregationMetaDataType[];
 }
 
 export function DataExplorerGraphingEl(props: Props) {
@@ -30,6 +39,7 @@ export function DataExplorerGraphingEl(props: Props) {
     UNDPRegion,
     loading,
     regionData,
+    disaggregationMetaData,
   } = props;
   const { graphType, updateGraphType } = useContext(Context) as CtxDataType;
   return (
@@ -182,6 +192,38 @@ export function DataExplorerGraphingEl(props: Props) {
               Multi Country Trends
             </div>
           </button>
+          {disaggregationMetaData.length > 0 ? (
+            <button
+              type='button'
+              className={`tabs-for-graphing-interface${
+                graphType === 'disaggregation' ? ' selected' : ''
+              }`}
+              onClick={() => {
+                updateGraphType('disaggregation');
+              }}
+              style={{
+                flexWrap: 'wrap',
+              }}
+            >
+              <Ungroup
+                size={48}
+                stroke={
+                  graphType === 'disaggregation'
+                    ? 'var(--blue-600)'
+                    : 'var(--gray-500)'
+                }
+              />
+              <div
+                style={{
+                  width: '100%',
+                  fontFamily: 'var(--fontFamily)',
+                  fontSize: '0.875rem',
+                }}
+              >
+                Disaggregation
+              </div>
+            </button>
+          ) : null}
           <button
             type='button'
             className={`tabs-for-graphing-interface${
@@ -217,6 +259,7 @@ export function DataExplorerGraphingEl(props: Props) {
             regions={regions}
             countries={countries}
             data={data}
+            disaggregationMetaData={disaggregationMetaData}
           />
           {loading ? (
             <div className='undp-loader-container undp-container'>
@@ -240,6 +283,7 @@ export function DataExplorerGraphingEl(props: Props) {
 interface CountryGraphingElProps {
   data: CountryGroupDataType[];
   indicators: IndicatorMetaDataType[];
+  disaggregationMetaData: DisaggregationMetaDataType[];
   regions?: string[];
   countries: CountryListType[];
   UNDPRegion?: string;
@@ -247,7 +291,15 @@ interface CountryGraphingElProps {
 }
 
 export function CountryGraphingEl(props: CountryGraphingElProps) {
-  const { data, indicators, regions, countries, UNDPRegion, loading } = props;
+  const {
+    data,
+    indicators,
+    regions,
+    countries,
+    UNDPRegion,
+    loading,
+    disaggregationMetaData,
+  } = props;
   const { graphType, updateGraphType } = useContext(Context) as CtxDataType;
   return (
     <div className='margin-top-06 margin-bottom-06'>
@@ -283,6 +335,38 @@ export function CountryGraphingEl(props: CountryGraphingElProps) {
               Dual Axes Line Chart
             </div>
           </button>
+          {disaggregationMetaData.length > 0 ? (
+            <button
+              type='button'
+              className={`tabs-for-graphing-interface${
+                graphType === 'disaggregation' ? ' selected' : ''
+              }`}
+              onClick={() => {
+                updateGraphType('disaggregation');
+              }}
+              style={{
+                flexWrap: 'wrap',
+              }}
+            >
+              <Ungroup
+                size={48}
+                stroke={
+                  graphType === 'disaggregation'
+                    ? 'var(--blue-600)'
+                    : 'var(--gray-500)'
+                }
+              />
+              <div
+                style={{
+                  width: '100%',
+                  fontFamily: 'var(--fontFamily)',
+                  fontSize: '0.875rem',
+                }}
+              >
+                Disaggregation
+              </div>
+            </button>
+          ) : null}
           <button
             type='button'
             className={`tabs-for-graphing-interface${
@@ -318,6 +402,7 @@ export function CountryGraphingEl(props: CountryGraphingElProps) {
             regions={regions}
             countries={countries}
             data={data}
+            disaggregationMetaData={disaggregationMetaData}
           />
           {loading ? (
             <div className='undp-loader-container undp-container'>
