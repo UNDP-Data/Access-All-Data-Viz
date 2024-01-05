@@ -35,6 +35,7 @@ export function ScatterPlotSettings(props: Props) {
     xAxisIndicator,
     yAxisIndicator,
     sizeIndicator,
+    colorIndicator,
     showLabel,
     showMostRecentData,
     selectedCountryOrRegion,
@@ -120,6 +121,7 @@ export function ScatterPlotSettings(props: Props) {
               <Select
                 className='undp-select'
                 showSearch
+                value={colorIndicator}
                 maxTagCount='responsive'
                 style={{ width: '100%' }}
                 placeholder='Color By'

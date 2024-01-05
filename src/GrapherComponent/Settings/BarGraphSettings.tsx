@@ -34,6 +34,7 @@ export function BarGraphSettings(props: Props) {
   const {
     xAxisIndicator,
     showMostRecentData,
+    colorIndicator,
     reverseOrder,
     selectedCountryOrRegion,
     showReference,
@@ -83,6 +84,7 @@ export function BarGraphSettings(props: Props) {
                 className='undp-select'
                 showSearch
                 maxTagCount='responsive'
+                value={colorIndicator}
                 style={{ width: '100%' }}
                 placeholder='Color By'
                 onChange={d => {

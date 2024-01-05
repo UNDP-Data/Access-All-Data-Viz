@@ -16,6 +16,7 @@ export function DataSources(props: Props) {
   const { indicators, data } = props;
   const {
     graphType,
+    disaggregationIndicator,
     xAxisIndicator,
     yAxisIndicator,
     sizeIndicator,
@@ -36,14 +37,21 @@ export function DataSources(props: Props) {
 
   return (
     <div className='undp-scrollbar'>
-      <DataSourceListItem indicatorData={xIndicatorMetaData} data={data} />
-      {graphType !== 'barGraph' && yIndicatorMetaData ? (
+      {graphType !== 'disaggregation' ? (
+        <DataSourceListItem indicatorData={xIndicatorMetaData} data={data} />
+      ) : null}
+      {graphType !== 'barGraph' &&
+      graphType !== 'disaggregation' &&
+      graphType !== 'multiCountryTrendLine' &&
+      yIndicatorMetaData ? (
         <>
           <hr className='undp-style' />
           <DataSourceListItem indicatorData={yIndicatorMetaData} data={data} />
         </>
       ) : null}
-      {graphType !== 'map' && colorIndicatorMetaData ? (
+      {graphType !== 'map' &&
+      graphType !== 'disaggregation' &&
+      colorIndicatorMetaData ? (
         <>
           <hr className='undp-style' />
           <DataSourceListItem
@@ -61,6 +69,25 @@ export function DataSources(props: Props) {
             data={data}
           />
         </>
+      ) : null}
+      {graphType === 'disaggregation' ? (
+        <div>
+          {disaggregationIndicator?.DisaggregatedIndicators.map(
+            (indicator, i) => {
+              const indicatorMetaData =
+                indicators[indicators.findIndex(d => d.id === indicator.id)];
+              return (
+                <div key={i}>
+                  <hr className='undp-style' />
+                  <DataSourceListItem
+                    indicatorData={indicatorMetaData}
+                    data={data}
+                  />
+                </div>
+              );
+            },
+          )}
+        </div>
       ) : null}
     </div>
   );
