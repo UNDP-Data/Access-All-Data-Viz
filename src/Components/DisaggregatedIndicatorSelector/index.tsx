@@ -85,10 +85,10 @@ function DisaggregatedIndicatorSelector(props: Props) {
   );
   useEffect(() => {
     const indicatorsFiltered = searchPhrase
-      ? sortBy(indicatorList, d => d.Indicator).filter(d =>
+      ? sortBy(indicators, d => d.Indicator).filter(d =>
           d.Indicator.toLowerCase().includes(searchPhrase.toLowerCase()),
         )
-      : sortBy(indicatorList, d => d.Indicator);
+      : sortBy(indicators, d => d.Indicator);
     setIndicatorList(openModal ? indicatorsFiltered : indicators);
   }, [searchPhrase, openModal]);
   const closeModal = () => {

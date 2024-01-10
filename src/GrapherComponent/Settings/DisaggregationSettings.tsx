@@ -77,7 +77,7 @@ export function DisaggregationSettings(props: Props) {
             <Database
               stroke='var(--blue-600)'
               style={{ marginRight: '0.25rem' }}
-              strokeWidth={1.5}
+              strokeWidth={1.25}
             />
             Data Sources
           </button>
@@ -90,7 +90,7 @@ export function DisaggregationSettings(props: Props) {
             }}
           >
             <FileDown
-              strokeWidth={1.5}
+              strokeWidth={1.25}
               stroke='var(--blue-600)'
               style={{ marginRight: '0.25rem' }}
             />

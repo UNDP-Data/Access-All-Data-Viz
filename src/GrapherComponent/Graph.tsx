@@ -283,9 +283,9 @@ export function Graph(props: Props) {
             }}
           >
             {play ? (
-              <Pause size={24} stroke='#D12800' />
+              <Pause size={24} stroke='#D12800' strokeWidth={1.25} />
             ) : (
-              <Play size={24} stroke='#D12800' />
+              <Play size={24} stroke='#D12800' strokeWidth={1.25} />
             )}
           </button>
           <Slider

@@ -172,6 +172,7 @@ function IndicatorSelector(props: Props) {
               onMouseLeave={() => {
                 if (selectedIndicator) setIndicatorInfo(undefined);
               }}
+              strokeWidth={1.25}
             />
           </IconDiv>
           <IconDiv active={!!(isOptional && selectedIndicator)}>
@@ -185,6 +186,7 @@ function IndicatorSelector(props: Props) {
               onClick={() => {
                 if (isOptional && selectedIndicator) updateIndicator(undefined);
               }}
+              strokeWidth={1.25}
             />
           </IconDiv>
         </div>
