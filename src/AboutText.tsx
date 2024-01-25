@@ -1163,4 +1163,26 @@ export const ABOUT_TEXT_LINKS = [
       },
     ],
   },
+  {
+    title: 'Somalia',
+    id: 'SOM',
+    bodyText: (
+      <p className='undp-typography'>
+        UNDP in Somalia promotes Somali-led development solutions which address
+        root causes of recurrent humanitarian crises and which set the stage for
+        sustainable development. We support the Government of Somalia, local
+        authorities, and civil society with development programmes that address
+        the following focus areas: disaster reduction and resilience,
+        peacebuilding and conflict resolution, people-centred governance and
+        rule of law, economic recovery and environmental protection, and
+        protecting and empowering women.
+      </p>
+    ),
+    resource: [
+      {
+        source: 'About Us Page',
+        link: 'https://www.undp.org/somalia/about-us',
+      },
+    ],
+  },
 ];
