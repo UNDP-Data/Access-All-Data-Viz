@@ -72,7 +72,7 @@ export function SDGTracker(props: Props) {
             For more information on the data and methodology visit:{' '}
             <a
               href={`https://sdgdiagnostics.data.undp.org/${countryId}/sdg-trends`}
-              className='undp-style'
+              className='undp-style small-font'
             >
               SDG Push Diagnostics
             </a>
