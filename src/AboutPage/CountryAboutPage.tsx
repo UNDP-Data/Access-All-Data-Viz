@@ -96,14 +96,15 @@ export function CountryAboutPage(props: Props) {
               Located in {countryTaxonomy['Group 2']}
               {isDataAvailable(countryData, 'Population, total') ? (
                 <>
-                  &nbsp;and with a population of&nbsp;
+                  &nbsp;and with a population of approximately&nbsp;
                   <span className='bold'>
-                    {format('.2s')(
+                    {format('.3s')(
                       GetDataValueAndYear(countryData, 'Population, total')
                         .value,
                     ).replace('G', 'B')}
                   </span>
-                  &nbsp;inhabitants
+                  &nbsp;inhabitants (
+                  {GetDataValueAndYear(countryData, 'Population, total').year})
                 </>
               ) : null}
               .&nbsp;
@@ -115,7 +116,7 @@ export function CountryAboutPage(props: Props) {
                   {countryTaxonomy['Country or Area']}
                   &nbsp;had a GDP of&nbsp;
                   <span className='bold'>
-                    {format('.2s')(
+                    {format('.3s')(
                       GetDataValueAndYear(
                         countryData,
                         'GDP per capita, PPP (current international $)',

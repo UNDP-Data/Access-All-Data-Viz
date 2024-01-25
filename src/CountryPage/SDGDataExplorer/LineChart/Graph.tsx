@@ -83,7 +83,7 @@ export function Graph(props: Props) {
               ? Math.abs(data.values[indx].value) < 1
                 ? data.values[indx].value
                 : data.values[indx].value > 1000
-                ? format('.2s')(data.values[indx].value).replace('G', 'B')
+                ? format('.3s')(data.values[indx].value).replace('G', 'B')
                 : format('.3s')(data.values[indx].value)
               : data.values[indx].value,
           label: data.values[indx].label,
@@ -199,7 +199,7 @@ export function Graph(props: Props) {
                           ? d.value.toFixed(3)
                           : d.value.toFixed(2)
                         : Math.abs(d.value) > 1000
-                        ? format('.2s')(d.value).replace('G', 'B')
+                        ? format('.3s')(d.value).replace('G', 'B')
                         : format('.3s')(d.value)
                       : d.value}
                   </text>

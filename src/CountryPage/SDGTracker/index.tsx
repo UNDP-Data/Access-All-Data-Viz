@@ -63,7 +63,21 @@ export function SDGTracker(props: Props) {
   return (
     <div>
       {countryData && statuses ? (
-        <SDGTrackerViz targetStatuses={statuses.targetStatus} />
+        <>
+          <SDGTrackerViz targetStatuses={statuses.targetStatus} />
+          <p
+            className='undp-typography small-font italics'
+            style={{ textAlign: 'center' }}
+          >
+            For more information on the data and methodology visit:{' '}
+            <a
+              href={`https://sdgdiagnostics.data.undp.org/${countryId}/sdg-trends`}
+              className='undp-style'
+            >
+              SDG Push Diagnostics
+            </a>
+          </p>
+        </>
       ) : (
         <div className='undp-loader-container undp-container'>
           <div className='undp-loader' />

@@ -118,7 +118,7 @@ export function ParticleColumnChart(props: ColumnProps) {
         );
         const notesList = years.map(
           (el, i) =>
-            `${el}: ${format('.2s')(dataList[i]).replace('G', 'B')}${
+            `${el}: ${format('.3s')(dataList[i]).replace('G', 'B')}${
               suffix || ''
             }`,
         );

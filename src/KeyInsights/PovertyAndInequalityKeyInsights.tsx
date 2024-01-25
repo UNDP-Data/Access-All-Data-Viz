@@ -198,11 +198,11 @@ export function PovertyAndInequalityKeyInsights() {
               backgroundColor={['var(--gray-300)', 'var(--gray-300)']}
               color={['#006EB5', '#006EB5']}
               notes={[
-                `${format('.2s')(0.1 * 7876931987).replace(
+                `${format('.3s')(0.1 * 7876931987).replace(
                   'M',
                   ' Million',
                 )} People (top 10%)`,
-                `${format('.2s')(0.9 * 7876931987).replace(
+                `${format('.3s')(0.9 * 7876931987).replace(
                   'G',
                   ' Billion',
                 )} People (bottom 90%)`,

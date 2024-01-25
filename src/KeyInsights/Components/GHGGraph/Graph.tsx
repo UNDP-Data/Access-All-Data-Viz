@@ -110,7 +110,7 @@ export function Graph(props: Props) {
             fontWeight: 'bold',
           }}
         >
-          {format('.2s')(
+          {format('.3s')(
             data.yearlyData[data.yearlyData.findIndex(d => d.year === 1990)]
               .value,
           )}{' '}
@@ -137,7 +137,7 @@ export function Graph(props: Props) {
             fontWeight: 'bold',
           }}
         >
-          {format('.2s')(data.yearlyData[data.yearlyData.length - 1].value)}{' '}
+          {format('.3s')(data.yearlyData[data.yearlyData.length - 1].value)}{' '}
           {svgWidth < 640 ? 'Mil T' : 'Million T'}
         </text>
         <polygon
@@ -224,7 +224,7 @@ export function Graph(props: Props) {
               fontWeight: 'bold',
             }}
           >
-            {format('.2s')(
+            {format('.3s')(
               (data.yearlyData[data.yearlyData.length - 1].value -
                 data.yearlyData[data.yearlyData.findIndex(d => d.year === 1990)]
                   .value) /
