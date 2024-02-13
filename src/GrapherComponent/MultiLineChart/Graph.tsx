@@ -395,7 +395,7 @@ export function Graph(props: Props) {
                       dx={5}
                       dy={4}
                     >
-                      {d.alphaCode3}
+                      {d.alphaCode3.replaceAll('UNDP_', '')}
                     </text>
                   ) : null}
                 </g>

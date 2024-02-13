@@ -4,7 +4,7 @@ import { Select } from 'antd';
 import { CountryGroupDataType, IndicatorMetaDataType } from '../Types';
 import Reducer from '../Context/Reducer';
 import Context from '../Context/Context';
-import { COUNTRIES_BY_UNDP_REGIONS } from '../Constants';
+import { COUNTRIES_BY_UNDP_REGIONS, MAP_SETTINGS } from '../Constants';
 import { AggregatedGraphingEl } from '../GrapherComponent/GraphingEl';
 import { DEFAULT_VIEWS } from '../DefaultViewsForDataExplorer';
 
@@ -52,13 +52,7 @@ function AggregatedDataExplorer(props: Props) {
     showLabel: false,
     trendChartCountry: undefined,
     dataListCountry: undefined,
-    multiCountryTrendChartCountries: [
-      'China',
-      'India',
-      'United States of America',
-      'Indonesia',
-      'Pakistan',
-    ],
+    multiCountryTrendChartCountries: MAP_SETTINGS.map(d => d.name),
     useSameRange: false,
     reverseOrder: false,
     verticalBarLayout: true,

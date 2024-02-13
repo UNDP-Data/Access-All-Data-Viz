@@ -118,16 +118,18 @@ export function MultiCountryTrendLineSettings(props: Props) {
           >
             Show Label
           </Checkbox>
-          <Checkbox
-            style={{ margin: 0 }}
-            className='undp-checkbox'
-            checked={showReference}
-            onChange={e => {
-              updateShowReference(e.target.checked);
-            }}
-          >
-            Show World/Regional Reference
-          </Checkbox>
+          {updateShowReference ? (
+            <Checkbox
+              style={{ margin: 0 }}
+              className='undp-checkbox'
+              checked={showReference}
+              onChange={e => {
+                updateShowReference(e.target.checked);
+              }}
+            >
+              Show World/Regional Reference
+            </Checkbox>
+          ) : null}
         </div>
       </div>
     </>

@@ -20,6 +20,7 @@ import { DataList } from './DataList';
 import { GetYearsArray } from '../Utils/GetYearsArray';
 import { DumbbellChart } from './DumbbellChart';
 import { DisaggregationLineChart } from './LineChartDisaggregation';
+import { MAP_SETTINGS } from '../Constants';
 
 interface Props {
   data: CountryGroupDataType[];
@@ -381,7 +382,11 @@ export function Graph(props: Props) {
         <MultiLineChart
           data={data}
           indicators={indicators}
-          countries={countries}
+          countries={
+            regionData
+              ? countries
+              : MAP_SETTINGS.map(el => ({ name: el.name, code: el.region }))
+          }
           regionData={regionData}
         />
       )}

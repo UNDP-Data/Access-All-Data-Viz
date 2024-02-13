@@ -413,6 +413,30 @@ export function AggregatedGraphingEl(props: AggregatedGraphingElProps) {
           <button
             type='button'
             className={`tabs-for-graphing-interface${
+              graphType === 'multiCountryTrendLine' ? ' selected' : ''
+            }`}
+            onClick={() => {
+              updateGraphType('multiCountryTrendLine');
+            }}
+            style={{
+              flexWrap: 'wrap',
+            }}
+            title='Multi Country Trends'
+          >
+            <LineChart
+              size={40}
+              strokeWidth={1.25}
+              stroke={
+                graphType === 'multiCountryTrendLine'
+                  ? 'var(--blue-600)'
+                  : 'var(--gray-500)'
+              }
+            />
+            <TabText>Regional Comparison</TabText>
+          </button>
+          <button
+            type='button'
+            className={`tabs-for-graphing-interface${
               graphType === 'dataList' ? ' selected' : ''
             }`}
             onClick={() => {

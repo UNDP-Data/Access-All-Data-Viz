@@ -152,11 +152,9 @@ export function PovertyAndInequalityKeyInsights() {
                 Key Insight: Income Inequality
               </p>
               <p className='undp-typography'>
-                The significance of effective government policies becomes
-                evident when examining income inequality. There is a
-                considerable disparity in income inequality between countries in
-                Latin America and Sub-Saharan Africa compared to those in
-                Northern Europe.
+                There is a considerable disparity in income inequality between
+                countries in Latin America and Sub-Saharan Africa compared to
+                those in Northern Europe.
                 <br />
                 <br />
                 This disparity carries significant consequences for life

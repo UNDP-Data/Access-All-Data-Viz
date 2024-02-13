@@ -58,31 +58,37 @@ export const REGION_ACRONYMS = ['AP', 'AS', 'ECA', 'LAC', 'SSA'];
 export const MAP_SETTINGS = [
   {
     region: 'WLD',
+    name: 'World',
     center: [420, 395],
     scale: 220,
   },
   {
     region: 'AP',
+    name: 'Asia & Pacific',
     center: [-175, 445],
     scale: 450,
   },
   {
     region: 'AS',
+    name: 'Arab States',
     center: [275, 625],
     scale: 700,
   },
   {
     region: 'ECA',
+    name: 'Europe & Central Asia (currently Europe & Central Asia (excluding high income))',
     center: [-100, 1125],
     scale: 1000,
   },
   {
     region: 'LAC',
+    name: 'Latin America and the Caribbean',
     center: [800, 275],
     scale: 375,
   },
   {
     region: 'SSA',
+    name: 'Sub-Saharan Africa',
     center: [325, 325],
     scale: 525,
   },

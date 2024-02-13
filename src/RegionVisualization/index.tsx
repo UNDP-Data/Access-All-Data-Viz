@@ -15,6 +15,7 @@ import {
   COUNTRIES_BY_UNDP_REGIONS,
   COUNTRYTAXONOMYLINK,
   DATALINK,
+  MAP_SETTINGS,
   METADATALINK,
 } from '../Constants';
 import VisualizationEl from './Visualization';
@@ -155,44 +156,45 @@ export function AggregatedRegionVisualization(
     IndicatorMetaDataType[] | undefined
   >(undefined);
   useEffect(() => {
-    queue()
-      .defer(json, METADATALINK)
-      .defer(
+    const q = queue();
+    MAP_SETTINGS.forEach(d => {
+      q.defer(
         json,
         `${DATALINK}/regionData/${
-          UNDPRegion === 'WLD' ? 'WLD' : `UNDP_${UNDPRegion}`
+          d.region === 'WLD' ? 'WLD' : `UNDP_${d.region}`
         }.json`,
-      )
-      .await(
-        (
-          err: any,
-          indicatorMetaData: IndicatorMetaDataType[],
-          data: CountryGroupDataType,
-        ) => {
-          if (err) throw err;
-          const queryParams = new URLSearchParams(window.location.search);
-          const topic = queryParams.get('topic')?.replaceAll('_', "'");
-          const indicatorsFiltered = sortBy(
-            indicatorMetaData,
-            d => d.IndicatorLabel,
-          ).filter(d => d.RegionalAggregation);
-          const indicatorsFilteredByTopic = topic
-            ? indicatorsFiltered.filter(d => d.SSTopics.indexOf(topic) !== -1)
-            : indicatorsFiltered;
-          setIndicatorsList(indicatorsFilteredByTopic);
-          setFinalData([
-            {
-              ...data,
-              indicators: data.indicators.filter(
-                el =>
+      );
+    });
+    queue()
+      .defer(json, METADATALINK)
+      .await((err: any, indicatorMetaData: IndicatorMetaDataType[]) => {
+        if (err) throw err;
+        const queryParams = new URLSearchParams(window.location.search);
+        const topic = queryParams.get('topic')?.replaceAll('_', "'");
+        const indicatorsFiltered = sortBy(
+          indicatorMetaData,
+          d => d.IndicatorLabel,
+        ).filter(d => d.RegionalAggregation);
+        const indicatorsFilteredByTopic = topic
+          ? indicatorsFiltered.filter(d => d.SSTopics.indexOf(topic) !== -1)
+          : indicatorsFiltered;
+        setIndicatorsList(indicatorsFilteredByTopic);
+        q.awaitAll((error: any, allData: any) => {
+          if (error) throw error;
+          const dataFormatted: CountryGroupDataType[] = allData.map(
+            (el: CountryGroupDataType) => ({
+              ...el,
+              indicators: el.indicators.filter(
+                indicator =>
                   indicatorsFiltered.findIndex(
-                    ind => ind.DataKey === el.indicator,
+                    ind => ind.DataKey === indicator.indicator,
                   ) !== -1,
               ),
-            },
-          ]);
-        },
-      );
+            }),
+          );
+          setFinalData(dataFormatted);
+        });
+      });
   }, []);
   return (
     <div>

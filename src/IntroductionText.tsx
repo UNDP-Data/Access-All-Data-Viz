@@ -6,7 +6,7 @@ export const INTRO_TEXT = [
       <div>
         <p className='undp-typography margin-bottom-00'>
           Tackling inequality of opportunities by investing in the enhanced
-          capabilities people need to move above and beyond the poverty line.
+          capabilities people need to escape poverty in a sustainable manner.
         </p>
       </div>
     ),

@@ -92,7 +92,10 @@ export function TooltipForMultiLineChart(props: Props) {
               <ColorIcon fill={d.color} />
               <p className='undp-typography margin-bottom-00'>{d.title}</p>
             </div>
-            <h6 className='undp-typography margin-bottom-00 bold'>
+            <h6
+              className='undp-typography margin-bottom-00 bold'
+              style={{ flexShrink: 0 }}
+            >
               {d.prefix && d.value && d.value !== 'NA' ? `${d.prefix} ` : ''}
               {typeof d.value === 'number'
                 ? d.value < 1000000

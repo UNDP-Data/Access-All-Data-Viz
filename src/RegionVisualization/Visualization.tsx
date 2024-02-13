@@ -60,9 +60,10 @@ function VisualizationEl(props: Props) {
         ? indicatorsList[1].DataKey
         : undefined
       : DEFAULT_VIEWS[defaultViewsIndx].secondMetric;
-  const countryListForMultiLineChart = UNDPRegion
-    ? countryList.filter((_d, i) => i < 5).map(d => d.name)
-    : ['China', 'India', 'United States of America', 'Indonesia', 'Pakistan'];
+  const countryListForMultiLineChart =
+    UNDPRegion && UNDPRegion !== 'WLD'
+      ? countryList.filter((_d, i) => i < 5).map(d => d.name)
+      : ['China', 'India', 'United States of America', 'Indonesia', 'Pakistan'];
   const initialState = {
     graphType: DEFAULT_VIEWS[defaultViewsIndx].graphType,
     selectedRegions: [],
