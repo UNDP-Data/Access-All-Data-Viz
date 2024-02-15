@@ -137,8 +137,7 @@ export function PovertyAndInequalityKeyInsights() {
                   href='https://data.undp.org/insights/mapping-income-inequality'
                   target='_blank'
                   rel='noreferrer'
-                  className='undp-style small-font'
-                  style={{ color: 'var(--gray-600) !important' }}
+                  className='undp-style'
                 >
                   the bottom 40 income shares are much lower than we thought,
                   while the top 10 are much higher
