@@ -46,7 +46,7 @@ export function PovertyAndInequalityKeyInsights() {
                   className='undp-typography small-font margin-bottom-00'
                   style={{ color: 'var(--gray-600)' }}
                 >
-                  Data source: Poverty rate data:
+                  Data source: Poverty rate data{' '}
                   <a
                     href='https://data.worldbank.org/indicator/SI.POV.DDAY'
                     target='_blank'
@@ -56,7 +56,7 @@ export function PovertyAndInequalityKeyInsights() {
                   >
                     World Bank
                   </a>
-                  ; Population data:
+                  ; Population data{' '}
                   <a
                     href='https://ilostat.ilo.org/data/'
                     target='_blank'
