@@ -161,7 +161,7 @@ export function PovertyAndInequalityKeyInsights() {
                   >
                     World Inequality Database
                   </a>
-                  ; Population data
+                  ; Population data{' '}
                   <a
                     href='https://ilostat.ilo.org/data/'
                     target='_blank'
