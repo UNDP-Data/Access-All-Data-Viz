@@ -39,6 +39,24 @@ export function GenderKeyInsights() {
                 <br />
                 Despite its reduction, gender disparities in education continue
                 to persist.
+                <br />
+                <br />
+                <span
+                  className='undp-typography small-font margin-bottom-00'
+                  style={{ color: 'var(--gray-600)' }}
+                >
+                  Data source:{' '}
+                  <a
+                    href='http://hdr.undp.org/en/data'
+                    target='_blank'
+                    rel='noreferrer'
+                    className='undp-style'
+                    style={{ color: 'var(--gray-600)' }}
+                  >
+                    United Nations Development Programme (UNDP)
+                  </a>
+                  .
+                </span>
               </p>
             </div>
             <div className='flex-div flex-vert-align-center margin-top-07'>
@@ -96,6 +114,33 @@ export function GenderKeyInsights() {
                 vulnerable obtain social security and decent working conditions,
                 making them less susceptible to poverty due to more stable and
                 higher income.
+                <br />
+                <br />
+                <span
+                  className='undp-typography small-font margin-bottom-00'
+                  style={{ color: 'var(--gray-600)' }}
+                >
+                  Data source:{' '}
+                  <a
+                    href='http://hdr.undp.org/en/data'
+                    target='_blank'
+                    rel='noreferrer'
+                    className='undp-style'
+                    style={{ color: 'var(--gray-600)' }}
+                  >
+                    United Nations Development Programme (UNDP)
+                  </a>{' '}
+                  and{' '}
+                  <a
+                    href='https://ilostat.ilo.org/topics/informality/'
+                    target='_blank'
+                    rel='noreferrer'
+                    className='undp-style'
+                    style={{ color: 'var(--gray-600)' }}
+                  >
+                    International Labour Organization (ILO)
+                  </a>
+                </span>
               </p>
             </div>
             <div className='flex-div flex-vert-align-center margin-top-07'>
@@ -163,6 +208,24 @@ export function GenderKeyInsights() {
                 To attain equal opportunities, it&apos;s essential to transform
                 the societal norms and stereotypes that restrict the range of
                 options accessible to individuals, regardless of their gender.
+                <br />
+                <br />
+                <span
+                  className='undp-typography small-font margin-bottom-00'
+                  style={{ color: 'var(--gray-600)' }}
+                >
+                  Data source:{' '}
+                  <a
+                    href='http://hdr.undp.org/en/data'
+                    target='_blank'
+                    rel='noreferrer'
+                    className='undp-style'
+                    style={{ color: 'var(--gray-600)' }}
+                  >
+                    United Nations Development Programme (UNDP)
+                  </a>
+                  .
+                </span>
               </p>
             </div>
             <div className='flex-div flex-vert-align-center margin-top-07'>

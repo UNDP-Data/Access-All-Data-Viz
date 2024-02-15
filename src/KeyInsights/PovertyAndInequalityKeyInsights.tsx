@@ -33,11 +33,51 @@ export function PovertyAndInequalityKeyInsights() {
               <p className='undp-typography'>
                 Extreme poverty has seen a remarkable reduction of over 47
                 million annually over the last 30 years, representing one of the
-                most significant transformations in our world. However, the
-                extent of global poverty remains substantial and{' '}
-                <span className='bold'>roughly 650 million</span> individuals,
-                or approximately one in twelve people, are surviving on less
-                than $2.15 a day.
+                most significant transformations in our world. More than a
+                billion fewer people were pulled out of poverty.Yet, in 2019,
+                <span className='bold'>around 650 million</span> people around
+                the world - over half of them in Sub-Saharan Africa - were still
+                living on less than $2.15 per day. If current trends continue,
+                nearly 600 million people will still be trapped in extreme
+                poverty by 2030.
+                <br />
+                <br />
+                <span
+                  className='undp-typography small-font margin-bottom-00'
+                  style={{ color: 'var(--gray-600)' }}
+                >
+                  Data source: Poverty rate data:
+                  <a
+                    href='https://data.worldbank.org/indicator/SI.POV.DDAY'
+                    target='_blank'
+                    rel='noreferrer'
+                    className='undp-style'
+                    style={{ color: 'var(--gray-600)' }}
+                  >
+                    World Bank
+                  </a>
+                  ; Population data:
+                  <a
+                    href='https://ilostat.ilo.org/data/'
+                    target='_blank'
+                    rel='noreferrer'
+                    className='undp-style'
+                    style={{ color: 'var(--gray-600)' }}
+                  >
+                    International Labour Organization (ILO)
+                  </a>
+                  . Aggregation methodology for world can be found{' '}
+                  <a
+                    href='https://data.undp.org/sites/g/files/zskgke476/files/2024-02/DFX%20Indicator%20Aggregation%20Methodology.pdf'
+                    target='_blank'
+                    rel='noreferrer'
+                    className='undp-style'
+                    style={{ color: 'var(--gray-600)' }}
+                  >
+                    here
+                  </a>
+                  .
+                </span>
               </p>
             </div>
             <div className='flex-div flex-vert-align-center margin-top-07'>
@@ -83,18 +123,66 @@ export function PovertyAndInequalityKeyInsights() {
           <div className='insight-card-text'>
             <div>
               <p className='category-tag margin-bottom-05'>
-                Key Insight: Social Protection
+                Key Insight: Income Inequality
               </p>
               <p className='undp-typography'>
-                Although social expenditure has been steadily increasing, there
-                is a notable disparity in the allocation of national income to
-                social transfers between &apos;advanced economies&apos; and
-                regions like sub-Saharan Africa.
+                One of the most visible dimension of global inequality in
+                well-being is the unequal distribution of income (economic
+                inequality). It remains unacceptably high, with the richest 10
+                percent of the population earning more than half of the pre-tax
+                national income worldwide, earning on average PPP$ $334 per
+                person per day. Moreover, there is recent evidence that within
+                all low and middle income countries,{' '}
+                <a
+                  href='https://data.undp.org/insights/mapping-income-inequality'
+                  target='_blank'
+                  rel='noreferrer'
+                  className='undp-style'
+                  style={{ color: 'var(--gray-600)' }}
+                >
+                  the bottom 40 income shares are much lower than we thought,
+                  while the top 10 are much higher
+                </a>
+                . High levels of inequality making it harder to end poverty in
+                all its dimensions.
                 <br />
                 <br />
-                In this region, social spending is considerably lower overall,
-                and social protection benefits hold less significance in the
-                social spending landscape.
+                <span
+                  className='undp-typography small-font margin-bottom-00'
+                  style={{ color: 'var(--gray-600)' }}
+                >
+                  Data source: Wealth inequality data{' '}
+                  <a
+                    href='https://wid.world/data/'
+                    target='_blank'
+                    rel='noreferrer'
+                    className='undp-style'
+                    style={{ color: 'var(--gray-600)' }}
+                  >
+                    World Inequality Database
+                  </a>
+                  ; Population data
+                  <a
+                    href='https://ilostat.ilo.org/data/'
+                    target='_blank'
+                    rel='noreferrer'
+                    className='undp-style'
+                    style={{ color: 'var(--gray-600)' }}
+                  >
+                    International Labour Organization (ILO)
+                  </a>
+                  . Aggregation methodology for world can be found{' '}
+                  <a
+                    href='https://data.undp.org/sites/g/files/zskgke476/files/2024-02/DFX%20Indicator%20Aggregation%20Methodology.pdf'
+                    target='_blank'
+                    rel='noreferrer'
+                    className='undp-style'
+                    style={{ color: 'var(--gray-600)' }}
+                  >
+                    here
+                  </a>
+                  .
+                </span>
               </p>
             </div>
             <div className='flex-div flex-vert-align-center margin-top-07'>
@@ -130,18 +218,25 @@ export function PovertyAndInequalityKeyInsights() {
             </div>
           </div>
           <div className='insight-card-graph'>
-            <DotPlotSmallMultiples
-              dataId='populationcoveredbyatleastonesocialprotectionbenefit_ilospf'
-              title='Population covered by at least one social protection benefit'
-              regions={[
-                'WLD',
-                'UNDP_SSA',
-                'UNDP_AP',
-                'UNDP_AS',
-                'ECS',
-                'UNDP_LAC',
+            <ParticleRowChart
+              height={[53.21, 46.79]}
+              data={[0.1 * 7876931987, 0.9 * 7876931987]}
+              scale={0.0000001}
+              backgroundColor={['var(--gray-300)', 'var(--gray-300)']}
+              color={['#006EB5', '#006EB5']}
+              notes={[
+                `${format('.3s')(0.1 * 7876931987).replace(
+                  'M',
+                  ' Million',
+                )} People (top 10%)`,
+                `${format('.3s')(0.9 * 7876931987).replace(
+                  'G',
+                  ' Billion',
+                )} People (bottom 90%)`,
               ]}
-              footer='*Regions as defined by UNDP Bureaus'
+              sideNotes={['53.21%', '46.79%']}
+              title='Global Income Inequality (2021)'
+              circleRadius={3}
             />
           </div>
         </div>
@@ -149,20 +244,50 @@ export function PovertyAndInequalityKeyInsights() {
           <div className='insight-card-text'>
             <div>
               <p className='category-tag margin-bottom-05'>
-                Key Insight: Income Inequality
+                Key Insight: Social Protection
               </p>
               <p className='undp-typography'>
-                There is a considerable disparity in income inequality between
-                countries in Latin America and Sub-Saharan Africa compared to
-                those in Northern Europe.
+                Despite the criticality of social protection for tackling
+                poverty and vulnerability in the current polycrisis, progress on
+                extending social protection coverage remains low. Globally, less
+                than half of the population is covered by at least one social
+                protection benefit, leaving{' '}
+                <span className='bold'>4.1 billion</span> people without
+                protection. Moreover, there are significant regional
+                disparities. In Sub-Saharan Africa, only 15 per cent of the
+                population is covered against at least one risk compared to 41
+                percent in Asia-Pacific, over 60 percent in Latin America and
+                the Carribean and more tha 80 percent in Europe and Central
+                Asia.
                 <br />
                 <br />
-                This disparity carries significant consequences for life
-                expectancy, child and maternal mortality rates, and access to
-                high-quality services. Consequently, one&apos;s geographical
-                location not only surpasses the importance of individual
-                characteristics to make a decent living but also outweighs all
-                other factors.
+                <span
+                  className='undp-typography small-font margin-bottom-00'
+                  style={{ color: 'var(--gray-600)' }}
+                >
+                  Data source:{' '}
+                  <a
+                    href='https://www.ilo.org/ilostat-files/Documents/Bulk_ilostat_en.html'
+                    target='_blank'
+                    rel='noreferrer'
+                    className='undp-style'
+                    style={{ color: 'var(--gray-600)' }}
+                  >
+                    International Labour Organization (ILO)
+                  </a>
+                  . Aggregation methodology for world and UNDP regions can be
+                  found{' '}
+                  <a
+                    href='https://data.undp.org/sites/g/files/zskgke476/files/2024-02/DFX%20Indicator%20Aggregation%20Methodology.pdf'
+                    target='_blank'
+                    rel='noreferrer'
+                    className='undp-style'
+                    style={{ color: 'var(--gray-600)' }}
+                  >
+                    here
+                  </a>
+                  .
+                </span>
               </p>
             </div>
             <div className='flex-div flex-vert-align-center margin-top-07'>
@@ -189,25 +314,18 @@ export function PovertyAndInequalityKeyInsights() {
             </div>
           </div>
           <div className='insight-card-graph'>
-            <ParticleRowChart
-              height={[52.69, 47.31]}
-              data={[0.1 * 7876931987, 0.9 * 7876931987]}
-              scale={0.0000001}
-              backgroundColor={['var(--gray-300)', 'var(--gray-300)']}
-              color={['#006EB5', '#006EB5']}
-              notes={[
-                `${format('.3s')(0.1 * 7876931987).replace(
-                  'M',
-                  ' Million',
-                )} People (top 10%)`,
-                `${format('.3s')(0.9 * 7876931987).replace(
-                  'G',
-                  ' Billion',
-                )} People (bottom 90%)`,
+            <DotPlotSmallMultiples
+              dataId='populationcoveredbyatleastonesocialprotectionbenefit_ilospf'
+              title='Population covered by at least one social protection benefit'
+              regions={[
+                'WLD',
+                'UNDP_SSA',
+                'UNDP_AP',
+                'UNDP_AS',
+                'ECS',
+                'UNDP_LAC',
               ]}
-              sideNotes={['52.69%', '47.31%']}
-              title='Global Income Inequality'
-              circleRadius={3}
+              footer='*Regions as defined by UNDP Bureaus.'
             />
           </div>
         </div>

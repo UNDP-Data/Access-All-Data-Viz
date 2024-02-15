@@ -39,6 +39,24 @@ export function GovernanceKeyInsights() {
                 This reflects multifaceted factors, including governance
                 practices, economic conditions, corruption levels, political
                 stability, institutional robustness, and cultural influences.
+                <br />
+                <br />
+                <span
+                  className='undp-typography small-font margin-bottom-00'
+                  style={{ color: 'var(--gray-600)' }}
+                >
+                  Data source:{' '}
+                  <a
+                    href='https://datacatalog.worldbank.org/government-effectiveness-estimate'
+                    target='_blank'
+                    rel='noreferrer'
+                    className='undp-style'
+                    style={{ color: 'var(--gray-600)' }}
+                  >
+                    World Bank
+                  </a>
+                  .
+                </span>
               </p>
             </div>
             <div className='flex-div flex-vert-align-center margin-top-07'>
@@ -85,6 +103,24 @@ export function GovernanceKeyInsights() {
                 respect for the rule of law, and this persistent trend is now
                 evident even in established democracies.
               </p>
+              <br />
+              <br />
+              <span
+                className='undp-typography small-font margin-bottom-00'
+                style={{ color: 'var(--gray-600)' }}
+              >
+                Data source:{' '}
+                <a
+                  href='http://info.worldbank.org/governance/wgi/'
+                  target='_blank'
+                  rel='noreferrer'
+                  className='undp-style'
+                  style={{ color: 'var(--gray-600)' }}
+                >
+                  World Bank
+                </a>
+                .
+              </span>
             </div>
             <div className='flex-div flex-vert-align-center margin-top-07'>
               <img

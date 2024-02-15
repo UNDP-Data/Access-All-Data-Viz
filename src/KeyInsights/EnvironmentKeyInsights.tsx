@@ -44,6 +44,34 @@ export function EnvironmentKeyInsights() {
                 relatively modest when compared to the enormity of the
                 challenge.
               </p>
+              <br />
+              <br />
+              <span
+                className='undp-typography small-font margin-bottom-00'
+                style={{ color: 'var(--gray-600)' }}
+              >
+                Data source:{' '}
+                <a
+                  href='https://www.climatewatchdata.org/ghg-emissions'
+                  target='_blank'
+                  rel='noreferrer'
+                  className='undp-style'
+                  style={{ color: 'var(--gray-600)' }}
+                >
+                  World Resources Institute (WRI)
+                </a>
+                . Aggregation methodology for world can be found{' '}
+                <a
+                  href='https://data.undp.org/sites/g/files/zskgke476/files/2024-02/DFX%20Indicator%20Aggregation%20Methodology.pdf'
+                  target='_blank'
+                  rel='noreferrer'
+                  className='undp-style'
+                  style={{ color: 'var(--gray-600)' }}
+                >
+                  here
+                </a>
+                .
+              </span>
             </div>
             <div className='flex-div flex-vert-align-center margin-top-07'>
               <img
@@ -95,6 +123,23 @@ export function EnvironmentKeyInsights() {
                 <span className='bold'>
                   97 billion tons, an increase of 120%.
                 </span>
+                <br />
+                <br />
+                <span
+                  className='undp-typography small-font margin-bottom-00'
+                  style={{ color: 'var(--gray-600)' }}
+                >
+                  Data source:{' '}
+                  <a
+                    href='http://hdr.undp.org/en/data'
+                    target='_blank'
+                    rel='noreferrer'
+                    className='undp-style'
+                    style={{ color: 'var(--gray-600)' }}
+                  >
+                    United Nations Development Programme (UNDP)
+                  </a>
+                </span>
               </p>
             </div>
             <div className='flex-div flex-vert-align-center margin-top-07'>
@@ -128,7 +173,7 @@ export function EnvironmentKeyInsights() {
               backgroundColor={['var(--gray-200)', 'var(--gray-200)']}
               baseYears={[1990]}
               color={['#55606E', '#55606E']}
-              title='Global material footprint in tonnes'
+              title='Global material footprint in tonnes (2021)'
               circleRadius={5}
               suffix=' tons'
               multiplyByPopulation

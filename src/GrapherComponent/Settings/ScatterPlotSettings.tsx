@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
-import { Select, Checkbox } from 'antd';
+import { Checkbox, Radio } from 'antd';
 import {
   ChevronDownCircle,
   ChevronRightCircle,
@@ -51,11 +51,7 @@ export function ScatterPlotSettings(props: Props) {
   const scatterPlotIndicators = indicators.filter(d => !d.IsCategorical);
   const sizeIndicators = indicators.filter(d => d.Sizing);
   const options = scatterPlotIndicators.map(d => d.DataKey);
-  const colorOptions = indicators
-    .filter(d => d.IsCategorical)
-    .map(d => d.DataKey);
-  colorOptions.unshift('Income Groups');
-  colorOptions.unshift('Continents');
+  const colorOptions = ['Continents', 'Income Groups'];
   const [settingsExpanded, setSettingsExpanded] = useState(true);
   useEffect(() => {
     if (options.findIndex(d => d === xAxisIndicator) === -1) {
@@ -118,27 +114,30 @@ export function ScatterPlotSettings(props: Props) {
           {selectedCountryOrRegion ? null : (
             <div className='settings-option-div'>
               <p className='label'>Color By</p>
-              <Select
-                className='undp-select'
-                showSearch
+              <Radio.Group
+                className='undp-radio'
                 value={colorIndicator}
-                maxTagCount='responsive'
                 style={{ width: '100%' }}
-                placeholder='Color By'
                 onChange={d => {
                   const indx = indicators.findIndex(
-                    indicator => indicator.IndicatorLabel === d,
+                    indicator => indicator.IndicatorLabel === d.target.value,
                   );
                   updateColorIndicator(
-                    indx === -1 ? d : indicators[indx].DataKey,
+                    indx === -1 ? d.target.value : indicators[indx].DataKey,
                   );
                 }}
                 defaultValue='Continent'
               >
                 {colorOptions.map(d => (
-                  <Select.Option
-                    className='undp-select-option'
+                  <Radio
                     key={
+                      indicators.findIndex(el => el.DataKey === d) === -1
+                        ? d
+                        : indicators[
+                            indicators.findIndex(el => el.DataKey === d)
+                          ].IndicatorLabel
+                    }
+                    value={
                       indicators.findIndex(el => el.DataKey === d) === -1
                         ? d
                         : indicators[
@@ -150,9 +149,9 @@ export function ScatterPlotSettings(props: Props) {
                       ? d
                       : indicators[indicators.findIndex(el => el.DataKey === d)]
                           .IndicatorLabel}
-                  </Select.Option>
+                  </Radio>
                 ))}
-              </Select>
+              </Radio.Group>
             </div>
           )}
         </div>

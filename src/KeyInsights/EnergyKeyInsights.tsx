@@ -42,6 +42,34 @@ export function EnergyKeyInsights() {
                 However, achieving full electrification by 2030 requires an
                 annual rate of growth in access of 1 percentage point per year
                 from 2021 onward—almost twice the current pace.
+                <br />
+                <br />
+                <span
+                  className='undp-typography small-font margin-bottom-00'
+                  style={{ color: 'var(--gray-600)' }}
+                >
+                  Data source:{' '}
+                  <a
+                    href='https://data.worldbank.org/indicator/EG.ELC.ACCS.ZS'
+                    target='_blank'
+                    rel='noreferrer'
+                    className='undp-style'
+                    style={{ color: 'var(--gray-600)' }}
+                  >
+                    World Bank
+                  </a>
+                  . Aggregation methodology for world can be found{' '}
+                  <a
+                    href='https://data.undp.org/sites/g/files/zskgke476/files/2024-02/DFX%20Indicator%20Aggregation%20Methodology.pdf'
+                    target='_blank'
+                    rel='noreferrer'
+                    className='undp-style'
+                    style={{ color: 'var(--gray-600)' }}
+                  >
+                    here
+                  </a>
+                  .
+                </span>
               </p>
             </div>
             <div className='flex-div flex-vert-align-center margin-top-07'>
@@ -97,6 +125,34 @@ export function EnergyKeyInsights() {
                 in accessing reliable and affordable electrification. Without
                 escalated efforts, the world may still fall short of achieving
                 universal electrification by 2030.
+                <br />
+                <br />
+                <span
+                  className='undp-typography small-font margin-bottom-00'
+                  style={{ color: 'var(--gray-600)' }}
+                >
+                  Data source:{' '}
+                  <a
+                    href='https://data.worldbank.org/indicator/EG.ELC.ACCS.ZS'
+                    target='_blank'
+                    rel='noreferrer'
+                    className='undp-style'
+                    style={{ color: 'var(--gray-600)' }}
+                  >
+                    World Bank
+                  </a>
+                  . Aggregation methodology for world can be found{' '}
+                  <a
+                    href='https://data.undp.org/sites/g/files/zskgke476/files/2024-02/DFX%20Indicator%20Aggregation%20Methodology.pdf'
+                    target='_blank'
+                    rel='noreferrer'
+                    className='undp-style'
+                    style={{ color: 'var(--gray-600)' }}
+                  >
+                    here
+                  </a>
+                  .
+                </span>
               </p>
             </div>
             <div className='flex-div flex-vert-align-center margin-top-07'>
@@ -164,6 +220,34 @@ export function EnergyKeyInsights() {
                 claim millions of lives each year while perpetuating gender
                 inequity, deforestation, and negative climate impacts unless
                 efforts are rapidly scaled up.
+                <br />
+                <br />
+                <span
+                  className='undp-typography small-font margin-bottom-00'
+                  style={{ color: 'var(--gray-600)' }}
+                >
+                  Data source:{' '}
+                  <a
+                    href='https://data.worldbank.org/indicator/EG.CFT.ACCS.ZS'
+                    target='_blank'
+                    rel='noreferrer'
+                    className='undp-style'
+                    style={{ color: 'var(--gray-600)' }}
+                  >
+                    World Bank
+                  </a>
+                  . Aggregation methodology for world can be found{' '}
+                  <a
+                    href='https://data.undp.org/sites/g/files/zskgke476/files/2024-02/DFX%20Indicator%20Aggregation%20Methodology.pdf'
+                    target='_blank'
+                    rel='noreferrer'
+                    className='undp-style'
+                    style={{ color: 'var(--gray-600)' }}
+                  >
+                    here
+                  </a>
+                  .
+                </span>
               </p>
             </div>
             <div className='flex-div flex-vert-align-center margin-top-07'>
