@@ -51,8 +51,8 @@ export function PovertyAndInequalityKeyInsights() {
                     href='https://data.worldbank.org/indicator/SI.POV.DDAY'
                     target='_blank'
                     rel='noreferrer'
-                    className='undp-style'
-                    style={{ color: 'var(--gray-600)' }}
+                    className='undp-style small-font'
+                    style={{ color: 'var(--gray-600) !important' }}
                   >
                     World Bank
                   </a>
@@ -61,8 +61,8 @@ export function PovertyAndInequalityKeyInsights() {
                     href='https://ilostat.ilo.org/data/'
                     target='_blank'
                     rel='noreferrer'
-                    className='undp-style'
-                    style={{ color: 'var(--gray-600)' }}
+                    className='undp-style small-font'
+                    style={{ color: 'var(--gray-600) !important' }}
                   >
                     International Labour Organization (ILO)
                   </a>
@@ -71,8 +71,8 @@ export function PovertyAndInequalityKeyInsights() {
                     href='https://data.undp.org/sites/g/files/zskgke476/files/2024-02/DFX%20Indicator%20Aggregation%20Methodology.pdf'
                     target='_blank'
                     rel='noreferrer'
-                    className='undp-style'
-                    style={{ color: 'var(--gray-600)' }}
+                    className='undp-style small-font'
+                    style={{ color: 'var(--gray-600) !important' }}
                   >
                     here
                   </a>
@@ -137,8 +137,8 @@ export function PovertyAndInequalityKeyInsights() {
                   href='https://data.undp.org/insights/mapping-income-inequality'
                   target='_blank'
                   rel='noreferrer'
-                  className='undp-style'
-                  style={{ color: 'var(--gray-600)' }}
+                  className='undp-style small-font'
+                  style={{ color: 'var(--gray-600) !important' }}
                 >
                   the bottom 40 income shares are much lower than we thought,
                   while the top 10 are much higher
@@ -156,8 +156,8 @@ export function PovertyAndInequalityKeyInsights() {
                     href='https://wid.world/data/'
                     target='_blank'
                     rel='noreferrer'
-                    className='undp-style'
-                    style={{ color: 'var(--gray-600)' }}
+                    className='undp-style small-font'
+                    style={{ color: 'var(--gray-600) !important' }}
                   >
                     World Inequality Database
                   </a>
@@ -166,8 +166,8 @@ export function PovertyAndInequalityKeyInsights() {
                     href='https://ilostat.ilo.org/data/'
                     target='_blank'
                     rel='noreferrer'
-                    className='undp-style'
-                    style={{ color: 'var(--gray-600)' }}
+                    className='undp-style small-font'
+                    style={{ color: 'var(--gray-600) !important' }}
                   >
                     International Labour Organization (ILO)
                   </a>
@@ -176,8 +176,8 @@ export function PovertyAndInequalityKeyInsights() {
                     href='https://data.undp.org/sites/g/files/zskgke476/files/2024-02/DFX%20Indicator%20Aggregation%20Methodology.pdf'
                     target='_blank'
                     rel='noreferrer'
-                    className='undp-style'
-                    style={{ color: 'var(--gray-600)' }}
+                    className='undp-style small-font'
+                    style={{ color: 'var(--gray-600) !important' }}
                   >
                     here
                   </a>
@@ -270,8 +270,8 @@ export function PovertyAndInequalityKeyInsights() {
                     href='https://www.ilo.org/ilostat-files/Documents/Bulk_ilostat_en.html'
                     target='_blank'
                     rel='noreferrer'
-                    className='undp-style'
-                    style={{ color: 'var(--gray-600)' }}
+                    className='undp-style small-font'
+                    style={{ color: 'var(--gray-600) !important' }}
                   >
                     International Labour Organization (ILO)
                   </a>
@@ -281,8 +281,8 @@ export function PovertyAndInequalityKeyInsights() {
                     href='https://data.undp.org/sites/g/files/zskgke476/files/2024-02/DFX%20Indicator%20Aggregation%20Methodology.pdf'
                     target='_blank'
                     rel='noreferrer'
-                    className='undp-style'
-                    style={{ color: 'var(--gray-600)' }}
+                    className='undp-style small-font'
+                    style={{ color: 'var(--gray-600) !important' }}
                   >
                     here
                   </a>

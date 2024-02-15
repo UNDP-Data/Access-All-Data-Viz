@@ -50,8 +50,8 @@ export function GovernanceKeyInsights() {
                     href='https://datacatalog.worldbank.org/government-effectiveness-estimate'
                     target='_blank'
                     rel='noreferrer'
-                    className='undp-style'
-                    style={{ color: 'var(--gray-600)' }}
+                    className='undp-style small-font'
+                    style={{ color: 'var(--gray-600) !important' }}
                   >
                     World Bank
                   </a>
@@ -114,8 +114,8 @@ export function GovernanceKeyInsights() {
                   href='http://info.worldbank.org/governance/wgi/'
                   target='_blank'
                   rel='noreferrer'
-                  className='undp-style'
-                  style={{ color: 'var(--gray-600)' }}
+                  className='undp-style small-font'
+                  style={{ color: 'var(--gray-600) !important' }}
                 >
                   World Bank
                 </a>

@@ -50,8 +50,8 @@ export function GenderKeyInsights() {
                     href='http://hdr.undp.org/en/data'
                     target='_blank'
                     rel='noreferrer'
-                    className='undp-style'
-                    style={{ color: 'var(--gray-600)' }}
+                    className='undp-style small-font'
+                    style={{ color: 'var(--gray-600) !important' }}
                   >
                     United Nations Development Programme (UNDP)
                   </a>
@@ -125,8 +125,8 @@ export function GenderKeyInsights() {
                     href='http://hdr.undp.org/en/data'
                     target='_blank'
                     rel='noreferrer'
-                    className='undp-style'
-                    style={{ color: 'var(--gray-600)' }}
+                    className='undp-style small-font'
+                    style={{ color: 'var(--gray-600) !important' }}
                   >
                     United Nations Development Programme (UNDP)
                   </a>{' '}
@@ -135,8 +135,8 @@ export function GenderKeyInsights() {
                     href='https://ilostat.ilo.org/topics/informality/'
                     target='_blank'
                     rel='noreferrer'
-                    className='undp-style'
-                    style={{ color: 'var(--gray-600)' }}
+                    className='undp-style small-font'
+                    style={{ color: 'var(--gray-600) !important' }}
                   >
                     International Labour Organization (ILO)
                   </a>
@@ -219,8 +219,8 @@ export function GenderKeyInsights() {
                     href='http://hdr.undp.org/en/data'
                     target='_blank'
                     rel='noreferrer'
-                    className='undp-style'
-                    style={{ color: 'var(--gray-600)' }}
+                    className='undp-style small-font'
+                    style={{ color: 'var(--gray-600) !important' }}
                   >
                     United Nations Development Programme (UNDP)
                   </a>

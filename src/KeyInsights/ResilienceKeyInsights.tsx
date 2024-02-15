@@ -45,8 +45,8 @@ export function ResilienceKeyInsights() {
                   href='https://data.worldbank.org/'
                   target='_blank'
                   rel='noreferrer'
-                  className='undp-style'
-                  style={{ color: 'var(--gray-600)' }}
+                  className='undp-style small-font'
+                  style={{ color: 'var(--gray-600) !important' }}
                 >
                   World Bank
                 </a>
@@ -55,8 +55,8 @@ export function ResilienceKeyInsights() {
                   href='https://data.undp.org/sites/g/files/zskgke476/files/2024-02/DFX%20Indicator%20Aggregation%20Methodology.pdf'
                   target='_blank'
                   rel='noreferrer'
-                  className='undp-style'
-                  style={{ color: 'var(--gray-600)' }}
+                  className='undp-style small-font'
+                  style={{ color: 'var(--gray-600) !important' }}
                 >
                   here
                 </a>
@@ -117,8 +117,8 @@ export function ResilienceKeyInsights() {
                   href='https://data.worldbank.org/'
                   target='_blank'
                   rel='noreferrer'
-                  className='undp-style'
-                  style={{ color: 'var(--gray-600)' }}
+                  className='undp-style small-font'
+                  style={{ color: 'var(--gray-600) !important' }}
                 >
                   World Bank
                 </a>
