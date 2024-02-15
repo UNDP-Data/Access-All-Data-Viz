@@ -102,25 +102,25 @@ export function GovernanceKeyInsights() {
                 trends suggest that more countries are experiencing a decline in
                 respect for the rule of law, and this persistent trend is now
                 evident even in established democracies.
-              </p>
-              <br />
-              <br />
-              <span
-                className='undp-typography small-font margin-bottom-00'
-                style={{ color: 'var(--gray-600)' }}
-              >
-                Data source:{' '}
-                <a
-                  href='http://info.worldbank.org/governance/wgi/'
-                  target='_blank'
-                  rel='noreferrer'
-                  className='undp-style small-font'
-                  style={{ color: 'var(--gray-600) !important' }}
+                <br />
+                <br />
+                <span
+                  className='undp-typography small-font margin-bottom-00'
+                  style={{ color: 'var(--gray-600)' }}
                 >
-                  World Bank
-                </a>
-                .
-              </span>
+                  Data source:{' '}
+                  <a
+                    href='http://info.worldbank.org/governance/wgi/'
+                    target='_blank'
+                    rel='noreferrer'
+                    className='undp-style small-font'
+                    style={{ color: 'var(--gray-600) !important' }}
+                  >
+                    World Bank
+                  </a>
+                  .
+                </span>
+              </p>
             </div>
             <div className='flex-div flex-vert-align-center margin-top-07'>
               <img

@@ -58,7 +58,8 @@ export function EnergyKeyInsights() {
                   >
                     World Bank
                   </a>
-                  . Aggregation methodology for world can be found{' '}
+                  . The aggregation methodology used to compute the aggregate
+                  values can be found{' '}
                   <a
                     href='https://data.undp.org/sites/g/files/zskgke476/files/2024-02/DFX%20Indicator%20Aggregation%20Methodology.pdf'
                     target='_blank'
@@ -141,7 +142,8 @@ export function EnergyKeyInsights() {
                   >
                     World Bank
                   </a>
-                  . Aggregation methodology for world can be found{' '}
+                  . The aggregation methodology used to compute the aggregate
+                  values can be found{' '}
                   <a
                     href='https://data.undp.org/sites/g/files/zskgke476/files/2024-02/DFX%20Indicator%20Aggregation%20Methodology.pdf'
                     target='_blank'
@@ -236,7 +238,8 @@ export function EnergyKeyInsights() {
                   >
                     World Bank
                   </a>
-                  . Aggregation methodology for world can be found{' '}
+                  . The aggregation methodology used to compute the aggregate
+                  values can be found{' '}
                   <a
                     href='https://data.undp.org/sites/g/files/zskgke476/files/2024-02/DFX%20Indicator%20Aggregation%20Methodology.pdf'
                     target='_blank'

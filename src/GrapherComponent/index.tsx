@@ -175,6 +175,22 @@ export function GrapherComponent(props: Props) {
         regionData={regionData}
         loading={loading}
       />
+      <p
+        className='undp-typography small-font italics'
+        style={{ color: 'var(--gray-600)' }}
+      >
+        Please Note: The aggregation methodology used to compute the aggregate
+        values on the DFx can be found{' '}
+        <a
+          href='https://data.undp.org/sites/g/files/zskgke476/files/2024-02/DFX%20Indicator%20Aggregation%20Methodology.pdf'
+          target='_blank'
+          rel='noreferrer'
+          className='undp-style small-font italics'
+          style={{ color: 'var(--gray-600) !important' }}
+        >
+          here
+        </a>
+      </p>
     </div>
   );
 }

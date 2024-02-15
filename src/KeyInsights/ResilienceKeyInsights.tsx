@@ -33,35 +33,36 @@ export function ResilienceKeyInsights() {
                 urban areas in recent decades which is expected to continue to
                 increase with rising incomes and shifts away from employment in
                 agriculture, especially in developing countries.
+                <br />
+                <br />
+                <span
+                  className='undp-typography small-font margin-bottom-00'
+                  style={{ color: 'var(--gray-600)' }}
+                >
+                  Data source:{' '}
+                  <a
+                    href='https://data.worldbank.org/'
+                    target='_blank'
+                    rel='noreferrer'
+                    className='undp-style small-font'
+                    style={{ color: 'var(--gray-600) !important' }}
+                  >
+                    World Bank
+                  </a>
+                  . The aggregation methodology used to compute the aggregate
+                  values can be found{' '}
+                  <a
+                    href='https://data.undp.org/sites/g/files/zskgke476/files/2024-02/DFX%20Indicator%20Aggregation%20Methodology.pdf'
+                    target='_blank'
+                    rel='noreferrer'
+                    className='undp-style small-font'
+                    style={{ color: 'var(--gray-600) !important' }}
+                  >
+                    here
+                  </a>
+                  .
+                </span>
               </p>
-              <br />
-              <br />
-              <span
-                className='undp-typography small-font margin-bottom-00'
-                style={{ color: 'var(--gray-600)' }}
-              >
-                Data source:{' '}
-                <a
-                  href='https://data.worldbank.org/'
-                  target='_blank'
-                  rel='noreferrer'
-                  className='undp-style small-font'
-                  style={{ color: 'var(--gray-600) !important' }}
-                >
-                  World Bank
-                </a>
-                . Aggregation methodology for world can be found{' '}
-                <a
-                  href='https://data.undp.org/sites/g/files/zskgke476/files/2024-02/DFX%20Indicator%20Aggregation%20Methodology.pdf'
-                  target='_blank'
-                  rel='noreferrer'
-                  className='undp-style small-font'
-                  style={{ color: 'var(--gray-600) !important' }}
-                >
-                  here
-                </a>
-                .
-              </span>
             </div>
             <div className='flex-div flex-vert-align-center margin-top-07'>
               <img
@@ -105,25 +106,25 @@ export function ResilienceKeyInsights() {
                 clean water, poor housing conditions among others, thus placing
                 them at risk of infectious diseases, higher rates of
                 malnutrition, childhood stunting, and premature mortality.
-              </p>
-              <br />
-              <br />
-              <span
-                className='undp-typography small-font margin-bottom-00'
-                style={{ color: 'var(--gray-600)' }}
-              >
-                Data source:{' '}
-                <a
-                  href='https://data.worldbank.org/'
-                  target='_blank'
-                  rel='noreferrer'
-                  className='undp-style small-font'
-                  style={{ color: 'var(--gray-600) !important' }}
+                <br />
+                <br />
+                <span
+                  className='undp-typography small-font margin-bottom-00'
+                  style={{ color: 'var(--gray-600)' }}
                 >
-                  World Bank
-                </a>
-                .
-              </span>
+                  Data source:{' '}
+                  <a
+                    href='https://data.worldbank.org/'
+                    target='_blank'
+                    rel='noreferrer'
+                    className='undp-style small-font'
+                    style={{ color: 'var(--gray-600) !important' }}
+                  >
+                    World Bank
+                  </a>
+                  .
+                </span>
+              </p>
             </div>
             <div className='flex-div flex-vert-align-center margin-top-07'>
               <img

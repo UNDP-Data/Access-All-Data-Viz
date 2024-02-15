@@ -43,35 +43,36 @@ export function EnvironmentKeyInsights() {
                 adapting to climate change are substantial, they remain
                 relatively modest when compared to the enormity of the
                 challenge.
+                <br />
+                <br />
+                <span
+                  className='undp-typography small-font margin-bottom-00'
+                  style={{ color: 'var(--gray-600)' }}
+                >
+                  Data source:{' '}
+                  <a
+                    href='https://www.climatewatchdata.org/ghg-emissions'
+                    target='_blank'
+                    rel='noreferrer'
+                    className='undp-style small-font'
+                    style={{ color: 'var(--gray-600) !important' }}
+                  >
+                    World Resources Institute (WRI)
+                  </a>
+                  . The aggregation methodology used to compute the aggregate
+                  values can be found{' '}
+                  <a
+                    href='https://data.undp.org/sites/g/files/zskgke476/files/2024-02/DFX%20Indicator%20Aggregation%20Methodology.pdf'
+                    target='_blank'
+                    rel='noreferrer'
+                    className='undp-style small-font'
+                    style={{ color: 'var(--gray-600) !important' }}
+                  >
+                    here
+                  </a>
+                  .
+                </span>
               </p>
-              <br />
-              <br />
-              <span
-                className='undp-typography small-font margin-bottom-00'
-                style={{ color: 'var(--gray-600)' }}
-              >
-                Data source:{' '}
-                <a
-                  href='https://www.climatewatchdata.org/ghg-emissions'
-                  target='_blank'
-                  rel='noreferrer'
-                  className='undp-style small-font'
-                  style={{ color: 'var(--gray-600) !important' }}
-                >
-                  World Resources Institute (WRI)
-                </a>
-                . Aggregation methodology for world can be found{' '}
-                <a
-                  href='https://data.undp.org/sites/g/files/zskgke476/files/2024-02/DFX%20Indicator%20Aggregation%20Methodology.pdf'
-                  target='_blank'
-                  rel='noreferrer'
-                  className='undp-style small-font'
-                  style={{ color: 'var(--gray-600) !important' }}
-                >
-                  here
-                </a>
-                .
-              </span>
             </div>
             <div className='flex-div flex-vert-align-center margin-top-07'>
               <img
