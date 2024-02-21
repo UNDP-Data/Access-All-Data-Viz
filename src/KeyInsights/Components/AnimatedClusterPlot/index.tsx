@@ -14,6 +14,7 @@ interface Props {
   title?: string;
   footer: string;
   baseYear: number;
+  endYear: number;
   isDataAccess: boolean;
   timer?: number;
   scale: number;
@@ -32,6 +33,7 @@ export function AnimatedClusterPlot(props: Props) {
     title,
     footer,
     baseYear,
+    endYear,
     isDataAccess,
     timer,
     scale,
@@ -56,15 +58,26 @@ export function AnimatedClusterPlot(props: Props) {
             data.indicators.findIndex(d => d.indicator === 'Population, total')
           ];
         const dataHeadCountData = isDataPercent
-          ? dataForIndicator.yearlyData.map(d => ({
-              year: d.year,
-              value: isDataAccess
-                ? Math.round(
-                    populationTotal.yearlyData[
-                      populationTotal.yearlyData.findIndex(
-                        el => el.year === d.year,
-                      )
-                    ].value -
+          ? dataForIndicator.yearlyData
+              .filter(d => d.year <= endYear)
+              .map(d => ({
+                year: d.year,
+                value: isDataAccess
+                  ? Math.round(
+                      populationTotal.yearlyData[
+                        populationTotal.yearlyData.findIndex(
+                          el => el.year === d.year,
+                        )
+                      ].value -
+                        (d.value *
+                          populationTotal.yearlyData[
+                            populationTotal.yearlyData.findIndex(
+                              el => el.year === d.year,
+                            )
+                          ].value) /
+                          100,
+                    )
+                  : Math.round(
                       (d.value *
                         populationTotal.yearlyData[
                           populationTotal.yearlyData.findIndex(
@@ -72,17 +85,8 @@ export function AnimatedClusterPlot(props: Props) {
                           )
                         ].value) /
                         100,
-                  )
-                : Math.round(
-                    (d.value *
-                      populationTotal.yearlyData[
-                        populationTotal.yearlyData.findIndex(
-                          el => el.year === d.year,
-                        )
-                      ].value) /
-                      100,
-                  ),
-            }))
+                    ),
+              }))
           : dataForIndicator.yearlyData.map(d => ({
               year: d.year,
               value: Math.round(d.value),

@@ -31,11 +31,11 @@ export function PovertyAndInequalityKeyInsights() {
                 Key Insight: Poverty headcount at $2.15 a day
               </p>
               <p className='undp-typography'>
-                Extreme poverty has seen a remarkable reduction of over 47
+                Extreme poverty has seen a remarkable reduction of over 45.5
                 million annually over the last 30 years, representing one of the
                 most significant transformations in our world. More than a
-                billion fewer people were pulled out of poverty.Yet, in 2019,
-                <span className='bold'>around 650 million</span> people around
+                billion fewer people were pulled out of poverty.Yet, in 2019,{' '}
+                <span className='bold'>around 700 million</span> people around
                 the world - over half of them in Sub-Saharan Africa - were still
                 living on less than $2.15 per day. If current trends continue,
                 nearly 600 million people will still be trapped in extreme
@@ -114,6 +114,7 @@ export function PovertyAndInequalityKeyInsights() {
                 'people pulled out of poverty',
               ]}
               baseYear={1991}
+              endYear={2019}
               footer='1 Dot = 2 Million people'
               isDataAccess={false}
               scale={0.0000005}
