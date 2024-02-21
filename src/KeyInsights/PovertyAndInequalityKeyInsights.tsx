@@ -37,9 +37,19 @@ export function PovertyAndInequalityKeyInsights() {
                 billion fewer people were pulled out of poverty.Yet, in 2019,{' '}
                 <span className='bold'>around 700 million</span> people around
                 the world - over half of them in Sub-Saharan Africa - were still
-                living on less than $2.15 per day. If current trends continue,
-                nearly 600 million people will still be trapped in extreme
-                poverty by 2030.
+                living on less than $2.15 per day. Moreover, 2020 saw the
+                biggest setback to global poverty pushing additional 71 million
+                people to extreme poverty. If current trends continue, nearly
+                574 million people will still be trapped in extreme poverty by
+                2030 (based on{' '}
+                <a
+                  href='https://www.worldbank.org/en/publication/poverty-and-shared-prosperity'
+                  target='_blank'
+                  rel='noreferrer'
+                >
+                  Poverty and shared prosperity 2022
+                </a>
+                ).
                 <br />
                 <br />
                 <span
