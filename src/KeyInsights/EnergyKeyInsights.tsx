@@ -103,6 +103,7 @@ export function EnergyKeyInsights() {
               isDataPercent
               colorKeys={['people without access', 'people gained access']}
               baseYear={2012}
+              endYear={2020}
               footer='1 Dot = 1 Million people'
               isDataAccess
               timer={1000}
