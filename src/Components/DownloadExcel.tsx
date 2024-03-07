@@ -48,7 +48,7 @@ function ExportExcel(props: Props) {
     const wscols = [{ wch: 20 }, { wch: 5 }, { wch: 15 }];
 
     ws['!cols'] = wscols;
-    XLSX.utils.sheet_add_json(ws, [csvData[0]], {
+    XLSX.utils.sheet_add_json(ws, csvData, {
       header: ['country', 'countryCode', 'year', 'value'],
       skipHeader: true,
       origin: -1, // ok
