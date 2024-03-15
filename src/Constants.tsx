@@ -1,3 +1,5 @@
+import { SSTypes } from './Types';
+
 export const CONTINENTS = ['Africa', 'Americas', 'Asia', 'Europe', 'Oceania'];
 
 export const MAX_TEXT_LENGTH = 100;
@@ -17,15 +19,7 @@ export const INCOME_GROUPS = [
 
 export const HDI_LEVELS = ['Low', 'Medium', 'High', 'Very High'];
 
-export const SIGNATURE_SOLUTIONS_LIST: (
-  | 'All'
-  | 'Energy'
-  | 'Environment'
-  | 'Gender'
-  | 'Governance'
-  | 'Poverty and Inequality'
-  | 'Resilience'
-)[] = [
+export const SIGNATURE_SOLUTIONS_LIST: SSTypes[] = [
   'All',
   'Energy',
   'Environment',

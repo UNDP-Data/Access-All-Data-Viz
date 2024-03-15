@@ -1,5 +1,10 @@
 import { createContext } from 'react';
-import { CtxDataType, DisaggregationMetaDataType } from '../Types';
+import {
+  CtxDataType,
+  DisaggregationMetaDataType,
+  GraphType,
+  SSTypes,
+} from '../Types';
 
 const Context = createContext<CtxDataType>({
   graphType: 'map',
@@ -33,16 +38,7 @@ const Context = createContext<CtxDataType>({
   signatureSolution: undefined,
   signatureSolutionForDataList: 'All',
   showReference: false,
-  updateGraphType: (
-    _d:
-      | 'scatterPlot'
-      | 'map'
-      | 'barGraph'
-      | 'trendLine'
-      | 'multiCountryTrendLine'
-      | 'dataList'
-      | 'disaggregation',
-  ) => {},
+  updateGraphType: (_d: GraphType) => {},
   updateSelectedRegions: (_d: string[]) => {},
   updateSelectedCountries: (_d: string[]) => {},
   updateSelectedIncomeGroups: (_d: string[]) => {},
@@ -64,16 +60,7 @@ const Context = createContext<CtxDataType>({
   updateReverseOrder: (_d: boolean) => {},
   updateBarLayout: (_d: boolean) => {},
   updateShowReference: (_d: boolean) => {},
-  updateSignatureSolutionForDataList: (
-    _d:
-      | 'All'
-      | 'Energy'
-      | 'Environment'
-      | 'Gender'
-      | 'Governance'
-      | 'Poverty and Inequality'
-      | 'Resilience',
-  ) => {},
+  updateSignatureSolutionForDataList: (_d: SSTypes) => {},
 });
 
 export default Context;

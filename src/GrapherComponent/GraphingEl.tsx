@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import {
   BarChart3,
+  GanttChart,
   LineChart,
   List,
   Map,
@@ -198,6 +199,28 @@ export function DataExplorerGraphingEl(props: Props) {
               <TabText>Disaggregation</TabText>
             </button>
           ) : null}
+          <button
+            type='button'
+            className={`tabs-for-graphing-interface${
+              graphType === 'beeSwarm' ? ' selected' : ''
+            }`}
+            onClick={() => {
+              updateGraphType('beeSwarm');
+            }}
+            style={{
+              flexWrap: 'wrap',
+            }}
+            title='Distribution'
+          >
+            <GanttChart
+              size={40}
+              strokeWidth={1.25}
+              stroke={
+                graphType === 'beeSwarm' ? 'var(--blue-600)' : 'var(--gray-500)'
+              }
+            />
+            <TabText>Region Distribution</TabText>
+          </button>
           <button
             type='button'
             className={`tabs-for-graphing-interface${

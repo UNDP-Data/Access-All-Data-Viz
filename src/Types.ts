@@ -1,3 +1,22 @@
+export type GraphType =
+  | 'scatterPlot'
+  | 'map'
+  | 'barGraph'
+  | 'trendLine'
+  | 'multiCountryTrendLine'
+  | 'dataList'
+  | 'disaggregation'
+  | 'beeSwarm';
+
+export type SSTypes =
+  | 'All'
+  | 'Energy'
+  | 'Environment'
+  | 'Gender'
+  | 'Governance'
+  | 'Poverty and Inequality'
+  | 'Resilience';
+
 export interface IndicatorDataType {
   indicator: string;
   yearlyData: {
@@ -29,6 +48,7 @@ export interface CountryTaxonomyDataType {
   'Longitude (average)': number;
   SIDS: boolean;
   'Income group': string;
+  UNDP_Region: string;
 }
 
 export interface CountryGroupDataType extends CountryTaxonomyDataType {
@@ -129,14 +149,7 @@ export interface HoverDataType {
 }
 
 export interface CtxDataType {
-  graphType:
-    | 'scatterPlot'
-    | 'map'
-    | 'barGraph'
-    | 'trendLine'
-    | 'multiCountryTrendLine'
-    | 'dataList'
-    | 'disaggregation';
+  graphType: GraphType;
   selectedRegions: string[];
   selectedCountries: string[];
   selectedIncomeGroups: string[];
@@ -160,24 +173,8 @@ export interface CtxDataType {
   disaggregationOrder: 'first' | 'second' | 'diff';
   signatureSolution?: string;
   showReference: boolean;
-  signatureSolutionForDataList:
-    | 'All'
-    | 'Energy'
-    | 'Environment'
-    | 'Gender'
-    | 'Governance'
-    | 'Poverty and Inequality'
-    | 'Resilience';
-  updateGraphType: (
-    _d:
-      | 'scatterPlot'
-      | 'map'
-      | 'barGraph'
-      | 'trendLine'
-      | 'multiCountryTrendLine'
-      | 'dataList'
-      | 'disaggregation',
-  ) => void;
+  signatureSolutionForDataList: SSTypes;
+  updateGraphType: (_d: GraphType) => void;
   updateSelectedRegions: (_d: string[]) => void;
   updateSelectedCountries: (_d: string[]) => void;
   updateSelectedIncomeGroups: (_d: string[]) => void;
@@ -199,16 +196,7 @@ export interface CtxDataType {
   updateMultiCountryTrendChartCountries: (_d: string[]) => void;
   updateBarLayout: (_d: boolean) => void;
   updateShowReference: (_d: boolean) => void;
-  updateSignatureSolutionForDataList: (
-    _d:
-      | 'All'
-      | 'Energy'
-      | 'Environment'
-      | 'Gender'
-      | 'Governance'
-      | 'Poverty and Inequality'
-      | 'Resilience',
-  ) => void;
+  updateSignatureSolutionForDataList: (_d: SSTypes) => void;
 }
 
 export interface CountryListType {

@@ -63,6 +63,7 @@ export function GrapherComponent(props: Props) {
     SIDS: false,
     'Income group': '',
     indicators: [],
+    UNDP_Region: '',
   });
   const [loading, setLoading] = useState<boolean>(true);
   useEffect(() => {

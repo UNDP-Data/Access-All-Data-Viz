@@ -6,6 +6,8 @@ import {
   CountryTaxonomyDataType,
   CountryGroupDataType,
   DisaggregationMetaDataType,
+  SSTypes,
+  GraphType,
 } from '../Types';
 import Reducer from '../Context/Reducer';
 import Context from '../Context/Context';
@@ -95,9 +97,7 @@ function VisualizationEl(props: Props) {
 
   const [state, dispatch] = useReducer(Reducer, initialState);
 
-  const updateGraphType = (
-    graphType: 'scatterPlot' | 'map' | 'barGraph' | 'trendLine',
-  ) => {
+  const updateGraphType = (graphType: GraphType) => {
     dispatch({
       type: 'UPDATE_GRAPH_TYPE',
       payload: graphType,
@@ -119,16 +119,7 @@ function VisualizationEl(props: Props) {
     });
   };
 
-  const updateSignatureSolutionForDataList = (
-    ss:
-      | 'All'
-      | 'Energy'
-      | 'Environment'
-      | 'Gender'
-      | 'Governance'
-      | 'Poverty and Inequality'
-      | 'Resilience',
-  ) => {
+  const updateSignatureSolutionForDataList = (ss: SSTypes) => {
     dispatch({
       type: 'UPDATE_SIGNATURE_SOLUTION_FOR_DATALIST',
       payload: ss,

@@ -1,7 +1,12 @@
 /* eslint-disable jsx-a11y/iframe-has-title */
 import { useReducer } from 'react';
 import { Select } from 'antd';
-import { CountryGroupDataType, IndicatorMetaDataType } from '../Types';
+import {
+  CountryGroupDataType,
+  GraphType,
+  IndicatorMetaDataType,
+  SSTypes,
+} from '../Types';
 import Reducer from '../Context/Reducer';
 import Context from '../Context/Context';
 import { COUNTRIES_BY_UNDP_REGIONS, MAP_SETTINGS } from '../Constants';
@@ -63,9 +68,7 @@ function AggregatedDataExplorer(props: Props) {
 
   const [state, dispatch] = useReducer(Reducer, initialState);
 
-  const updateGraphType = (
-    graphType: 'dataList' | 'map' | 'barGraph' | 'trendLine',
-  ) => {
+  const updateGraphType = (graphType: GraphType) => {
     dispatch({
       type: 'UPDATE_GRAPH_TYPE',
       payload: graphType,
@@ -80,16 +83,7 @@ function AggregatedDataExplorer(props: Props) {
       payload: multiCountryTrendChartCountries,
     });
   };
-  const updateSignatureSolutionForDataList = (
-    ss:
-      | 'All'
-      | 'Energy'
-      | 'Environment'
-      | 'Gender'
-      | 'Governance'
-      | 'Poverty and Inequality'
-      | 'Resilience',
-  ) => {
+  const updateSignatureSolutionForDataList = (ss: SSTypes) => {
     dispatch({
       type: 'UPDATE_SIGNATURE_SOLUTION_FOR_DATALIST',
       payload: ss,

@@ -6,6 +6,8 @@ import {
   IndicatorMetaDataType,
   CountryListType,
   DisaggregationMetaDataType,
+  GraphType,
+  SSTypes,
 } from '../Types';
 import { CountryGraphingEl } from '../GrapherComponent/GraphingEl';
 import Reducer from '../Context/Reducer';
@@ -97,9 +99,7 @@ function CountryVisualization(props: Props) {
 
   const [state, dispatch] = useReducer(Reducer, initialState);
 
-  const updateGraphType = (
-    graphType: 'dataList' | 'map' | 'barGraph' | 'trendLine',
-  ) => {
+  const updateGraphType = (graphType: GraphType) => {
     dispatch({
       type: 'UPDATE_GRAPH_TYPE',
       payload: graphType,
@@ -120,16 +120,7 @@ function CountryVisualization(props: Props) {
       payload: showReference,
     });
   };
-  const updateSignatureSolutionForDataList = (
-    ss:
-      | 'All'
-      | 'Energy'
-      | 'Environment'
-      | 'Gender'
-      | 'Governance'
-      | 'Poverty and Inequality'
-      | 'Resilience',
-  ) => {
+  const updateSignatureSolutionForDataList = (ss: SSTypes) => {
     dispatch({
       type: 'UPDATE_SIGNATURE_SOLUTION_FOR_DATALIST',
       payload: ss,
