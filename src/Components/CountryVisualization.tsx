@@ -93,6 +93,7 @@ function CountryVisualization(props: Props) {
       disaggregationMetaData.length > 0 ? disaggregationMetaData[0] : undefined,
     disaggregationGraphType: 'country',
     disaggregationOrder: 'first',
+    keepAxisSame: false,
   };
 
   const [state, dispatch] = useReducer(Reducer, initialState);
@@ -271,6 +272,12 @@ function CountryVisualization(props: Props) {
       payload: disaggregationOrder,
     });
   };
+  const updateKeepAxisSame = (d: boolean) => {
+    dispatch({
+      type: 'UPDATE_KEEP_AXIS_SAME',
+      payload: d,
+    });
+  };
   return (
     <Context.Provider
       // eslint-disable-next-line react/jsx-no-constructed-context-values
@@ -299,6 +306,7 @@ function CountryVisualization(props: Props) {
         updateDisaggregationIndicator,
         updateDisaggregationGraphType,
         updateDisaggregationOrder,
+        updateKeepAxisSame,
       }}
     >
       <div className='undp-container'>

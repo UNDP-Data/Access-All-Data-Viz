@@ -33,6 +33,7 @@ const Context = createContext<CtxDataType>({
   signatureSolution: undefined,
   signatureSolutionForDataList: 'All',
   showReference: false,
+  keepAxisSame: false,
   updateGraphType: (
     _d:
       | 'scatterPlot'
@@ -74,6 +75,7 @@ const Context = createContext<CtxDataType>({
       | 'Poverty and Inequality'
       | 'Resilience',
   ) => {},
+  updateKeepAxisSame: (_d: boolean) => {},
 });
 
 export default Context;

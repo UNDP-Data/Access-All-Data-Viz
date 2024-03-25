@@ -7,6 +7,8 @@ import { Delaunay } from 'd3-delaunay';
 import { scaleOrdinal, scaleLinear, scaleThreshold, scaleSqrt } from 'd3-scale';
 import minBy from 'lodash.minby';
 import UNDPColorModule from 'undp-viz-colors';
+import flattenDeep from 'lodash.flattendeep';
+import min from 'lodash.min';
 import { Tooltip } from '../../Components/Tooltip';
 import {
   CountryGroupDataType,
@@ -47,6 +49,7 @@ export function Graph(props: Props) {
     selectedRegions,
     selectedIncomeGroups,
     selectedCountryGroup,
+    keepAxisSame,
   } = useContext(Context) as CtxDataType;
   const [selectedColor, setSelectedColor] = useState<string | undefined>(
     undefined,
@@ -103,7 +106,24 @@ export function Graph(props: Props) {
         .range([0.25, 30])
         .nice()
     : undefined;
-
+  const xFullArray = flattenDeep(
+    data.map(d => {
+      const xIndicatorIndex = d.indicators.findIndex(
+        el => xIndicatorMetaData.DataKey === el.indicator,
+      );
+      const arr = d.indicators[xIndicatorIndex].yearlyData.map(el => el.value);
+      return arr;
+    }),
+  );
+  const yFullArray = flattenDeep(
+    data.map(d => {
+      const yIndicatorIndex = d.indicators.findIndex(
+        el => yIndicatorMetaData.DataKey === el.indicator,
+      );
+      const arr = d.indicators[yIndicatorIndex].yearlyData.map(el => el.value);
+      return arr;
+    }),
+  );
   const dataFormatted = orderBy(
     data
       .map(d => {
@@ -245,7 +265,6 @@ export function Graph(props: Props) {
     'radiusValue',
     'desc',
   );
-
   const refXIndicatorIndex = regionData
     ? regionData.indicators.findIndex(
         el => xIndicatorMetaData.DataKey === el.indicator,
@@ -266,14 +285,18 @@ export function Graph(props: Props) {
       : regionData.indicators[refXIndicatorIndex].yearlyData[
           regionData.indicators[refXIndicatorIndex].yearlyData.length - 1
         ]?.value;
-  const xMaxValue = maxBy(dataFormatted, d => d.xVal)
+  const xMaxValue = keepAxisSame
+    ? (max(xFullArray) as number)
+    : maxBy(dataFormatted, d => d.xVal)
     ? refXVal && showReference
       ? (maxBy(dataFormatted, d => d.xVal)?.xVal as number) > refXVal
         ? (maxBy(dataFormatted, d => d.xVal)?.xVal as number)
         : refXVal
       : (maxBy(dataFormatted, d => d.xVal)?.xVal as number)
     : 0;
-  const xMinValue = minBy(dataFormatted, d => d.xVal)
+  const xMinValue = keepAxisSame
+    ? (min(xFullArray) as number)
+    : minBy(dataFormatted, d => d.xVal)
     ? refXVal && showReference
       ? (minBy(dataFormatted, d => d.xVal)?.xVal as number) < refXVal
         ? (minBy(dataFormatted, d => d.xVal)?.xVal as number)
@@ -300,14 +323,18 @@ export function Graph(props: Props) {
       : regionData.indicators[refYIndicatorIndex].yearlyData[
           regionData.indicators[refYIndicatorIndex].yearlyData.length - 1
         ]?.value;
-  const yMaxValue = maxBy(dataFormatted, d => d.yVal)
+  const yMaxValue = keepAxisSame
+    ? (max(yFullArray) as number)
+    : maxBy(dataFormatted, d => d.yVal)
     ? refYVal && showReference
       ? (maxBy(dataFormatted, d => d.yVal)?.yVal as number) > refYVal
         ? (maxBy(dataFormatted, d => d.yVal)?.yVal as number)
         : refYVal
       : (maxBy(dataFormatted, d => d.yVal)?.yVal as number)
     : 0;
-  const yMinValue = minBy(dataFormatted, d => d.yVal)
+  const yMinValue = keepAxisSame
+    ? (min(yFullArray) as number)
+    : minBy(dataFormatted, d => d.yVal)
     ? refYVal && showReference
       ? (minBy(dataFormatted, d => d.yVal)?.yVal as number) < refYVal
         ? (minBy(dataFormatted, d => d.yVal)?.yVal as number)

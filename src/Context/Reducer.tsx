@@ -46,6 +46,8 @@ export default (state: any, action: any) => {
       return { ...state, disaggregationGraphType: action.payload };
     case 'UPDATE_DISAGGREGATION_ORDER':
       return { ...state, disaggregationOrder: action.payload };
+    case 'UPDATE_KEEP_AXIS_SAME':
+      return { ...state, keepAxisSame: action.payload };
     default:
       return { ...state };
   }

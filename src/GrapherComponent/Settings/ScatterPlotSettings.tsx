@@ -36,6 +36,7 @@ export function ScatterPlotSettings(props: Props) {
     yAxisIndicator,
     sizeIndicator,
     colorIndicator,
+    keepAxisSame,
     showLabel,
     showMostRecentData,
     selectedCountryOrRegion,
@@ -47,6 +48,7 @@ export function ScatterPlotSettings(props: Props) {
     updateShowLabel,
     updateShowMostRecentData,
     updateShowReference,
+    updateKeepAxisSame,
   } = useContext(Context) as CtxDataType;
   const scatterPlotIndicators = indicators.filter(d => !d.IsCategorical);
   const sizeIndicators = indicators.filter(d => d.Sizing);
@@ -239,6 +241,16 @@ export function ScatterPlotSettings(props: Props) {
             }}
           >
             Show World/Regional Reference
+          </Checkbox>
+          <Checkbox
+            style={{ margin: 0 }}
+            className='undp-checkbox'
+            checked={keepAxisSame}
+            onChange={e => {
+              updateKeepAxisSame(e.target.checked);
+            }}
+          >
+            Use same axes to compare between years
           </Checkbox>
         </div>
       </div>

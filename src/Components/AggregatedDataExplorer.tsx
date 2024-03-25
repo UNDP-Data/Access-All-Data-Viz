@@ -59,6 +59,7 @@ function AggregatedDataExplorer(props: Props) {
     selectedCountryOrRegion: regionId,
     signatureSolution: undefined,
     signatureSolutionForDataList: 'All',
+    keepAxisSame: false,
   };
 
   const [state, dispatch] = useReducer(Reducer, initialState);
@@ -207,6 +208,12 @@ function AggregatedDataExplorer(props: Props) {
       payload: verticalBarLayout,
     });
   };
+  const updateKeepAxisSame = (d: boolean) => {
+    dispatch({
+      type: 'UPDATE_KEEP_AXIS_SAME',
+      payload: d,
+    });
+  };
   return (
     <div>
       <div
@@ -279,6 +286,7 @@ function AggregatedDataExplorer(props: Props) {
           updateReverseOrder,
           updateBarLayout,
           updateSignatureSolutionForDataList,
+          updateKeepAxisSame,
         }}
       >
         <div
