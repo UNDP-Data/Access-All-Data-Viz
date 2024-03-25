@@ -60,6 +60,8 @@ function AggregatedDataExplorer(props: Props) {
     signatureSolution: undefined,
     signatureSolutionForDataList: 'All',
     keepAxisSame: false,
+    xScaleType: 'linear',
+    yScaleType: 'linear',
   };
 
   const [state, dispatch] = useReducer(Reducer, initialState);
@@ -202,18 +204,35 @@ function AggregatedDataExplorer(props: Props) {
       payload: useSameRange,
     });
   };
+
   const updateBarLayout = (verticalBarLayout: boolean) => {
     dispatch({
       type: 'UPDATE_BAR_LAYOUT',
       payload: verticalBarLayout,
     });
   };
+
   const updateKeepAxisSame = (d: boolean) => {
     dispatch({
       type: 'UPDATE_KEEP_AXIS_SAME',
       payload: d,
     });
   };
+
+  const updateXScaleType = (d: 'linear' | 'log') => {
+    dispatch({
+      type: 'UPDATE_X_SCALE_TYPE',
+      payload: d,
+    });
+  };
+
+  const updateYScaleType = (d: 'linear' | 'log') => {
+    dispatch({
+      type: 'UPDATE_Y_SCALE_TYPE',
+      payload: d,
+    });
+  };
+
   return (
     <div>
       <div
@@ -287,6 +306,8 @@ function AggregatedDataExplorer(props: Props) {
           updateBarLayout,
           updateSignatureSolutionForDataList,
           updateKeepAxisSame,
+          updateXScaleType,
+          updateYScaleType,
         }}
       >
         <div

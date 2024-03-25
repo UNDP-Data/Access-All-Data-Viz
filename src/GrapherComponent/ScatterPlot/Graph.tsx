@@ -4,7 +4,13 @@ import maxBy from 'lodash.maxby';
 import max from 'lodash.max';
 import orderBy from 'lodash.orderby';
 import { Delaunay } from 'd3-delaunay';
-import { scaleOrdinal, scaleLinear, scaleThreshold, scaleSqrt } from 'd3-scale';
+import {
+  scaleOrdinal,
+  scaleLinear,
+  scaleThreshold,
+  scaleSqrt,
+  scaleLog,
+} from 'd3-scale';
 import minBy from 'lodash.minby';
 import UNDPColorModule from 'undp-viz-colors';
 import flattenDeep from 'lodash.flattendeep';
@@ -49,6 +55,8 @@ export function Graph(props: Props) {
     selectedIncomeGroups,
     selectedCountryGroup,
     keepAxisSame,
+    xScaleType,
+    yScaleType,
   } = useContext(Context) as CtxDataType;
   const [selectedColor, setSelectedColor] = useState<string | undefined>(
     undefined,
@@ -342,17 +350,28 @@ export function Graph(props: Props) {
         : refYVal
       : (minBy(dataFormatted, d => d.yVal)?.yVal as number)
     : 0;
-
-  const xScale = scaleLinear()
-    .domain([xMinValue > 0 ? 0 : xMinValue, xMaxValue])
-    .range([0, graphWidth])
-    .nice();
-  const yScale = scaleLinear()
-    .domain([yMinValue > 0 ? 0 : yMinValue, yMaxValue])
-    .range([graphHeight, 0])
-    .nice();
-  const xTicks = xScale.ticks(5);
-  const yTicks = yScale.ticks(5);
+  const xScaleLogAllowed = !(
+    xScaleType === 'linear' ||
+    fullArray.filter(d => (d.x as number) <= 0).length > 0
+  );
+  const yScaleLogAllowed = !(
+    yScaleType === 'linear' ||
+    fullArray.filter(d => (d.y as number) <= 0).length > 0
+  );
+  const xScale = !xScaleLogAllowed
+    ? scaleLinear()
+        .domain([xMinValue > 0 ? 0 : xMinValue, xMaxValue])
+        .range([0, graphWidth])
+        .nice()
+    : scaleLog().domain([xMinValue, xMaxValue]).range([0, graphWidth]).nice();
+  const yScale = !yScaleLogAllowed
+    ? scaleLinear()
+        .domain([yMinValue > 0 ? 0 : yMinValue, yMaxValue])
+        .range([graphHeight, 0])
+        .nice()
+    : scaleLog().domain([yMinValue, yMaxValue]).range([graphHeight, 0]).nice();
+  const xTicks = !xScaleLogAllowed ? xScale.ticks(5) : xScale.ticks(3);
+  const yTicks = !yScaleLogAllowed ? yScale.ticks(5) : yScale.ticks(3);
   const voronoiDiagram = Delaunay.from(
     dataFormatted,
     d => xScale(d.xVal as number),
@@ -552,6 +571,7 @@ export function Graph(props: Props) {
                   stroke='#AAA'
                   strokeWidth={1}
                   strokeDasharray='4,8'
+                  opacity={yScaleLogAllowed && i === 0 ? 0 : 1}
                 />
                 <text
                   x={0}
@@ -569,21 +589,21 @@ export function Graph(props: Props) {
             <line
               x1={0}
               x2={graphWidth}
-              y1={yScale(0)}
-              y2={yScale(0)}
+              y1={yScaleLogAllowed ? graphHeight : yScale(0)}
+              y2={yScaleLogAllowed ? graphHeight : yScale(0)}
               stroke={UNDPColorModule.graphGray}
               strokeWidth={1}
             />
             <text
               x={0}
-              y={yScale(0)}
+              y={yScaleLogAllowed ? graphHeight : yScale(0)}
               fill={UNDPColorModule.graphGray}
               textAnchor='end'
               fontSize={12}
               dy={4}
               dx={-3}
             >
-              0
+              {yScaleLogAllowed ? '' : 0}
             </text>
             <text
               transform={`translate(-50, ${graphHeight / 2}) rotate(-90)`}
@@ -602,6 +622,7 @@ export function Graph(props: Props) {
                     TRUNCATE_MAX_TEXT_LENGTH,
                   )}...`
                 : yIndicatorMetaData.IndicatorLabel}
+              {yScaleLogAllowed ? ' (Log scale)' : ''}
             </text>
           </g>
           <g>
@@ -615,6 +636,7 @@ export function Graph(props: Props) {
                   stroke='#AAA'
                   strokeWidth={1}
                   strokeDasharray='4,8'
+                  opacity={xScaleLogAllowed && i === 0 ? 0 : 1}
                 />
                 <text
                   x={xScale(d)}
@@ -622,7 +644,7 @@ export function Graph(props: Props) {
                   fill={UNDPColorModule.graphGray}
                   textAnchor='middle'
                   fontSize={12}
-                  dy={12}
+                  dy={15}
                 >
                   {Math.abs(d) < 1 ? d : format('~s')(d).replace('G', 'B')}
                 </text>
@@ -631,20 +653,20 @@ export function Graph(props: Props) {
             <line
               y1={0}
               y2={graphHeight}
-              x1={xScale(0)}
-              x2={xScale(0)}
+              x1={xScaleLogAllowed ? 0 : xScale(0)}
+              x2={xScaleLogAllowed ? 0 : xScale(0)}
               stroke={UNDPColorModule.graphGray}
               strokeWidth={1}
             />
             <text
-              x={xScale(0)}
+              x={xScaleLogAllowed ? 0 : xScale(0)}
               y={graphHeight}
               fill={UNDPColorModule.graphGray}
               textAnchor='middle'
               fontSize={12}
               dy={15}
             >
-              {0}
+              {xScaleLogAllowed ? '' : 0}
             </text>
             <text
               transform={`translate(${graphWidth / 2}, ${graphHeight})`}
@@ -664,6 +686,7 @@ export function Graph(props: Props) {
                     TRUNCATE_MAX_TEXT_LENGTH,
                   )}...`
                 : xIndicatorMetaData.IndicatorLabel}
+              {xScaleLogAllowed ? ' (Log scale)' : ''}
             </text>
           </g>
 
@@ -866,7 +889,11 @@ export function Graph(props: Props) {
                         : UNDPColorModule.graphGray
                     }
                   />
-                  {showLabel ? (
+                  {showLabel &&
+                  (selectedCountries.length === 0 ||
+                    selectedCountries.indexOf(
+                      countryData['Country or Area'],
+                    ) !== -1) ? (
                     <text
                       fontSize={10}
                       fill={

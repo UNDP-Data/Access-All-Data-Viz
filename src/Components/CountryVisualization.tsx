@@ -94,6 +94,8 @@ function CountryVisualization(props: Props) {
     disaggregationGraphType: 'country',
     disaggregationOrder: 'first',
     keepAxisSame: false,
+    xScaleType: 'linear',
+    yScaleType: 'linear',
   };
 
   const [state, dispatch] = useReducer(Reducer, initialState);
@@ -278,6 +280,20 @@ function CountryVisualization(props: Props) {
       payload: d,
     });
   };
+
+  const updateXScaleType = (d: 'linear' | 'log') => {
+    dispatch({
+      type: 'UPDATE_X_SCALE_TYPE',
+      payload: d,
+    });
+  };
+
+  const updateYScaleType = (d: 'linear' | 'log') => {
+    dispatch({
+      type: 'UPDATE_Y_SCALE_TYPE',
+      payload: d,
+    });
+  };
   return (
     <Context.Provider
       // eslint-disable-next-line react/jsx-no-constructed-context-values
@@ -307,6 +323,8 @@ function CountryVisualization(props: Props) {
         updateDisaggregationGraphType,
         updateDisaggregationOrder,
         updateKeepAxisSame,
+        updateXScaleType,
+        updateYScaleType,
       }}
     >
       <div className='undp-container'>

@@ -48,6 +48,10 @@ export default (state: any, action: any) => {
       return { ...state, disaggregationOrder: action.payload };
     case 'UPDATE_KEEP_AXIS_SAME':
       return { ...state, keepAxisSame: action.payload };
+    case 'UPDATE_X_SCALE_TYPE':
+      return { ...state, xScaleType: action.payload };
+    case 'UPDATE_Y_SCALE_TYPE':
+      return { ...state, yScaleType: action.payload };
     default:
       return { ...state };
   }

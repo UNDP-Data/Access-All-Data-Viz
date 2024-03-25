@@ -41,6 +41,8 @@ export function ScatterPlotSettings(props: Props) {
     showMostRecentData,
     selectedCountryOrRegion,
     showReference,
+    xScaleType,
+    yScaleType,
     updateColorIndicator,
     updateXAxisIndicator,
     updateYAxisIndicator,
@@ -49,6 +51,8 @@ export function ScatterPlotSettings(props: Props) {
     updateShowMostRecentData,
     updateShowReference,
     updateKeepAxisSame,
+    updateXScaleType,
+    updateYScaleType,
   } = useContext(Context) as CtxDataType;
   const scatterPlotIndicators = indicators.filter(d => !d.IsCategorical);
   const sizeIndicators = indicators.filter(d => d.Sizing);
@@ -251,6 +255,26 @@ export function ScatterPlotSettings(props: Props) {
             }}
           >
             Use same axes to compare between years
+          </Checkbox>
+          <Checkbox
+            style={{ margin: 0 }}
+            className='undp-checkbox'
+            checked={xScaleType === 'log'}
+            onChange={e => {
+              updateXScaleType(e.target.checked ? 'log' : 'linear');
+            }}
+          >
+            Use log scale for x-axis
+          </Checkbox>
+          <Checkbox
+            style={{ margin: 0 }}
+            className='undp-checkbox'
+            checked={yScaleType === 'log'}
+            onChange={e => {
+              updateYScaleType(e.target.checked ? 'log' : 'linear');
+            }}
+          >
+            Use log scale for y-axis
           </Checkbox>
         </div>
       </div>

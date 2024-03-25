@@ -92,6 +92,8 @@ function VisualizationEl(props: Props) {
     disaggregationGraphType: 'global',
     disaggregationOrder: 'first',
     keepAxisSame: false,
+    xScaleType: 'linear',
+    yScaleType: 'linear',
   };
 
   const [state, dispatch] = useReducer(Reducer, initialState);
@@ -277,6 +279,20 @@ function VisualizationEl(props: Props) {
       payload: d,
     });
   };
+
+  const updateXScaleType = (d: 'linear' | 'log') => {
+    dispatch({
+      type: 'UPDATE_X_SCALE_TYPE',
+      payload: d,
+    });
+  };
+
+  const updateYScaleType = (d: 'linear' | 'log') => {
+    dispatch({
+      type: 'UPDATE_Y_SCALE_TYPE',
+      payload: d,
+    });
+  };
   return (
     <Context.Provider
       // eslint-disable-next-line react/jsx-no-constructed-context-values
@@ -306,6 +322,8 @@ function VisualizationEl(props: Props) {
         updateDisaggregationGraphType,
         updateDisaggregationOrder,
         updateKeepAxisSame,
+        updateXScaleType,
+        updateYScaleType,
       }}
     >
       <div>

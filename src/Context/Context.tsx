@@ -34,6 +34,8 @@ const Context = createContext<CtxDataType>({
   signatureSolutionForDataList: 'All',
   showReference: false,
   keepAxisSame: false,
+  xScaleType: 'linear',
+  yScaleType: 'linear',
   updateGraphType: (
     _d:
       | 'scatterPlot'
@@ -76,6 +78,8 @@ const Context = createContext<CtxDataType>({
       | 'Resilience',
   ) => {},
   updateKeepAxisSame: (_d: boolean) => {},
+  updateXScaleType: (_d: 'linear' | 'log') => {},
+  updateYScaleType: (_d: 'linear' | 'log') => {},
 });
 
 export default Context;

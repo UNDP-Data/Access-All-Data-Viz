@@ -169,6 +169,8 @@ export interface CtxDataType {
     | 'Poverty and Inequality'
     | 'Resilience';
   keepAxisSame: boolean;
+  xScaleType: 'linear' | 'log';
+  yScaleType: 'linear' | 'log';
   updateGraphType: (
     _d:
       | 'scatterPlot'
@@ -211,6 +213,8 @@ export interface CtxDataType {
       | 'Resilience',
   ) => void;
   updateKeepAxisSame: (_d: boolean) => void;
+  updateXScaleType: (_d: 'linear' | 'log') => void;
+  updateYScaleType: (_d: 'linear' | 'log') => void;
 }
 
 export interface CountryListType {
