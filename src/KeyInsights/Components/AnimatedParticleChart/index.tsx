@@ -101,7 +101,13 @@ export function ParticleColumnChart(props: ColumnProps) {
           ];
         const finalYear =
           dataForIndicator.yearlyData[dataForIndicator.yearlyData.length - 1]
-            .year;
+            .year <
+          populationTotal.yearlyData[populationTotal.yearlyData.length - 1].year
+            ? dataForIndicator.yearlyData[
+                dataForIndicator.yearlyData.length - 1
+              ].year
+            : populationTotal.yearlyData[populationTotal.yearlyData.length - 1]
+                .year;
         const years = baseYears.map(d => d);
         years.push(finalYear);
         const dataList = years.map(el =>
