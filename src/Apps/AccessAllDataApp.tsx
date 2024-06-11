@@ -2,6 +2,7 @@ import { Tabs } from 'antd';
 import DataExplorer from '../Components/DataExplorer';
 import { DataSetList } from '../Components/DataSetList';
 import { AggregatedRegionVisualization } from '../RegionVisualization';
+import { CheckIfLoginOrNot } from '../Utils/CheckIfLoginOrNot';
 
 export function AccessAllDataApp() {
   const mainTabs = [
@@ -21,6 +22,10 @@ export function AccessAllDataApp() {
       children: <DataSetList />,
     },
   ];
+  CheckIfLoginOrNot().then((d: boolean) => {
+    // eslint-disable-next-line no-console
+    console.log(d);
+  });
   return (
     <div className='undp-container'>
       <div

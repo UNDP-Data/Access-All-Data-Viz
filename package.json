@@ -42,6 +42,7 @@
     "@types/react-dom": "^18.0.10",
     "@types/styled-components": "^5.1.14",
     "antd": "^5.3.3",
+    "axios": "^1.7.2",
     "d3-array": "^3.1.1",
     "d3-axis": "^3.0.0",
     "d3-brush": "^3.0.0",
@@ -95,6 +96,7 @@
     "lint": "eslint ."
   },
   "devDependencies": {
+    "@types/axios": "^0.14.0",
     "@types/d3-force": "^3.0.6",
     "@types/d3-timer": "^3.0.0",
     "@types/lodash.flatten": "^4.4.7",
