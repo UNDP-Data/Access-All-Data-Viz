@@ -1,15 +1,12 @@
-import axios, { AxiosResponse } from 'axios';
-import { useState } from 'react';
+import axios from 'axios';
 
 export const CheckIfLoginOrNot = async () => {
-  const [loginState, setLoginState] = useState(false);
-  await axios
-    .get('https://data.undp.org/jsonapi/user/login_status')
-    .then((response: AxiosResponse) => {
-      setLoginState(response.data.logged_in);
-    })
-    .catch(_err => {
-      setLoginState(false);
-    });
-  return loginState;
+  try {
+    const response = await axios.get(
+      'https://data.undp.org/jsonapi/user/login_status',
+    );
+    return response.data.logged_in;
+  } catch (error) {
+    return false;
+  }
 };

@@ -1,5 +1,5 @@
 import { useContext, useEffect, useRef, useState } from 'react';
-import { geoWinkel3 } from 'd3-geo-projection';
+import { geoEqualEarth } from 'd3-geo';
 import { zoom } from 'd3-zoom';
 import { format } from 'd3-format';
 import { select } from 'd3-selection';
@@ -77,13 +77,14 @@ export function UnivariateMap(props: Props) {
   const svgHeight = 678;
   const mapSvg = useRef<SVGSVGElement>(null);
   const mapG = useRef<SVGGElement>(null);
-  const projection = geoWinkel3()
+  const projection = geoEqualEarth()
     .rotate([0, 0])
     .scale(
       MAP_SETTINGS[MAP_SETTINGS.findIndex(d => d.region === UNDPRegion)].scale,
     )
     .translate(
-      MAP_SETTINGS[MAP_SETTINGS.findIndex(d => d.region === UNDPRegion)].center,
+      MAP_SETTINGS[MAP_SETTINGS.findIndex(d => d.region === UNDPRegion)]
+        .center as [number, number],
     );
   const xIndicatorMetaData =
     indicators[

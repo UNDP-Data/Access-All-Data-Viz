@@ -27,6 +27,7 @@ import { DownloadModal } from './DownloadModal';
 
 interface Props {
   signatureSolution?: string;
+  loginState: boolean;
 }
 
 const CardEl = styled.div`
@@ -95,7 +96,7 @@ const DownloadExcel = (indicator: IndicatorMetaDataType) => {
 };
 
 export function DataSetList(props: Props) {
-  const { signatureSolution } = props;
+  const { signatureSolution, loginState } = props;
   const [paginationValue, setPaginationValue] = useState(1);
   const [indicatorsListMain, setIndicatorsListMain] = useState<
     IndicatorMetaDataType[] | undefined
@@ -131,11 +132,14 @@ export function DataSetList(props: Props) {
           if (err) throw err;
           const queryParams = new URLSearchParams(window.location.search);
           const topic = queryParams.get('topic')?.replaceAll('_', "'");
+          const indicatorFilteredByAccess = loginState
+            ? indicatorMetaData
+            : indicatorMetaData.filter(d => d.Access !== 'undp');
           const indicatorsFilteredBySS = signatureSolution
-            ? indicatorMetaData.filter(
+            ? indicatorFilteredByAccess.filter(
                 d => d.SignatureSolution.indexOf(signatureSolution) !== -1,
               )
-            : indicatorMetaData;
+            : indicatorFilteredByAccess;
           const indicatorsFiltered = topic
             ? indicatorsFilteredBySS.filter(
                 d => d.SSTopics.indexOf(topic) !== -1,

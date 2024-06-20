@@ -24,10 +24,11 @@ import CountryVisualization from '../Components/CountryVisualization';
 
 interface PropsWithoutSS {
   countryId?: string;
+  loginState: boolean;
 }
 
 export function CountryHomePageForCountryPage(props: PropsWithoutSS) {
-  const { countryId } = props;
+  const { countryId, loginState } = props;
   const countryFromLink = countryId || 'AFG';
   const [finalData, setFinalData] = useState<
     CountryGroupDataType[] | undefined
@@ -75,8 +76,11 @@ export function CountryHomePageForCountryPage(props: PropsWithoutSS) {
           setRegionList(
             uniqBy([data], d => d['Group 2']).map(d => d['Group 2']),
           );
+          const indicatorFilteredByAccess = loginState
+            ? indicatorMetaData
+            : indicatorMetaData.filter(d => d.Access !== 'undp');
           setIndicatorsList(
-            indicatorMetaData.filter(
+            indicatorFilteredByAccess.filter(
               d =>
                 data.indicators.findIndex(el => el.indicator === d.DataKey) !==
                   -1 &&
@@ -98,7 +102,7 @@ export function CountryHomePageForCountryPage(props: PropsWithoutSS) {
           );
         },
       );
-  }, []);
+  }, [loginState]);
   return (
     <div>
       <div

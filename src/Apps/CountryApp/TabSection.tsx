@@ -9,13 +9,15 @@ import { SDGTracker } from '../../CountryPage/SDGTracker';
 import { SubNationalVisualization } from '../../CountryPage/SubNationalVisualization';
 import { CountryHomePageForCountryPage } from '../../CountryPage';
 import { SubNationalMetaDataType } from '../../Types';
+import { WDLVisualization } from '../../WDLVisualization';
 
 interface Props {
   countryId: string;
+  loginState: boolean;
 }
 
 export function TabSection(props: Props) {
-  const { countryId } = props;
+  const { countryId, loginState } = props;
   const [subNationalDataAvailability, setSubNationalDataAvailability] =
     useState<SubNationalMetaDataType[] | undefined | 'error'>(undefined);
   useEffect(() => {
@@ -40,6 +42,18 @@ export function TabSection(props: Props) {
                 children: (
                   <CountryHomePageForCountryPage
                     countryId={countryId || 'AFG'}
+                    loginState={loginState}
+                  />
+                ),
+              },
+              {
+                key: 'demographicData',
+                label: 'Demographic Data 🔒',
+                children: (
+                  <WDLVisualization
+                    loginState={loginState}
+                    link={`/countries-and-territories/${countryId || 'AFG'}`}
+                    countryCode={countryId || 'AFG'}
                   />
                 ),
               },
@@ -71,6 +85,7 @@ export function TabSection(props: Props) {
                 children: (
                   <CountryHomePageForCountryPage
                     countryId={countryId || 'AFG'}
+                    loginState={loginState}
                   />
                 ),
               },
