@@ -182,7 +182,6 @@ export function SignalDetail(props: Props) {
                 </h6>
                 <div className='small-font'>{data.score || 'NA'}</div>
               </div>
-              <hr className='undp-style light margin-top-07' />
             </div>
             <div style={{ width: 'calc(66.67% - 2rem)', flexGrow: 1 }}>
               <div>
