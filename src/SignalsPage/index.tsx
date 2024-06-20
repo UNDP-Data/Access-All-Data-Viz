@@ -11,10 +11,11 @@ interface Props {
   loginState: boolean;
   id: string;
   link: string;
+  type: 'signatureSolution' | 'region' | 'country';
 }
 
 export function SignalsPage(props: Props) {
-  const { loginState, id, link } = props;
+  const { loginState, id, link, type } = props;
   const [paginationValue, setPaginationValue] = useState(1);
   const [pageSize, setPageSize] = useState(12);
   const [totalCount, setTotalCount] = useState<number | undefined>(undefined);
@@ -165,8 +166,11 @@ export function SignalsPage(props: Props) {
                   }}
                 >
                   <div className='bold'>
-                    {totalCount}{' '}
-                    {totalCount > 1 ? 'signals available' : 'signal available'}
+                    {`${totalCount}${
+                      type === 'signatureSolution' ? ` ${id} related` : ''
+                    } signal${totalCount > 1 ? 's' : ''} available${
+                      type === 'signatureSolution' ? '' : ` in ${id}`
+                    }`}
                   </div>
                 </div>
                 <div className='flex-div flex-wrap listing'>

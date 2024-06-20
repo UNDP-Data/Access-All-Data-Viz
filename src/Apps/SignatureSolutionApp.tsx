@@ -52,12 +52,13 @@ export function SignatureSolutionApp(props: Props) {
           children: (
             <SignalsPage
               id={signatureSolution || 'Poverty and Inequality'}
-              loginState={d}
+              loginState
               link={
                 INTRO_TEXT[
                   INTRO_TEXT.findIndex(el => el.id === signatureSolution)
                 ].link
               }
+              type='signatureSolution'
             />
           ),
         },
