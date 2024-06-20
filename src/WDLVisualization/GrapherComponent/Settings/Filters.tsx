@@ -56,7 +56,8 @@ export function Filters(props: Props) {
               className='undp-select'
               mode='multiple'
               maxTagCount='responsive'
-              allowClear={{ clearIcon: <div className='clearIcon' /> }}
+              allowClear
+              clearIcon={<div className='clearIcon' />}
               style={{ width: '100%' }}
               placeholder='All regions'
               value={selectedRegions}
@@ -84,7 +85,8 @@ export function Filters(props: Props) {
             className='undp-select'
             mode='multiple'
             maxTagCount='responsive'
-            allowClear={{ clearIcon: <div className='clearIcon' /> }}
+            allowClear
+            clearIcon={<div className='clearIcon' />}
             style={{ width: '100%' }}
             placeholder='All Income Groups'
             value={selectedCountryIncomeGroups}
@@ -127,7 +129,8 @@ export function Filters(props: Props) {
             className='undp-select'
             mode='multiple'
             maxTagCount='responsive'
-            allowClear={{ clearIcon: <div className='clearIcon' /> }}
+            allowClear
+            clearIcon={<div className='clearIcon' />}
             style={{ width: '100%' }}
             value={selectedCountries}
             placeholder='All Countries'

@@ -204,7 +204,7 @@ export function Settings(props: Props) {
                 onChange={d => {
                   setAgeGroup(d as [number, number]);
                 }}
-                onChangeComplete={d => {
+                onAfterChange={d => {
                   updateAgeRange(d as [number, number]);
                 }}
                 dots
@@ -233,7 +233,7 @@ export function Settings(props: Props) {
                 onChange={d => {
                   setIncomeGroup(d as [number, number]);
                 }}
-                onChangeComplete={d => {
+                onAfterChange={d => {
                   updateIncomeRange(
                     d[1] === 125 ? [d[0], 999] : (d as [number, number]),
                   );
