@@ -12,14 +12,14 @@ import {
   CountryTaxonomyDataType,
   IndicatorMetaDataType,
   IndicatorSimplifiedDataType,
-} from '../../Types';
+} from '../Types';
 import {
   COUNTRIES_BY_UNDP_REGIONS,
   SDG_GOALS,
   TAGS_LIST,
   DATALINK,
-} from '../../Constants';
-import { GetYearsArrayFromIndicator } from '../../Utils/GetYearsArray';
+} from '../Constants';
+import { GetYearsArrayFromIndicator } from '../Utils/GetYearsArray';
 
 interface Props {
   indicatorsListMain: IndicatorMetaDataType[];

@@ -33,10 +33,11 @@ interface Props {
     name: string;
     code: string;
   };
+  loginState: boolean;
 }
 
 function DataExplorer(props: Props) {
-  const { signatureSolution, region, topicToFilter } = props;
+  const { signatureSolution, region, topicToFilter, loginState } = props;
   const [countryId, setCountryId] = useState(region.code);
   const [loading, setLoading] = useState(true);
   const [finalData, setFinalData] = useState<
@@ -89,13 +90,19 @@ function DataExplorer(props: Props) {
           );
           filteredCountryList.unshift(region);
           setCountryTaxonomy(filteredCountryList);
-          setIndicatorMetaData(indicatorMetaDataFromFile);
-
+          setIndicatorMetaData(
+            loginState
+              ? indicatorMetaDataFromFile
+              : indicatorMetaDataFromFile.filter(d => d.Access !== 'undp'),
+          );
+          const disaggregationMetaDataByAccess = loginState
+            ? disaggregationMetaDataFromFile
+            : disaggregationMetaDataFromFile.filter(d => d.Access !== 'undp');
           const disaggregationMetaDataBySS = signatureSolution
-            ? disaggregationMetaDataFromFile.filter(
+            ? disaggregationMetaDataByAccess.filter(
                 d => d.SignatureSolution.indexOf(signatureSolution) !== -1,
               )
-            : disaggregationMetaDataFromFile;
+            : disaggregationMetaDataByAccess;
           const queryParams = new URLSearchParams(window.location.search);
           const topic =
             queryParams.get('topic')?.replaceAll('_', "'") || topicToFilter;
@@ -111,7 +118,7 @@ function DataExplorer(props: Props) {
           );
         },
       );
-  }, []);
+  }, [loginState]);
 
   useEffect(() => {
     if (indicatorMetaData) {

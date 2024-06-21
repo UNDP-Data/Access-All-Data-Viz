@@ -84,6 +84,7 @@ export interface IndicatorMetaDataType {
   id: string;
   SDGs: string[];
   Tags: string[];
+  Access?: 'public' | 'undp';
 }
 
 export interface DisaggregationMetaDataType {
@@ -96,6 +97,7 @@ export interface DisaggregationMetaDataType {
   }[];
   SignatureSolution: string[];
   SSTopics: string[];
+  Access?: 'public' | 'undp';
 }
 
 export interface SubNationalMetaDataType {

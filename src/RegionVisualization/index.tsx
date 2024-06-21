@@ -143,12 +143,13 @@ export function RegionVisualization(props: Props) {
 
 interface AggregatedVisualizationProps {
   UNDPRegion: string;
+  loginState: boolean;
 }
 
 export function AggregatedRegionVisualization(
   props: AggregatedVisualizationProps,
 ) {
-  const { UNDPRegion } = props;
+  const { UNDPRegion, loginState } = props;
   const [finalData, setFinalData] = useState<
     CountryGroupDataType[] | undefined
   >(undefined);
@@ -175,9 +176,14 @@ export function AggregatedRegionVisualization(
           indicatorMetaData,
           d => d.IndicatorLabel,
         ).filter(d => d.RegionalAggregation);
+        const indicatorFilteredByAccess = loginState
+          ? indicatorsFiltered
+          : indicatorsFiltered.filter(d => d.Access !== 'undp');
         const indicatorsFilteredByTopic = topic
-          ? indicatorsFiltered.filter(d => d.SSTopics.indexOf(topic) !== -1)
-          : indicatorsFiltered;
+          ? indicatorFilteredByAccess.filter(
+              d => d.SSTopics.indexOf(topic) !== -1,
+            )
+          : indicatorFilteredByAccess;
         setIndicatorsList(indicatorsFilteredByTopic);
         q.awaitAll((error: any, allData: any) => {
           if (error) throw error;

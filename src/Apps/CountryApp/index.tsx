@@ -5,6 +5,8 @@ import { COUNTRYTAXONOMYLINK } from '../../Constants';
 import { CountryTaxonomyDataType } from '../../Types';
 import { CountryHDIViz } from './CountryHDIViz';
 import { TabSection } from './TabSection';
+import { CheckIfLoginOrNot } from '../../Utils/CheckIfLoginOrNot';
+import { LoginBanner } from '../../Components/LoginBanner';
 
 interface CountryProps {
   countryId?: string;
@@ -12,6 +14,7 @@ interface CountryProps {
 
 export function CountryApp(props: CountryProps) {
   const { countryId } = props;
+  const [loginState, setLoginState] = useState<boolean | undefined>(undefined);
   const [countryData, setCountryData] = useState<
     CountryTaxonomyDataType[] | undefined
   >(undefined);
@@ -22,12 +25,15 @@ export function CountryApp(props: CountryProps) {
         (err: any, countryTaxonomyDataFromFile: CountryTaxonomyDataType[]) => {
           if (err) throw err;
           setCountryData(countryTaxonomyDataFromFile);
+          CheckIfLoginOrNot().then(d => {
+            setLoginState(d);
+          });
         },
       );
   }, []);
   return (
     <div className='undp-container'>
-      {countryData ? (
+      {countryData && loginState !== undefined ? (
         <div>
           {countryData.findIndex(d => d['Alpha-3 code'] === countryId) ===
           -1 ? (
@@ -78,6 +84,11 @@ export function CountryApp(props: CountryProps) {
                       ]['Country or Area']
                     }
                   </h2>
+                  {loginState ? null : (
+                    <LoginBanner
+                      link={`/countries-and-territories/${countryId}`}
+                    />
+                  )}
                   <CountryHDIViz
                     country={
                       countryData[
@@ -89,7 +100,15 @@ export function CountryApp(props: CountryProps) {
                   />
                 </div>
               </div>
-              <TabSection countryId={countryId || 'AFG'} />
+              <TabSection
+                countryId={countryId || 'AFG'}
+                loginState={loginState}
+                countryName={
+                  countryData[
+                    countryData.findIndex(d => d['Alpha-3 code'] === countryId)
+                  ]['Country or Area']
+                }
+              />
             </>
           )}
         </div>

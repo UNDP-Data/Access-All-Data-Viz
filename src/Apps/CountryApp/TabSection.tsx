@@ -9,13 +9,17 @@ import { SDGTracker } from '../../CountryPage/SDGTracker';
 import { SubNationalVisualization } from '../../CountryPage/SubNationalVisualization';
 import { CountryHomePageForCountryPage } from '../../CountryPage';
 import { SubNationalMetaDataType } from '../../Types';
+import { WDLVisualization } from '../../WDLVisualization';
+import { SignalsPage } from '../../SignalsPage';
 
 interface Props {
   countryId: string;
+  loginState: boolean;
+  countryName: string;
 }
 
 export function TabSection(props: Props) {
-  const { countryId } = props;
+  const { countryId, loginState, countryName } = props;
   const [subNationalDataAvailability, setSubNationalDataAvailability] =
     useState<SubNationalMetaDataType[] | undefined | 'error'>(undefined);
   useEffect(() => {
@@ -40,6 +44,30 @@ export function TabSection(props: Props) {
                 children: (
                   <CountryHomePageForCountryPage
                     countryId={countryId || 'AFG'}
+                    loginState={loginState}
+                  />
+                ),
+              },
+              {
+                key: 'demographicData',
+                label: 'Demographic Data 🔒',
+                children: (
+                  <WDLVisualization
+                    loginState={loginState}
+                    link={`/countries-and-territories/${countryId || 'AFG'}`}
+                    countryCode={countryId || 'AFG'}
+                  />
+                ),
+              },
+              {
+                key: 'signals',
+                label: 'UNDP Signals 🔒',
+                children: (
+                  <SignalsPage
+                    id={countryName}
+                    loginState={loginState}
+                    link={`/countries-and-territories/${countryId || 'AFG'}`}
+                    type='country'
                   />
                 ),
               },
@@ -71,6 +99,18 @@ export function TabSection(props: Props) {
                 children: (
                   <CountryHomePageForCountryPage
                     countryId={countryId || 'AFG'}
+                    loginState={loginState}
+                  />
+                ),
+              },
+              {
+                key: 'demographicData',
+                label: 'Demographic Data 🔒',
+                children: (
+                  <WDLVisualization
+                    loginState={loginState}
+                    link={`/countries-and-territories/${countryId || 'AFG'}`}
+                    countryCode={countryId || 'AFG'}
                   />
                 ),
               },
@@ -81,6 +121,18 @@ export function TabSection(props: Props) {
                   <SubNationalVisualization
                     countryId={countryId || 'AFG'}
                     subNationalDataMetaData={subNationalDataAvailability}
+                  />
+                ),
+              },
+              {
+                key: 'signals',
+                label: 'UNDP Signals 🔒',
+                children: (
+                  <SignalsPage
+                    id={countryName}
+                    loginState={loginState}
+                    link={`/countries-and-territories/${countryId || 'AFG'}`}
+                    type='country'
                   />
                 ),
               },

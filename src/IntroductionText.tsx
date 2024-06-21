@@ -10,6 +10,7 @@ export const INTRO_TEXT = [
         </p>
       </div>
     ),
+    link: '/poverty-and-inequality',
   },
   {
     title: 'Gender Equality',
@@ -22,6 +23,7 @@ export const INTRO_TEXT = [
         </p>
       </div>
     ),
+    link: '/gender-equality',
   },
   {
     title: 'Energy',
@@ -34,6 +36,7 @@ export const INTRO_TEXT = [
         </p>
       </div>
     ),
+    link: '/energy',
   },
   {
     title: 'Environment',
@@ -47,6 +50,7 @@ export const INTRO_TEXT = [
         </p>
       </div>
     ),
+    link: '/environment',
   },
   {
     title: 'Resilience',
@@ -60,6 +64,7 @@ export const INTRO_TEXT = [
         </p>
       </div>
     ),
+    link: '/resilience',
   },
   {
     title: 'Governance',
@@ -73,6 +78,7 @@ export const INTRO_TEXT = [
         </p>
       </div>
     ),
+    link: '/governance',
   },
   {
     title: 'Arab States',
@@ -87,6 +93,7 @@ export const INTRO_TEXT = [
         </p>
       </div>
     ),
+    link: '/regions/arab-states',
   },
   {
     title: 'Asia and the Pacific',
@@ -103,6 +110,7 @@ export const INTRO_TEXT = [
         </p>
       </div>
     ),
+    link: '/regions/asia-and-the-pacific',
   },
   {
     title: 'Europe and Central Asia',
@@ -120,6 +128,7 @@ export const INTRO_TEXT = [
         </p>
       </div>
     ),
+    link: '/regions/europe-and-central-asia',
   },
   {
     title: 'Latin America and the Caribbean',
@@ -133,6 +142,7 @@ export const INTRO_TEXT = [
         </p>
       </div>
     ),
+    link: '/regions/latin-america-and-the-caribbean',
   },
   {
     title: 'Africa',
@@ -149,5 +159,6 @@ export const INTRO_TEXT = [
         </p>
       </div>
     ),
+    link: '/regions/africa',
   },
 ];

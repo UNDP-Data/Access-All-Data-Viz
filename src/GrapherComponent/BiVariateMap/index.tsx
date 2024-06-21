@@ -8,9 +8,9 @@ import maxBy from 'lodash.maxby';
 import max from 'lodash.max';
 import UNDPColorModule from 'undp-viz-colors';
 import { scaleThreshold, scaleOrdinal, scaleSqrt } from 'd3-scale';
-import { geoWinkel3 } from 'd3-geo-projection';
 import styled from 'styled-components';
 import { X } from 'lucide-react';
+import { geoEqualEarth } from 'd3-geo';
 import {
   CtxDataType,
   CountryGroupDataType,
@@ -82,13 +82,14 @@ export function BiVariateMap(props: Props) {
   const svgHeight = 678;
   const mapSvg = useRef<SVGSVGElement>(null);
   const mapG = useRef<SVGGElement>(null);
-  const projection = geoWinkel3()
+  const projection = geoEqualEarth()
     .rotate([0, 0])
     .scale(
       MAP_SETTINGS[MAP_SETTINGS.findIndex(d => d.region === UNDPRegion)].scale,
     )
     .translate(
-      MAP_SETTINGS[MAP_SETTINGS.findIndex(d => d.region === UNDPRegion)].center,
+      MAP_SETTINGS[MAP_SETTINGS.findIndex(d => d.region === UNDPRegion)]
+        .center as [number, number],
     );
   const xIndicatorMetaData =
     indicators[
