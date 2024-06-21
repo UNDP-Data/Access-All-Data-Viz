@@ -28,8 +28,12 @@ export function SignalsPage(props: Props) {
   );
 
   const GetURL = (queryParameter: string) => {
-    const ss1QueryParameter = `&${queryParameter}=${id.replaceAll(' ', '%20')}`;
-    const urlForListing = `${SIGNAL_API_LINK}signals/list?page=${paginationValue}&per_page=${pageSize}${ss1QueryParameter}&statuses=Approved`;
+    const linkQueryParameter = `&${queryParameter}=${id.replaceAll(
+      ' ',
+      '%20',
+    )}`;
+    console.log(linkQueryParameter);
+    const urlForListing = `${SIGNAL_API_LINK}signals/list?page=${paginationValue}&per_page=${pageSize}${linkQueryParameter}&statuses=Approved`;
     return urlForListing;
   };
 
@@ -61,11 +65,20 @@ export function SignalsPage(props: Props) {
   useEffect(() => {
     setSignalList(undefined);
     axios
-      .get(GetURL('signature_primary'), {
-        headers: {
-          access_token: SIGNAL_ACCESS_CODE,
+      .get(
+        GetURL(
+          type === 'signatureSolution'
+            ? 'signature_primary'
+            : type === 'region'
+            ? 'bureau'
+            : 'location',
+        ),
+        {
+          headers: {
+            access_token: SIGNAL_ACCESS_CODE,
+          },
         },
-      })
+      )
       .then((response: AxiosResponse) => {
         setSignalList(
           sortBy(response.data.data, d => Date.parse(d.created_at)).reverse(),
@@ -90,11 +103,20 @@ export function SignalsPage(props: Props) {
     setError(undefined);
     setSignalList(undefined);
     axios
-      .get(GetURL('signature_primary'), {
-        headers: {
-          access_token: SIGNAL_ACCESS_CODE,
+      .get(
+        GetURL(
+          type === 'signatureSolution'
+            ? 'signature_primary'
+            : type === 'region'
+            ? 'bureau'
+            : 'location',
+        ),
+        {
+          headers: {
+            access_token: SIGNAL_ACCESS_CODE,
+          },
         },
-      })
+      )
       .then((response: AxiosResponse) => {
         setSignalList(
           sortBy(response.data.data, d => Date.parse(d.created_at)).reverse(),
@@ -176,20 +198,7 @@ export function SignalsPage(props: Props) {
                 <div className='flex-div flex-wrap listing'>
                   {signalList.length > 0 ? (
                     <CardList data={signalList} choices={choices} />
-                  ) : (
-                    <h5
-                      className='undp-typography bold'
-                      style={{
-                        backgroundColor: 'var(--gray-200)',
-                        textAlign: 'center',
-                        padding: 'var(--spacing-07)',
-                        width: 'calc(100% - 4rem)',
-                        border: '1px solid var(--gray-400)',
-                      }}
-                    >
-                      No signals available matching your criteria
-                    </h5>
-                  )}
+                  ) : null}
                 </div>
                 {signalList.length > 0 ? (
                   <div className='flex-div flex-hor-align-center margin-top-07'>

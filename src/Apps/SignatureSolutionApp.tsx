@@ -1,7 +1,7 @@
 import { Tabs } from 'antd';
 import { useState, useEffect } from 'react';
-import DataExplorer from '../Components/DataExplorer';
-import { DataSetList } from '../Components/DataSetList';
+import DataExplorer from '../DataExplorer';
+import { DataSetList } from '../DataSetList';
 import { AboutPage } from '../AboutPage';
 import { INTRO_TEXT } from '../IntroductionText';
 import { PovertyAndInequalityKeyInsights } from '../KeyInsights/PovertyAndInequalityKeyInsights';
@@ -52,7 +52,7 @@ export function SignatureSolutionApp(props: Props) {
           children: (
             <SignalsPage
               id={signatureSolution || 'Poverty and Inequality'}
-              loginState
+              loginState={d}
               link={
                 INTRO_TEXT[
                   INTRO_TEXT.findIndex(el => el.id === signatureSolution)

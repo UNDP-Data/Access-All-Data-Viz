@@ -98,6 +98,8 @@ export const COUNTRIES_BY_UNDP_REGIONS = [
   {
     region: 'UNDP_AP',
     name: 'Asia and the Pacific',
+    link: '/regions/asi-and-the-pacific',
+    bureauName: 'RBAP',
     Countries: [
       'AFG',
       'BGD',
@@ -139,6 +141,8 @@ export const COUNTRIES_BY_UNDP_REGIONS = [
   {
     region: 'UNDP_AS',
     name: 'Arab States',
+    link: '/regions/arab-states',
+    bureauName: 'RBAS',
     Countries: [
       'ARE',
       'BHR',
@@ -165,6 +169,8 @@ export const COUNTRIES_BY_UNDP_REGIONS = [
   {
     region: 'UNDP_ECA',
     name: 'Europe and Central Asia',
+    link: '/regions/europe-and-central-asia',
+    bureauName: 'RBEC',
     Countries: [
       'ALB',
       'ARM',
@@ -189,6 +195,8 @@ export const COUNTRIES_BY_UNDP_REGIONS = [
   {
     region: 'UNDP_LAC',
     name: 'Latin America and the Caribbean',
+    link: '/regions/latin-america-and-the-caribbean',
+    bureauName: 'RBLAC',
     Countries: [
       'ARG',
       'ATG',
@@ -228,6 +236,8 @@ export const COUNTRIES_BY_UNDP_REGIONS = [
   {
     region: 'UNDP_SSA',
     name: 'Africa',
+    bureauName: 'RBA',
+    link: '/regions/africa',
     Countries: [
       'AGO',
       'BDI',

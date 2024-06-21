@@ -14,7 +14,7 @@ import {
   CountryTaxonomyDataType,
   IndicatorMetaDataType,
   IndicatorSimplifiedDataType,
-} from '../../Types';
+} from '../Types';
 import {
   COUNTRYTAXONOMYLINK,
   METADATALINK,
@@ -22,7 +22,7 @@ import {
   SIGNATURE_SOLUTIONS_LIST,
   TAGS_LIST,
   DATALINK,
-} from '../../Constants';
+} from '../Constants';
 import { DownloadModal } from './DownloadModal';
 
 interface Props {

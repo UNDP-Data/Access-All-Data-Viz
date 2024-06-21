@@ -20,7 +20,7 @@ import {
   METADATALINK,
   SIGNATURE_SOLUTIONS_LIST,
 } from '../Constants';
-import CountryVisualization from '../Components/CountryVisualization';
+import CountryVisualization from '../DataExplorer/CountryVisualization';
 
 interface PropsWithoutSS {
   countryId?: string;

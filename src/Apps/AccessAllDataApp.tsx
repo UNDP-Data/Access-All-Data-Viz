@@ -1,7 +1,7 @@
 import { Tabs } from 'antd';
 import { useEffect, useState } from 'react';
-import DataExplorer from '../Components/DataExplorer';
-import { DataSetList } from '../Components/DataSetList';
+import DataExplorer from '../DataExplorer';
+import { DataSetList } from '../DataSetList';
 import { AggregatedRegionVisualization } from '../RegionVisualization';
 import { CheckIfLoginOrNot } from '../Utils/CheckIfLoginOrNot';
 import { LoginBanner } from '../Components/LoginBanner';

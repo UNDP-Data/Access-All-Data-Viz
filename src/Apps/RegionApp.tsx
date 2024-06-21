@@ -1,13 +1,14 @@
 import { Tabs } from 'antd';
 import { useState, useEffect } from 'react';
-import { DataSetList } from '../Components/DataSetList';
-import DataExplorer from '../Components/DataExplorer';
+import { DataSetList } from '../DataSetList';
+import DataExplorer from '../DataExplorer';
 import { COUNTRIES_BY_UNDP_REGIONS } from '../Constants';
 import { AboutPage } from '../AboutPage';
 import { AggregatedRegionVisualization } from '../RegionVisualization';
 import { INTRO_TEXT } from '../IntroductionText';
 import { CheckIfLoginOrNot } from '../Utils/CheckIfLoginOrNot';
 import { LoginBanner } from '../Components/LoginBanner';
+import { SignalsPage } from '../SignalsPage';
 
 interface Props {
   region?: string;
@@ -45,6 +46,30 @@ export function RegionApp(props: Props) {
             <AggregatedRegionVisualization
               UNDPRegion={region || 'WLD'}
               loginState={d}
+            />
+          ),
+        },
+        {
+          key: 'signals',
+          label: 'UNDP Signals 🔒',
+          children: (
+            <SignalsPage
+              id={
+                COUNTRIES_BY_UNDP_REGIONS[
+                  COUNTRIES_BY_UNDP_REGIONS.findIndex(
+                    el => el.region === `UNDP_${region}`,
+                  )
+                ].bureauName
+              }
+              loginState={d}
+              link={
+                COUNTRIES_BY_UNDP_REGIONS[
+                  COUNTRIES_BY_UNDP_REGIONS.findIndex(
+                    el => el.region === `UNDP_${region}`,
+                  )
+                ].link
+              }
+              type='region'
             />
           ),
         },

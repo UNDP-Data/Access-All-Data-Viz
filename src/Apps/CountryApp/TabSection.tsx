@@ -10,14 +10,16 @@ import { SubNationalVisualization } from '../../CountryPage/SubNationalVisualiza
 import { CountryHomePageForCountryPage } from '../../CountryPage';
 import { SubNationalMetaDataType } from '../../Types';
 import { WDLVisualization } from '../../WDLVisualization';
+import { SignalsPage } from '../../SignalsPage';
 
 interface Props {
   countryId: string;
   loginState: boolean;
+  countryName: string;
 }
 
 export function TabSection(props: Props) {
-  const { countryId, loginState } = props;
+  const { countryId, loginState, countryName } = props;
   const [subNationalDataAvailability, setSubNationalDataAvailability] =
     useState<SubNationalMetaDataType[] | undefined | 'error'>(undefined);
   useEffect(() => {
@@ -58,6 +60,18 @@ export function TabSection(props: Props) {
                 ),
               },
               {
+                key: 'signals',
+                label: 'UNDP Signals 🔒',
+                children: (
+                  <SignalsPage
+                    id={countryName}
+                    loginState={loginState}
+                    link={`/countries-and-territories/${countryId || 'AFG'}`}
+                    type='country'
+                  />
+                ),
+              },
+              {
                 key: 'sdgTracker',
                 label: 'SDG Tracker',
                 children: <SDGTracker countryId={countryId || 'AFG'} />,
@@ -90,12 +104,35 @@ export function TabSection(props: Props) {
                 ),
               },
               {
+                key: 'demographicData',
+                label: 'Demographic Data 🔒',
+                children: (
+                  <WDLVisualization
+                    loginState={loginState}
+                    link={`/countries-and-territories/${countryId || 'AFG'}`}
+                    countryCode={countryId || 'AFG'}
+                  />
+                ),
+              },
+              {
                 key: 'subNationalVisualization',
                 label: 'Sub National Data',
                 children: (
                   <SubNationalVisualization
                     countryId={countryId || 'AFG'}
                     subNationalDataMetaData={subNationalDataAvailability}
+                  />
+                ),
+              },
+              {
+                key: 'signals',
+                label: 'UNDP Signals 🔒',
+                children: (
+                  <SignalsPage
+                    id={countryName}
+                    loginState={loginState}
+                    link={`/countries-and-territories/${countryId || 'AFG'}`}
+                    type='country'
                   />
                 ),
               },

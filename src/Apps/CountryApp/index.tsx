@@ -103,6 +103,11 @@ export function CountryApp(props: CountryProps) {
               <TabSection
                 countryId={countryId || 'AFG'}
                 loginState={loginState}
+                countryName={
+                  countryData[
+                    countryData.findIndex(d => d['Alpha-3 code'] === countryId)
+                  ]['Country or Area']
+                }
               />
             </>
           )}
