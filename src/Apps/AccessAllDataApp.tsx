@@ -33,7 +33,7 @@ export function AccessAllDataApp() {
         {
           key: 'demographicData',
           label: 'Demographic Data 🔒',
-          children: <WDLVisualization loginState link='/access-all-data' />,
+          children: <WDLVisualization loginState={d} link='/access-all-data' />,
         },
         {
           key: 'datasets',

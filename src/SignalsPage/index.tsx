@@ -32,7 +32,6 @@ export function SignalsPage(props: Props) {
       ' ',
       '%20',
     )}`;
-    console.log(linkQueryParameter);
     const urlForListing = `${SIGNAL_API_LINK}signals/list?page=${paginationValue}&per_page=${pageSize}${linkQueryParameter}&statuses=Approved`;
     return urlForListing;
   };
