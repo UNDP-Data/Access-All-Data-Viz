@@ -162,7 +162,7 @@ export function SignalsPage(props: Props) {
                 Explore the UNDP Signal and Trend System to learn more
               </h5>
               <a
-                href='/tools/world-data-lab-data-explorer'
+                href='https://signals.data.undp.org/'
                 className='undp-button button-primary button-arrow'
                 style={{
                   textDecoration: 'none',
