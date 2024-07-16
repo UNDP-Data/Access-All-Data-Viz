@@ -19,7 +19,7 @@ export function LoginBanner(props: Props) {
         className='undp-typography margin-bottom-00 small-font'
         style={{ color: 'var(--gray-600)' }}
       >
-        If you have a UNDP account, login for more features.
+        UNDP personnel, login for more features.
       </p>
       <a
         href={`/user/login?destination=${link}`}
