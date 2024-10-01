@@ -23,7 +23,7 @@ export function SDGDataExplorer(props: Props) {
   useEffect(() => {
     setStatuses(undefined);
     json(
-      `${SDGDATASOURCELINK}/data/CountryData/${countryId}.json`,
+      `${SDGDATASOURCELINK}/${countryId}.json`,
       (err: any, d: CountryDataType) => {
         if (err) throw err;
         setCountryData(

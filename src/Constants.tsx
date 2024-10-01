@@ -51,7 +51,7 @@ export const COUNTRYTAXONOMYLINK =
   'https://raw.githubusercontent.com/UNDP-Data/country-taxonomy-from-azure/main/country_territory_groups.json';
 
 export const SDGDATASOURCELINK =
-  'https://raw.githubusercontent.com/UNDP-Data/SDG-Accelerator/production/public';
+  'https://raw.githubusercontent.com/UNDP-Data/SDG-Accelerator-Data-Repo/refs/heads/main/CountryData';
 
 export const REGION_ACRONYMS = ['AP', 'AS', 'ECA', 'LAC', 'SSA'];
 
