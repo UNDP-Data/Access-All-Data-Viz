@@ -1622,4 +1622,77 @@ export const TOP_CARDS = [
       },
     ],
   },
+  {
+    id: 'ETH',
+    cards: [
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey: 'Gross National Income Per Capita (2017 PPP$)',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle: 'Gross National Income Per Capita (2017 PPP$)',
+        },
+      },
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey: 'Human development index (HDI)',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle: 'Human Development Index',
+        },
+      },
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey: 'GINI index (World Bank estimate)',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle: 'GINI Index',
+        },
+      },
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey: 'Gender Inequality Index-Gender Inequality Index',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle: 'Gender Inequality Index',
+        },
+      },
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey: 'Population, total',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle: 'Population, total',
+        },
+      },
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey:
+            'Unemployment, youth total (% of total labor force ages 15-24) (modeled ILO estimate)',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle: 'Youth Unemployment (% of total labor force ages 15-24)',
+          suffix: '%',
+        },
+      },
+      {
+        vizType: 'lineChart',
+        settings: {
+          dataKey:
+            'Poverty headcount ratio at $2.15 a day (2017 PPP) (% of population)',
+          strokeWidth: 1,
+          lineColor: '#232E3D',
+          graphTitle:
+            'Poverty headcount ratio at $2.15 a day (2017 PPP), % of population',
+          suffix: '%',
+        },
+      },
+    ],
+  },
 ];

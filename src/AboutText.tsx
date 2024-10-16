@@ -1185,4 +1185,14 @@ export const ABOUT_TEXT_LINKS = [
       },
     ],
   },
+  {
+    title: 'Ethiopia',
+    id: 'ETH',
+    resource: [
+      {
+        source: 'About Us Page',
+        link: 'https://www.undp.org/ethiopia/about-us',
+      },
+    ],
+  },
 ];
