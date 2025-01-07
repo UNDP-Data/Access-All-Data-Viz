@@ -30,6 +30,31 @@ const AnimatedLine = styled.line`
   stroke-dasharray: 5;
   animation: ${animateLines} 4s linear infinite;
 `;
+function getRanks(array: number[]): number[] {
+  // Create array of objects with original index and value
+  const indexed = array.map((value, index) => ({ value, index }));
+
+  // Sort by value in descending order
+  indexed.sort((a, b) => b.value - a.value);
+
+  // Initialize ranks array
+  const ranks: number[] = new Array(array.length);
+
+  // Assign ranks
+  let currentRank = 1;
+
+  for (let i = 0; i < indexed.length; i += 1) {
+    // If this is first element or value is different from previous
+    if (i === 0 || indexed[i].value !== indexed[i - 1].value) {
+      currentRank = i + 1;
+    }
+
+    // Assign rank to original position
+    ranks[indexed[i].index] = currentRank;
+  }
+
+  return ranks;
+}
 
 export function HDIViz(props: Props) {
   const {
@@ -76,7 +101,9 @@ export function HDIViz(props: Props) {
 
   const dataArray = sortBy(
     hdiData.countryData
-      .filter(d => d.data.findIndex(el => el.year === year) !== -1)
+      .filter(
+        (d, i) => d.data.findIndex(el => el.year === year) !== -1 && i < 249,
+      )
       .map(d => d.data[d.data.findIndex(el => el.year === year)]),
     d => d.value,
   ).reverse();
@@ -235,8 +262,12 @@ export function HDIViz(props: Props) {
                 </span>{' '}
                 human development category — positioning it at{' '}
                 <span className='bold'>
-                  {dataArray.findIndex(el => el.value === value) + 1} out of{' '}
-                  {dataArray.length}
+                  {
+                    getRanks(dataArray.map(el => el.value))[
+                      dataArray.findIndex(el => el.value === value)
+                    ]
+                  }{' '}
+                  out of {dataArray.length}
                 </span>{' '}
                 countries and territories.
               </p>
