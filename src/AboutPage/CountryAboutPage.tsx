@@ -145,6 +145,11 @@ export function CountryAboutPage(props: Props) {
                       countryData,
                       'Human development index (HDI)',
                     ).value > 0.8
+                      ? 'very high'
+                      : GetDataValueAndYear(
+                          countryData,
+                          'Human development index (HDI)',
+                        ).value > 0.7
                       ? 'high'
                       : GetDataValueAndYear(
                           countryData,
