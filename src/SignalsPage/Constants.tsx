@@ -3,8 +3,7 @@ import UNDPColorModule from 'undp-viz-colors';
 export const DEFAULT_IMAGE =
   'https://signals.data.undp.org/UNDP-hero-image.jpg';
 
-export const SIGNAL_API_LINK =
-  'https://signals-and-trends-api.azurewebsites.net/v1/';
+export const SIGNAL_API_LINK = 'https://ftss-api-dev.azurewebsites.net/';
 
 export const SIGNAL_ACCESS_CODE = '1efbc9d89db9054b686589c75a571fd5';
 

@@ -38,7 +38,7 @@ export function SignalsPage(props: Props) {
 
   useEffect(() => {
     axios
-      .get('https://signals-and-trends-api.azurewebsites.net/v1/choices/list', {
+      .get('https://ftss-api-dev.azurewebsites.net/choices/list', {
         headers: {
           access_token: SIGNAL_ACCESS_CODE,
         },
