@@ -30,8 +30,8 @@ export interface ChoicesDataType {
   ratings: string[];
   roles: string[];
   sdgs: string[];
-  signatures: string[];
-  steepv: string[];
+  signature: string[];
+  steep: string[];
   unit_names: string[];
   unit_regions: string[];
   scores: string[];

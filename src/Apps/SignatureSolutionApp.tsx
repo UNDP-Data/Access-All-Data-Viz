@@ -51,7 +51,11 @@ export function SignatureSolutionApp(props: Props) {
           label: 'UNDP Signals 🔒',
           children: (
             <SignalsPage
-              id={signatureSolution || 'Poverty and Inequality'}
+              id={
+                signatureSolution === 'Gender'
+                  ? 'Gender Equality'
+                  : signatureSolution || 'Poverty and Inequality'
+              }
               loginState={d}
               link={
                 INTRO_TEXT[

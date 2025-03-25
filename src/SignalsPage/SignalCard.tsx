@@ -111,7 +111,7 @@ export function SignalCard(props: Props) {
                       ? !choices
                         ? 'var(--black)'
                         : UNDPColorModule.categoricalColors.colors[
-                            choices?.steepv.findIndex(
+                            choices?.steep.findIndex(
                               el => el === data.steep_primary,
                             )
                           ]
@@ -128,7 +128,7 @@ export function SignalCard(props: Props) {
                         !choices
                           ? 'var(--black)'
                           : UNDPColorModule.categoricalColors.colors[
-                              choices?.steepv.findIndex(el => el === s)
+                              choices?.steep.findIndex(el => el === s)
                             ]
                       }
                     />

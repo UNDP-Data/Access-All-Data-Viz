@@ -48,7 +48,7 @@ export function SignalDetail(props: Props) {
         },
       )
       .then((response: AxiosResponse) => {
-        setData(response.data[0]);
+        setData(response.data.data[0]);
       });
   }, [signalID]);
   return (
@@ -110,7 +110,7 @@ export function SignalDetail(props: Props) {
                         !choices
                           ? 'var(--black)'
                           : UNDPColorModule.categoricalColors.colors[
-                              choices.steepv.findIndex(
+                              choices.steep.findIndex(
                                 el => el === data.steep_primary,
                               )
                             ]
@@ -127,7 +127,7 @@ export function SignalDetail(props: Props) {
                           !choices
                             ? 'var(--black)'
                             : UNDPColorModule.categoricalColors.colors[
-                                choices.steepv.findIndex(el => el === d)
+                                choices.steep.findIndex(el => el === d)
                               ]
                         }
                       />
@@ -146,7 +146,7 @@ export function SignalDetail(props: Props) {
                         !choices
                           ? 'var(--black)'
                           : SSCOLOR[
-                              choices.signatures.findIndex(
+                              choices.signature.findIndex(
                                 el => el === data.signature_primary,
                               )
                             ].textColor
@@ -163,7 +163,7 @@ export function SignalDetail(props: Props) {
                           !choices
                             ? 'var(--black)'
                             : SSCOLOR[
-                                choices.signatures.findIndex(el => el === d)
+                                choices.signature.findIndex(el => el === d)
                               ].textColor
                         }
                       />
