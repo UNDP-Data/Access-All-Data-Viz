@@ -40,7 +40,7 @@ export function SignalDetail(props: Props) {
   useEffect(() => {
     axios
       .get(
-        `https://ftss-api-dev.azurewebsites.net/signals/fetch?ids=${signalID}`,
+        `https://ftss-api-dev.azurewebsites.net/signals/search?ids=${signalID}`,
         {
           headers: {
             access_token: SIGNAL_ACCESS_CODE,

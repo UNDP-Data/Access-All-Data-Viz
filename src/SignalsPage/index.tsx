@@ -32,13 +32,13 @@ export function SignalsPage(props: Props) {
       ' ',
       '%20',
     )}`;
-    const urlForListing = `${SIGNAL_API_LINK}signals/list?page=${paginationValue}&per_page=${pageSize}${linkQueryParameter}&statuses=Approved`;
+    const urlForListing = `${SIGNAL_API_LINK}signals/search?page=${paginationValue}&per_page=${pageSize}${linkQueryParameter}&statuses=Approved`;
     return urlForListing;
   };
 
   useEffect(() => {
     axios
-      .get('https://ftss-api-dev.azurewebsites.net/choices/list', {
+      .get('https://ftss-api-dev.azurewebsites.net/choices', {
         headers: {
           access_token: SIGNAL_ACCESS_CODE,
         },
