@@ -45,7 +45,7 @@ export function GrapherComponent(props: Props) {
         `${API_LINK}?year_min=2016&year_max=2034&age_lower=${ageRange[0]}&age_upper=${ageRange[1]}&sex=${gender}&income_lower=${incomeRange[0]}&income_upper=${incomeRange[1]}`,
         {
           headers: {
-            access_key: API_ACCESS_TOKEN,
+            api_key: API_ACCESS_TOKEN,
           },
         },
       )
@@ -142,7 +142,7 @@ export function GrapherComponent(props: Props) {
     const requests = urls.map(url =>
       axios.get(url, {
         headers: {
-          access_key: API_ACCESS_TOKEN,
+          api_key: API_ACCESS_TOKEN,
         },
       }),
     );
