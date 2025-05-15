@@ -1147,3 +1147,452 @@ export const COUNTRY_LOOKUP_TABLE = [
     isoCode: 'ZWE',
   },
 ];
+
+export const REGION_LOOKUP_TABLE = [
+  {
+    'Alpha-3 code': 'AFE',
+    'Country or Area': 'Africa Eastern and Southern',
+  },
+  {
+    'Alpha-3 code': 'AFR',
+    'Country or Area': 'Africa',
+  },
+  {
+    'Alpha-3 code': 'AMR',
+    'Country or Area': 'Americas',
+  },
+  {
+    'Alpha-3 code': 'ARB',
+    'Country or Area': 'Arab World',
+  },
+  {
+    'Alpha-3 code': 'UNDP_AP',
+    'Country or Area': 'Asia & Pacific',
+  },
+  {
+    'Alpha-3 code': 'AS',
+    'Country or Area': 'Arab States',
+  },
+  {
+    'Alpha-3 code': 'UNDP_AS',
+    'Country or Area': 'Arab States',
+  },
+  {
+    'Alpha-3 code': 'ASI',
+    'Country or Area': 'Asia',
+  },
+  {
+    'Alpha-3 code': 'Aus&NZ',
+    'Country or Area': 'Australia and New Zealand',
+  },
+  {
+    'Alpha-3 code': 'BRI',
+    'Country or Area': 'BRICS',
+  },
+  {
+    'Alpha-3 code': 'CA',
+    'Country or Area': 'Central Asia',
+  },
+  {
+    'Alpha-3 code': 'CAB',
+    'Country or Area': 'Caribbean',
+  },
+  {
+    'Alpha-3 code': 'Caf',
+    'Country or Area': 'Central Africa',
+  },
+  {
+    'Alpha-3 code': 'CAm',
+    'Country or Area': 'Central America',
+  },
+  {
+    'Alpha-3 code': 'CCA',
+    'Country or Area': 'Caucasus and Central Asia',
+  },
+  {
+    'Alpha-3 code': 'CEB',
+    'Country or Area': 'Central Europe and the Baltics',
+  },
+  {
+    'Alpha-3 code': 'CSA',
+    'Country or Area': 'Central and Southern Asia',
+  },
+  {
+    'Alpha-3 code': 'CWA',
+    'Country or Area': 'Central and Western Asia',
+  },
+  {
+    'Alpha-3 code': 'CWAf',
+    'Country or Area': 'Africa Western and Central',
+  },
+  {
+    'Alpha-3 code': 'DEA',
+    'Country or Area': 'Developed regions',
+  },
+  {
+    'Alpha-3 code': 'DEB',
+    'Country or Area': 'Developing countries',
+  },
+  {
+    'Alpha-3 code': 'EA',
+    'Country or Area': 'Eastern Asia',
+  },
+  {
+    'Alpha-3 code': 'EAf',
+    'Country or Area': 'Eastern Africa',
+  },
+  {
+    'Alpha-3 code': 'EAR',
+    'Country or Area': 'Early-demographic dividend',
+  },
+  {
+    'Alpha-3 code': 'EAS',
+    'Country or Area': 'East Asia & Pacific (excluding high income)',
+  },
+  {
+    'Alpha-3 code': 'ECA',
+    'Country or Area': 'Europe & Central Asia (excluding high income)',
+  },
+  {
+    'Alpha-3 code': 'UNDP_ECA',
+    'Country or Area':
+      'Europe & Central Asia (currently Europe & Central Asia (excluding high income))',
+  },
+  {
+    'Alpha-3 code': 'ECS',
+    'Country or Area': 'Europe & Central Asia',
+  },
+  {
+    'Alpha-3 code': 'EE',
+    'Country or Area': 'Eastern Europe',
+  },
+  {
+    'Alpha-3 code': 'EMR',
+    'Country or Area': 'EMR',
+  },
+  {
+    'Alpha-3 code': 'EMU',
+    'Country or Area': 'Euro Area',
+  },
+  {
+    'Alpha-3 code': 'ESA',
+    'Country or Area': 'Eastern and South-Eastern Asia',
+  },
+  {
+    'Alpha-3 code': 'EUR',
+    'Country or Area': 'Europe',
+  },
+  {
+    'Alpha-3 code': 'EUR.NAM',
+    'Country or Area': 'Europe and Northern America',
+  },
+  {
+    'Alpha-3 code': 'EUU',
+    'Country or Area': 'European Union',
+  },
+  {
+    'Alpha-3 code': 'FCS',
+    'Country or Area': 'Fragile and conflict affected situations',
+  },
+  {
+    'Alpha-3 code': 'G07',
+    'Country or Area': 'G7',
+  },
+  {
+    'Alpha-3 code': 'G20',
+    'Country or Area': 'G20',
+  },
+  {
+    'Alpha-3 code': 'HHD',
+    'Country or Area': 'High human development',
+  },
+  {
+    'Alpha-3 code': 'HIC',
+    'Country or Area': 'High-income countries',
+  },
+  {
+    'Alpha-3 code': 'HPC',
+    'Country or Area': 'Heavily indebted poor countries (HIPC)',
+  },
+  {
+    'Alpha-3 code': 'IBD',
+    'Country or Area': 'IBRD Only',
+  },
+  {
+    'Alpha-3 code': 'IBT',
+    'Country or Area': 'IDA & IBRD total',
+  },
+  {
+    'Alpha-3 code': 'IDA',
+    'Country or Area': 'IDA Total',
+  },
+  {
+    'Alpha-3 code': 'IDB',
+    'Country or Area': 'IDA blend',
+  },
+  {
+    'Alpha-3 code': 'IDX',
+    'Country or Area': 'IDA Only',
+  },
+  {
+    'Alpha-3 code': 'LAC',
+    'Country or Area': 'Latin America and the Caribbean',
+  },
+  {
+    'Alpha-3 code': 'UNDP_LAC',
+    'Country or Area': 'Latin America and the Caribbean',
+  },
+  {
+    'Alpha-3 code': 'LAS',
+    'Country or Area': 'Arab League',
+  },
+  {
+    'Alpha-3 code': 'LCN',
+    'Country or Area': 'Latin America & Caribbean (excluding high income)',
+  },
+  {
+    'Alpha-3 code': 'LDC',
+    'Country or Area': 'Least developed countries',
+  },
+  {
+    'Alpha-3 code': 'LDR',
+    'Country or Area': 'Less developed regions',
+  },
+  {
+    'Alpha-3 code': 'LDRxCHN',
+    'Country or Area': 'Less developed regions, excluding China',
+  },
+  {
+    'Alpha-3 code': 'LDRxLDC',
+    'Country or Area':
+      'Less developed regions, excluding least developed countries',
+  },
+  {
+    'Alpha-3 code': 'LHD',
+    'Country or Area': 'Low human development',
+  },
+  {
+    'Alpha-3 code': 'LIC',
+    'Country or Area': 'Low-income countries',
+  },
+  {
+    'Alpha-3 code': 'LLCD',
+    'Country or Area': 'Land Locked Developing Countries',
+  },
+  {
+    'Alpha-3 code': 'LMIC',
+    'Country or Area': 'Lower-middle-income countries',
+  },
+  {
+    'Alpha-3 code': 'LMY',
+    'Country or Area': 'Low & middle income',
+  },
+  {
+    'Alpha-3 code': 'LTE',
+    'Country or Area': 'Late-demographic dividend',
+  },
+  {
+    'Alpha-3 code': 'MAfr',
+    'Country or Area': 'Middle Africa',
+  },
+  {
+    'Alpha-3 code': 'MDR',
+    'Country or Area': 'More developed regions',
+  },
+  {
+    'Alpha-3 code': 'MEA',
+    'Country or Area': 'Middle East & North Africa',
+  },
+  {
+    'Alpha-3 code': 'MeN',
+    'Country or Area': 'Melanesia',
+  },
+  {
+    'Alpha-3 code': 'MHD',
+    'Country or Area': 'Medium human development',
+  },
+  {
+    'Alpha-3 code': 'MIC',
+    'Country or Area': 'Middle-income countries',
+  },
+  {
+    'Alpha-3 code': 'MiN',
+    'Country or Area': 'Micronesia',
+  },
+  {
+    'Alpha-3 code': 'MNA',
+    'Country or Area': 'Middle East & North Africa (excluding high income)',
+  },
+  {
+    'Alpha-3 code': 'Naf',
+    'Country or Area': 'Northern Africa',
+  },
+  {
+    'Alpha-3 code': 'NAfxSDN',
+    'Country or Area': 'Northern Africa (excluding Sudan)',
+  },
+  {
+    'Alpha-3 code': 'NAC',
+    'Country or Area': 'North America',
+  },
+  {
+    'Alpha-3 code': 'NE',
+    'Country or Area': 'Northern Europe',
+  },
+  {
+    'Alpha-3 code': 'NOIC',
+    'Country or Area': 'No income group available',
+  },
+  {
+    'Alpha-3 code': 'NSWE',
+    'Country or Area': 'Northern, Southern and Western Europe',
+  },
+  {
+    'Alpha-3 code': 'OCE',
+    'Country or Area': 'Oceania',
+  },
+  {
+    'Alpha-3 code': 'OCExAUS&NZ',
+    'Country or Area': 'Oceania (excluding Australia and New Zealand)',
+  },
+  {
+    'Alpha-3 code': 'OED',
+    'Country or Area': 'OECD members',
+  },
+  {
+    'Alpha-3 code': 'OSS',
+    'Country or Area': 'Other small states',
+  },
+  {
+    'Alpha-3 code': 'PoN',
+    'Country or Area': 'Polynesia',
+  },
+  {
+    'Alpha-3 code': 'PRE',
+    'Country or Area': 'Pre-demographic dividend',
+  },
+  {
+    'Alpha-3 code': 'PSS',
+    'Country or Area': 'Pacific island small states',
+  },
+  {
+    'Alpha-3 code': 'PST',
+    'Country or Area': 'Post-demographic dividend',
+  },
+  {
+    'Alpha-3 code': 'SAf',
+    'Country or Area': 'Southern Africa',
+  },
+  {
+    'Alpha-3 code': 'SAm',
+    'Country or Area': 'South America',
+  },
+  {
+    'Alpha-3 code': 'SAxIND',
+    'Country or Area': 'Southern Asia (excluding India)',
+  },
+  {
+    'Alpha-3 code': 'SE',
+    'Country or Area': 'Southern Europe',
+  },
+  {
+    'Alpha-3 code': 'SEA',
+    'Country or Area': 'South-Eastern Asia',
+  },
+  {
+    'Alpha-3 code': 'SEAP',
+    'Country or Area': 'South-Eastern Asia and the Pacific',
+  },
+  {
+    'Alpha-3 code': 'SEAR',
+    'Country or Area': 'SEAR',
+  },
+  {
+    'Alpha-3 code': 'SIDS',
+    'Country or Area': 'Small Island Developing States',
+  },
+  {
+    'Alpha-3 code': 'SSA',
+    'Country or Area': 'Sub-Saharan Africa',
+  },
+  {
+    'Alpha-3 code': 'UNDP_SSA',
+    'Country or Area': 'Sub-Saharan Africa',
+  },
+  {
+    'Alpha-3 code': 'SSA.SUD',
+    'Country or Area': 'Sub-Saharan Africa (including Sudan)',
+  },
+  {
+    'Alpha-3 code': 'SSF',
+    'Country or Area': 'Sub-Saharan Africa (excluding high income)',
+  },
+  {
+    'Alpha-3 code': 'SST',
+    'Country or Area': 'Small states',
+  },
+  {
+    'Alpha-3 code': 'TEA',
+    'Country or Area': 'East Asia & Pacific (IDA & IBRD countries)',
+  },
+  {
+    'Alpha-3 code': 'TEC',
+    'Country or Area': 'Europe & Central Asia (IDA & IBRD countries)',
+  },
+  {
+    'Alpha-3 code': 'TLA',
+    'Country or Area': 'Latin America & the Caribbean (IDA & IBRD countries)',
+  },
+  {
+    'Alpha-3 code': 'TMN',
+    'Country or Area': 'Middle East & North Africa (IDA & IBRD countries)',
+  },
+  {
+    'Alpha-3 code': 'TSA',
+    'Country or Area': 'South Asia (IDA & IBRD)',
+  },
+  {
+    'Alpha-3 code': 'TSS',
+    'Country or Area': 'Sub-Saharan Africa (IDA & IBRD countries)',
+  },
+  {
+    'Alpha-3 code': 'UMC',
+    'Country or Area': 'Upper-middle-income countries',
+  },
+  {
+    'Alpha-3 code': 'UMIC',
+    'Country or Area': 'World: Upper-middle income',
+  },
+  {
+    'Alpha-3 code': 'VHD',
+    'Country or Area': 'Very high human development',
+  },
+  {
+    'Alpha-3 code': 'WA',
+    'Country or Area': 'Western Asia',
+  },
+  {
+    'Alpha-3 code': 'WAf',
+    'Country or Area': 'Western Africa',
+  },
+  {
+    'Alpha-3 code': 'WE',
+    'Country or Area': 'Western Europe',
+  },
+  {
+    'Alpha-3 code': 'WLD',
+    'Country or Area': 'World',
+  },
+  {
+    'Alpha-3 code': 'WPR',
+    'Country or Area': 'WPR',
+  },
+  {
+    'Alpha-3 code': 'UNDP_EAP',
+    'Country or Area': 'East Asia & Pacific',
+  },
+  {
+    'Alpha-3 code': 'UNDP_SA',
+    'Country or Area': 'South Asia',
+  },
+];

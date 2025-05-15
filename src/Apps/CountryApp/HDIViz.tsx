@@ -7,6 +7,7 @@ import {
 } from '../../Types';
 import { ComponentCard } from './ComponentCard';
 import { HDIGraph } from './HDIGraph';
+import { REGION_LOOKUP_TABLE } from '../../Constants';
 
 interface Props {
   hdiData: IndicatorSimplifiedDataType;
@@ -102,7 +103,11 @@ export function HDIViz(props: Props) {
   const dataArray = sortBy(
     hdiData.countryData
       .filter(
-        (d, i) => d.data.findIndex(el => el.year === year) !== -1 && i < 249,
+        d =>
+          d.data.findIndex(el => el.year === year) !== -1 &&
+          REGION_LOOKUP_TABLE.findIndex(
+            el => el['Alpha-3 code'] === d['Alpha-3 code'],
+          ) === -1,
       )
       .map(d => d.data[d.data.findIndex(el => el.year === year)]),
     d => d.value,
