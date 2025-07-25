@@ -41,14 +41,13 @@ export function WorldMap(props: Props) {
           <div className='undp-loader' />
         </div>
       )}
-      {footer ? (
-        <p
-          className='undp-typography small-font margin-bottom-00'
-          style={{ color: 'var(--gray-600)' }}
-        >
-          {footer}
-        </p>
-      ) : null}
+      <p
+        className='undp-typography margin-bottom-00'
+        style={{ color: 'var(--gray-500)', fontSize: '10px' }}
+      >
+        {footer ||
+          'The designations employed and the presentation of material on this map do not imply the expression of any opinion whatsoever on the part of the Secretariat of the United Nations or UNDP concerning the legal status of any country, territory, city or area or its authorities, or concerning the delimitation of its frontiers or boundaries.'}
+      </p>
     </>
   );
 }
