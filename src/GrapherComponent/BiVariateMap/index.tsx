@@ -990,7 +990,7 @@ export function BiVariateMap(props: Props) {
       >
         <div
           className='bivariate-legend-el'
-          style={{ alignItems: 'flex-start', marginBottom: 0 }}
+          style={{ alignItems: 'flex-start', marginBottom: 0, maxWidth: '70%' }}
         >
           <div className='flex-div' style={{ alignItems: 'flex-end' }}>
             <div
@@ -1004,10 +1004,14 @@ export function BiVariateMap(props: Props) {
             >
               <p
                 className='undp-typography italics margin-bottom-00'
-                style={{ fontSize: '0.5rem' }}
+                style={{ fontSize: '0.625rem' }}
               >
-                The boundaries and names and the designations used do not imply
-                official endorsement by the UN
+                The designations employed and the presentation of material on
+                this map do not imply the expression of any opinion whatsoever
+                on the part of the Secretariat of the United Nations or UNDP
+                concerning the legal status of any country, territory, city or
+                area or its authorities, or concerning the delimitation of its
+                frontiers or boundaries.
               </p>
             </div>
           </div>

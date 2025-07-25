@@ -293,10 +293,21 @@ export function CountryMap(props: Props) {
               display: 'flex',
               padding: '1rem',
               backgroundColor: 'rgba(255,255,255,0.5)',
+              maxWidth: '320px',
             }}
           >
             <p className='undp-typography small-font italics margin-bottom-00'>
               Use ctrl (or cmd for mac) + scroll to zoom the map
+              <br />
+              <br />
+              <span style={{ fontSize: '0.625rem', lineHeight: '10px' }}>
+                Please note: The designations employed and the presentation of
+                material on this map do not imply the expression of any opinion
+                whatsoever on the part of the Secretariat of the United Nations
+                or UNDP concerning the legal status of any country, territory,
+                city or area or its authorities, or concerning the delimitation
+                of its frontiers or boundaries.
+              </span>
             </p>
           </div>
         </div>
