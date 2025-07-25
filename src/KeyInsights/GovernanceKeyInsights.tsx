@@ -89,6 +89,20 @@ export function GovernanceKeyInsights() {
               valueArray={[-2, -1.5, -1, -0.5, 0, 0.5, 1, 1.5, 2]}
               colorArray={UNDPColorModule.divergentColors.colorsx10}
             />
+            <div
+              style={{
+                fontSize: '10px',
+                color: 'var(--gray-500)',
+                width: '90%',
+              }}
+            >
+              The designations employed and the presentation of material on this
+              map do not imply the expression of any opinion whatsoever on the
+              part of the Secretariat of the United Nations or UNDP concerning
+              the legal status of any country, territory, city or area or its
+              authorities, or concerning the delimitation of its frontiers or
+              boundaries.
+            </div>
           </div>
         </div>
         <div className='insight-card'>
@@ -152,6 +166,20 @@ export function GovernanceKeyInsights() {
               valueArray={[-0.5, -0.25, 0, 0.25, 0.5]}
               colorArray={UNDPColorModule.divergentColors.colorsx06}
             />
+            <div
+              style={{
+                fontSize: '10px',
+                color: 'var(--gray-500)',
+                width: '90%',
+              }}
+            >
+              The designations employed and the presentation of material on this
+              map do not imply the expression of any opinion whatsoever on the
+              part of the Secretariat of the United Nations or UNDP concerning
+              the legal status of any country, territory, city or area or its
+              authorities, or concerning the delimitation of its frontiers or
+              boundaries.
+            </div>
           </div>
         </div>
       </WrapperEl>
